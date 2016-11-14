@@ -1,7 +1,14 @@
 build/
+out/
+
+# Maven Build Directory
 target/
+
+# IDEA-specific
 .idea
+*.iml
+
+# Eclipse-specific
 .settings
 .project
-*.iml
 .classpath
