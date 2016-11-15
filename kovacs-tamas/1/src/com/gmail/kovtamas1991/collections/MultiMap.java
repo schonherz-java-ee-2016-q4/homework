@@ -73,15 +73,34 @@ public class MultiMap<K, V> implements Map<K, V> {
     }
 
     @Override
-    public V put(K arg0, V arg1) {
-        // TODO Auto-generated method stub
-        return null;
+    public V put(K key, V value) {
+        if (key == null || value == null) {
+            throw new IllegalArgumentException("Nor the key or value are allowed to be null!");
+        }
+
+        int keyIndex = keys.indexOf(key);
+        // if map already contains key
+        if (isValidKeyIndex(keyIndex)) {
+            LinkedList<V> existingValues = values.get(keyIndex);
+            V prevValue = existingValues.getLast();
+            existingValues.add(value);
+            return prevValue;
+        } else {
+            keys.add(key);
+            LinkedList<V> valueList = new LinkedList<>();
+            valueList.add(value);
+            values.add(valueList);
+            return null;
+        }
     }
 
     @Override
-    public void putAll(Map<? extends K, ? extends V> arg0) {
-        // TODO Auto-generated method stub
-
+    public void putAll(Map<? extends K, ? extends V> otherMap) {
+        if (otherMap != null && !otherMap.isEmpty()) {
+            for (Map.Entry<? extends K, ? extends V> entry : otherMap.entrySet()) {
+                this.put(entry.getKey(), entry.getValue());
+            }
+        }
     }
 
     @Override
@@ -102,5 +121,8 @@ public class MultiMap<K, V> implements Map<K, V> {
                 .collect(Collectors.toList());
     }
 
+    private boolean isValidKeyIndex(int keyIndex) {
+        return keyIndex >= 0 && keyIndex < keys.size();
+    }
 
 }
