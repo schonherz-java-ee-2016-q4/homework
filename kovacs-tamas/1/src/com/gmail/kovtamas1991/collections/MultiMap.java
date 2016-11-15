@@ -1,10 +1,21 @@
 package com.gmail.kovtamas1991.collections;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
 public class MultiMap<K, V> implements Map<K, V> {
+
+    private List<K> keys;
+    private List<LinkedList<V>> values;
+
+    public MultiMap() {
+        keys = new LinkedList<>();
+        values = new ArrayList<>();
+    }
 
     @Override
     public void clear() {
