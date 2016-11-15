@@ -25,7 +25,9 @@ public class MyMultimap<K, V> implements MultiMap<K, V> {
 	@Override
 	public boolean containsValue(Object value) {
 		for (Object key : map.keySet()) {
-			return map.get(key).contains(value);
+			if (map.get(key).contains(value)) {
+				return true;
+			}
 		}
 
 		return false;
@@ -44,18 +46,19 @@ public class MyMultimap<K, V> implements MultiMap<K, V> {
 	@Override
 	public V put(K key, V value) {
 		ArrayList<V> list;
+
 		if (!map.containsKey(key)) {
 			list = new ArrayList<V>();
 			list.add(value);
 			map.put(key, list);
 
 			return null;
-		} else {
-			list = map.get(key);
-			list.add(value);
-
-			return list.get(list.size() - 2);
 		}
+
+		list = map.get(key);
+		list.add(value);
+
+		return list.get(list.size() - 2);
 	}
 
 	@Override
@@ -85,8 +88,7 @@ public class MyMultimap<K, V> implements MultiMap<K, V> {
 		return map.size();
 	}
 
-	
-	//generated with eclipse
+	// generated with eclipse
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -95,7 +97,7 @@ public class MyMultimap<K, V> implements MultiMap<K, V> {
 		return result;
 	}
 
-	//generated with eclipse
+	// generated with eclipse
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
