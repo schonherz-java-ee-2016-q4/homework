@@ -7,6 +7,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class MultiMap<K, V> implements Map<K, V> {
 
@@ -33,8 +34,19 @@ public class MultiMap<K, V> implements Map<K, V> {
     }
 
     @Override
-    public boolean containsValue(Object arg0) {
-        // TODO Auto-generated method stub
+    public boolean containsValue(Object value) {
+        if (value == null) {
+            return false;
+        }
+
+        for (List<V> currentValueList : values) {
+            for (V currentValue : currentValueList) {
+                if (currentValue.equals(value)) {
+                    return true;
+                }
+            }
+        }
+
         return false;
     }
 
@@ -85,8 +97,9 @@ public class MultiMap<K, V> implements Map<K, V> {
 
     @Override
     public Collection<V> values() {
-        // TODO Auto-generated method stub
-        return null;
+        return values.stream()
+                .flatMap(Collection::stream)
+                .collect(Collectors.toList());
     }
 
 
