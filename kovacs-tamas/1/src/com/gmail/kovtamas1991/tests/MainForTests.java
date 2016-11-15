@@ -19,6 +19,8 @@ public class MainForTests {
         putAndGetTest();
         reset();
         cleanAndSizeCheckTest();
+        reset();
+        containMethodsTest();
     }
 
 
@@ -50,6 +52,8 @@ public class MainForTests {
                 || !secondExpected.equals(secondResult)) {
             throw new RuntimeException("Returned result is invalid!");
         }
+
+        System.out.println("putAndGetTest was successfull!");
     }
 
     private static void cleanAndSizeCheckTest() {
@@ -72,6 +76,54 @@ public class MainForTests {
         if (!testMap.isEmpty()) {
             throw new RuntimeException("Map claims that it's not empty while it is!");
         }
+
+        System.out.println("cleanAndSizeCheck was successfull!");
+    }
+
+    private static void containMethodsTest() {
+        for (int i = 0; i < 15; i++) {
+            testMap.put("first", i);
+        }
+        for (int i = 100; i < 125; i++) {
+            testMap.put("second", i);
+        }
+
+        Integer[] containedIntegers = new Integer[] {0, 2, 14, 13, 100, 120, 124};
+        Integer[] notContainedIntegers = new Integer[] {-1, 15, null, 1000, 125};
+
+        for (Integer i : containedIntegers) {
+            if (!testMap.containsValue(i)) {
+                throw new RuntimeException("Map should claim to contain " + i + " but it doesn't!");
+            }
+        }
+        for (Integer i : notContainedIntegers) {
+            if (testMap.containsValue(i)) {
+                throw new RuntimeException("Map should not claim to contain" + i + " but it does!");
+            }
+        }
+
+        if (testMap.containsKey(null) || testMap.containsKey("no key")) {
+            throw new RuntimeException("Map claims to contain a key the was never put into it!");
+        }
+        if (!testMap.containsKey("first") || !testMap.containsKey("second")) {
+            throw new RuntimeException("Map claims that it doesn't contain a key which was put into it before!");
+        }
+
+        System.out.println("containMethodsTest was successfull!");
     }
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+

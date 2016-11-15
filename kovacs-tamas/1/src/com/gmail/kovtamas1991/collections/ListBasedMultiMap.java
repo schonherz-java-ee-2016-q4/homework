@@ -120,8 +120,47 @@ public class ListBasedMultiMap<K, V> implements MultiMap<K, V> {
         return keys.size();
     }
 
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((keys == null) ? 0 : keys.hashCode());
+        result = prime * result + ((values == null) ? 0 : values.hashCode());
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        ListBasedMultiMap other = (ListBasedMultiMap) obj;
+        if (keys == null) {
+            if (other.keys != null) {
+                return false;
+            }
+        } else if (!keys.equals(other.keys)) {
+            return false;
+        }
+        if (values == null) {
+            if (other.values != null) {
+                return false;
+            }
+        } else if (!values.equals(other.values)) {
+            return false;
+        }
+        return true;
+    }
+
     private boolean isValidKeyIndex(int keyIndex) {
         return keyIndex >= 0 && keyIndex < keys.size();
     }
+
 
 }
