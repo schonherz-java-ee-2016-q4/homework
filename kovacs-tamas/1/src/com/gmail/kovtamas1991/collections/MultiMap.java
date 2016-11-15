@@ -57,9 +57,18 @@ public class MultiMap<K, V> implements Map<K, V> {
     }
 
     @Override
-    public V get(Object arg0) {
-        // TODO Auto-generated method stub
-        return null;
+    public V get(Object key) {
+        if (key == null) {
+            return null;
+        }
+
+        int keyIndex = keys.indexOf(key);
+        if (!isValidKeyIndex(keyIndex)) {
+            return null;
+        }
+
+        LinkedList<V> valuesOfKey = values.get(keyIndex);
+        return valuesOfKey.getLast();
     }
 
     @Override
@@ -104,9 +113,24 @@ public class MultiMap<K, V> implements Map<K, V> {
     }
 
     @Override
-    public V remove(Object arg0) {
-        // TODO Auto-generated method stub
-        return null;
+    public V remove(Object key) {
+        if (key == null) {
+            return null;
+        }
+
+        int keyIndex = keys.indexOf(key);
+        if (!isValidKeyIndex(keyIndex)) {
+            return null;
+        }
+
+        LinkedList<V> valuesOfKey = values.get(keyIndex);
+        if (valuesOfKey.size() > 1) {
+            return valuesOfKey.removeLast();
+        } else {
+            keys.remove(keyIndex);
+            values.remove(keyIndex);
+            return valuesOfKey.removeLast();
+        }
     }
 
     @Override
