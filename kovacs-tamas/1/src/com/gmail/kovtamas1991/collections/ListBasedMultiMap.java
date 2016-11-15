@@ -98,7 +98,8 @@ public class ListBasedMultiMap<K, V> implements MultiMap<K, V> {
             return new ArrayList<>(0);
         }
 
-        return values.get(keyIndex);
+        keys.remove(keyIndex);
+        return values.remove(keyIndex);
     }
 
     @Override
@@ -112,7 +113,18 @@ public class ListBasedMultiMap<K, V> implements MultiMap<K, V> {
             return null;
         }
 
-        return values.get(keyIndex).remove(value);
+        List<V> keyValues = values.get(keyIndex);
+        if (!keyValues.contains(value)) {
+            return null;
+        }
+
+        if (keyValues.size() == 1) {
+            keys.remove(keyIndex);
+            values.remove(keyIndex);
+        }
+        keyValues.remove(value);
+
+        return value;
     }
 
     @Override
@@ -161,6 +173,5 @@ public class ListBasedMultiMap<K, V> implements MultiMap<K, V> {
     private boolean isValidKeyIndex(int keyIndex) {
         return keyIndex >= 0 && keyIndex < keys.size();
     }
-
 
 }

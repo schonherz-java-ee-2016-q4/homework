@@ -18,6 +18,7 @@ public interface MultiMap<K, V> {
 
     public Collection<V> remove(Object key);
 
+    // What exactly should I give back?
     public Object remove(Object key, Object value);
 
     public int size();

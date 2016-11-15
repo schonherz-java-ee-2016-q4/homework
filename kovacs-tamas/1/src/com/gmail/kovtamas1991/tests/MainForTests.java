@@ -1,5 +1,6 @@
 package com.gmail.kovtamas1991.tests;
 
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.LinkedList;
 
@@ -21,6 +22,10 @@ public class MainForTests {
         cleanAndSizeCheckTest();
         reset();
         containMethodsTest();
+        reset();
+        removeKeyAndCollectionTest();
+        reset();
+        removeOneValueTest();
     }
 
 
@@ -53,7 +58,7 @@ public class MainForTests {
             throw new RuntimeException("Returned result is invalid!");
         }
 
-        System.out.println("putAndGetTest was successfull!");
+        System.out.println("putAndGetTest was successful!");
     }
 
     private static void cleanAndSizeCheckTest() {
@@ -77,7 +82,7 @@ public class MainForTests {
             throw new RuntimeException("Map claims that it's not empty while it is!");
         }
 
-        System.out.println("cleanAndSizeCheck was successfull!");
+        System.out.println("cleanAndSizeCheck was successful!");
     }
 
     private static void containMethodsTest() {
@@ -109,21 +114,60 @@ public class MainForTests {
             throw new RuntimeException("Map claims that it doesn't contain a key which was put into it before!");
         }
 
-        System.out.println("containMethodsTest was successfull!");
+        System.out.println("containMethodsTest was successful!");
+    }
+
+    private static void removeKeyAndCollectionTest() {
+        testMap.put("first", 100);
+        testMap.put("first", 120);
+        testMap.put("first", 909);
+        testMap.put("second", 0);
+        testMap.put("second", -50);
+        testMap.put("second", -4567);
+
+        testMap.remove(null);
+        testMap.remove("no key");
+        if (testMap.size() != 2) {
+            throw new RuntimeException("The remove(key) method with unexisting keys affected the map!");
+        }
+
+        Collection<Integer> firstValues = testMap.remove("first");
+        if (testMap.size() != 1 || testMap.containsKey("first")) {
+            throw new RuntimeException("Failed attempt to remove an existing key from the map!");
+        }
+        if (firstValues.size() != 3) {
+            throw new RuntimeException("The size of the retrived collection is invalid!");
+        }
+
+        if (!firstValues.containsAll(Arrays.asList(100, 120, 909))) {
+            throw new RuntimeException("The retrived collection has invalid content!");
+        }
+
+        testMap.remove("second");
+        if (!testMap.isEmpty()) {
+            throw new RuntimeException("Failed attempt to remove the remaining key with it's collection pair from the map!");
+        }
+
+        System.out.println("removeKeyAndCollectionTest was successful!");
+    }
+
+    private static void removeOneValueTest() {
+        testMap.put("first", 100);
+        testMap.put("first", 120);
+        testMap.put("first", 909);
+
+        Integer[] expectedValues = new Integer[] {100, 120, 909};
+        for (int i = 0; i < expectedValues.length; i++) {
+            if (!testMap.remove("first", expectedValues[i]).equals(expectedValues[i])) {
+                throw new RuntimeException("Returned value doesn't match the expected value!");
+            }
+        }
+
+        if (!testMap.isEmpty()) {
+            throw new RuntimeException("Map claims not to be empty!");
+        }
+
+        System.out.println("removeOneValueTest was successful!");
     }
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
