@@ -1,5 +1,6 @@
 package com.gmail.kovtamas1991.collections;
 
+import java.util.AbstractMap;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
@@ -52,8 +53,17 @@ public class MultiMap<K, V> implements Map<K, V> {
 
     @Override
     public Set<java.util.Map.Entry<K, V>> entrySet() {
-        // TODO Auto-generated method stub
-        return null;
+        Set<Map.Entry<K, V>> entrySet = new HashSet<>();
+        int index = 0;
+        for (K currentKey : keys) {
+            LinkedList<V> valuesOfCurrentKey = values.get(index);
+            for (V currentValue : valuesOfCurrentKey) {
+                Map.Entry<K, V> entry = new AbstractMap.SimpleEntry(currentKey, currentValue);
+                entrySet.add(entry);
+            }
+        }
+
+        return entrySet;
     }
 
     @Override
