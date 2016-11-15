@@ -48,8 +48,16 @@ public class ListBasedMultiMap<K, V> implements MultiMap<K, V> {
 
     @Override
     public Collection<V> get(Object key) {
-        // TODO Auto-generated method stub
-        return null;
+        if (key == null) {
+            return new ArrayList<>(0);
+        }
+
+        int keyIndex = keys.indexOf(key);
+        if (!isValidKeyIndex(keyIndex)) {
+            return new ArrayList<>(0);
+        }
+
+        return values.get(keyIndex);
     }
 
     @Override
@@ -81,14 +89,30 @@ public class ListBasedMultiMap<K, V> implements MultiMap<K, V> {
 
     @Override
     public Collection<V> remove(Object key) {
-        // TODO Auto-generated method stub
-        return null;
+        if (key == null) {
+            return new ArrayList<>(0);
+        }
+
+        int keyIndex = keys.indexOf(key);
+        if (!isValidKeyIndex(keyIndex)) {
+            return new ArrayList<>(0);
+        }
+
+        return values.get(keyIndex);
     }
 
     @Override
     public Object remove(Object key, Object value) {
-        // TODO Auto-generated method stub
-        return null;
+        if (key == null || value == null) {
+            return null;
+        }
+
+        int keyIndex = keys.indexOf(key);
+        if (!isValidKeyIndex(keyIndex)) {
+            return null;
+        }
+
+        return values.get(keyIndex).remove(value);
     }
 
     @Override
