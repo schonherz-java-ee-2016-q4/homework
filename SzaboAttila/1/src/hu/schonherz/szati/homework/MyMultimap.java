@@ -25,11 +25,7 @@ public class MyMultimap<K, V> implements MultiMap<K, V> {
 	@Override
 	public boolean containsValue(Object value) {
 		for (Object key : map.keySet()) {
-			for (Object item : (ArrayList<V>) map.get(key)) {
-				if (value.equals(item)) {
-					return true;
-				}
-			}
+			return map.get(key).contains(value);
 		}
 
 		return false;
@@ -55,7 +51,7 @@ public class MyMultimap<K, V> implements MultiMap<K, V> {
 
 			return null;
 		} else {
-			list = (ArrayList<V>) map.get(key);
+			list = map.get(key);
 			list.add(value);
 
 			return list.get(list.size() - 2);
