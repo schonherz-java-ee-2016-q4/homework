@@ -2,6 +2,7 @@ package com.gmail.kovtamas1991.collections;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -19,14 +20,16 @@ public class MultiMap<K, V> implements Map<K, V> {
 
     @Override
     public void clear() {
-        // TODO Auto-generated method stub
-
+        keys.clear();
+        values.clear();
     }
 
     @Override
-    public boolean containsKey(Object arg0) {
-        // TODO Auto-generated method stub
-        return false;
+    public boolean containsKey(Object key) {
+        if (key == null) {
+            return false;
+        }
+        return keys.contains(key);
     }
 
     @Override
@@ -49,14 +52,12 @@ public class MultiMap<K, V> implements Map<K, V> {
 
     @Override
     public boolean isEmpty() {
-        // TODO Auto-generated method stub
-        return false;
+        return keys.isEmpty();
     }
 
     @Override
     public Set<K> keySet() {
-        // TODO Auto-generated method stub
-        return null;
+        return new HashSet<>(keys);
     }
 
     @Override
@@ -79,8 +80,7 @@ public class MultiMap<K, V> implements Map<K, V> {
 
     @Override
     public int size() {
-        // TODO Auto-generated method stub
-        return 0;
+        return keys.size();
     }
 
     @Override
