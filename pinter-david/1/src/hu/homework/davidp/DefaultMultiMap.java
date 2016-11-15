@@ -25,7 +25,12 @@ public class DefaultMultiMap<K, V> implements MultiMap<K, V> {
 
     @Override
     public boolean containsValue(Object value) {
-        return data.containsValue(value);
+        for (ArrayList<V> values : data.values()) {
+            if (values.contains(value)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override
