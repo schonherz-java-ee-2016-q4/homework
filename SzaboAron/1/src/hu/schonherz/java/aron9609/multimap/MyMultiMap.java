@@ -23,9 +23,9 @@ public class MyMultiMap<K, V> implements MultiMap<K, V> {
 		}
 
 		public MultiMapNode(K key, List<V> values) {
-			super();
+			this();
 			this.key = key;
-			this.values = values;
+			this.values.addAll(values);
 		}
 
 		public void addValue(V value) {
@@ -96,6 +96,9 @@ public class MyMultiMap<K, V> implements MultiMap<K, V> {
 
 	@Override
 	public boolean containsKey(Object key) {
+		if (key == null) {
+			throw new IllegalArgumentException("The key are not allowed to be null value");
+		}
 		for (MultiMapNode<K, V> n : multiMapDataStructure) {
 			if (n.getKey().equals(key)) {
 				return true;
@@ -106,6 +109,9 @@ public class MyMultiMap<K, V> implements MultiMap<K, V> {
 
 	@Override
 	public boolean containsValue(Object value) {
+		if (value == null) {
+			throw new IllegalArgumentException("The value are not allowed to be null value");
+		}
 		for (MultiMapNode<K, V> n : multiMapDataStructure) {
 			if (n.getValues().contains(value)) {
 				return true;
@@ -136,11 +142,9 @@ public class MyMultiMap<K, V> implements MultiMap<K, V> {
 		}
 
 		MultiMapNode<K, V> existing = null;
-		if (!multiMapDataStructure.isEmpty()) {
-			for (MultiMapNode<K, V> n : multiMapDataStructure) {
-				if (n.getKey().equals(key)) {
-					existing = n;
-				}
+		for (MultiMapNode<K, V> n : multiMapDataStructure) {
+			if (n.getKey().equals(key)) {
+				existing = n;
 			}
 		}
 		if (existing != null) {
@@ -156,7 +160,7 @@ public class MyMultiMap<K, V> implements MultiMap<K, V> {
 	}
 
 	public V put(MultiMapNode<K, V> newNode) {
-		if (newNode.getKey() == null) {
+		if (newNode == null || newNode.getKey() == null) {
 			throw new IllegalArgumentException("The key are not allowed to be null value");
 		}
 		MultiMapNode<K, V> existing = null;
@@ -188,13 +192,10 @@ public class MyMultiMap<K, V> implements MultiMap<K, V> {
 			if (n.getKey().equals(key)) {
 				existing = n;
 				multiMapDataStructure.remove(n);
-				break;
+				return existing.getValues();
 			}
 		}
-		if (existing != null) {
-			return existing.getValues();
 
-		}
 		return null;
 	}
 
