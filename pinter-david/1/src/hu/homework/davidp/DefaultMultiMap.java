@@ -76,4 +76,20 @@ public class DefaultMultiMap<K, V> implements MultiMap<K, V> {
     public Set<Map.Entry<K, ArrayList<V>>> entrySet() {
         return data.entrySet();
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        DefaultMultiMap<?, ?> that = (DefaultMultiMap<?, ?>) o;
+
+        return data != null ? data.equals(that.data) : that.data == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        return data != null ? data.hashCode() : 0;
+    }
 }
