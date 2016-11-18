@@ -36,10 +36,8 @@ public class ListBasedMultiMap<K, V> implements MultiMap<K, V> {
         }
 
         for (List<V> currentValueList : values) {
-            for (V currentValue : currentValueList) {
-                if (currentValue.equals(value)) {
-                    return true;
-                }
+            if (currentValueList.contains(value)) {
+                return true;
             }
         }
 
