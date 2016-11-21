@@ -3,12 +3,12 @@ package hu.schonherz.java.gfazek;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 public class MultiMap<K, V> implements IMultiMap<K, V>{
 
-	private HashMap<K, List<V>> multimap = new HashMap<>();
+	private Map<K, List<V>> multimap = new HashMap<>();
 	
 	@Override
 	public void clear() {
@@ -23,8 +23,9 @@ public class MultiMap<K, V> implements IMultiMap<K, V>{
 	@Override
 	public boolean containsValue(Object value) {
 		for (K key : multimap.keySet()) {
-			if (multimap.get(key).contains(value))
+			if (multimap.get(key).contains(value)) {
 				return true;
+			}
 		}
 		return false;
 	}
