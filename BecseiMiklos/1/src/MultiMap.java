@@ -1,8 +1,7 @@
-package hu.nemethmarcell.homework;
-
 import java.util.Collection;
 
-public interface MyMultiMap<K, V> {
+public interface MultiMap<K, V> {
+
     public void clear();
 
     public boolean containsKey(Object key);

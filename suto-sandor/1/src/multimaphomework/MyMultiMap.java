@@ -39,7 +39,6 @@ public class MyMultiMap<K, V> implements MultiMap<K, V> {
 	public Collection<V> get(Object key) {
 		Collection<V> valuelist = new ArrayList<V>();
 		if (!mmap.containsKey(key)) {
-			System.out.println("get!");
 			return valuelist;
 		}
 		for (V i : mmap.get(key)) {
@@ -84,11 +83,9 @@ public class MyMultiMap<K, V> implements MultiMap<K, V> {
 	@Override
 	public Object remove(Object key, Object value) {
 		if (!mmap.containsKey(key)) {
-			System.out.println("No key");
 			return mmap.get(0);
 		}
 		if (!(mmap.get(key)).contains(value)) {
-			System.out.println("No value");
 			return mmap.get(0);
 		}
 		ArrayList<V> list;
