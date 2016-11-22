@@ -1,5 +1,8 @@
 package hu.nemethmarcell.domain.server;
 
+/**
+ * Created by Marci on 2016. 11. 22..
+ */
 public enum ServerType {
-    LINUX, LINUX_WEB, LINUX_DB_AND_WEB, WINDOWS, WINDOWS_WEB, WINDOWS_DB_AND_WEB
+    LINUX, LINUXWEB, LINUXDBANDWEB, WIN, WINDOWS_WEB, WINDOWSDBANDWEB
 }

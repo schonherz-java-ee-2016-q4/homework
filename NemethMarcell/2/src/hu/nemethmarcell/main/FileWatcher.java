@@ -1,11 +1,16 @@
 package hu.nemethmarcell.main;
 
+/**
+ * Created by Marci on 2016. 11. 22..
+ */
 import java.io.File;
+import java.io.IOException;
 import java.util.TimerTask;
 
 public abstract class FileWatcher extends TimerTask {
     private long timeStamp;
     private File file;
+
 
     public FileWatcher(File file) {
         this.file = file;

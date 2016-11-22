@@ -1,5 +1,8 @@
 package hu.nemethmarcell.domain.people;
 
+/**
+ * Created by Marci on 2016. 11. 22..
+ */
 import java.io.Serializable;
 
 public class Employee implements Serializable {

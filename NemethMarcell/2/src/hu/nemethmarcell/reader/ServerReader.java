@@ -1,5 +1,9 @@
 package hu.nemethmarcell.reader;
 
+import hu.nemethmarcell.domain.server.Server;
+import hu.nemethmarcell.domain.server.ServerStatus;
+import hu.nemethmarcell.domain.server.ServerType;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -12,10 +16,10 @@ public class ServerReader {
     private static final String SUBDIRECTORY = "files";
     private static final String FILENAME = "servers.txt";
 
-    private static File file = new File("c:/Users/Marci/Desktop/KepzesFajlok/homework/NemethMarcell/2/files/servers.txt");
-    public static List<String> result;
+    private static File file = new File(SUBDIRECTORY + File.separator + FILENAME);
+    public static List<Server> result;
 
-    public static List<String> readFromTextFile() {
+    public static List<Server> readFromTextFile() {
         result = new ArrayList<>();
 
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(file))) {
@@ -23,15 +27,10 @@ public class ServerReader {
             while ((line = bufferedReader.readLine()) != null) {
                 String[] attributes = line.split(",");
 
-                // Server server = new
-                // Server(Integer.parseInt(attributes[0]),attributes[1],
-                // Enum.valueOf(ServerType.class, attributes[2]),
-                // Enum.valueOf(ServerStatus.class, attributes[3]));
-                // result.add(server);
-                result.add(attributes[0]);
-                result.add(attributes[1]);
-                result.add(attributes[2]);
-                result.add(attributes[3]);
+                Server server = new Server(Integer.parseInt(attributes[0]), attributes[1],
+                        ServerType.valueOf(attributes[2].toUpperCase()),
+                        ServerStatus.valueOf(attributes[3].toUpperCase()));
+                result.add(server);
 
             }
         } catch (IOException e) {

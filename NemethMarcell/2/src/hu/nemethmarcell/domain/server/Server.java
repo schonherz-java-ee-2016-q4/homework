@@ -1,5 +1,8 @@
 package hu.nemethmarcell.domain.server;
 
+/**
+ * Created by Marci on 2016. 11. 22..
+ */
 public class Server {
     private int id;
     private String name;
