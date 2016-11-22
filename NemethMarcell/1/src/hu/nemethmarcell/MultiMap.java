@@ -1,4 +1,4 @@
-package hu.nemethmarcell.homework;
+package hu.nemethmarcell;
 
 import java.util.ArrayList;
 import java.util.Collection;

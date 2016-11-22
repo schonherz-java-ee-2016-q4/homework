@@ -1,4 +1,4 @@
-package hu.nemethmarcell.homework;
+package hu.nemethmarcell;
 
 public class Main {
     public static void main(String[] args) {
