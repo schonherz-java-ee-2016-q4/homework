@@ -9,12 +9,12 @@ public class Server {
     private ServerType type;
     private ServerStatus status;
 
-    public Server(int id, String name, ServerType type, ServerStatus status) {
+    private Server(ServerBuilder builder) {
         super();
-        this.id = id;
-        this.name = name;
-        this.type = type;
-        this.status = status;
+        this.id = builder.id;
+        this.name = builder.name;
+        this.type = builder.type;
+        this.status = builder.status;
     }
 
     public int getId() {
@@ -27,6 +27,7 @@ public class Server {
 
     public String getName() {
         return name;
+
     }
 
     public void setName(final String name) {
@@ -48,4 +49,29 @@ public class Server {
     public void setStatus(final ServerStatus status) {
         this.status = status;
     }
+
+
+    public static class ServerBuilder
+
+
+    {
+        private int id;
+        private String name;
+        private ServerType type;
+        private ServerStatus status;
+
+        public ServerBuilder(int id, String name, ServerType type, ServerStatus status) {
+            this.id = id;
+            this.name = name;
+            this.type = type;
+            this.status = status;
+
+
+        }
+
+        public Server build() {
+            return new Server(this);
+        }
+    }
+
 }

@@ -27,9 +27,9 @@ public class ServerReader {
             while ((line = bufferedReader.readLine()) != null) {
                 String[] attributes = line.split(",");
 
-                Server server = new Server(Integer.parseInt(attributes[0]), attributes[1],
-                        ServerType.valueOf(attributes[2].toUpperCase()),
-                        ServerStatus.valueOf(attributes[3].toUpperCase()));
+                Server server = new Server.ServerBuilder(Integer.parseInt(attributes[0]), attributes[1],
+                        ServerType.valueOf(attributes[2].toUpperCase()), ServerStatus.valueOf(attributes[3].toUpperCase())).build();
+
                 result.add(server);
 
             }
