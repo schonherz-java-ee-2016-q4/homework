@@ -60,13 +60,30 @@ public class Server {
         private ServerType type;
         private ServerStatus status;
 
-        public ServerBuilder(int id, String name, ServerType type, ServerStatus status) {
+        public ServerBuilder() {
+
+
+        }
+
+        public ServerBuilder setNewId(int id) {
             this.id = id;
+            return this;
+        }
+
+        public ServerBuilder setNewName(String name) {
             this.name = name;
+            return this;
+
+        }
+
+        public ServerBuilder setNewType(ServerType type) {
             this.type = type;
+            return this;
+        }
+
+        public ServerBuilder setNewStatus(ServerStatus status) {
             this.status = status;
-
-
+            return this;
         }
 
         public Server build() {
