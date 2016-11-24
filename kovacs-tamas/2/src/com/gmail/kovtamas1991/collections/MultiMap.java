@@ -14,7 +14,9 @@ public interface MultiMap<K, V> {
 
     public boolean isEmpty();
 
-    public V put(K key, V value);
+    public void put(K key, V value);
+
+    public void put(K key, Collection<V> values);
 
     public Collection<V> remove(Object key);
 

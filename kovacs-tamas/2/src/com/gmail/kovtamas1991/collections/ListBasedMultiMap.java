@@ -64,7 +64,7 @@ public class ListBasedMultiMap<K, V> implements MultiMap<K, V> {
     }
 
     @Override
-    public V put(K key, V value) {
+    public void put(K key, V value) {
         if (key == null || value == null) {
             throw new IllegalArgumentException("Nor the key or value are allowed to be null!");
         }
@@ -73,15 +73,27 @@ public class ListBasedMultiMap<K, V> implements MultiMap<K, V> {
         // if map already contains key
         if (isValidKeyIndex(keyIndex)) {
             LinkedList<V> existingValues = values.get(keyIndex);
-            V prevValue = existingValues.getLast();
             existingValues.add(value);
-            return prevValue;
         } else {
             keys.add(key);
             LinkedList<V> valueList = new LinkedList<>();
             valueList.add(value);
             values.add(valueList);
-            return null;
+        }
+    }
+
+    @Override
+    public void put(K key, Collection<V> newValues) {
+        if (key == null || newValues == null) {
+            throw new IllegalArgumentException("Nor the key or values are allowed to be null!");
+        }
+
+        int keyIndex = keys.indexOf(key);
+        if (isValidKeyIndex(keyIndex)) {
+            values.get(keyIndex).addAll(newValues);
+        } else {
+            keys.add(key);
+            values.add(new LinkedList<>(newValues));
         }
     }
 

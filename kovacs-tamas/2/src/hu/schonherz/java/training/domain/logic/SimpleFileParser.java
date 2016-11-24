@@ -30,31 +30,40 @@ public class SimpleFileParser implements FileParser {
 
 
     @Override
-    public MultiMap<Server, Employee> ReadStoppedServersAndTheirAdmins() throws FileNotFoundException {
+    public MultiMap<Server, Employee> ReadStoppedServersAndTheirAdmins() throws FileParseException {
         List<Server> servers;
-        List<Employee> admins;
+        List<SystemAdministrator> admins;
         try {
             servers = parseServerFile();
             admins = parseAdminFile(servers);
-        } catch (Exception e) {
-            // TODO: handle exception and specify concrete exception type
+        } catch (FileNotFoundException fnfe) {
+            throw new FileParseException("Log file not found!", fnfe);
+        } catch (IOException ioe) {
+            throw new FileParseException("Cannot read log file!", ioe);
         }
 
         MultiMap<Server, Employee> serAdminMap = new ListBasedMultiMap<>();
-        // TODO: populate the map
+        for (Server ser : servers) {
+            List<Employee> adminsOfServer = admins.stream()
+                    .filter(admin -> admin.getServers().contains(ser))
+                    .collect(Collectors.toList());
+            serAdminMap.put(ser, adminsOfServer);
+        }
 
         return serAdminMap;
     }
 
     private List<Server> parseServerFile() throws FileNotFoundException, IOException {
-        BufferedReader serverReader = fileLoader.getReaderForFile(Files.SERVER);
         List<Server> servers = new ArrayList<>();
-        String line;
-        while ((line = serverReader.readLine()) != null) {
-            if (line.contains(ServerStatus.STOPPED.name())) {
-                Optional<Server> currentServer = convertLineToServer(line);
-                if (currentServer.isPresent()) {
-                    servers.add(currentServer.get());
+        try (BufferedReader serverReader = fileLoader.getReaderForFile(Files.SERVER);) {
+            String line;
+            while ((line = serverReader.readLine()) != null) {
+                // Read only the stopped servers
+                if (line.contains(ServerStatus.STOPPED.name())) {
+                    Optional<Server> currentServer = convertLineToServer(line);
+                    if (currentServer.isPresent()) {
+                        servers.add(currentServer.get());
+                    }
                 }
             }
         }
@@ -62,12 +71,12 @@ public class SimpleFileParser implements FileParser {
         return servers;
     }
 
-    private List<Employee> parseAdminFile(List<Server> servers) throws FileNotFoundException, IOException {
+    private List<SystemAdministrator> parseAdminFile(List<Server> servers) throws FileNotFoundException, IOException {
         BufferedReader adminReader = fileLoader.getReaderForFile(Files.ADMIN);
-        List<Employee> admins = new ArrayList<>();
+        List<SystemAdministrator> admins = new ArrayList<>();
         String line;
         while ((line = adminReader.readLine()) != null) {
-            Optional<Employee> currentAdmin = convertLineToAdmin(line, servers);
+            Optional<SystemAdministrator> currentAdmin = convertLineToAdmin(line, servers);
             if (currentAdmin.isPresent()) {
                 admins.add(currentAdmin.get());
             }
@@ -102,7 +111,7 @@ public class SimpleFileParser implements FileParser {
         return Optional.of(decodedServer);
     }
 
-    private Optional<Employee> convertLineToAdmin(String line, List<Server> servers) {
+    private Optional<SystemAdministrator> convertLineToAdmin(String line, List<Server> servers) {
         String[] parts = line.split(",");
         if (parts.length < 3) {
             return Optional.empty();
