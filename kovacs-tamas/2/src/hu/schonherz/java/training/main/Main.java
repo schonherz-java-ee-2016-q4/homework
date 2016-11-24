@@ -1,11 +1,8 @@
 package hu.schonherz.java.training.main;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-
-import hu.schonherz.java.training.domain.logic.SimpleFileLoader;
-import hu.schonherz.java.training.domain.logic.interfaces.FileLoader;
+import hu.schonherz.java.training.domain.server.Server;
+import hu.schonherz.java.training.domain.server.ServerStatus;
+import hu.schonherz.java.training.domain.server.ServerType;
 
 public class Main {
 
@@ -14,29 +11,17 @@ public class Main {
         // 2. create thread and start it (daemon thread)
         // 3. wait for user input
         // 4. exit on receiving any user input
+        Server server = Server.builder()
+                .id(10)
+                .name("Name")
+                .type(ServerType.LINUX)
+                .status(ServerStatus.RUNNING)
+                .build();
 
-        FileLoader fileLoader = new SimpleFileLoader();
-        BufferedReader reader = null;
-        try {
-            reader = fileLoader.getReaderForFile(FileLoader.Files.ADMIN);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-
-        if (reader == null) {
-            System.err.println("Input stream is nul!");
-            return;
-        }
-
-        System.out.println("not null!");
-
-
-        try {
-            reader.close();
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
+        System.out.println(server.getId());
+        System.out.println(server.getName());
+        System.out.println(server.getType().name());
+        System.out.println(server.getStatus().name());
 
     }
 
