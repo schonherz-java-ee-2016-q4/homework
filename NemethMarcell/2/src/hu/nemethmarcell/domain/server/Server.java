@@ -65,28 +65,28 @@ public class Server {
 
         }
 
-        public ServerBuilder setNewId(int id) {
+        public ServerBuilder id(int id) {
             this.id = id;
             return this;
         }
 
-        public ServerBuilder setNewName(String name) {
+        public ServerBuilder name(String name) {
             this.name = name;
             return this;
 
         }
 
-        public ServerBuilder setNewType(ServerType type) {
+        public ServerBuilder type(ServerType type) {
             this.type = type;
             return this;
         }
 
-        public ServerBuilder setNewStatus(ServerStatus status) {
+        public ServerBuilder status(ServerStatus status) {
             this.status = status;
             return this;
         }
 
-        public Server build() {
+        public Server createServer() {
             return new Server(this);
         }
     }

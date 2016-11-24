@@ -25,15 +25,28 @@ public class ServerReader {
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(file))) {
             String line;
             while ((line = bufferedReader.readLine()) != null) {
+                if (line.isEmpty()) {
+                    continue;
+                }
                 String[] attributes = line.split(",");
-                Server server = new Server.ServerBuilder().setNewId(Integer.parseInt(attributes[0])).setNewName(attributes[1]).setNewType(
-                        ServerType.valueOf(attributes[2].toUpperCase())).setNewStatus(ServerStatus.valueOf(attributes[3].toUpperCase())).build();
-                
+                if (attributes.length != 4) {
+                    continue;
+
+                }
+                final Server server = new Server.ServerBuilder()
+                        .id(Integer.parseInt(attributes[0]))
+                        .name(attributes[1])
+                        .type(ServerType.valueOf(attributes[2].toUpperCase()))
+                        .status(ServerStatus.valueOf(attributes[3].toUpperCase()))
+                        .createServer();
+
                 result.add(server);
 
             }
         } catch (IOException e) {
             System.out.println("io error");
+        } catch (NumberFormatException e) {
+            System.out.println(e);
         }
         return result;
     }

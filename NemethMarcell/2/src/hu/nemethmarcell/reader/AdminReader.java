@@ -1,7 +1,6 @@
 package hu.nemethmarcell.reader;
 
 import hu.nemethmarcell.domain.people.SystemAdministrator;
-import hu.nemethmarcell.domain.server.Server;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -27,15 +26,19 @@ public class AdminReader {
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(file))) {
             String line;
             while ((line = bufferedReader.readLine()) != null) {
+                if (line.isEmpty()) {
+                    continue;
+                }
                 String[] attributes = line.split(",");
+
                 List<Integer> lista = new ArrayList<>();
-                Map<String,List<Integer>> map = new HashMap<>();
-                for(int i = 2; i < attributes.length; i++){
+                Map<String, List<Integer>> map = new HashMap<>();
+                for (int i = 2; i < attributes.length; i++) {
                     lista.add(Integer.parseInt(attributes[i]));
                 }
-                map.put(attributes[0],lista);
+                map.put(attributes[0], lista);
                 SystemAdministrator admin = new SystemAdministrator(attributes[0],
-                        Integer.parseInt(attributes[1]),map.get(attributes[0]));
+                        Integer.parseInt(attributes[1]), map.get(attributes[0]));
 
                 result.add(admin);
             }
