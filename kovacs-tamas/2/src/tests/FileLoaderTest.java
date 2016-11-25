@@ -16,7 +16,7 @@ public class FileLoaderTest {
     FileLoader fileLoader;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         fileLoader = new SimpleFileLoader();
     }
 

@@ -83,7 +83,7 @@ public class SimpleLineDecoder implements LineDecoder {
     }
 
     @Override
-    public void setStoppedServers(List<Server> stoppedServers) {
+    public void setServers(List<Server> stoppedServers) {
         if (stoppedServers == null) {
             throw new IllegalArgumentException("Given servers must not be null");
         }

@@ -43,7 +43,7 @@ public class SimpleFileParser implements FileParser {
             servers = servers.stream()
                     .filter(ser -> ser.getStatus() == ServerStatus.STOPPED)
                     .collect(Collectors.toList());
-            lnDecoder.setStoppedServers(servers);
+            lnDecoder.setServers(servers);
             List<SystemAdministrator> admins = parseFile(adminReader, lnDecoder::convertLineToAdmin);
 
             return makeMapping(servers, admins);

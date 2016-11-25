@@ -10,6 +10,6 @@ public interface LineDecoder {
 
     Optional<Server> convertLineToServer(String line);
     Optional<SystemAdministrator> convertLineToAdmin(String line);
-    void setStoppedServers(List<Server> stoppedServers);
+    void setServers(List<Server> servers);
 
 }
