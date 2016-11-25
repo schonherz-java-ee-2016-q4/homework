@@ -19,12 +19,12 @@ public class Main {
         FileParser parser = new SimpleFileParser();
         MultiMap<Server, Employee> map = null;
         try {
-            map = parser.ReadStoppedServersAndTheirAdmins();
+            map = parser.getStoppedServersAndTheirAdmins();
         } catch (FileParseException fpe) {
             System.err.println("Nem nyert!");
         }
 
-
+        System.out.println(map.size());
 
     }
 

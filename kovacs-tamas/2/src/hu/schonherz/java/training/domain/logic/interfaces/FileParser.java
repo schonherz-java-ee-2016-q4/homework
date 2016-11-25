@@ -8,6 +8,6 @@ import hu.schonherz.java.training.domain.server.Server;
 
 public interface FileParser {
 
-    MultiMap<Server, Employee> ReadStoppedServersAndTheirAdmins() throws FileParseException;
+    MultiMap<Server, Employee> getStoppedServersAndTheirAdmins() throws FileParseException;
 
 }
