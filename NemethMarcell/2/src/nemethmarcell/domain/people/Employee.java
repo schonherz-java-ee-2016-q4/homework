@@ -1,4 +1,4 @@
-package hu.nemethmarcell.domain.people;
+package nemethmarcell.domain.people;
 
 /**
  * Created by Marci on 2016. 11. 22..

@@ -1,8 +1,8 @@
-package hu.nemethmarcell.reader;
+package nemethmarcell.reader;
 
-import hu.nemethmarcell.domain.server.Server;
-import hu.nemethmarcell.domain.server.ServerStatus;
-import hu.nemethmarcell.domain.server.ServerType;
+import nemethmarcell.domain.server.Server;
+import nemethmarcell.domain.server.ServerStatus;
+import nemethmarcell.domain.server.ServerType;
 
 import java.io.BufferedReader;
 import java.io.File;

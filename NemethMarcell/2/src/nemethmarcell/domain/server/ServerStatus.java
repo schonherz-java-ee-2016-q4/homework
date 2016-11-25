@@ -1,4 +1,4 @@
-package hu.nemethmarcell.domain.server;
+package nemethmarcell.domain.server;
 
 /**
  * Created by Marci on 2016. 11. 22..

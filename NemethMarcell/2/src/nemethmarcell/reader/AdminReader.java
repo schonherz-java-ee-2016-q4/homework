@@ -1,6 +1,6 @@
-package hu.nemethmarcell.reader;
+package nemethmarcell.reader;
 
-import hu.nemethmarcell.domain.people.SystemAdministrator;
+import nemethmarcell.domain.people.SystemAdministrator;
 
 import java.io.BufferedReader;
 import java.io.File;

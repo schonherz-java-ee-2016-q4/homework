@@ -1,11 +1,10 @@
-package hu.nemethmarcell.domain.people;
+package nemethmarcell.domain.people;
 
 /**
  * Created by Marci on 2016. 11. 22..
  */
-import java.util.List;
 
-import hu.nemethmarcell.domain.server.Server;
+import java.util.List;
 
 public class SystemAdministrator extends Employee {
     private static final long serialVersionUID = 2244059719140625986L;

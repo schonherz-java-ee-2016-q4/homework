@@ -1,10 +1,10 @@
-package hu.nemethmarcell.main;
+package nemethmarcell.main;
 
-import hu.nemethmarcell.domain.people.SystemAdministrator;
-import hu.nemethmarcell.domain.server.Server;
-import hu.nemethmarcell.domain.server.ServerStatus;
-import hu.nemethmarcell.reader.AdminReader;
-import hu.nemethmarcell.reader.ServerReader;
+import nemethmarcell.domain.people.SystemAdministrator;
+import nemethmarcell.domain.server.Server;
+import nemethmarcell.domain.server.ServerStatus;
+import nemethmarcell.reader.AdminReader;
+import nemethmarcell.reader.ServerReader;
 
 import java.io.File;
 import java.util.Date;
