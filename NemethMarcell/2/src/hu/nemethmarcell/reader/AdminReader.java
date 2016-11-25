@@ -37,8 +37,10 @@ public class AdminReader {
                     lista.add(Integer.parseInt(attributes[i]));
                 }
                 map.put(attributes[0], lista);
-                SystemAdministrator admin = new SystemAdministrator(attributes[0],
-                        Integer.parseInt(attributes[1]), map.get(attributes[0]));
+                SystemAdministrator admin = new SystemAdministrator(
+                        attributes[0],
+                        Integer.parseInt(attributes[1]),
+                        map.get(attributes[0]));
 
                 result.add(admin);
             }
