@@ -9,6 +9,7 @@ import hu.schonherz.java.training.domain.server.Server;
 public interface LineDecoder {
 
     Optional<Server> convertLineToServer(String line);
-    Optional<SystemAdministrator> convertLineToAdmin(String line, List<Server> servers);
+    Optional<SystemAdministrator> convertLineToAdmin(String line);
+    void setStoppedServers(List<Server> stoppedServers);
 
 }

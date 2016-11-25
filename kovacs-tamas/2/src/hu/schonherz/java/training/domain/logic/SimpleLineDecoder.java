@@ -13,7 +13,7 @@ import hu.schonherz.java.training.domain.server.ServerType;
 
 public class SimpleLineDecoder implements LineDecoder {
 
-
+    private List<Server> stoppedServers = null;
 
     @Override
     public Optional<Server> convertLineToServer(String line) {
@@ -47,7 +47,7 @@ public class SimpleLineDecoder implements LineDecoder {
     }
 
     @Override
-    public Optional<SystemAdministrator> convertLineToAdmin(String line, List<Server> servers) {
+    public Optional<SystemAdministrator> convertLineToAdmin(String line) {
         String[] parts = line.split(",");
         if (parts.length < 3) {
             return Optional.empty();
@@ -70,7 +70,7 @@ public class SimpleLineDecoder implements LineDecoder {
         }
 
         // Collect the Server objects that belong to the admin
-        List<Server> serversOfAdmin = servers.stream()
+        List<Server> serversOfAdmin = stoppedServers.stream()
                 .filter(ser -> serverIds.contains(ser.getId()))
                 .collect(Collectors.toList());
 
@@ -80,6 +80,14 @@ public class SimpleLineDecoder implements LineDecoder {
         admin.setEmployeeID(empId);
         admin.setServers(serversOfAdmin);
         return Optional.of(admin);
+    }
+
+    @Override
+    public void setStoppedServers(List<Server> stoppedServers) {
+        if (stoppedServers == null) {
+            throw new IllegalArgumentException("Given servers must not be null");
+        }
+        this.stoppedServers = stoppedServers;
     }
 
 }
