@@ -48,6 +48,7 @@ public class LogPrinter implements Runnable {
                 break;
             }
         }
+        System.out.println("Logging thread stopped.");
     }
 
     public void stop() {
