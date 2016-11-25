@@ -47,6 +47,17 @@ public class SystemAdministrator extends Employee {
         return true;
     }
 
+    @Override
+    public String toString() {
+        StringBuilder builder = new StringBuilder(super.toString());
+        builder.append(" serverIds: " );
+        for (Server ser : servers) {
+            builder.append(ser.getId()).append(' ');
+        }
+
+        return builder.toString();
+    }
+
 
 
 }

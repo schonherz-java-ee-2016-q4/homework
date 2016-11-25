@@ -1,9 +1,14 @@
 package com.gmail.kovtamas1991.collections;
 
+import java.util.AbstractMap;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map.Entry;
+import java.util.Set;
 
 public class ListBasedMultiMap<K, V> implements MultiMap<K, V> {
 
@@ -95,6 +100,29 @@ public class ListBasedMultiMap<K, V> implements MultiMap<K, V> {
             keys.add(key);
             values.add(new LinkedList<>(newValues));
         }
+    }
+
+    @Override
+    public Set<K> keySet() {
+        return Collections.unmodifiableSet(new HashSet<>(keys));
+    }
+
+    @Override
+    public Set<Entry<K, List<V>>> entrySet() {
+        Set<Entry<K, List<V>>> entrySet = new HashSet<>();
+        for (int i = 0; i < keys.size(); i++) {
+            Entry<K, List<V>> currentEnty = new AbstractMap.SimpleEntry<>(keys.get(i), values.get(i));
+            entrySet.add(currentEnty);
+        }
+
+        return entrySet;
+    }
+
+    @Override
+    public Set<List<V>> values() {
+        Set<List<V>> allValues = new HashSet<>();
+        allValues.addAll(values);
+        return allValues;
     }
 
     @Override

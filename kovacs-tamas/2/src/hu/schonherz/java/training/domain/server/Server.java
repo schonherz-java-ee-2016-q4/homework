@@ -127,6 +127,14 @@ public class Server {
         return true;
     }
 
+    @Override
+    public String toString() {
+        StringBuilder builder = new StringBuilder();
+        builder.append("Server [id=").append(id).append(", name=").append(name).append(", type=").append(type)
+                .append(", status=").append(status).append("]");
+        return builder.toString();
+    }
+
 
 
 }

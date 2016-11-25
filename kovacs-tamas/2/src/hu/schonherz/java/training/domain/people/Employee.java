@@ -68,6 +68,13 @@ public class Employee implements Serializable {
         return true;
     }
 
+    @Override
+    public String toString() {
+        StringBuilder builder = new StringBuilder();
+        builder.append("Employee [name=").append(name).append(", employeeID=").append(employeeID).append("]");
+        return builder.toString();
+    }
+
 
 
 }
