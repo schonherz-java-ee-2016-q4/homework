@@ -1,9 +1,9 @@
 package hu.schonherz.java.training.filehandling;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,14 +12,16 @@ import hu.schonherz.java.training.domain.people.SystemAdministrator;
 import hu.schonherz.java.training.domain.server.Server;
 import hu.schonherz.java.training.filehandling.interfaces.Reader;
 
-public class SystemAdministratorReader implements Reader {
+public class SystemAdministratorReader implements Reader<SystemAdministrator> {
     private final Path path;
     private final BufferedReader br;
+    private final FileInputStream fis;
 
-    public SystemAdministratorReader(Path path) throws FileNotFoundException {
+    public SystemAdministratorReader(Path path) throws IOException {
         super();
         this.path = path;
-        br = new BufferedReader(new FileReader(path.toFile()));
+        fis = new FileInputStream(path.toFile());
+        br = new BufferedReader(new InputStreamReader(fis));
     }
 
     @Override
@@ -41,7 +43,28 @@ public class SystemAdministratorReader implements Reader {
         sysAdmin.setEmployeeID(Integer.parseInt(tokens[1]));
         sysAdmin.setServers(serverList);
         return sysAdmin;
+    }
 
+    @Override
+    public List<SystemAdministrator> readAll() throws IOException {
+        List<SystemAdministrator> adminList = new ArrayList<>();
+        SystemAdministrator tmpAdmin = (SystemAdministrator) this.next();
+        while (tmpAdmin != null) {
+            adminList.add(tmpAdmin);
+            tmpAdmin = (SystemAdministrator) this.next();
+        }
+        return adminList;
+    }
+
+    @Override
+    public void reset() throws IOException {
+        fis.getChannel().position(0);
+
+    }
+
+    @Override
+    public void close() throws IOException {
+        br.close();
     }
 
 }
