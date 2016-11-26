@@ -14,20 +14,20 @@ import hu.schonherz.java.training.domain.server.ServerStatus;
 import hu.schonherz.java.training.filehandling.interfaces.Reader;
 
 public class MyConnector implements Connector {
-    Reader sr;
-    Reader sar;
+    private final Reader serverReader;
+    private final Reader systemAdministratorReader;
 
-    public MyConnector(Reader sr, Reader sar) {
+    public MyConnector(Reader serverReader, Reader systemAdministratorReader) {
         super();
-        this.sr = sr;
-        this.sar = sar;
+        this.serverReader = serverReader;
+        this.systemAdministratorReader = systemAdministratorReader;
     }
 
     @Override
     public MultiMap<Server, Employee> connect() throws IOException {
         MultiMap<Server, Employee> multimapFromStoppedServers = new MyMultiMap<>();
-        List<Server> serverList = sr.readAll();
-        List<SystemAdministrator> adminList = sar.readAll();
+        List<Server> serverList = serverReader.readAll();
+        List<SystemAdministrator> adminList = systemAdministratorReader.readAll();
         MyMultiMap.MultiMapNode<Server, Employee> tmp = new MyMultiMap.MultiMapNode<>();
         for (Server s : stoppedServers(serverList)) {
             tmp.setKey(s);
@@ -39,8 +39,8 @@ public class MyConnector implements Connector {
                 multimapFromStoppedServers.put(tmp.getKey(), tmp.getValues());
             }
         }
-        sr.reset();
-        sar.reset();
+        serverReader.reset();
+        systemAdministratorReader.reset();
         return multimapFromStoppedServers;
     }
 
