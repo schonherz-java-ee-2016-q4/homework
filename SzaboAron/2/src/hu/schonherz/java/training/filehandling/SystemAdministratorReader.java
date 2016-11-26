@@ -25,7 +25,7 @@ public class SystemAdministratorReader implements Reader<SystemAdministrator> {
     }
 
     @Override
-    public Object next() throws IOException {
+    public SystemAdministrator next() throws IOException {
         String line = br.readLine();
         if (line == null) {
             return null;

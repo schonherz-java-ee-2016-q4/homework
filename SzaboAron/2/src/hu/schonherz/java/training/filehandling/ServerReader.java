@@ -27,7 +27,7 @@ public class ServerReader implements Reader<Server> {
     }
 
     @Override
-    public Object next() throws IOException {
+    public Server next() throws IOException {
         String line = br.readLine();
         if (line == null) {
             return null;
