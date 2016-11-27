@@ -1,12 +1,13 @@
-package mymulti;
+package mymultimap;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Map;
 
-public class MyMultiImp<K, V> implements MultiMap<K, V> {
+public class MyMultiMap<K, V> implements MultiMap<K, V> {
 
 	Map<K, ArrayList<V>> multimap;
+	ArrayList<V> list;
 
 	@Override
 	public void clear() {
@@ -46,16 +47,11 @@ public class MyMultiImp<K, V> implements MultiMap<K, V> {
 
 	@Override
 	public V put(K key, V value) {
-		ArrayList<V> list;
-		if (!multimap.containsKey(key)) {
-			list = new ArrayList<V>();
-			multimap.put(key, list);
-			list.add(value);
-			return value;
-		}
 
-		list = multimap.get(key);
-		list.add(value);
+		if (!multimap.containsKey(key)) {
+			multimap.put(key, new ArrayList<>());
+		}
+		multimap.get(key).add(value);
 		return value;
 
 	}
@@ -98,7 +94,7 @@ public class MyMultiImp<K, V> implements MultiMap<K, V> {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		MyMultiImp<?, ?> other = (MyMultiImp<?, ?>) obj;
+		MyMultiMap<?, ?> other = (MyMultiMap<?, ?>) obj;
 		if (multimap == null) {
 			if (other.multimap != null)
 				return false;
