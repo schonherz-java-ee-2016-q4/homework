@@ -1,4 +1,4 @@
-package mymultimap;
+package hu.schonherz.java.training.mymultimap;
 
 import java.util.ArrayList;
 import java.util.Collection;
