@@ -10,5 +10,5 @@ public interface Reader<T> {
 
     public void reset() throws IOException;
 
-    public void close() throws IOException;
+    public void close();
 }

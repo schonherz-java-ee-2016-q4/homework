@@ -21,27 +21,34 @@ public class DefaultFileHandler implements FileHandler<Server, SystemAdministrat
 
     private final String projectDir = "project";
     private final String filesDir = "files";
-    private final String serverFile = "servers.txt";
-    private final String sysadminFile = "sysadmins.txt";
+    private final String serverFileName = "servers.txt";
+    private final String sysAdminFileName = "sysadmins.txt";
 
-    private File serverCache;
-    private File sysadminCache;
-
-    private final Path pathToServerFile = Paths.get("2", projectDir, filesDir, serverFile);
-    private final Path pathToSysadminFile = Paths.get("2", projectDir, filesDir, sysadminFile);
+    private final Path pathToServerFile = Paths.get("2", projectDir, filesDir, serverFileName);
+    private final Path pathToSysadminFile = Paths.get("2", projectDir, filesDir, sysAdminFileName);
+    
+    private File serverFile;
+    private File sysAdminFile;
+    
+    private long serverFileModDateCache;
+    private long sysAdminFileModDateCache;
 
     public DefaultFileHandler() throws FileNotFoundException {
-        serverCache = pathToServerFile.toFile();
+        serverFile = pathToServerFile.toFile();
 
-        if (!serverCache.exists()) {
+        if (!serverFile.exists()) {
             throw new FileNotFoundException("Server file not found");
         }
+        
+        serverFileModDateCache = serverFile.lastModified();
 
-        sysadminCache = pathToSysadminFile.toFile();
+        sysAdminFile = pathToSysadminFile.toFile();
 
-        if (!sysadminCache.exists()) {
+        if (!sysAdminFile.exists()) {
             throw new FileNotFoundException("Sysadmin file not found");
         }
+        
+        sysAdminFileModDateCache = sysAdminFile.lastModified();
 
     }
 
@@ -53,7 +60,7 @@ public class DefaultFileHandler implements FileHandler<Server, SystemAdministrat
 
         List<SystemAdministrator> sysAdminList = new ArrayList<>();
         
-        try (BufferedReader br = new BufferedReader(new FileReader(serverCache))) {
+        try (BufferedReader br = new BufferedReader(new FileReader(serverFile))) {
             String line;
             while ((line = br.readLine()) != null) {
                 String[] splitted = line.split(",");
@@ -62,7 +69,7 @@ public class DefaultFileHandler implements FileHandler<Server, SystemAdministrat
                 serversById.put(Integer.parseInt(splitted[0]), tmpServer);
             }
 
-            try (BufferedReader saReader = new BufferedReader(new FileReader(sysadminCache))) {
+            try (BufferedReader saReader = new BufferedReader(new FileReader(sysAdminFile))) {
                 while ((line = saReader.readLine()) != null) {
                     String[] splitted = line.split(",");
                     
@@ -97,9 +104,19 @@ public class DefaultFileHandler implements FileHandler<Server, SystemAdministrat
     }
 
     @Override
-    public DefaultMultiMap<Server, SystemAdministrator> refresh() {
-        // TODO Auto-generated method stub
-        return null;
+    public MultiMap<Server, SystemAdministrator> refresh(MultiMap<Server, SystemAdministrator> multiMap) {
+        
+        boolean serverFileModified = sysAdminFileModDateCache != sysAdminFile.lastModified();
+        boolean sysAdminFileModified = serverFileModDateCache != serverFile.lastModified();
+        
+        if(serverFileModified || sysAdminFileModified) {
+            sysAdminFileModDateCache = sysAdminFile.lastModified();
+            serverFileModDateCache = serverFile.lastModified();
+            System.out.println("File modified");
+            return read();
+        }
+        
+        return multiMap;
     }
 
     private ServerType getServerType(String string) {
@@ -126,7 +143,6 @@ public class DefaultFileHandler implements FileHandler<Server, SystemAdministrat
             return ServerStatus.RUNNING;
         case "STOPPED":
             return ServerStatus.STOPPED;
-
         }
         return null;
     }
