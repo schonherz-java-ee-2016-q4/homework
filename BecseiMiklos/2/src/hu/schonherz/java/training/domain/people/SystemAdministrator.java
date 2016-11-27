@@ -1,0 +1,26 @@
+package hu.schonherz.java.training.domain.people;
+
+import java.util.List;
+
+public class SystemAdministrator extends Employee {
+	
+	String name;
+	int ID;
+	List<Integer> servers;
+	
+    public SystemAdministrator(String name, int employeeID, List<Integer> servers) {
+    	this.name = name;
+    	this.ID = employeeID;
+        this.servers = servers;
+    }
+    private static final long serialVersionUID = 2244059719140625986L;
+
+    public List<Integer> getServers() {
+        return servers;
+    }
+
+    public void setServers(final List<Integer> servers) {
+        this.servers = servers;
+    }
+
+}
