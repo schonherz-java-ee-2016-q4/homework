@@ -8,6 +8,8 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.processing.FilerException;
+
 import hu.schonherz.java.training.domain.server.Server;
 import hu.schonherz.java.training.domain.server.ServerBuilder;
 import hu.schonherz.java.training.domain.server.ServerStatus;
@@ -22,20 +24,28 @@ public class ServerReader implements Reader<Server> {
     public ServerReader(Path path) throws IOException {
         super();
         this.path = path;
+        if (path.toFile().isDirectory()) {
+            throw new IllegalArgumentException("It's not a file, It's a directory");
+        }
         fis = new FileInputStream(path.toFile());
         br = new BufferedReader(new InputStreamReader(fis));
     }
 
     @Override
     public Server next() throws IOException {
-        String line = br.readLine();
-        if (line == null) {
-            return null;
+        String line;
+        try {
+            line = br.readLine();
+            if (line == null) {
+                return null;
+            }
+            ServerType t;
+            String[] tokens = line.split(",");
+            return new ServerBuilder(Integer.parseInt(tokens[0]), tokens[1])
+                    .type(ServerType.valueOf(tokens[2].toUpperCase())).status(ServerStatus.valueOf(tokens[3])).build();
+        } catch (ArrayIndexOutOfBoundsException | NumberFormatException ex) {
+            throw new FilerException("The specified file is incorrect");
         }
-        ServerType t;
-        String[] tokens = line.split(",");
-        return new ServerBuilder(Integer.parseInt(tokens[0]), tokens[1])
-                .type(ServerType.valueOf(tokens[2].toUpperCase())).status(ServerStatus.valueOf(tokens[3])).build();
     }
 
     @Override
@@ -55,7 +65,11 @@ public class ServerReader implements Reader<Server> {
     }
 
     @Override
-    public void close() throws IOException {
-        br.close();
+    public void close() {
+        try {
+            br.close();
+        } catch (IOException e) {
+            System.err.println("Can't close the file");
+        }
     }
 }
