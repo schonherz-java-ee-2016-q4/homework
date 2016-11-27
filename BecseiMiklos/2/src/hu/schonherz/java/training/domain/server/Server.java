@@ -5,8 +5,16 @@ public class Server {
     private String name;
     private ServerType type;
     private ServerStatus status;
+    
+    public Server(int id, String name, ServerType type, ServerStatus status) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.type = type;
+		this.status = status;
+	}
 
-    public int getId() {
+	public int getId() {
         return id;
     }
 
