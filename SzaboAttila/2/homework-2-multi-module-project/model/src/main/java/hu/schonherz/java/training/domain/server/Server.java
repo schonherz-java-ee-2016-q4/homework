@@ -6,14 +6,6 @@ public class Server {
     private ServerType type;
     private ServerStatus status;
 
-    public Server(int id, String name, ServerType type, ServerStatus status) {
-        super();
-        this.id = id;
-        this.name = name;
-        this.type = type;
-        this.status = status;
-    }
-
     public int getId() {
         return id;
     }
@@ -45,11 +37,4 @@ public class Server {
     public void setStatus(final ServerStatus status) {
         this.status = status;
     }
-
-    @Override
-    public String toString() {
-        return "Server [id=" + id + ", name=" + name + ", type=" + type + ", status=" + status + "]";
-    }
-    
-    
 }

@@ -17,10 +17,4 @@ public class SystemAdministrator extends Employee {
         this.servers = servers;
     }
 
-    @Override
-    public String toString() {
-        return "SystemAdministrator [name=" + name + ", employeeID=" + employeeID + "]";
-    }
-
-    
 }
