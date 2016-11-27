@@ -1,21 +1,15 @@
-package mymultimap;
+package homework1;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
-public class MyMultiMap<K, V> implements MultiMap<K, V> {
+public class MyMultimap<K, V> implements Multimap<K, V> {
+	private Map<K, ArrayList<V>> multimap = new HashMap<>();
 
-	Map<K, ArrayList<V>> multimap;
-	ArrayList<V> list;
+	public MyMultimap() {
 
-	public MyMultiMap() {
-		multimap = new HashMap<>();
-	}
-
-	public MyMultiMap(Map<K, ArrayList<V>> multimap) {
-		this.multimap = multimap;
 	}
 
 	@Override
@@ -25,66 +19,57 @@ public class MyMultiMap<K, V> implements MultiMap<K, V> {
 
 	@Override
 	public boolean containsKey(Object key) {
-
-		return multimap.containsKey(key);
-
+		return (multimap.containsKey(key));
 	}
 
 	@Override
 	public boolean containsValue(Object value) {
 		for (ArrayList<V> val : multimap.values()) {
-			if (val.contains(value)) {
+			if (val.contains(value))
 				return true;
-			}
-
 		}
 		return false;
 	}
 
 	@Override
 	public Collection<V> get(Object key) {
-
 		return multimap.get(key);
 	}
 
 	@Override
 	public boolean isEmpty() {
-
 		return multimap.isEmpty();
-
 	}
 
 	@Override
 	public V put(K key, V value) {
-
 		if (!multimap.containsKey(key)) {
-			multimap.put(key, new ArrayList<>());
+			ArrayList<V> list = new ArrayList<V>();
+			list.add((V) value);
+			multimap.put(key, list);
+		} else {
+			multimap.get(key).add(value);
 		}
-		multimap.get(key).add(value);
-		return value;
-
+		return null;
 	}
 
 	@Override
 	public Collection<V> remove(Object key) {
-		return multimap.remove(key);
-
+		multimap.remove(key);
+		return null;
 	}
 
 	@Override
 	public Object remove(Object key, Object value) {
-		if (!multimap.isEmpty() && multimap.containsKey(key) && multimap.containsValue(value)) {
-			return multimap.get(key).remove(multimap.get(key).indexOf(value));
-		} else {
-			return null;
+		if (multimap.get(key).contains(value)) {
+			multimap.get(key).remove(multimap.get(key).indexOf(value));
 		}
+		return null;
 	}
 
 	@Override
 	public int size() {
-
 		return multimap.size();
-
 	}
 
 	@Override
@@ -103,13 +88,20 @@ public class MyMultiMap<K, V> implements MultiMap<K, V> {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		MyMultiMap<?, ?> other = (MyMultiMap<?, ?>) obj;
+		MyMultimap other = (MyMultimap) obj;
 		if (multimap == null) {
 			if (other.multimap != null)
 				return false;
 		} else if (!multimap.equals(other.multimap))
 			return false;
 		return true;
+	}
+
+	public void printout() {
+		for (Map.Entry<K, ArrayList<V>> entry : multimap.entrySet()) {
+			System.out.println("Key: [" + entry.getKey() + "]" + " Value(s): " + entry.getValue());
+		}
+
 	}
 
 }
