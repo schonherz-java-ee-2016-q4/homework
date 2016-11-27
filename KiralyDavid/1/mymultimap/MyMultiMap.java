@@ -2,12 +2,21 @@ package mymultimap;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.Map;
 
 public class MyMultiMap<K, V> implements MultiMap<K, V> {
 
 	Map<K, ArrayList<V>> multimap;
 	ArrayList<V> list;
+
+	public MyMultiMap() {
+		multimap = new HashMap<>();
+	}
+
+	public MyMultiMap(Map<K, ArrayList<V>> multimap) {
+		this.multimap = multimap;
+	}
 
 	@Override
 	public void clear() {
