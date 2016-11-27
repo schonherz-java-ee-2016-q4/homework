@@ -1,4 +1,4 @@
-package mymulti;
+package mymultimap;
 
 import java.util.Collection;
 
