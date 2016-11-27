@@ -12,12 +12,14 @@ import java.util.Map;
 import hu.schonherz.java.training.domain.people.SystemAdministrator;
 
 public class AdminReader {
+
 	private static final String SUBDIRECTORY = "files";
 	private static final String FILENAME = "sysadmins.txt";
 
 	private static File file = new File(SUBDIRECTORY + File.separator + FILENAME);
 
-	public static List<SystemAdministrator> readFromTextFile() {
+	public static List<SystemAdministrator> read() {
+
 		List<SystemAdministrator> result = new ArrayList<>();
 
 		try (BufferedReader bufferedReader = new BufferedReader(new FileReader(file))) {

@@ -19,7 +19,7 @@ public class ServerReader {
 	private static File file = new File(SUBDIRECTORY + File.separator + FILENAME);
 	public static List<Server> result;
 
-	public static List<Server> readFromTextFile() {
+	public static List<Server> read() {
 		result = new ArrayList<>();
 
 		try (BufferedReader bufferedReader = new BufferedReader(new FileReader(file))) {
