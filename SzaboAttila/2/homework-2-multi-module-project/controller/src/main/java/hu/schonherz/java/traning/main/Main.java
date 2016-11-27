@@ -1,4 +1,4 @@
-package hu.schonherz.java.training.main;
+package hu.schonherz.java.traning.main;
 
 import java.util.List;
 
