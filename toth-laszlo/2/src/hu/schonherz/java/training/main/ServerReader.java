@@ -31,21 +31,25 @@ public class ServerReader {
                     serverbuilder.id(Integer.parseInt(st.nextToken()));
                 } catch (Exception e) {
                     System.out.println("Illegal ID at: " + sCurrentLine);
+                    continue;
                 }
                 try {
                     serverbuilder.name(st.nextToken());
                 } catch (Exception e) {
                     System.out.println("Illegal name at: " + sCurrentLine);
+                    continue;
                 }
                 try {
                     serverbuilder.type(ServerType.valueOf(st.nextToken()));
                 } catch (Exception e) {
                     System.out.println("Illegal type at: " + sCurrentLine);
+                    continue;
                 }
                 try {
                     serverbuilder.status(ServerStatus.valueOf(st.nextToken()));
                 } catch (Exception e) {
                     System.out.println("Illegal status at: " + sCurrentLine);
+                    continue;
                 }
                 dummyserver = serverbuilder.build();
                 servers.add(dummyserver);

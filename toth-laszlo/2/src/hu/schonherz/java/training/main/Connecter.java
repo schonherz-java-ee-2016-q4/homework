@@ -17,8 +17,12 @@ public class Connecter {
         serveradmins.clear();
 
         for (SystemAdministrator dummyadmin : adminReader.getAdmins()) {
-            if (contain(dummyadmin.getServers(), id))
-                serveradmins.add(dummyadmin);
+            try {
+                if (contain(dummyadmin.getServers(), id))
+                    serveradmins.add(dummyadmin);
+            } catch (Exception e) {
+                continue;
+            }
         }
         return serveradmins;
     }
