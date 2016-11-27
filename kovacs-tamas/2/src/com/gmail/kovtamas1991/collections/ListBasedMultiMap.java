@@ -1,9 +1,14 @@
 package com.gmail.kovtamas1991.collections;
 
+import java.util.AbstractMap;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map.Entry;
+import java.util.Set;
 
 public class ListBasedMultiMap<K, V> implements MultiMap<K, V> {
 
@@ -64,7 +69,7 @@ public class ListBasedMultiMap<K, V> implements MultiMap<K, V> {
     }
 
     @Override
-    public V put(K key, V value) {
+    public void put(K key, V value) {
         if (key == null || value == null) {
             throw new IllegalArgumentException("Nor the key or value are allowed to be null!");
         }
@@ -73,16 +78,51 @@ public class ListBasedMultiMap<K, V> implements MultiMap<K, V> {
         // if map already contains key
         if (isValidKeyIndex(keyIndex)) {
             LinkedList<V> existingValues = values.get(keyIndex);
-            V prevValue = existingValues.getLast();
             existingValues.add(value);
-            return prevValue;
         } else {
             keys.add(key);
             LinkedList<V> valueList = new LinkedList<>();
             valueList.add(value);
             values.add(valueList);
-            return null;
         }
+    }
+
+    @Override
+    public void put(K key, Collection<V> newValues) {
+        if (key == null || newValues == null) {
+            throw new IllegalArgumentException("Nor the key or values are allowed to be null!");
+        }
+
+        int keyIndex = keys.indexOf(key);
+        if (isValidKeyIndex(keyIndex)) {
+            values.get(keyIndex).addAll(newValues);
+        } else {
+            keys.add(key);
+            values.add(new LinkedList<>(newValues));
+        }
+    }
+
+    @Override
+    public Set<K> keySet() {
+        return Collections.unmodifiableSet(new HashSet<>(keys));
+    }
+
+    @Override
+    public Set<Entry<K, List<V>>> entrySet() {
+        Set<Entry<K, List<V>>> entrySet = new HashSet<>();
+        for (int i = 0; i < keys.size(); i++) {
+            Entry<K, List<V>> currentEnty = new AbstractMap.SimpleEntry<>(keys.get(i), values.get(i));
+            entrySet.add(currentEnty);
+        }
+
+        return entrySet;
+    }
+
+    @Override
+    public Set<List<V>> values() {
+        Set<List<V>> allValues = new HashSet<>();
+        allValues.addAll(values);
+        return allValues;
     }
 
     @Override
