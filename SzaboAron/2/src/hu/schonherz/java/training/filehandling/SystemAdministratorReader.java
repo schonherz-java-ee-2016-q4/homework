@@ -1,10 +1,10 @@
 package hu.schonherz.java.training.filehandling;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,17 +15,17 @@ import hu.schonherz.java.training.domain.server.Server;
 import hu.schonherz.java.training.filehandling.interfaces.Reader;
 
 public class SystemAdministratorReader implements Reader<SystemAdministrator> {
-    private final Path path;
+    private final File file;
     private final BufferedReader br;
     private final FileInputStream fis;
 
-    public SystemAdministratorReader(Path path) throws IOException {
+    public SystemAdministratorReader(File file) throws IOException {
         super();
-        this.path = path;
-        if (path.toFile().isDirectory()) {
+        this.file = file;
+        if (file.isDirectory()) {
             throw new IllegalArgumentException("It's not a file, It's a directory");
         }
-        fis = new FileInputStream(path.toFile());
+        fis = new FileInputStream(file);
         br = new BufferedReader(new InputStreamReader(fis));
     }
 
@@ -33,7 +33,11 @@ public class SystemAdministratorReader implements Reader<SystemAdministrator> {
     public SystemAdministrator next() throws IOException {
         SystemAdministrator sysAdmin = new SystemAdministrator();
         try {
-            String line = br.readLine();
+            String line;
+            line = br.readLine();
+            while ("".equals(line)) {
+                line = br.readLine();
+            }
             if (line == null) {
                 return null;
             }
