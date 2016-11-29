@@ -1,4 +1,4 @@
-package hu.schonherz.java.training.filewriter;
+package hu.schonherz.java.training.serverwriter;
 
 import java.util.List;
 
@@ -6,11 +6,11 @@ import hu.schonherz.java.training.domain.people.SystemAdministrator;
 import hu.schonherz.java.training.domain.server.Server;
 import hu.schonherz.java.training.domain.server.ServerStatus;
 
-public class FileWriter {
+public class ServerWriter {
 
     List<SystemAdministrator> admins;
 
-    public FileWriter(List<SystemAdministrator> admins) {
+    public ServerWriter(List<SystemAdministrator> admins) {
         this.admins = admins;
     }
 

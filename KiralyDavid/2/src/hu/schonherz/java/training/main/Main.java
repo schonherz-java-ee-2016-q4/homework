@@ -8,9 +8,9 @@ import java.util.TimerTask;
 
 import hu.schonherz.java.training.domain.people.SystemAdministrator;
 import hu.schonherz.java.training.domain.server.Server;
-import hu.schonherz.java.training.filewriter.FileWriter;
 import hu.schonherz.java.training.reader.AdminReader;
 import hu.schonherz.java.training.reader.ServerReader;
+import hu.schonherz.java.training.serverwriter.ServerWriter;
 
 public class Main {
 
@@ -19,7 +19,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-        FileWriter printout = new FileWriter(admins);
+        ServerWriter printout = new ServerWriter(admins);
         printout.writeServers(servers);
 
         TimerTask task = new Observer(new File("files" + File.separator + "servers.txt")) {
