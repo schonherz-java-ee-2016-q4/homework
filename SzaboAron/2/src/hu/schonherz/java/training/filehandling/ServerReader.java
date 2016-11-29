@@ -1,10 +1,10 @@
 package hu.schonherz.java.training.filehandling;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,17 +17,17 @@ import hu.schonherz.java.training.domain.server.ServerType;
 import hu.schonherz.java.training.filehandling.interfaces.Reader;
 
 public class ServerReader implements Reader<Server> {
-    private final Path path;
+    private final File file;
     private final BufferedReader br;
     private final FileInputStream fis;
 
-    public ServerReader(Path path) throws IOException {
+    public ServerReader(File file) throws IOException {
         super();
-        this.path = path;
-        if (path.toFile().isDirectory()) {
+        this.file = file;
+        if (file.isDirectory()) {
             throw new IllegalArgumentException("It's not a file, It's a directory");
         }
-        fis = new FileInputStream(path.toFile());
+        fis = new FileInputStream(file);
         br = new BufferedReader(new InputStreamReader(fis));
     }
 
@@ -36,6 +36,9 @@ public class ServerReader implements Reader<Server> {
         String line;
         try {
             line = br.readLine();
+            while ("".equals(line)) {
+                line = br.readLine();
+            }
             if (line == null) {
                 return null;
             }
@@ -54,7 +57,7 @@ public class ServerReader implements Reader<Server> {
         Server tmpServer = (Server) this.next();
         while (tmpServer != null) {
             serverList.add(tmpServer);
-            tmpServer = (Server) this.next();
+            tmpServer = this.next();
         }
         return serverList;
     }
