@@ -30,8 +30,7 @@ public class ServerReader {
                 }
                 String[] attributes = line.split(",");
                 if (attributes.length != 4) {
-                    continue;
-
+                    throw new IOException();
                 }
                 final Server server = new Server.ServerBuilder().id(Integer.parseInt(attributes[0])).name(attributes[1])
                         .type(ServerType.valueOf(attributes[2].toUpperCase()))
@@ -41,7 +40,7 @@ public class ServerReader {
 
             }
         } catch (IOException e) {
-            System.out.println("io error");
+            System.out.println("server input error");
         } catch (NumberFormatException e) {
             System.out.println(e);
         }

@@ -42,7 +42,7 @@ public class AdminReader {
                 result.add(admin);
             }
         } catch (IOException e) {
-            System.out.println("io error");
+            System.out.println("admin input error");
         }
         return result;
     }
