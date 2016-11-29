@@ -13,38 +13,38 @@ import hu.schonherz.java.training.domain.server.ServerType;
 
 public class ServerReader {
 
-	private static final String SUBDIRECTORY = "files";
-	private static final String FILENAME = "servers.txt";
+    private static final String SUBDIRECTORY = "files";
+    private static final String FILENAME = "servers.txt";
 
-	private static File file = new File(SUBDIRECTORY + File.separator + FILENAME);
-	public static List<Server> result;
+    private static File file = new File(SUBDIRECTORY + File.separator + FILENAME);
 
-	public static List<Server> read() {
-		result = new ArrayList<>();
+    public static List<Server> read() {
 
-		try (BufferedReader bufferedReader = new BufferedReader(new FileReader(file))) {
-			String line;
-			while ((line = bufferedReader.readLine()) != null) {
-				if (line.isEmpty()) {
-					continue;
-				}
-				String[] attributes = line.split(",");
-				if (attributes.length != 4) {
-					continue;
+        List<Server> result = new ArrayList<>();
 
-				}
-				final Server server = new Server.ServerBuilder().id(Integer.parseInt(attributes[0])).name(attributes[1])
-						.type(ServerType.valueOf(attributes[2])).status(ServerStatus.valueOf(attributes[3]))
-						.createServer();
+        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(file))) {
+            String line;
+            while ((line = bufferedReader.readLine()) != null) {
+                if (line.isEmpty()) {
+                    continue;
+                }
+                String[] attributes = line.split(",");
+                if (attributes.length != 4) {
+                    continue;
 
-				result.add(server);
+                }
+                final Server server = new Server.ServerBuilder().id(Integer.parseInt(attributes[0])).name(attributes[1])
+                        .type(ServerType.valueOf(attributes[2].toUpperCase()))
+                        .status(ServerStatus.valueOf(attributes[3].toUpperCase())).createServer();
 
-			}
-		} catch (IOException e) {
-			System.out.println("io error");
-		} catch (NumberFormatException e) {
-			System.out.println(e);
-		}
-		return result;
-	}
+                result.add(server);
+
+            }
+        } catch (IOException e) {
+            System.out.println("io error");
+        } catch (NumberFormatException e) {
+            System.out.println(e);
+        }
+        return result;
+    }
 }
