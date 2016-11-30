@@ -8,22 +8,22 @@ import hu.schonherz.java.training.domain.server.ServerStatus;
 
 public class Reporter {
 	
-	public static void report( List<Server> server_list , List<SystemAdministrator> admin_list ) {
+	public static void report( List<Server> serverlist , List<SystemAdministrator> adminlist ) {
 for ( int i = 0; i < 4; i++ ) {
-          if (server_list.get(i).getStatus().equals(ServerStatus.STOPPED)) 
+          if (serverlist.get(i).getStatus().equals(ServerStatus.STOPPED)) 
           {
-              System.out.println(server_list.get(i).getId() + " - " + 
-              server_list.get(i).getName() + " - " + server_list.get(i).getType());
+              System.out.println(serverlist.get(i).getId() + " - " + 
+              serverlist.get(i).getName() + " - " + serverlist.get(i).getType());
           }
       }
        System.out.println("--------------------------------");
       for ( int i = 0; i < 3; i++ ) {
-          if (server_list.get(i).getStatus().equals(ServerStatus.STOPPED)) 
+          if (serverlist.get(i).getStatus().equals(ServerStatus.STOPPED)) 
           {
-              if (admin_list.get(i).getServers().contains(server_list.get(i).getId())) 
+              if (adminlist.get(i).getServers().contains(serverlist.get(i).getId())) 
               {
-                  System.out.println(admin_list.get(i).getEmployeeID() +
-                  " - " + admin_list.get(i).getName());
+                  System.out.println(adminlist.get(i).getEmployeeID() +
+                  " - " + adminlist.get(i).getName());
               }
           }
       }
