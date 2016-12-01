@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hausaufgabe</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script language="JavaScript" type="text/javascript"  src="resources/js/user.js"></script>
+<!-- Bootstrap -->
+<link href="resources/css/bootstrap.css" rel="stylesheet">
+<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+ <link href="resources/css/custom.css" rel="stylesheet">
+</head>
+<body>
+<div data-spy="affix" data-offset-top="-10" class="col-lg-4 ">
+  <div class="panel panel-primary" >
+    <div class="panel-heading mypanel">
+      <h1>Generate users</h1>
+      <i class="fa fa-spinner fa-spin" id="spinner" style="font-size:24px"></i>
+    </div>
+    <div class="panel-body">
+      <form class="form-horizontal">
+        <div class="form-group">
+          <div class="col-lg-4 text-right">
+            <label class="control-label" for="number">Number:</label>
+          </div >
+          <div class="col-lg-5 ">
+            <input type="number" class="form-control" id="number" placeholder="Number" id="number">
+          </div>
+        </div>
+        <div class="form-group col-lg-12" >
+          <div class="checkbox col-lg-6 text-right">
+            <label>
+              <input type="checkbox" value="" id="chk_female">
+              Female</label>
+          </div>
+          <div class="checkbox col-lg-6 text-left">
+            <label>
+              <input type="checkbox" value="" id="chk_male">
+              Male</label>
+           
+          </div>
+
+        </div>
+      </form>
+    </div>
+    <div class="panel-footer bg-primary">
+      <button class="btn btn-default" id="get_user" >Generate</button>
+    </div>
+  </div>
+</div>
+<div class="col-lg-8 pull-right" >
+<div class="col-lg-12 vcenter">
+  <ul class="pull-right" id="result">
+  </ul>
+  </div>
+</div>
+<div class="modal fade bs-example-modal-sm " id="myPleaseWait" tabindex="-1"
+    role="dialog" aria-hidden="true" data-backdrop="static">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">
+                    <span class="glyphicon glyphicon-time">
+                    </span>Please Wait
+                 </h4>
+            </div>
+            <div class="modal-body">
+                <div class="progress">
+                    <div class="progress-bar progress-bar-info
+                    progress-bar-striped active"
+                    style="width: 100%">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="panel">Hello world!</div>
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) --> 
+
+<!-- Include all compiled plugins (below), or include individual files as needed --> 
+<script src="resources/js/bootstrap.js"></script>
+</body>
+</html>
