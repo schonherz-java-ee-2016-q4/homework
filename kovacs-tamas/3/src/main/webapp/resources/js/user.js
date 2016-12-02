@@ -9,7 +9,7 @@ $(document).ready(function () {
             $.each(res.results, function (index, value) {
                 $.get('/WebApp/content/content.html', function (template) {
                     var t = template.replace('img_url', value.picture.medium);
-                    t = t.replace('user_name', value.name.first + ' ' + value.name.last);
+                    t = t.replace('user_name', capitalize(value.name.first) + ' ' + capitalize(value.name.last));
                     t = t.replace('gender', value.gender);
                     t = t.replace('dob', value.dob);
                     t = t.replace('nationality', value.nat);
@@ -28,3 +28,7 @@ $(document).ready(function () {
 
     });
 });
+
+function capitalize(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
