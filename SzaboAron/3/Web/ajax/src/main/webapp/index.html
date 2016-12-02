@@ -18,7 +18,9 @@
  <link href="resources/css/custom.css" rel="stylesheet">
 </head>
 <body>
-<div data-spy="affix" data-offset-top="-10" class="col-lg-4 col-xs-12 ">
+<div class="row">
+<div class="col-lg-5 col-xs-12">
+<div data-spy="affix" data-offset-top="-10" class="col-lg-4 col-xs-11 pull-right">
   <div class="panel panel-primary" >
     <div class="panel-heading mypanel">
       <h1>Generate users</h1>
@@ -27,20 +29,20 @@
     <div class="panel-body">
       <form class="form-horizontal">
         <div class="form-group">
-          <div class="col-lg-4 text-right">
+          <div class="col-lg-4 text-right col-xs-3">
             <label class="control-label" for="number">Number:</label>
           </div >
-          <div class="col-lg-5 ">
+          <div class="col-lg-5 col-xs-12">
             <input type="number" class="form-control" id="number" placeholder="Number" id="number">
           </div>
         </div>
-        <div class="form-group col-lg-12" >
-          <div class="checkbox col-lg-6 text-right">
+        <div class="form-group col-lg-12 col-xs-12" >
+          <div class="checkbox col-lg-6 col-xs-7 text-right">
             <label>
               <input type="checkbox" value="" id="chk_female">
               Female</label>
           </div>
-          <div class="checkbox col-lg-6 text-left">
+          <div class="checkbox col-lg-5 col-xs-5 text-left ">
             <label>
               <input type="checkbox" value="" id="chk_male">
               Male</label>
@@ -55,13 +57,13 @@
     </div>
   </div>
 </div>
-<div class="col-lg-8 col-xs-12 pull-right" >
-<div class="col-lg-12 vcenter">
-  <ul class="pull-right" id="result">
-  </ul>
-  </div>
 </div>
-<div class="modal fade bs-example-modal-sm " id="myPleaseWait" tabindex="-1"
+<div class="col-lg-7 col-xs-12" >
+  <ul id="result">
+  </ul>
+</div>
+</div>
+<div class="modal fade bs-example-modal-sm col-xs-12" id="myPleaseWait" tabindex="-1"
     role="dialog" aria-hidden="true" data-backdrop="static">
     <div class="modal-dialog modal-sm">
         <div class="modal-content">
@@ -82,7 +84,7 @@
         </div>
     </div>
 </div>
-<div class="modal fade bs-example-modal-sm container col-lg-8" id="picture" tabindex="-1"
+<div class="modal fade bs-example-modal-sm container col-lg-6 col-xs-12" id="picture" tabindex="-1"
     role="dialog" aria-hidden="true" data-backdrop="static">
     
 </div>

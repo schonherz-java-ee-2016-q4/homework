@@ -20,6 +20,7 @@ function hider(){
 
 $('document').ready(function() {
 	$('#get_user').click(function() {
+		list=[];
 		$('#myPleaseWait').modal('show');
 		size = new Number($('#number').val());
 		var get_string = 'https://randomuser.me/api/?results=' + size;
@@ -35,8 +36,9 @@ $('document').ready(function() {
 			console.log(list);
 			$.each(res.results, function(index, value) {
 				$.get('content/content.html', function(template) {
-				var t=	template.replace('user_name',value.name.first +' '+value.name.last);
+				var t=	template.replace('name',value.name.first +' '+value.name.last);
 				t=t.replace('img_url',value.picture.medium);
+				t=t.replace('user_name',value.login.username);
 				if(value.gender == "male"){
 					t=t.replace('gender','&#9794');
 				}

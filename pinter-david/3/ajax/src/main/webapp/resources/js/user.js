@@ -5,7 +5,16 @@ $(document).ready(function () {
     function capitalizeFirstLetter(string) {
         return string.charAt(0).toUpperCase() + string.slice(1);
     }
+    
+    function getMotto() {
+        
+        return $.get('/WebApp/resources/json/mottos.json', function (){
+        });
+        
+    }
+    
     $('#get_user').click(function () {
+        $('#get_user').html('Please wait...').prop('disabled', true);
         var size = new Number($('#number').val());
         $.get('https://randomuser.me/api/?results=' + size, function (res) {
             $('#result').html('');
@@ -22,7 +31,7 @@ $(document).ready(function () {
                     t = t.replace('phone_number', value.phone);
                     t = t.replace('nationality', value.nat);
                     t = t.replace('registration_date', value.registered);
-                    t = t.replace('date_of_birth', value.dob);
+                    t = t.replace('date_of_birth', value.dob.substr(0,10));
 
                     
                     
@@ -31,12 +40,21 @@ $(document).ready(function () {
                     var now = new Date(Date.now());
                     var nowYear = now.getFullYear();
                     var ageYear = nowYear - ageYear;
-                    t = t.replace('age',ageYear.toString());
+                    t = t.replace('age','age: ' + ageYear.toString());
+                    
+                    
+                    $.when(getMotto()).done(function(motto_return){
+                        $('.dateOfBirthPopOver').popover();
+                        var index = Math.floor((Math.random() * motto_return.mottos.length));
+                        var motto = motto_return.mottos[index].text;
+                        console.log(motto);
+                        t = t.replace('motto', motto);
+                        $('#result').append(t);
+                    }); 
                     
 
 
-
-                    $('#result').append(t);
+                    
 
 //                    var gender = template.replace('gender',value.gender);
 //                   
@@ -46,6 +64,7 @@ $(document).ready(function () {
             });
 
         }).done(function () {
+            $('#get_user').html('Submit').prop('disabled', false);
         }).fail(function () {
         }).always(function () {
         });
