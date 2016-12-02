@@ -1,0 +1,55 @@
+/* enable absolute positioning */
+.inner-addon { 
+    position: relative; 
+}
+
+/* style icon */
+.inner-addon .glyphicon {
+  position: absolute;
+  padding: 10px;
+  pointer-events: none;
+}
+
+/* align icon */
+
+.right-addon .glyphicon { right: 0px;}
+
+/* add padding  */
+.left-addon input  { padding-left:  30px; }
+.right-addon input { padding-right: 30px; }
+
+body{
+	background-color: #FAFAFA;
+}
+
+.jumbotron{
+	background-color: #2E2E2E;
+	margin-top:40px;
+	border-radius:25px;
+}
+.navbar {
+	background-color:#FAFAFA;
+}
+.thumbnail{
+	background-color:#2E2E2E;
+	border-radius:10px;
+	
+}
+#img{
+	border-radius:50%;
+	border: 5px solid #FAFAFA;
+    outline-color: #E2E2E2;
+
+	
+}
+#img:hover {
+    -webkit-transform: scale(1.3);
+	transform: scale(1.3);
+	-webkit-transition: .3s ease-in-out;
+	transition: .3s ease-in-out;
+}
+.caption {
+	color:#FAFAFA;
+	
+}
+
