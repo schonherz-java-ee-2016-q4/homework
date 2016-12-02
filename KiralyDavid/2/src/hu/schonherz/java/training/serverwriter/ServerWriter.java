@@ -20,8 +20,8 @@ public class ServerWriter {
         final String os = System.getProperty("os.name").toLowerCase();
 
         if (os.contains("win")) {
-
-            Runtime.getRuntime().exec("cls");
+            System.out.flush();
+            // Runtime.getRuntime().exec("wincls.cmd");
 
         } else {
 
@@ -31,6 +31,7 @@ public class ServerWriter {
     }
 
     public void writeServers(List<Server> servers) {
+
         try {
             clearConsole();
         } catch (IOException e) {
