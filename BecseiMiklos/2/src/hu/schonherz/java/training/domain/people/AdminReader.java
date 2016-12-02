@@ -12,10 +12,10 @@ public class AdminReader {
 	
     public static List<SystemAdministrator> readFile() {
     List<SystemAdministrator> admins = new ArrayList<>();
-    String actual_line;
+    
     
     try (BufferedReader bufferedReader = new BufferedReader(new FileReader("files/sysadmins.txt"))) {
-                 
+    	String actual_line;             
         while (( actual_line = bufferedReader.readLine()) != null ) {
               	if ( actual_line.isEmpty()) {
                 continue;

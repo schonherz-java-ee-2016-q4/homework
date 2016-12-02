@@ -26,7 +26,7 @@ public class ServerReader {
                 final Server server = new Server( 
                 	(Integer.parseInt(attributes[0])), 
                 	(attributes[1]),
-                	(ServerType.valueOf(attributes[2])),
+                	(ServerType.valueOf(attributes[2].toUpperCase())),
                 	(ServerStatus.valueOf(attributes[3]))
                 	);
                 	servers.add(server);

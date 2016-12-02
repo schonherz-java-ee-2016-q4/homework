@@ -24,13 +24,16 @@ public class Main {
                 for (Server dummyserver : serverReader.getServerList()) {
                     try {
                         if (dummyserver.getStatus().equals(ServerStatus.valueOf("STOPPED"))) {
+                            System.out.println();
                             System.out.println(
                                     dummyserver.getId() + "-" + dummyserver.getName() + "-" + dummyserver.getType());
                             System.out.println("----------------------------------------------");
+
                             for (SystemAdministrator dummyadmin : connecter.Connect(dummyserver.getId(), adminReader)) {
+
                                 System.out.println(dummyadmin.getEmployeeID() + "-" + dummyadmin.getName());
+
                             }
-                            System.out.println();
                         }
                     } catch (Exception e) {
                         System.out.println("ERROR");

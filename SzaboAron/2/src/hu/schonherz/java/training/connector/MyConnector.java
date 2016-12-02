@@ -36,7 +36,9 @@ public class MyConnector implements Connector {
                         .isEmpty()) {
                     tmp.addValue(a);
                 }
-                multimapFromStoppedServers.put(tmp.getKey(), tmp.getValues());
+                if (tmp.getKey() != null && tmp.getValues() != null && tmp.getValues().size() != 0) {
+                    multimapFromStoppedServers.put(tmp.getKey(), tmp.getValues());
+                }
             }
         }
         serverReader.reset();
