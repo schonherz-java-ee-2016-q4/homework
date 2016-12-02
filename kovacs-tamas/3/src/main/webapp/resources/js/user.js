@@ -1,5 +1,3 @@
-var list;
-
 $(document).ready(function () {
 
     $('#get_user').click(function () {
@@ -7,11 +5,16 @@ $(document).ready(function () {
         $.get('https://randomuser.me/api/?results=' + size, function (res) {
             $('#result').html('');
             console.log(res);
-            $.each(res.results, function (index, value) {
 
+            $.each(res.results, function (index, value) {
                 $.get('/WebApp/content/content.html', function (template) {
-                    var t = template.replace('user_name', value.name.first + ' ' + value.name.last);
-                    t = t.replace('img_url', value.picture.medium);
+                    var t = template.replace('img_url', value.picture.medium);
+                    t = t.replace('user_name', value.name.first + ' ' + value.name.last);
+                    t = t.replace('gender', value.gender);
+                    t = t.replace('dob', value.dob);
+                    t = t.replace('nationality', value.nat);
+                    t = t.replace('phone_number', value.phone);
+                    t = t.replace('email', value.email);
                     $('#result').append(t);
                 });
 
