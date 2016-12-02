@@ -1,8 +1,27 @@
-var list = [];
+var list;
+var size;
+function slider(clicked_id) {
+	console.log("clicked");
+	console.log(list[clicked_id[clicked_id.length-1]]);
+	$("#picture").html('');
+	$.get('content/content_pop_up.html', function(template) {
+				var t=template.replace('user_name',list[clicked_id[clicked_id.length-1]].name.first +' '+list[clicked_id[clicked_id.length-1]].name.last);
+				t=t.replace('img_url',list[clicked_id[clicked_id.length-1]].picture.large);
+				t=t.replace('email_',list[clicked_id[clicked_id.length-1]].email);
+				t=t.replace('phone_',list[clicked_id[clicked_id.length-1]].phone);
+				t=t.replace('registered_',list[clicked_id[clicked_id.length-1]].registered);
+				$('#picture').append(t);
+});
+	$("#picture").modal('show');	
+	}
+function hider(){
+	$("#picture").modal('hide');	
+}
+
 $('document').ready(function() {
 	$('#get_user').click(function() {
 		$('#myPleaseWait').modal('show');
-		var size = new Number($('#number').val());
+		size = new Number($('#number').val());
 		var get_string = 'https://randomuser.me/api/?results=' + size;
 		if($('#chk_male')[0].checked != $('#chk_female')[0].checked){
 			get_string  += $('#chk_male')[0].checked  ? '&gender=male' : '&gender=female'; 	
@@ -12,12 +31,21 @@ $('document').ready(function() {
 			$('#result').html('');
 			console.log(res);
 			var a = 0;
+			list = res.results;
+			console.log(list);
 			$.each(res.results, function(index, value) {
 				$.get('content/content.html', function(template) {
 				var t=	template.replace('user_name',value.name.first +' '+value.name.last);
 				t=t.replace('img_url',value.picture.medium);
-				t=t.replace('gender',value.gender);
+				if(value.gender == "male"){
+					t=t.replace('gender','&#9794');
+				}
+				else{
+					t=t.replace('gender','&#9792');
+					}
+				
 				t=t.replace('myid','content'+a);
+				t=t.replace('custom_on_click','slider(this.id)');
 				$('#result').append(t);
 				a++;
 				});
@@ -25,15 +53,7 @@ $('document').ready(function() {
 			
 				
 			});
-		var i;
-		for(i = 0; i<size; i++){
-				$('#content'+a).click(function(){
-   					slider();
-				});
-				console.log("added " + "#content"+a);
-		}
 		}).done(function() {
-			$('#pager').show();	
 			$('#myPleaseWait').modal('hide');
 		}).fail(function() {
 			window.alert("There was a problem");
@@ -44,7 +64,3 @@ $('document').ready(function() {
 	});
 });
 
-function slider() {
-	"use strict";
-	console.log("clicked");
-}
