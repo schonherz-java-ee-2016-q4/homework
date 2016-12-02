@@ -13,3 +13,4 @@ target/
 .settings
 .project
 .classpath
+/kovacs-tamas/2/eclipse-project/nbproject/private/

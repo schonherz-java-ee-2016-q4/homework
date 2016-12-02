@@ -1,0 +1,31 @@
+.userContent > p {
+    display: inline-block;
+}
+
+.nearPic {
+    padding-left: 0px;
+    font-size: 1.4rem;
+}
+
+.thumbnail span {
+    margin-right: 5px;
+}
+
+.col-xs-12, .col-sm-6, .col-md-6, .col-lg-4 {
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.emailText{
+    font-size: 1.2rem;
+}
+
+.userContent > h2 {
+    margin-top: 0px;
+    font-size: 20px;
+   
+}
+
+.thumbnail > img {
+    margin-right: 10px;
+}

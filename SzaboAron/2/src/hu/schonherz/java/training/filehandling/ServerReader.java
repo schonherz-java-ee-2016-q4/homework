@@ -1,35 +1,78 @@
 package hu.schonherz.java.training.filehandling;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
-import java.nio.file.Path;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.annotation.processing.FilerException;
+
+import hu.schonherz.java.training.domain.server.Server;
 import hu.schonherz.java.training.domain.server.ServerBuilder;
 import hu.schonherz.java.training.domain.server.ServerStatus;
 import hu.schonherz.java.training.domain.server.ServerType;
 import hu.schonherz.java.training.filehandling.interfaces.Reader;
 
-public class ServerReader implements Reader {
-    private final Path path;
+public class ServerReader implements Reader<Server> {
+    private final File file;
     private final BufferedReader br;
+    private final FileInputStream fis;
 
-    public ServerReader(Path path) throws FileNotFoundException {
+    public ServerReader(File file) throws IOException {
         super();
-        this.path = path;
-        br = new BufferedReader(new FileReader(path.toFile()));
+        this.file = file;
+        if (file.isDirectory()) {
+            throw new IllegalArgumentException("It's not a file, It's a directory");
+        }
+        fis = new FileInputStream(file);
+        br = new BufferedReader(new InputStreamReader(fis));
     }
 
     @Override
-    public Object next() throws IOException {
-        String line = br.readLine();
-        if (line == null) {
-            return null;
+    public Server next() throws IOException {
+        String line;
+        try {
+            line = br.readLine();
+            while ("".equals(line)) {
+                line = br.readLine();
+            }
+            if (line == null) {
+                return null;
+            }
+            ServerType t;
+            String[] tokens = line.split(",");
+            return new ServerBuilder(Integer.parseInt(tokens[0]), tokens[1])
+                    .type(ServerType.valueOf(tokens[2].toUpperCase())).status(ServerStatus.valueOf(tokens[3])).build();
+        } catch (ArrayIndexOutOfBoundsException | NumberFormatException ex) {
+            throw new FilerException("The specified file is incorrect");
         }
-        String[] tokens = line.split(",");
-        return new ServerBuilder(Integer.parseInt(tokens[0]), tokens[1]).type(ServerType.valueOf(tokens[2]))
-                .status(ServerStatus.valueOf(tokens[3])).build();
     }
 
+    @Override
+    public List<Server> readAll() throws IOException {
+        List<Server> serverList = new ArrayList<>();
+        Server tmpServer = (Server) this.next();
+        while (tmpServer != null) {
+            serverList.add(tmpServer);
+            tmpServer = this.next();
+        }
+        return serverList;
+    }
+
+    @Override
+    public void reset() throws IOException {
+        fis.getChannel().position(0);
+    }
+
+    @Override
+    public void close() {
+        try {
+            br.close();
+        } catch (IOException e) {
+            System.err.println("Can't close the file");
+        }
+    }
 }
