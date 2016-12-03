@@ -1,4 +1,0 @@
-1,SQL01,Windows,RUNNING
-2,WEB01,Linux_Web,RUNNING
-
-4,WEB02,Linux_Web,STOPPED
