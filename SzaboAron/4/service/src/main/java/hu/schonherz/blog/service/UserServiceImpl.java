@@ -17,44 +17,44 @@ import hu.schonherz.blog.service.api.user.vo.UserResult;
 
 public class UserServiceImpl implements UserService {
 
-	private UserResult result;
+    private UserResult result;
 
-	public UserServiceImpl() {
-		result = init();
-	}
+    public UserServiceImpl() {
+        result = init();
+    }
 
-	@Override
-	public List<User> findAllUser() {
-		return result.getResults();
-	}
+    @Override
+    public List<User> findAllUser() {
+        return result.getResults();
+    }
 
-	private UserResult init() {
-		Gson gson = new Gson();
-		ClassLoader classLoader = getClass().getClassLoader();
-		try (InputStream inputStream = classLoader.getResourceAsStream("example.txt");
-				BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream,"UTF-8"));) {
+    private UserResult init() {
+        Gson gson = new Gson();
+        ClassLoader classLoader = getClass().getClassLoader();
+        try (InputStream inputStream = classLoader.getResourceAsStream("example.txt");
+                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream, "UTF-8"));) {
 
-			result = gson.fromJson(bufferedReader, UserResult.class);
+            result = gson.fromJson(bufferedReader, UserResult.class);
 
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return result;
-	}
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
 
-	/**
-	 * @param name
-	 * @return
-	 */
-	public User findUserByName(String name) throws UserNotFoundException {
-	
-		List<User> users = result.getResults();
-		for (User user : users) {
-			if (user.getLogin().getUsername().equals(name)) {
-				return user;
-			}
-		}
-		throw new UserNotFoundException();
+    /**
+     * @param name
+     * @return
+     */
+    public User findUserByName(String name) throws UserNotFoundException {
 
-	}
+        List<User> users = result.getResults();
+        for (User user : users) {
+            if (user.getLogin().getUsername().equals(name)) {
+                return user;
+            }
+        }
+        throw new UserNotFoundException();
+
+    }
 }
