@@ -1,3 +1,11 @@
+$("#number").keypress(function (event) {
+    console.log("key was pressed");
+    if (event.keyCode === 13) {
+        $("#get_user").click();
+    }
+    console.log("key code: " + event.keyCode);
+});
+
 $(document).ready(function () {
 
     $('#get_user').click(function () {
