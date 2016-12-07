@@ -21,45 +21,44 @@ import hu.schonherz.blog.service.api.user.vo.UserResult;
  */
 @WebServlet("/UserServlet")
 public class UserServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	/**
-	 * @see HttpServlet#HttpServlet()
-	 */
-	public UserServlet() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public UserServlet() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		UserService userService = new UserServiceImpl();
-		List<User> users = userService.findAllUser();
-		Gson gson = new Gson();
-		UserResult result = new UserResult();
-		result.setResults(users);
-		String resultJson = gson.toJson(result);
-		
-		response.setCharacterEncoding("UTF-8");
-		response.setContentType("application/json");
-		
-		response.getWriter().write(resultJson);
-		
-		
-	}
+    /**
+     * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+     *      response)
+     */
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        UserService userService = new UserServiceImpl();
+        List<User> users = userService.findAllUser();
+        Gson gson = new Gson();
+        UserResult result = new UserResult();
+        result.setResults(users);
+        String resultJson = gson.toJson(result);
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
-	}
+        response.setCharacterEncoding("UTF-8");
+        response.setContentType("application/json");
+
+        response.getWriter().write(resultJson);
+
+    }
+
+    /**
+     * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+     *      response)
+     */
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        // TODO Auto-generated method stub
+        doGet(request, response);
+    }
 
 }

@@ -7,7 +7,7 @@ import hu.schonherz.blog.service.api.user.vo.User;
 
 public interface UserService {
 
-	public List<User> findAllUser();
+    public List<User> findAllUser();
 
-	User findUserByName(String name) throws UserNotFoundException;
+    User findUserByName(String name) throws UserNotFoundException;
 }

@@ -15,7 +15,8 @@
 <title>Signin</title>
 
 <!-- Bootstrap core CSS -->
-<link href="<c:url value="/resources/css/bootstrap.min.css"/>" rel="stylesheet">
+<link href="<c:url value="/resources/css/bootstrap.min.css"/>"
+	rel="stylesheet">
 
 
 <!-- Custom styles for this template -->
@@ -35,18 +36,19 @@
 
 	<div class="container">
 		<div class="row">
-		<div class="col-sm-6 col-sm-offset-3">
-			<c:if test="${requestScope.error != null}">
-				<div class="alert alert-danger" role="alert">
-					<span class="glyphicon glyphicon-exclamation-sign"
-						aria-hidden="true"></span> ${requestScope.error}
-				</div>
+			<div class="col-sm-6 col-sm-offset-3">
+				<c:if test="${requestScope.error != null}">
+					<div class="alert alert-danger" role="alert">
+						<span class="glyphicon glyphicon-exclamation-sign"
+							aria-hidden="true"></span> ${requestScope.error}
+					</div>
 
-			</c:if>
+				</c:if>
 			</div>
 		</div>
 		<div class="row">
-			<form class="form-signin" action="<c:url value="/Login" ></c:url>" method="post">
+			<form class="form-signin" action="<c:url value="/Login" ></c:url>"
+				method="post">
 
 				<h2 class="form-signin-heading">Please sign in</h2>
 				<label for="inputEmail" class="sr-only">Username</label> <input
