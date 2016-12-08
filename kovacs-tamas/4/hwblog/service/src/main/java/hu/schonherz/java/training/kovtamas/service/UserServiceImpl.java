@@ -6,11 +6,14 @@ import java.io.InputStreamReader;
 import java.util.List;
 
 import com.google.gson.Gson;
+import hu.schonherz.java.training.kovtamas.serviceapi.user.exception.UserAlreadyExistsException;
 
 import hu.schonherz.java.training.kovtamas.serviceapi.user.exception.UserNotFoundException;
 import hu.schonherz.java.training.kovtamas.serviceapi.user.service.UserService;
+import hu.schonherz.java.training.kovtamas.serviceapi.user.vo.Id;
 import hu.schonherz.java.training.kovtamas.serviceapi.user.vo.User;
 import hu.schonherz.java.training.kovtamas.serviceapi.user.vo.UserResult;
+import java.util.Optional;
 
 public class UserServiceImpl implements UserService {
 
@@ -48,6 +51,28 @@ public class UserServiceImpl implements UserService {
             }
         }
         throw new UserNotFoundException();
-
     }
+
+    @Override
+    public void addUser(User user) {
+        if (!isUniqueUser(user)) {
+            throw new UserAlreadyExistsException();
+        }
+
+        result.getResults().add(user);
+    }
+
+    private boolean isUniqueUser(User user) {
+        Id id = user.getId();
+        if (id == null) {
+            throw new IllegalArgumentException("User ID must not be null!");
+        }
+
+        Optional<User> duplicate = result.getResults()
+                .stream()
+                .filter(usr -> id.equals(usr.getId()))
+                .findAny();
+        return !duplicate.isPresent();
+    }
+
 }
