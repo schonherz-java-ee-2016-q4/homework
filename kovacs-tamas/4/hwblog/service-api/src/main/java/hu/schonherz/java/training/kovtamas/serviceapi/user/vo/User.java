@@ -3,47 +3,140 @@ package hu.schonherz.java.training.kovtamas.serviceapi.user.vo;
 import javax.annotation.Generated;
 
 import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
 
 @Generated("org.jsonschema2pojo")
 public class User {
 
-    @SerializedName("gender")
     @Expose
     private String gender;
-    @SerializedName("name")
     @Expose
     private Name name;
-    @SerializedName("location")
     @Expose
     private Location location;
-    @SerializedName("email")
     @Expose
     private String email;
-    @SerializedName("login")
     @Expose
     private Login login;
-    @SerializedName("dob")
     @Expose
     private String dob;
-    @SerializedName("registered")
     @Expose
     private String registered;
-    @SerializedName("phone")
     @Expose
     private String phone;
-    @SerializedName("cell")
     @Expose
     private String cell;
-    @SerializedName("id")
     @Expose
     private Id id;
-    @SerializedName("picture")
     @Expose
     private Picture picture;
-    @SerializedName("nat")
     @Expose
     private String nat;
+
+    private User(String gender, Name name, Location location, String email, Login login,
+            String dob, String registered, String phone, String cell, Id id, Picture picture, String nat) {
+        this.gender = gender;
+        this.name = name;
+        this.location = location;
+        this.email = email;
+        this.login = login;
+        this.dob = dob;
+        this.registered = registered;
+        this.phone = phone;
+        this.cell = cell;
+        this.id = id;
+        this.picture = picture;
+        this.nat = nat;
+    }
+
+    public static UserBuilder builder() {
+        return new UserBuilder();
+    }
+
+    /**
+     * Builder for the User VO
+     */
+    public static class UserBuilder {
+
+        private String gender = null;
+        private Name name = null;
+        private Location location = null;
+        private String email = null;
+        private Login login = null;
+        private String dob = null;
+        private String registered = null;
+        private String phone = null;
+        private String cell = null;
+        private Id id = null;
+        private Picture picture = null;
+        private String nat = null;
+
+        private UserBuilder() {
+        }
+
+        public UserBuilder gender(String gender) {
+            this.gender = gender;
+            return this;
+        }
+
+        public UserBuilder name(Name name) {
+            this.name = name;
+            return this;
+        }
+
+        public UserBuilder location(Location location) {
+            this.location = location;
+            return this;
+        }
+
+        public UserBuilder email(String email) {
+            this.email = email;
+            return this;
+        }
+
+        public UserBuilder login(Login login) {
+            this.login = login;
+            return this;
+        }
+
+        public UserBuilder dob(String dob) {
+            this.dob = dob;
+            return this;
+        }
+
+        public UserBuilder registered(String registered) {
+            this.registered = registered;
+            return this;
+        }
+
+        public UserBuilder phone(String phone) {
+            this.phone = phone;
+            return this;
+        }
+
+        public UserBuilder cell(String cell) {
+            this.cell = cell;
+            return this;
+        }
+
+        public UserBuilder Id(Id id) {
+            this.id = id;
+            return this;
+        }
+
+        public UserBuilder picture(Picture picture) {
+            this.picture = picture;
+            return this;
+        }
+
+        public UserBuilder nat(String nat) {
+            this.nat = nat;
+            return this;
+        }
+
+        public User build() {
+            return new User(gender, name, location, email, login, dob, registered, phone, cell, id, picture, nat);
+        }
+    }
 
     /**
      *
