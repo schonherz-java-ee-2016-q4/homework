@@ -100,8 +100,5 @@ function validate_birthdate() {
 }
 
 function validate_confirm() {
-	if ($('#password').val() === $('#confirm').val() && $.trim($("#confirm").val())) {
-		return true;
-	}
-	return false;
+	return ($('#password').val() === $('#confirm').val() && $.trim($("#confirm").val())) 
 }
