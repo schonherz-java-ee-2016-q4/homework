@@ -1,20 +1,41 @@
 package hu.sconherz.blog.web.register;
 
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.commons.validator.routines.DateValidator;
 import org.apache.commons.validator.routines.EmailValidator;
 
 public class RegisterFormValidator {
 
-    private final RegisterForm registerForm;
+    private final HttpServletRequest request;
 
-    public RegisterFormValidator(RegisterForm registerForm) {
+    public RegisterFormValidator(HttpServletRequest request) {
         super();
-        this.registerForm = registerForm;
+        this.request = request;
     }
 
     public boolean validateForm() {
-        return validateUsername(registerForm.getUsername()) && validateFirstName(registerForm.getFirstname())
-                && validateLastName(registerForm.getLastname()) && validateCountry(registerForm.getCountry())
-                && validateEmail(registerForm.getEmail());
+        return validateUsername(request.getParameter("username"))
+                && validateFirstName(request.getParameter("firstname"))
+                && validateLastName(request.getParameter("lastname"))
+                && validatePassword(request.getParameter("password"))
+                && validateCountry(request.getParameter("country")) && validateEmail(request.getParameter("email"))
+                && validateDate(request.getParameter("birthdate"));
+    }
+
+    private boolean validateDate(String birthdate) {
+        DateValidator dateValidator = DateValidator.getInstance();
+        try {
+            if (dateValidator.validate(birthdate, "MM/dd/yyyy") != null) {
+                System.out.println("ok");
+                return true;
+            }
+            System.out.println("ok");
+            return false;
+        } catch (Exception e) {
+            System.out.println("ok");
+            return false;
+        }
     }
 
     private boolean validateUsername(String userName) {

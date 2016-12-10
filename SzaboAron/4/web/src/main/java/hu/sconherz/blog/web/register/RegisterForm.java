@@ -35,7 +35,7 @@ public class RegisterForm implements Serializable {
         lastname = request.getParameter("lastname");
         country = request.getParameter("country");
         email = request.getParameter("email");
-        final DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        final DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
         birthDate = LocalDate.parse(request.getParameter("birthdate"), dateFormatter);
         System.out.println(birthDate);
     }
