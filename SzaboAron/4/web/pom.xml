@@ -35,6 +35,12 @@
 			<artifactId>service-api</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/commons-validator/commons-validator -->
+		<dependency>
+			<groupId>commons-validator</groupId>
+			<artifactId>commons-validator</artifactId>
+		</dependency>
+
 	</dependencies>
 	<build>
 		<finalName>Blog</finalName>
