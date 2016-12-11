@@ -10,4 +10,6 @@ public interface UserService {
 	public List<User> findAllUser();
 
 	User findUserByName(String name) throws UserNotFoundException;
+	
+	
 }

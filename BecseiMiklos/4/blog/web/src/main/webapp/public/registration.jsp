@@ -47,76 +47,80 @@
 			</div>
 		</div>
 		<div class="row">
-		<form class="form-registration" action="<c:url value="/Register" ></c:url>" method="post">
-			<h2>Registration</h2>
-
-			<div class="panel panel-default">
-				<div class="panel-heading">Personal data</div>
-				<div class="panel-body">
-					<div class="form-group">
-
-						<label for="inputEmail">Email:</label>
-					    <input type="text" class="form-control" id="inputEmail" name="email">
-					    
-					    <label for="username">Username:</label>
-					    <input type="text" class="form-control" id="username">
-					    
-					    <label
-							for="password">Password:</label> <input type="password"
-							class="form-control" id="password"> <label
-							for="phone">Phone:</label> <input type="text"
-							class="form-control" id="phone">
-					</div>
-
-
-				</div>
-			</div>
-
-
-			<div class="panel panel-default">
-				<div class="panel-heading">Name</div>
-				<div class="panel-body">
-					<div class="form-group">
-
-						<label for="title">Title:</label> <input type="text"
-							class="form-control" id="title"> <label
-							for="first">First:</label> <input type="text"
-							class="form-control" id="first"> <label
-							for="last">Last:</label> <input type="text" class="form-control"
-							id="last">
-					</div>
-
-
-				</div>
-			</div>
-
-			<div class="panel panel-default">
-				<div class="panel-heading">Location</div>
-				<div class="panel-body">
-					<div class="form-group">
-
-						<label for="street">Street:</label> <input type="text"
-							class="form-control" id="street"> <label
-							for="city">City:</label> <input type="text" class="form-control"
-							id="city"> <label for="state">State:</label> <input
-							type="text" class="form-control" id="state"> <label
-							for="postcode">Postcode:</label> <input type="number"
-							class="form-control" id="postcode">
-					</div>
-
-
-				</div>
-			</div>
-
-
-		<button class="btn btn-primary btn-lg" type="submit">Register</button>
 		
-		</form>
+			<form name="regform" action="<c:url value="/Register"></c:url>" 
+				  onsubmit="return validatePasswords(this)" method="post">
+				
+				<h2>Registration</h2>
+
+				<div class="panel panel-default">
+					<div class="panel-heading">Personal data</div>
+					<div class="panel-body">
+						<div class="form-group">
+
+							<label for="inputEmail">Email:</label> <input type="text"
+								class="form-control" id="inputEmail" name="email"> <label
+								for="username">Username:</label> <input type="text"
+								class="form-control" id="username">
+								 
+								<label for="inputPassword">Password:</label>
+								<input type="password" class="form-control" id="inputPassword" name="password">
+								
+								<label for="inputConfirmPassword">Confirm password:</label>
+								<input type="password" class="form-control" id="inputConfirmPassword" name="confirmpassword">
+								
+								
+								<label for="phone">Phone:</label>
+							<input type="text" class="form-control" id="phone">
+						</div>
+
+
+					</div>
+				</div>
+
+
+				<div class="panel panel-default">
+					<div class="panel-heading">Name</div>
+					<div class="panel-body">
+						<div class="form-group">
+
+							<label for="title">Title:</label> <input type="text"
+								class="form-control" id="title"> <label for="first">First:</label>
+							<input type="text" class="form-control" id="first"> <label
+								for="last">Last:</label> <input type="text" class="form-control"
+								id="last">
+						</div>
+
+
+					</div>
+				</div>
+
+				<div class="panel panel-default">
+					<div class="panel-heading">Location</div>
+					<div class="panel-body">
+						<div class="form-group">
+
+							<label for="street">Street:</label> <input type="text"
+								class="form-control" id="street"> <label for="city">City:</label>
+							<input type="text" class="form-control" id="city"> <label
+								for="state">State:</label> <input type="text"
+								class="form-control" id="state"> <label for="postcode">Postcode:</label>
+							<input type="number" class="form-control" id="postcode">
+						</div>
+
+
+					</div>
+				</div>
+
+
+				<button class="btn btn-primary btn-lg" type="submit">Register</button>
+
+			</form>
 		</div>
-		
-		
+
+
 
 	</div>
-	<!-- /container -->
+	<script src="<c:url value="/resources/js/validate.js"/>"></script>
 </body>
 </html>
