@@ -38,9 +38,9 @@
 
 <body>
 
-	<div class="blog-masthead">
+	<div class="blog-masthead navbar-fixed-top" class="container" data-spy="affix" data-offset-top="0">
 		<div class="container">
-			<nav class="blog-nav">
+			<nav class="nav blog-nav ">
 				<a class="blog-nav-item" href="<c:url value="/index.jsp"/>">Home</a> <a class="blog-nav-item " href="<c:url value="/public/registration/register.jsp"/>">Register</a>
 				<c:if test="${sessionScope.user ==null}">
 					<a class="blog-nav-item" href="<c:url value="/public/login.jsp"/>">Login</a>
@@ -56,20 +56,54 @@
 							<span class="caret"></span>
 						</button>
 						<ul class="dropdown-menu">
-							<li><a href="#">HTML</a></li>
-							<li><a href="#">CSS</a></li>
-							<li><a href="#">JavaScript</a></li>
+
 						</ul>
 					</div>
 
 				</c:if>
 			</nav>
+			<div class="panel panel-primary">
+				<div class="panel-heading mypanel" id="filter_heading" onclick="on_header_clocked()">
+					<h3>User filter</h3>
+					<i class="fa fa-spinner fa-spin" id="spinner" style="font-size: 24px"></i>
+				</div>
+				<div class="panel-body" id="filter_body">
+					<form class="form-horizontal" action="" method="get">
+						<div class="form-group">
+							<label for="age" class="col-sm-3 control-label">Age:</label>
+							<div class="col-sm-9">
+								<div>
+									<input type="text" name="age" id="age" placeholder="Age" class="form-control">
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="email" class="col-sm-3 control-label">E-mail:</label>
+							<div class="col-sm-9">
+								<div>
+									<input type="text" name="email" id="email" placeholder="E-mail" class="form-control">
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="city" class="col-sm-3 control-label">City:</label>
+							<div class="col-sm-9">
+								<div>
+									<input type="text" name="city" id="city" placeholder="city" class="form-control">
+								</div>
+							</div>
+						</div>
+						<button class="btn btn-default" type="submit" id="get_user">Filter</button>
+					</form>
+				</div>
+			</div>
 		</div>
 	</div>
+	<div class="col-xs-12"></div>
 
-	<div class="container">
 
 
+	<div class="container ">
 		<div class="row" id="result"></div>
 	</div>
 	<!-- /.container -->
