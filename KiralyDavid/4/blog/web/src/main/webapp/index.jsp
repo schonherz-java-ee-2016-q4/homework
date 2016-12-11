@@ -15,7 +15,7 @@
 <meta name="author" content="">
 <link rel="icon" href="../../favicon.ico">
 
-<title>Blog Template for Bootstrap</title>
+<title>Example Blog</title>
 
 <!-- Bootstrap core CSS -->
 <link href="<c:url value="resources/css/bootstrap.min.css"/>"
@@ -48,6 +48,9 @@
 				</c:if>
 				<a class="blog-nav-item"
 					href="<c:url value="/secured/secured.jsp"/>">Users</a>
+					
+				<a class="blog-nav-item"
+					href="<c:url value="/public/registrate.jsp"/>">Registration</a>
 
 			</nav>
 		</div>

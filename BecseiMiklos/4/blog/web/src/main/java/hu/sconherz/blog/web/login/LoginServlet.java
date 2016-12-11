@@ -23,17 +23,11 @@ public class LoginServlet extends HttpServlet {
 	private static final String LOGIN_JSP_URL = "public/login.jsp";
 	private static final String SECURED_JSP_URL = "secured/secured.jsp";
 
-	/**
-	 * @see HttpServlet#HttpServlet()
-	 */
+
 	public LoginServlet() {
 		super();
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
