@@ -29,7 +29,8 @@ public class LoginFilter implements Filter {
         User user = (User) ((HttpServletRequest) request).getSession().getAttribute("user");
         if (user == null) {
             log.debug("User tried to proceed to the secure pages without logging in");
-            ((HttpServletResponse) response).sendRedirect("resources/pages/public/login.jsp");
+            ((HttpServletResponse) response).sendRedirect("/web/resources/pages/public/login.jsp");
+//            ((HttpServletResponse) response).sendRedirect("/resources/pages/public/login.jsp");
         } else {
             log.debug("User {} is logged in, access granted to proceed to the secure pages", user.getLogin().getUsername());
             chain.doFilter(request, response);

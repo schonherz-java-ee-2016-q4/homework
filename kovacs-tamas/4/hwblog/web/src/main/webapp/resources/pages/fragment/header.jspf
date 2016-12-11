@@ -1,0 +1,8 @@
+<div id="pgHeader">
+    <c:if test="${empty sessionScope.user}">
+        <label>Empty user</label>
+    </c:if>
+    <form action="/web/logOutServlet" method="post">
+        <input type="submit" value="Sign out"/>
+    </form>
+</div>
