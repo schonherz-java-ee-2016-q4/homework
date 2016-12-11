@@ -47,10 +47,10 @@
 			</div>
 		</div>
 		<div class="row">
-		
-			<form name="regform" action="<c:url value="/Register"></c:url>" 
-				  onsubmit="return validatePasswords(this)" method="post">
-				
+
+			<form name="regform" action="<c:url value="/Register"></c:url>"
+				onsubmit="return validatePasswords(this)" method="post">
+
 				<h2>Registration</h2>
 
 				<div class="panel panel-default">
@@ -59,19 +59,16 @@
 						<div class="form-group">
 
 							<label for="inputEmail">Email:</label> <input type="text"
-								class="form-control" id="inputEmail" name="email"> <label
+								class="form-control" id="inputEmail" name="email" placeholder="me@example.com"> <label
 								for="username">Username:</label> <input type="text"
-								class="form-control" id="username">
-								 
-								<label for="inputPassword">Password:</label>
-								<input type="password" class="form-control" id="inputPassword" name="password">
-								
-								<label for="inputConfirmPassword">Confirm password:</label>
-								<input type="password" class="form-control" id="inputConfirmPassword" name="confirmpassword">
-								
-								
-								<label for="phone">Phone:</label>
-							<input type="text" class="form-control" id="phone">
+								class="form-control" id="username" placeholder="Username"> <label
+								for="inputPassword">Password:</label> <input type="password"
+								class="form-control" id="inputPassword" name="password" placeholder="Password">
+
+							<label for="inputConfirmPassword">Confirm password:</label> <input
+								type="password" class="form-control" id="inputConfirmPassword"
+								name="confirmpassword" placeholder="Confirm password"> <label for="phone">Phone:</label>
+							<input type="number" class="form-control" id="phone" placeholder="(555) 555-5555">
 						</div>
 
 
@@ -85,10 +82,10 @@
 						<div class="form-group">
 
 							<label for="title">Title:</label> <input type="text"
-								class="form-control" id="title"> <label for="first">First:</label>
-							<input type="text" class="form-control" id="first"> <label
+								class="form-control" id="title" placeholder="Title"> <label for="first">First:</label>
+							<input type="text" class="form-control" id="first" placeholder="First name"> <label
 								for="last">Last:</label> <input type="text" class="form-control"
-								id="last">
+								id="last" placeholder="Last name">
 						</div>
 
 
@@ -101,11 +98,11 @@
 						<div class="form-group">
 
 							<label for="street">Street:</label> <input type="text"
-								class="form-control" id="street"> <label for="city">City:</label>
-							<input type="text" class="form-control" id="city"> <label
+								class="form-control" id="street" placeholder="Street"> <label for="city">City:</label>
+							<input type="text" class="form-control" id="city" placeholder="City"> <label
 								for="state">State:</label> <input type="text"
-								class="form-control" id="state"> <label for="postcode">Postcode:</label>
-							<input type="number" class="form-control" id="postcode">
+								class="form-control" id="state" placeholder="State"> <label for="postcode">Postcode:</label>
+							<input type="number" class="form-control" id="postcode" placeholder="ZIP">
 						</div>
 
 
