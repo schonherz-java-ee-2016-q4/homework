@@ -54,16 +54,21 @@
 
 			</nav>
 		</div>
+
+
 	</div>
+
+
 
 	<div class="container">
-
-
 		<div class="row" id="result"></div>
 	</div>
-	<!-- /.container -->
+
+
 	<div class="loader col-sm-offset-6"></div>
 	<div id="myModal" class="modal fade" role="dialog"></div>
+
+
 
 
 	<!-- Bootstrap core JavaScript
