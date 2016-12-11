@@ -7,36 +7,38 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
 @WebServlet("/Register")
 public class RegistrationServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    public RegistrationServlet() {
-        super();
-    }
-    
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		RegistrationForm registrationForm = new RegistrationForm(request);
-		
-		String email = registrationForm.getEmail();
-		
-		System.out.println(email); //for testing
-			
+
+	public RegistrationServlet() {
+		super();
 	}
 
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+	        throws ServletException, IOException {
+
+		RegistrationForm registrationForm = new RegistrationForm(request);
+
+		String email = registrationForm.getEmail();
+
+		System.out.println(email); // for testing
+
+	}
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+	        throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
 
 }

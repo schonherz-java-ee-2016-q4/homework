@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 public class RegistrationForm implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	private String email;
 	private String username;
 	private String password;
@@ -19,13 +19,13 @@ public class RegistrationForm implements Serializable {
 	private String city;
 	private String state;
 	private String postcode;
-	
+
 	public RegistrationForm() {
-		
+
 	}
-	
+
 	public RegistrationForm(HttpServletRequest request) {
-		
+
 		email = request.getParameter("email");
 		username = request.getParameter("username");
 		password = request.getParameter("password");
@@ -37,9 +37,7 @@ public class RegistrationForm implements Serializable {
 		city = request.getParameter("city");
 		state = request.getParameter("state");
 		postcode = request.getParameter("postcode");
-				
-				
-		
+
 	}
 
 	public String getEmail() {
@@ -129,9 +127,5 @@ public class RegistrationForm implements Serializable {
 	public void setPostcode(String postcode) {
 		this.postcode = postcode;
 	}
-	
-	
-	
-	
 
 }

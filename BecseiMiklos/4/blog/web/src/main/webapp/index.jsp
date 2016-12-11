@@ -48,9 +48,9 @@
 				</c:if>
 				<a class="blog-nav-item"
 					href="<c:url value="/secured/secured.jsp"/>">Users</a>
-				<c:if test="${sessionScope.user ==null}">	
-				<a class="blog-nav-item"				
-					href="<c:url value="/public/registration.jsp"/>">Registration</a>
+				<c:if test="${sessionScope.user ==null}">
+					<a class="blog-nav-item"
+						href="<c:url value="/public/registration.jsp"/>">Registration</a>
 				</c:if>
 
 			</nav>
