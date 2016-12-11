@@ -3,7 +3,15 @@ var contryList;
 $(document).ready(function() {
 
 	init();
-
+	
+	$("#username").on('input', function() {
+		if (validate_username()) {
+			$('#danger_username').slideDown("slow");
+		} else {
+			$('#danger_username').slideUp("slow");
+		}
+	});
+	
 	$("#firstname").on('input', function() {
 		if (validate_firstname()) {
 			$('#danger_firstname').slideDown("slow");
@@ -54,6 +62,7 @@ $(document).ready(function() {
 });
 
 function init() {
+	$('#danger_username').hide();
 	$('#danger_lastname').hide();
 	$('#danger_firstname').hide();
 	$('#danger_password').hide();
@@ -79,6 +88,10 @@ function getCountries() {
 
 function validation(){
 	return validate_email() && validate_birthdate() && validate_confirm() && validate_firstname() && validate_lastname()
+}
+
+function validate_username() {
+	return !$.trim($("#username").val());
 }
 
 function validate_firstname() {

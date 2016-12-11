@@ -14,7 +14,7 @@ public class RegisterFormValidator {
         this.request = request;
     }
 
-    public boolean validateForm() {
+    public boolean isValidForm() {
         return validateUsername(request.getParameter("username"))
                 && validateFirstName(request.getParameter("firstname"))
                 && validateLastName(request.getParameter("lastname"))
@@ -36,6 +36,7 @@ public class RegisterFormValidator {
             System.out.println("ok");
             return false;
         }
+
     }
 
     private boolean validateUsername(String userName) {
