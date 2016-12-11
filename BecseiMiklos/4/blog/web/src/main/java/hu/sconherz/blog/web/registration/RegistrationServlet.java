@@ -9,36 +9,83 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/Register")
 public class RegistrationServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
 
-	public RegistrationServlet() {
-		super();
-	}
+    private static final long serialVersionUID = 1L;
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-	        throws ServletException, IOException {
+    private static final String REGISTRATION_JSP_URL = "public/registration.jsp";
 
-		RegistrationForm registrationForm = new RegistrationForm(request);
+    public RegistrationServlet() {
+        super();
+    }
 
-		String email = registrationForm.getEmail();
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
 
-		System.out.println(email); // for testing
+        RegistrationForm regForm = new RegistrationForm(request);
 
-	}
+        if (regForm.getEmail() == "") {
+            request.setAttribute("error", "Email cannot be blank!");
+            request.getRequestDispatcher(REGISTRATION_JSP_URL).forward(request, response);
+        }
+        
+        if (regForm.getUsername() == "") {
+            request.setAttribute("error", "Username cannot be blank!");
+            request.getRequestDispatcher(REGISTRATION_JSP_URL).forward(request, response);
+        }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-	        throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-	}
+        if (regForm.getPassword() == "") {
+            request.setAttribute("error", "Password cannot be blank!");
+            request.getRequestDispatcher(REGISTRATION_JSP_URL).forward(request, response);
+        }
+        
+        if (regForm.getPhone() == "") {
+            request.setAttribute("error", "Phone cannot be blank!");
+            request.getRequestDispatcher(REGISTRATION_JSP_URL).forward(request, response);
+        }
+        
+        if (regForm.getEmail() == "") {
+            request.setAttribute("error", "Email cannot be blank!");
+            request.getRequestDispatcher(REGISTRATION_JSP_URL).forward(request, response);
+        }
+        
+        if (regForm.getTitle() == "") {
+            request.setAttribute("error", "Title cannot be blank!");
+            request.getRequestDispatcher(REGISTRATION_JSP_URL).forward(request, response);
+        }
+        
+        if (regForm.getFirst() == "") {
+            request.setAttribute("error", "First name cannot be blank!");
+            request.getRequestDispatcher(REGISTRATION_JSP_URL).forward(request, response);
+        }
+        
+        if (regForm.getLast() == "") {
+            request.setAttribute("error", "Last name cannot be blank!");
+            request.getRequestDispatcher(REGISTRATION_JSP_URL).forward(request, response);
+        }
+        
+        if (regForm.getStreet() == "") {
+            request.setAttribute("error", "Street cannot be blank!");
+            request.getRequestDispatcher(REGISTRATION_JSP_URL).forward(request, response);
+        }
+        
+        if (regForm.getCity() == "") {
+            request.setAttribute("error", "City cannot be blank!");
+            request.getRequestDispatcher(REGISTRATION_JSP_URL).forward(request, response);
+        }
+        
+        if (regForm.getState() == "") {
+            request.setAttribute("error", "State cannot be blank!");
+            request.getRequestDispatcher(REGISTRATION_JSP_URL).forward(request, response);
+        }
+        
+        if (regForm.getPostcode() == "") {
+            request.setAttribute("error", "Postcode cannot be blank!");
+            request.getRequestDispatcher(REGISTRATION_JSP_URL).forward(request, response);
+        }
+    }
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+    }
 
 }
