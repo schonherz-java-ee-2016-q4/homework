@@ -39,32 +39,6 @@ public class RegisterServlet extends HttpServlet {
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        RegisterFormValidator validator = new RegisterFormValidator(request);
-        RegisterForm form;
-        if(validator.validateForm()){
-            form = new RegisterForm(request);
-        }
-        response.sendRedirect(INDEX_JSP_URL);
-        // String username = registerForm.getUsername();
-        // UserService userService = new UserServiceImpl();
-        // User user = null;
-        // try {
-        //
-        // user = userService.findUserByName(username);
-        //
-        // } catch (UserNotFoundException e) {
-        //
-        // }
-        //
-        // if (user != null) {
-        // return;
-        // } else {
-        // user = new User();
-        //
-        // request.setAttribute("error", "Hibás felhasználónév vagy jelszó!");
-        // request.getRequestDispatcher(LOGIN_JSP_URL).forward(request,
-        // response);
-        // }
     }
 
     @Override
