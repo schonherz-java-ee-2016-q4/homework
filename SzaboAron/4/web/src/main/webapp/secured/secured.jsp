@@ -17,8 +17,7 @@
 <title>Starter Template for Bootstrap</title>
 
 <!-- Bootstrap core CSS -->
-<link href="<c:url value="/resources/css/bootstrap.min.css"/>"
-	rel="stylesheet">
+<link href="<c:url value="/resources/css/bootstrap.min.css"/>" rel="stylesheet">
 
 
 <!-- Custom styles for this template -->
@@ -42,16 +41,28 @@
 	<div class="blog-masthead">
 		<div class="container">
 			<nav class="blog-nav">
-				<a class="blog-nav-item " href="<c:url value="/index.jsp"/>">Home</a>
+				<a class="blog-nav-item" href="<c:url value="/index.jsp"/>">Home</a> <a class="blog-nav-item " href="<c:url value="/public/registration/register.jsp"/>">Register</a>
 				<c:if test="${sessionScope.user ==null}">
 					<a class="blog-nav-item" href="<c:url value="/public/login.jsp"/>">Login</a>
 				</c:if>
 				<c:if test="${sessionScope.user !=null}">
 					<a class="blog-nav-item" href="<c:url value="/Logout"/>">Logout</a>
 				</c:if>
-				<a class="blog-nav-item active"
-					href="<c:url value="/secured/secured.jsp"/>">Users</a>
+				<a class="blog-nav-item active" href="<c:url value="/secured/secured.jsp"/>">Users</a>
+				<c:if test="${sessionScope.user !=null}">
+					<div class="dropdown pull-right">
+						<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+							<c:out value="${sessionScope.user}"></c:out>
+							<span class="caret"></span>
+						</button>
+						<ul class="dropdown-menu">
+							<li><a href="#">HTML</a></li>
+							<li><a href="#">CSS</a></li>
+							<li><a href="#">JavaScript</a></li>
+						</ul>
+					</div>
 
+				</c:if>
 			</nav>
 		</div>
 	</div>
@@ -69,8 +80,7 @@
 	<!-- Bootstrap core JavaScript
     ================================================== -->
 	<!-- Placed at the end of the document so the pages load faster -->
-	<script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 	<script src="<c:url value="/resources/js/bootstrap.min.js"/>"></script>
 	<script src="<c:url value="/resources/js/user.js"/>"></script>
 </body>

@@ -24,8 +24,11 @@
 
 <link href="<c:url value="/resources/css/register.css"/>" rel="stylesheet">
 
+<link href="<c:url value="/resources/css/blog.css"/>" rel="stylesheet">
+
+
 <!-- Custom styles for this template -->
-<link href="<c:url value="/resources/css/signin.css"/>" rel="stylesheet">
+<link href="<c:url value="/resources/css/my.css"/>" rel="stylesheet">
 
 <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
 <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
@@ -38,7 +41,31 @@
 </head>
 
 <body>
+	<div class="blog-masthead">
+		<div class="container">
+			<nav class="blog-nav">
+				<a class="blog-nav-item" href="<c:url value="/index.jsp"/>">Home</a> <a class="blog-nav-item active" href="<c:url value="/public/registration/register.jsp"/>">Register</a>
+				<c:if test="${sessionScope.user ==null}">
+					<a class="blog-nav-item" href="<c:url value="/public/login.jsp"/>">Login</a>
+				</c:if>
+				<c:if test="${sessionScope.user !=null}">
+					<a class="blog-nav-item" href="<c:url value="/Logout"/>">Logout</a>
+				</c:if>
+				<a class="blog-nav-item" href="<c:url value="/secured/secured.jsp"/>">Users</a>
 
+			</nav>
+		</div>
+	</div>
+	<div class="container">
+		<div class="col-sm-6 col-sm-offset-3">
+			<c:if test="${requestScope.error != null}">
+				<div class="alert alert-danger" role="alert">
+					<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span> ${requestScope.error}
+				</div>
+
+			</c:if>
+		</div>
+	</div>
 	<div class="container">
 		<form class="form-horizontal" role="form" action="<c:url value="/Register" ></c:url>" method="post">
 			<h2>Registration Form</h2>

@@ -249,4 +249,9 @@ public class User {
         this.nat = nat;
     }
 
+    @Override
+    public String toString() {
+        return name.toString();
+    }
+
 }

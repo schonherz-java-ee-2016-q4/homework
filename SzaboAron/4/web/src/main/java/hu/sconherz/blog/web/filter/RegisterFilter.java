@@ -12,11 +12,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletResponse;
 
-
 import hu.sconherz.blog.web.register.RegisterFormValidator;
 
-@WebFilter(filterName="RegisterFilter", urlPatterns = "/Register")
+@WebFilter(filterName = "RegisterFilter", urlPatterns = "/Register")
 public class RegisterFilter implements Filter {
+
+    private static final String REGISTER_JSP_URL = "public/registration/register.jsp";
+
     @Override
     public void destroy() {
         // TODO Auto-generated method stub
@@ -32,8 +34,8 @@ public class RegisterFilter implements Filter {
         if (validator.isValidForm()) {
             chain.doFilter(request, response);
         } else {
-            ((HttpServletResponse) response)
-                    .sendRedirect(request.getServletContext().getContextPath() + "/public/registration/register.jsp");
+            request.setAttribute("error", "Incorrect data");
+            request.getRequestDispatcher(REGISTER_JSP_URL).forward(request, response);
         }
 
     }
