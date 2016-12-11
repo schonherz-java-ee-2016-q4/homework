@@ -15,7 +15,8 @@
 <title>Registration</title>
 
 <!-- Bootstrap core CSS -->
-<link href="<c:url value="/resources/css/bootstrap.min.css"/>" rel="stylesheet">
+<link href="<c:url value="/resources/css/bootstrap.min.css"/>"
+	rel="stylesheet">
 
 
 <!-- Custom styles for this template -->
@@ -34,8 +35,9 @@
 <body>
 
 	<div class="container">
-		<div class="row">
-		<div class="col-sm-6 col-sm-offset-3">
+
+		<div class="col-sm-0 col-sm-offset-0">
+
 			<c:if test="${requestScope.error != null}">
 				<div class="alert alert-danger" role="alert">
 					<span class="glyphicon glyphicon-exclamation-sign"
@@ -43,43 +45,63 @@
 				</div>
 
 			</c:if>
+
+			<div class="row">
+
+				<form name="regform" action="<c:url value="/"></c:url>"
+					onsubmit="" method="post">
+
+					<h2>Registration</h2>
+
+					<div class="panel panel-default">
+						<div class="panel-heading">Please fill out the fields</div>
+						<div class="panel-body">
+							<div class="form-group">
+
+								<label for="username">Username:</label> <input type="text"
+									class="form-control" id="username" name="username"
+									placeholder="Username"> <label for="inputEmail">Email:</label>
+								<input type="text" class="form-control" id="inputEmail"
+									name="email" placeholder="email@addre.ss"> <label
+									for="inputPassword">Password:</label> <input type="password"
+									class="form-control" id="inputPassword" name="password"
+									placeholder="Password"> <label
+									for="inputConfirmPassword">Confirm Password:</label> <input
+									type="password" class="form-control" id="inputConfirmPassword"
+									name="confirmpassword" placeholder="Confirm password">
+								<label for="title">Title:</label> <input type="text"
+									class="form-control" id="title" name="title"
+									placeholder="Title"> <label for="first">First:</label>
+								<input type="text" class="form-control" id="first" name="first"
+									placeholder="First name"> <label for="last">Last:</label>
+								<input type="text" class="form-control" id="last" name="last"
+									placeholder="Last name"> <label for="phone">Phone:</label>
+								<input type="text" class="form-control" id="phone" name="phone"
+									placeholder="(555) 555-5555"> <label for="street">Street:</label>
+								<input type="text" class="form-control" id="street"
+									name="street" placeholder="Street"> <label for="city">City:</label>
+								<input type="text" class="form-control" id="city" name="city"
+									placeholder="City"> <label for="state">State:</label> <input
+									type="text" class="form-control" id="state" name="state"
+									placeholder="State"> <label for="postcode">Zipcode:</label>
+								<input type="number" class="form-control" id="zipcode"
+									name="zipcode" placeholder="zipcode">
+							</div>
+
+
+						</div>
+					</div>
+
+
+					<button class="btn btn-primary btn-lg" type="submit">Registration</button>
+
+				</form>
 			</div>
+
+
+
 		</div>
-		<div class="row">
-			<form class="form-signin" action="<c:url value="/Registrate" ></c:url>" method="post">
-
-				<h1 class="form-signin-heading">Please fill out the fields</h1>
-				
-				<h3>E-mail address</h3>
-				<label for="regEmail" class="sr-only">E-mail</label> <input
-					type="text" name="username" id="regEmail" class="form-control"
-					placeholder="Email@addre.ss" required autofocus>
-					
-				<h3>Name</h3>
-				<label for="regName" class="sr-only">E-mail</label> <input
-					type="text" name="username" id="regName" class="form-control"
-					placeholder="Your Name" required autofocus>
-				
-				<h3>Password</h3>		
-					 <label
-					for="inputPassword" class="sr-only">Password</label> <input
-					type="password" name="password" id="inputPassword"
-					class="form-control" placeholder="Password" required>
-					 <label
-					for="inputPassword2" class="sr-only">Password again</label> <input
-					type="password" name="password" id="inputPassword2"
-					class="form-control" placeholder="Password again" required>
-					
-				
-				<button class="btn btn-lg btn-primary btn-block" type="submit">Registration</button>
-
-			</form>
-		</div>
-
 	</div>
-	<!-- /container -->
-
-
-
+	<script src="<c:url value="/resources/js/validate.js"/>"></script>
 </body>
 </html>
