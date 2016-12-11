@@ -40,7 +40,7 @@
 			<nav class="blog-nav">
 				<a class="blog-nav-item active" href="<c:url value="/index.jsp"/>">Home</a>
 				<a class="blog-nav-item"
-					href="<c:url value="/public/register.jsp"/>">Register</a>
+					href="<c:url value="/public/registration/register.jsp"/>">Register</a>
 				<c:if test="${sessionScope.user ==null}">
 					<a class="blog-nav-item" href="<c:url value="/public/login.jsp"/>">Login</a>
 				</c:if>
