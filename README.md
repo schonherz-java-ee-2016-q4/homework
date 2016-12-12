@@ -2,7 +2,12 @@ Homework Repository
 ===================
 This repository contains homework descriptions stated by the trainers and the solutions by trainees.
 
-4th Homework- Blog and Webapp Basics
+5th Homework - JDBC
+---
+**[Description](https://github.com/schonherz-java-ee-2016-q4/homework/blob/master/homeworks/homework-05-blog-jdbc.md)**  
+**Deadline**: December 18, Sunday, 20:00
+
+4th Homework - Blog and Webapp Basics
 ---
 **[Description](https://github.com/schonherz-java-ee-2016-q4/homework/blob/master/homeworks/homework-04-blog-web-app.md)**  
 **Deadline**: December 11, Sunday, 20:00
