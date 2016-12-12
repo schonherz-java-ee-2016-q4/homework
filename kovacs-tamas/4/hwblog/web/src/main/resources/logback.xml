@@ -15,22 +15,22 @@ and open the template in the editor.
         </encoder>
     </appender>
 
-    <appender name="FILE" class="ch.qos.logback.core.FileAppender">
-        <!--        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+    <!--    <appender name="FILE" class="ch.qos.logback.core.FileAppender">
+                <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
             <level>ERROR</level>
-        </filter>-->
+        </filter>
         <file>c:\\Games\logFile.log</file>
         <append>false</append>
-        <!-- encoders are assigned the type
-        ch.qos.logback.classic.encoder.PatternLayoutEncoder by default -->
+         encoders are assigned the type
+        ch.qos.logback.classic.encoder.PatternLayoutEncoder by default
         <encoder>
             <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
         </encoder>
-    </appender>
+    </appender>-->
 
 
     <root level="debug">
         <appender-ref ref="STDOUT" />
-        <appender-ref ref="FILE" />
+        <!--<appender-ref ref="FILE" />-->
     </root>
 </configuration>

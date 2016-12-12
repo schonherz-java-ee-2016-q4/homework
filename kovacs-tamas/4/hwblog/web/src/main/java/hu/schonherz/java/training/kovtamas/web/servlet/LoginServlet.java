@@ -1,9 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package hu.schonherz.java.training.kovtamas.web;
+package hu.schonherz.java.training.kovtamas.web.servlet;
 
 import hu.schonherz.java.training.kovtamas.service.UserServiceImpl;
 import hu.schonherz.java.training.kovtamas.serviceapi.user.exception.UserNotFoundException;
@@ -30,25 +25,29 @@ public class LoginServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String username = req.getParameter("usrname");
+        String username = req.getParameter("username");
         String password = req.getParameter("psw");
 
         try {
             User user = userService.findUserByName(username);
             if (!user.getLogin().getPassword().equals(password)) {
-                forwardBackToLoginPage(req, resp);
+                forwardToLoginPage(req, resp);
             }
-            // TODO: replace user object with limited version, because this one contains the password
             req.getSession().setAttribute("user", user);
             log.debug("login successful for user: {}", username);
             resp.sendRedirect("resources/pages/secure/securePage.jsp");
         } catch (UserNotFoundException unfe) {
             log.info("unsuccessful login try with username: {}", username);
-            forwardBackToLoginPage(req, resp);
+            forwardToLoginPage(req, resp);
         }
     }
 
-    private void forwardBackToLoginPage(HttpServletRequest req, HttpServletResponse resp)
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        forwardToLoginPage(req, resp);
+    }
+
+    private void forwardToLoginPage(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
         req.setAttribute("invalidLogin", "invalidLogin");
         req.getRequestDispatcher("resources/pages/public/login.jsp").forward(req, resp);

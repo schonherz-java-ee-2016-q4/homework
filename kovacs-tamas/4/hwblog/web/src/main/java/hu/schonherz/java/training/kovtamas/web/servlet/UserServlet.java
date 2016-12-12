@@ -1,9 +1,7 @@
-package hu.sconherz.blog.web.user;
+package hu.schonherz.java.training.kovtamas.web.servlet;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.stream.Collector;
-import java.util.stream.Collectors;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,17 +10,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
-
-import hu.schonherz.blog.service.UserServiceImpl;
-import hu.schonherz.blog.service.api.user.service.UserService;
-import hu.schonherz.blog.service.api.user.vo.User;
-import hu.schonherz.blog.service.api.user.vo.UserResult;
+import hu.schonherz.java.training.kovtamas.service.UserServiceImpl;
+import hu.schonherz.java.training.kovtamas.serviceapi.user.service.UserService;
+import hu.schonherz.java.training.kovtamas.serviceapi.user.vo.User;
+import hu.schonherz.java.training.kovtamas.serviceapi.user.vo.UserResult;
 
 /**
  * Servlet implementation class UserServlet
  */
 @WebServlet("/UserServlet")
 public class UserServlet extends HttpServlet {
+
     private static final long serialVersionUID = 1L;
 
     /**
@@ -34,19 +32,12 @@ public class UserServlet extends HttpServlet {
     }
 
     /**
-     * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-     *      response)
+     * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         UserService userService = new UserServiceImpl();
         List<User> users = userService.findAllUser();
-        if(!request.getParameter("email").equals("")){
-            users = users.stream().filter(user -> user.getEmail().equals(request.getParameter("e-mail"))).collect(Collectors.toList());
-        }
-        if(!request.getParameter("city").equals("")){
-            users = users.stream().filter(user -> user.getLocation().getCity().equals(request.getParameter("city"))).collect(Collectors.toList());
-        }
         Gson gson = new Gson();
         UserResult result = new UserResult();
         result.setResults(users);
@@ -60,8 +51,7 @@ public class UserServlet extends HttpServlet {
     }
 
     /**
-     * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-     *      response)
+     * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

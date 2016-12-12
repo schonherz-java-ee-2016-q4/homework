@@ -1,11 +1,8 @@
 package hu.schonherz.blog.service;
 
 import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.nio.file.attribute.UserPrincipalNotFoundException;
 import java.util.List;
 
 import com.google.gson.Gson;

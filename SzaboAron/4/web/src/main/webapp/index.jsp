@@ -18,8 +18,7 @@
 <title>Blog Template for Bootstrap</title>
 
 <!-- Bootstrap core CSS -->
-<link href="<c:url value="resources/css/bootstrap.min.css"/>"
-	rel="stylesheet">
+<link href="<c:url value="resources/css/bootstrap.min.css"/>" rel="stylesheet">
 
 
 <!-- Custom styles for this template -->
@@ -38,17 +37,24 @@
 	<div class="blog-masthead">
 		<div class="container">
 			<nav class="blog-nav">
-				<a class="blog-nav-item active" href="<c:url value="/index.jsp"/>">Home</a>
-				<a class="blog-nav-item"
-					href="<c:url value="/public/register.jsp"/>">Register</a>
+				<a class="blog-nav-item active" href="<c:url value="/index.jsp"/>">Home</a> <a class="blog-nav-item" href="<c:url value="/public/registration/register.jsp"/>">Register</a>
 				<c:if test="${sessionScope.user ==null}">
 					<a class="blog-nav-item" href="<c:url value="/public/login.jsp"/>">Login</a>
 				</c:if>
 				<c:if test="${sessionScope.user !=null}">
 					<a class="blog-nav-item" href="<c:url value="/Logout"/>">Logout</a>
 				</c:if>
-				<a class="blog-nav-item"
-					href="<c:url value="/secured/secured.jsp"/>">Users</a>
+				<a class="blog-nav-item" href="<c:url value="/secured/secured.jsp"/>">Users</a>
+				<c:if test="${sessionScope.user !=null}">
+					<div class="dropdown pull-right">
+						<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+							<c:out value="${sessionScope.user}"></c:out> <span class="caret"></span>
+						</button>
+						<ul class="dropdown-menu">
+						</ul>
+					</div>
+					
+				</c:if>
 
 			</nav>
 		</div>
@@ -58,8 +64,7 @@
 
 		<div class="blog-header">
 			<h1 class="blog-title">The Bootstrap Blog</h1>
-			<p class="lead blog-description">The official example template of
-				creating a blog with Bootstrap.</p>
+			<p class="lead blog-description">The official example template of creating a blog with Bootstrap.</p>
 		</div>
 
 		<div class="row">
@@ -72,67 +77,44 @@
 						January 1, 2014 by <a href="#">Mark</a>
 					</p>
 
-					<p>This blog post shows a few different types of content that's
-						supported and styled with Bootstrap. Basic typography, images, and
-						code are all supported.</p>
+					<p>This blog post shows a few different types of content that's supported and styled with Bootstrap. Basic typography, images, and code are all supported.</p>
 					<hr>
 					<p>
-						Cum sociis natoque penatibus et magnis <a href="#">dis
-							parturient montes</a>, nascetur ridiculus mus. Aenean eu leo quam.
-						Pellentesque ornare sem lacinia quam venenatis vestibulum. Sed
-						posuere consectetur est at lobortis. Cras mattis consectetur purus
-						sit amet fermentum.
+						Cum sociis natoque penatibus et magnis <a href="#">dis parturient montes</a>, nascetur ridiculus mus. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Sed posuere
+						consectetur est at lobortis. Cras mattis consectetur purus sit amet fermentum.
 					</p>
 					<blockquote>
 						<p>
-							Curabitur blandit tempus porttitor. <strong>Nullam quis
-								risus eget urna mollis</strong> ornare vel eu leo. Nullam id dolor id
-							nibh ultricies vehicula ut id elit.
+							Curabitur blandit tempus porttitor. <strong>Nullam quis risus eget urna mollis</strong> ornare vel eu leo. Nullam id dolor id nibh ultricies vehicula ut id elit.
 						</p>
 					</blockquote>
 					<p>
-						Etiam porta <em>sem malesuada magna</em> mollis euismod. Cras
-						mattis consectetur purus sit amet fermentum. Aenean lacinia
-						bibendum nulla sed consectetur.
+						Etiam porta <em>sem malesuada magna</em> mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.
 					</p>
 					<h2>Heading</h2>
-					<p>Vivamus sagittis lacus vel augue laoreet rutrum faucibus
-						dolor auctor. Duis mollis, est non commodo luctus, nisi erat
-						porttitor ligula, eget lacinia odio sem nec elit. Morbi leo risus,
+					<p>Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Morbi leo risus,
 						porta ac consectetur ac, vestibulum at eros.</p>
 					<h3>Sub-heading</h3>
-					<p>Cum sociis natoque penatibus et magnis dis parturient
-						montes, nascetur ridiculus mus.</p>
+					<p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
 					<pre>
 						<code>Example code block</code>
 					</pre>
-					<p>Aenean lacinia bibendum nulla sed consectetur. Etiam porta
-						sem malesuada magna mollis euismod. Fusce dapibus, tellus ac
-						cursus commodo, tortor mauris condimentum nibh, ut fermentum
-						massa.</p>
+					<p>Aenean lacinia bibendum nulla sed consectetur. Etiam porta sem malesuada magna mollis euismod. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa.</p>
 					<h3>Sub-heading</h3>
-					<p>Cum sociis natoque penatibus et magnis dis parturient
-						montes, nascetur ridiculus mus. Aenean lacinia bibendum nulla sed
-						consectetur. Etiam porta sem malesuada magna mollis euismod. Fusce
-						dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh,
-						ut fermentum massa justo sit amet risus.</p>
+					<p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean lacinia bibendum nulla sed consectetur. Etiam porta sem malesuada magna mollis euismod. Fusce
+						dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
 					<ul>
-						<li>Praesent commodo cursus magna, vel scelerisque nisl
-							consectetur et.</li>
+						<li>Praesent commodo cursus magna, vel scelerisque nisl consectetur et.</li>
 						<li>Donec id elit non mi porta gravida at eget metus.</li>
 						<li>Nulla vitae elit libero, a pharetra augue.</li>
 					</ul>
-					<p>Donec ullamcorper nulla non metus auctor fringilla. Nulla
-						vitae elit libero, a pharetra augue.</p>
+					<p>Donec ullamcorper nulla non metus auctor fringilla. Nulla vitae elit libero, a pharetra augue.</p>
 					<ol>
 						<li>Vestibulum id ligula porta felis euismod semper.</li>
-						<li>Cum sociis natoque penatibus et magnis dis parturient
-							montes, nascetur ridiculus mus.</li>
-						<li>Maecenas sed diam eget risus varius blandit sit amet non
-							magna.</li>
+						<li>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</li>
+						<li>Maecenas sed diam eget risus varius blandit sit amet non magna.</li>
 					</ol>
-					<p>Cras mattis consectetur purus sit amet fermentum. Sed
-						posuere consectetur est at lobortis.</p>
+					<p>Cras mattis consectetur purus sit amet fermentum. Sed posuere consectetur est at lobortis.</p>
 				</div>
 				<!-- /.blog-post -->
 
@@ -143,27 +125,18 @@
 					</p>
 
 					<p>
-						Cum sociis natoque penatibus et magnis <a href="#">dis
-							parturient montes</a>, nascetur ridiculus mus. Aenean eu leo quam.
-						Pellentesque ornare sem lacinia quam venenatis vestibulum. Sed
-						posuere consectetur est at lobortis. Cras mattis consectetur purus
-						sit amet fermentum.
+						Cum sociis natoque penatibus et magnis <a href="#">dis parturient montes</a>, nascetur ridiculus mus. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Sed posuere
+						consectetur est at lobortis. Cras mattis consectetur purus sit amet fermentum.
 					</p>
 					<blockquote>
 						<p>
-							Curabitur blandit tempus porttitor. <strong>Nullam quis
-								risus eget urna mollis</strong> ornare vel eu leo. Nullam id dolor id
-							nibh ultricies vehicula ut id elit.
+							Curabitur blandit tempus porttitor. <strong>Nullam quis risus eget urna mollis</strong> ornare vel eu leo. Nullam id dolor id nibh ultricies vehicula ut id elit.
 						</p>
 					</blockquote>
 					<p>
-						Etiam porta <em>sem malesuada magna</em> mollis euismod. Cras
-						mattis consectetur purus sit amet fermentum. Aenean lacinia
-						bibendum nulla sed consectetur.
+						Etiam porta <em>sem malesuada magna</em> mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.
 					</p>
-					<p>Vivamus sagittis lacus vel augue laoreet rutrum faucibus
-						dolor auctor. Duis mollis, est non commodo luctus, nisi erat
-						porttitor ligula, eget lacinia odio sem nec elit. Morbi leo risus,
+					<p>Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Morbi leo risus,
 						porta ac consectetur ac, vestibulum at eros.</p>
 				</div>
 				<!-- /.blog-post -->
@@ -174,24 +147,17 @@
 						December 14, 2013 by <a href="#">Chris</a>
 					</p>
 
-					<p>Cum sociis natoque penatibus et magnis dis parturient
-						montes, nascetur ridiculus mus. Aenean lacinia bibendum nulla sed
-						consectetur. Etiam porta sem malesuada magna mollis euismod. Fusce
-						dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh,
-						ut fermentum massa justo sit amet risus.</p>
+					<p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean lacinia bibendum nulla sed consectetur. Etiam porta sem malesuada magna mollis euismod. Fusce
+						dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
 					<ul>
-						<li>Praesent commodo cursus magna, vel scelerisque nisl
-							consectetur et.</li>
+						<li>Praesent commodo cursus magna, vel scelerisque nisl consectetur et.</li>
 						<li>Donec id elit non mi porta gravida at eget metus.</li>
 						<li>Nulla vitae elit libero, a pharetra augue.</li>
 					</ul>
 					<p>
-						Etiam porta <em>sem malesuada magna</em> mollis euismod. Cras
-						mattis consectetur purus sit amet fermentum. Aenean lacinia
-						bibendum nulla sed consectetur.
+						Etiam porta <em>sem malesuada magna</em> mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.
 					</p>
-					<p>Donec ullamcorper nulla non metus auctor fringilla. Nulla
-						vitae elit libero, a pharetra augue.</p>
+					<p>Donec ullamcorper nulla non metus auctor fringilla. Nulla vitae elit libero, a pharetra augue.</p>
 				</div>
 				<!-- /.blog-post -->
 
@@ -209,9 +175,7 @@
 				<div class="sidebar-module sidebar-module-inset">
 					<h4>About</h4>
 					<p>
-						Etiam porta <em>sem malesuada magna</em> mollis euismod. Cras
-						mattis consectetur purus sit amet fermentum. Aenean lacinia
-						bibendum nulla sed consectetur.
+						Etiam porta <em>sem malesuada magna</em> mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.
 					</p>
 				</div>
 				<div class="sidebar-module">
@@ -250,8 +214,7 @@
 
 	<footer class="blog-footer">
 		<p>
-			Blog template built for <a href="http://getbootstrap.com">Bootstrap</a>
-			by <a href="https://twitter.com/mdo">@mdo</a>.
+			Blog template built for <a href="http://getbootstrap.com">Bootstrap</a> by <a href="https://twitter.com/mdo">@mdo</a>.
 		</p>
 		<p>
 			<a href="#">Back to top</a>
@@ -262,8 +225,7 @@
 	<!-- Bootstrap core JavaScript
     ================================================== -->
 	<!-- Placed at the end of the document so the pages load faster -->
-	<script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 	<script>
 		window.jQuery
 				|| document
