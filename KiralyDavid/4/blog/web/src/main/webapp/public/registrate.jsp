@@ -48,8 +48,8 @@
 
 			<div class="row">
 
-				<form name="regform" action="<c:url value="/"></c:url>"
-					onsubmit="" method="post">
+				<form name="regform" action="<c:url value="/Register"></c:url>"
+					method="post">
 
 					<h2>Registration</h2>
 
