@@ -4,9 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
 
 import hu.schonherz.blog.service.api.user.service.data.datasource.DataSourceManager;
 import hu.schonherz.blog.service.api.user.service.data.user.dto.NameDTO;
@@ -15,8 +12,8 @@ import hu.schonherz.blog.service.api.user.service.data.user.queries.NameQueries;
 public class NameDAO implements GenericDAO<NameDTO> {
 
     @Override
-    public Collection<NameDTO> findById(int id) {
-        List<NameDTO> back = new ArrayList<>();
+    public NameDTO findById(int id) {
+        NameDTO back = null;
 
         try (Connection connection = DataSourceManager.getDataSource().getConnection()) {
             PreparedStatement statement = connection.prepareStatement(NameQueries.QUERY_FIND_BY_ID);
@@ -24,7 +21,7 @@ public class NameDAO implements GenericDAO<NameDTO> {
             ResultSet resultSet = statement.executeQuery();
 
             while (resultSet.next()) {
-                back.add(toDTO(resultSet));
+                back = toDTO(resultSet);
             }
 
         } catch (Exception e) {

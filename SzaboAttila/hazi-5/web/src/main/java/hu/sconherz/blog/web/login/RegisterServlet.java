@@ -2,6 +2,7 @@ package hu.sconherz.blog.web.login;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.servlet.ServletException;
@@ -61,8 +62,7 @@ public class RegisterServlet extends HttpServlet {
         RegisterForm registerForm = new RegisterForm(request);
 
         String username = registerForm.getUsername();
-        String appPath = request.getServletContext().getRealPath("");
-        UserService userService = new UserServiceImpl(appPath);
+        UserService userService = new UserServiceImpl();
         User user = null;
         
         try {
@@ -138,7 +138,7 @@ public class RegisterServlet extends HttpServlet {
         name.setLast(registerForm.getLastname());
         user.setName(name);
         user.setGender(registerForm.getGender());
-        user.setDob(registerForm.getDob());
+        user.setDob(registerForm.getDob() + " 00:00:00");
         
         Location location = new Location();
         location.setState(registerForm.getState());
@@ -149,7 +149,7 @@ public class RegisterServlet extends HttpServlet {
         
         user.setPhone(registerForm.getPhone());
         user.setCell(registerForm.getCell());
-        user.setRegistered(new Date().toString());
+        user.setRegistered(new SimpleDateFormat("yyyy-MM-dd").format(new Date()) + " 00:00:00");
         
         Picture picture = new Picture();
         picture.setLarge(registerForm.getImageurl());

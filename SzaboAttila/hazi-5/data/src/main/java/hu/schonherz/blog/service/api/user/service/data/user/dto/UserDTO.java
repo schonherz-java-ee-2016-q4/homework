@@ -12,7 +12,6 @@ public class UserDTO {
     private String gender;
     
     public UserDTO() {
-        // TODO Auto-generated constructor stub
     }
 
     public int getId() {

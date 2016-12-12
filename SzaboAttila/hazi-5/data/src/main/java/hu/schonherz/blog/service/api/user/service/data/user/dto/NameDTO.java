@@ -7,7 +7,6 @@ public class NameDTO {
     private String last;
     
     public NameDTO() {
-        // TODO Auto-generated constructor stub
     }
 
     public int getUser_id() {

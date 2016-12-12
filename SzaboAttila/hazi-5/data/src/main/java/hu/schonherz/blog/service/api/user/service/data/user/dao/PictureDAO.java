@@ -4,9 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
 
 import hu.schonherz.blog.service.api.user.service.data.datasource.DataSourceManager;
 import hu.schonherz.blog.service.api.user.service.data.user.dto.PictureDTO;
@@ -15,8 +12,8 @@ import hu.schonherz.blog.service.api.user.service.data.user.queries.PictureQueri
 public class PictureDAO implements GenericDAO<PictureDTO> {
 
     @Override
-    public Collection<PictureDTO> findById(int id) {
-        List<PictureDTO> back = new ArrayList<>();
+    public PictureDTO findById(int id) {
+        PictureDTO back = null;
 
         try (Connection connection = DataSourceManager.getDataSource().getConnection()) {
             PreparedStatement statement = connection.prepareStatement(PictureQueries.QUERY_FIND_BY_ID);
@@ -24,7 +21,7 @@ public class PictureDAO implements GenericDAO<PictureDTO> {
             ResultSet resultSet = statement.executeQuery();
 
             while (resultSet.next()) {
-                back.add(toDTO(resultSet));
+                back = toDTO(resultSet);
             }
 
         } catch (Exception e) {

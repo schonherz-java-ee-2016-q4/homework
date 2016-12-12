@@ -29,7 +29,6 @@ public class LoginServlet extends HttpServlet {
 	 */
 	public LoginServlet() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	/**
@@ -42,8 +41,7 @@ public class LoginServlet extends HttpServlet {
 		LoginForm loginForm = new LoginForm(request);
 
 		String username = loginForm.getUsername();
-		String appPath = request.getServletContext().getRealPath("");
-		UserService userService = new UserServiceImpl(appPath);
+		UserService userService = new UserServiceImpl();
 		User user = null;
 		
 		try {

@@ -28,7 +28,6 @@ public class RegisterForm implements Serializable {
     private String imageurl;
 
     public RegisterForm() {
-        // TODO Auto-generated constructor stub
     }
     
     public RegisterForm(HttpServletRequest request) {

@@ -11,7 +11,7 @@ public class UserServiceImplTest {
 
 	@Test
 	public void testFindAllUser() {
-		UserServiceImpl serviceImpl = new UserServiceImpl("");
+		UserServiceImpl serviceImpl = new UserServiceImpl();
 		List<User> list = serviceImpl.findAllUser();
 
 		for (User user : list) {

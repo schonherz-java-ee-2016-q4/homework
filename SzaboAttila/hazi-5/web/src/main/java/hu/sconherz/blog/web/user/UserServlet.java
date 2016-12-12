@@ -28,7 +28,6 @@ public class UserServlet extends HttpServlet {
 	 */
 	public UserServlet() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	/**
@@ -37,8 +36,7 @@ public class UserServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-	    String appPath = request.getServletContext().getRealPath("");
-		UserService userService = new UserServiceImpl(appPath);
+		UserService userService = new UserServiceImpl();
 		List<User> users = userService.findAllUser();
 		Gson gson = new Gson();
 		UserResult result = new UserResult();
@@ -59,7 +57,6 @@ public class UserServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 

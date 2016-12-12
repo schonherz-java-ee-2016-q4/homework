@@ -7,7 +7,6 @@ public class PictureDTO {
     private String thumbnail;
     
     public PictureDTO() {
-        // TODO Auto-generated constructor stub
     }
 
     public int getUser_id() {

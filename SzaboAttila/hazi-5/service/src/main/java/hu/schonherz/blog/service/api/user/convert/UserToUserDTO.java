@@ -11,7 +11,7 @@ import hu.schonherz.blog.service.api.user.service.data.user.dto.PictureDTO;
 import hu.schonherz.blog.service.api.user.service.data.user.dto.UserDTO;
 import hu.schonherz.blog.service.api.user.vo.User;
 
-public class UserToDTO {
+public class UserToUserDTO {
 
     private UserDTO userDTO;
     private LocationDTO locationDTO;
@@ -19,15 +19,15 @@ public class UserToDTO {
     private PictureDTO pictureDTO;
     private NameDTO nameDTO;
     
-    public UserToDTO(User user) throws ParseException {
+    public UserToUserDTO(User user) throws ParseException {
         userDTO = new UserDTO();
         
         userDTO.setEmail(user.getEmail());
         userDTO.setPhone(user.getPhone());
         userDTO.setCell(user.getCell());
-        userDTO.setGender(user.getGender());
-        userDTO.setDob( new Date ( new SimpleDateFormat("dd/MM/yyyy").parse(user.getDob()).getTime() ) );
-        userDTO.setRegistered( new Date ( new SimpleDateFormat("dd/MM/yyyy").parse(user.getRegistered()).getTime() ) );
+        userDTO.setGender(user.getGender() == "female" ? "f" : "m");
+        userDTO.setDob( new Date ( new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").parse(user.getDob()).getTime() ) );
+        userDTO.setRegistered( new Date ( new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").parse(user.getRegistered()).getTime() ) );
         
         locationDTO = new LocationDTO();
         
@@ -74,5 +74,23 @@ public class UserToDTO {
     public NameDTO getNameDTO() {
         return nameDTO;
     }
+
+    @Override
+    public String toString() {
+        StringBuilder builder = new StringBuilder();
+        builder.append("UserToUserDTO [userDTO=");
+        builder.append(userDTO);
+        builder.append(", locationDTO=");
+        builder.append(locationDTO);
+        builder.append(", loginDTO=");
+        builder.append(loginDTO);
+        builder.append(", pictureDTO=");
+        builder.append(pictureDTO);
+        builder.append(", nameDTO=");
+        builder.append(nameDTO);
+        builder.append("]");
+        return builder.toString();
+    }
+    
     
 }

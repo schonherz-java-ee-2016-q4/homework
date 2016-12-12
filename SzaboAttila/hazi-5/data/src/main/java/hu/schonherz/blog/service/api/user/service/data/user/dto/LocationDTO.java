@@ -8,7 +8,6 @@ public class LocationDTO {
     private int postcode;
     
     public LocationDTO() {
-        // TODO Auto-generated constructor stub
     }
 
     public int getUser_id() {
@@ -51,5 +50,21 @@ public class LocationDTO {
         this.postcode = postcode;
     }
     
+    @Override
+    public String toString() {
+        StringBuilder builder = new StringBuilder();
+        builder.append("LocationDTO [user_id=");
+        builder.append(user_id);
+        builder.append(", street=");
+        builder.append(street);
+        builder.append(", city=");
+        builder.append(city);
+        builder.append(", state=");
+        builder.append(state);
+        builder.append(", postcode=");
+        builder.append(postcode);
+        builder.append("]");
+        return builder.toString();
+    }
     
 }

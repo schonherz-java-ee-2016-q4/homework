@@ -6,7 +6,6 @@ public class LoginDTO {
     private String password;
     
     public LoginDTO() {
-        // TODO Auto-generated constructor stub
     }
 
     public int getUser_id() {
