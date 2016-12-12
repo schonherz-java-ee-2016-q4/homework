@@ -5,7 +5,7 @@ This repository contains homework descriptions stated by the trainers and the so
 5th Homework - JDBC
 ---
 **[Description](https://github.com/schonherz-java-ee-2016-q4/homework/blob/master/homeworks/homework-05-blog-jdbc.md)**  
-**Deadline**: December 18, Sunday, 20:00
+**Deadline**: December 19, Monday, 20:00
 
 4th Homework - Blog and Webapp Basics
 ---
