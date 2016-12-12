@@ -6,19 +6,31 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>login</title>
         <link href="<c:url value="/resources/css/bootstrap-login.css"/>" rel="stylesheet">
-        <script src="<c:url value="/resources/js/bootstrap-login.js"/>"></script>
+        <link href="<c:url value="/resources/css/login.css"/>" rel="stylesheet">
     </head>
     <body>
         <div class="login-page">
             <div class="form">
-                <form class="login-form" action="/web/loginServlet" method="post">
-                    <input type="text" placeholder="username" id="userrname" name="usrname"/>
-                    <input type="password" placeholder="password" id="pwd" name="psw"/>
+                <!-- Error messages -->
+                <span id="empty-field-message" class="hidden error-message">
+                    Missing username or password</span>
+                    <c:if test="${not empty requestScope.invalidLogin}">
+                    <span id="invalid-field-message" class="error-message">
+                        <br>Invalid username or password</span>
+                        <c:remove var="invalidLogin" scope="request"/>
+                    </c:if>
+                <!-- Login form -->
+                <form onsubmit="return validateLogin()" class="login-form" action="/web/loginServlet" method="post">
+                    <input type="text" placeholder="username" id="username" name="username"/>
+                    <input type="password" placeholder="password" id="psw" name="psw"/>
                     <input id="submitLogin" type="submit" value="Login"/>
                     <p class="message">Not registered?
                         <a href="/web/resources/pages/public/register.jsp">Register here</a></p>
                 </form>
             </div>
         </div>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src="<c:url value="/resources/js/loginValidation.js"/>"></script>
     </body>
 </html>
