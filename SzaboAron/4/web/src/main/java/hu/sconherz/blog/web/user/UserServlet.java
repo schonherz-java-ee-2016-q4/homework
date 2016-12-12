@@ -2,6 +2,8 @@ package hu.sconherz.blog.web.user;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -39,6 +41,12 @@ public class UserServlet extends HttpServlet {
             throws ServletException, IOException {
         UserService userService = new UserServiceImpl();
         List<User> users = userService.findAllUser();
+        if(!request.getParameter("email").equals("")){
+            users = users.stream().filter(user -> user.getEmail().equals(request.getParameter("e-mail"))).collect(Collectors.toList());
+        }
+        if(!request.getParameter("city").equals("")){
+            users = users.stream().filter(user -> user.getLocation().getCity().equals(request.getParameter("city"))).collect(Collectors.toList());
+        }
         Gson gson = new Gson();
         UserResult result = new UserResult();
         result.setResults(users);

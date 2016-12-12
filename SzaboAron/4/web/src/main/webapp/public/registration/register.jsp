@@ -148,9 +148,6 @@
 					</div>
 				</div>
 			</div>
-			<div class="alert alert-danger hidden">
-				<strong>Danger!</strong> Indicates a dangerous or potentially negative action.
-			</div>
 			<div class="form-group">
 				<label for="country" class="col-sm-3 control-label">Country</label>
 				<div class="col-sm-9">

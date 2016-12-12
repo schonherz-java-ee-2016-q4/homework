@@ -63,12 +63,12 @@
 				</c:if>
 			</nav>
 			<div class="panel panel-primary">
-				<div class="panel-heading mypanel" id="filter_heading" onclick="on_header_clocked()">
-					<h3>User filter</h3>
-					<i class="fa fa-spinner fa-spin" id="spinner" style="font-size: 24px"></i>
+				<div class="panel-heading mypanel " id="filter_heading" onclick="on_header_clocked()">
+						<h3>User filter</h3>
+
 				</div>
 				<div class="panel-body" id="filter_body">
-					<form class="form-horizontal" action="" method="get">
+					<form class="form-horizontal" id="filter_form" action="" method="get">
 						<div class="form-group">
 							<label for="age" class="col-sm-3 control-label">Age:</label>
 							<div class="col-sm-9">
@@ -103,7 +103,7 @@
 
 
 
-	<div class="container ">
+	<div class="container" id="result">
 		<div class="row" id="result"></div>
 	</div>
 	<!-- /.container -->

@@ -30,6 +30,7 @@ public class RegisterServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        //TODO Save the user data to the database
         response.sendRedirect(SUCCESS_JSP_URL);
     }
 
