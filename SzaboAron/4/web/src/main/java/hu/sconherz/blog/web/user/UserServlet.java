@@ -42,23 +42,14 @@ public class UserServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         List<User> users = userService.findAllUser();
-        if(!"".equals(request.getParameter("email"))){
-            users = users.stream().filter(
-                    user -> user.getEmail().equals(
-                            request.getParameter("e-mail"))).collect(Collectors.toList());
+        if (!request.getParameterMap().isEmpty()) {
+            users = scanUserList(request, users);
         }
-        if(!"".equals(request.getParameter("city").equals(""))){
-            users = users.stream().filter(
-                    user -> user.getLocation().getCity().equals(
-                            request.getParameter("city"))).collect(Collectors.toList());
-        }
-        
         UserResult result = new UserResult();
         result.setResults(users);
         String resultJson = gson.toJson(result);
         response.setCharacterEncoding("UTF-8");
         response.setContentType("application/json");
-
         response.getWriter().write(resultJson);
 
     }
@@ -73,4 +64,15 @@ public class UserServlet extends HttpServlet {
         doGet(request, response);
     }
 
+    private List<User> scanUserList(HttpServletRequest request, List<User> userList){
+        if (!"".equals(request.getParameter("email"))) {
+            userList = userList.stream().filter(user -> user.getEmail().equals(request.getParameter("e-mail")))
+                    .collect(Collectors.toList());
+        }
+        if (!"".equals(request.getParameter("city").equals(""))) {
+            userList = userList.stream().filter(user -> user.getLocation().getCity().equals(request.getParameter("city")))
+                    .collect(Collectors.toList());
+        }
+        return userList;
+    }
 }
