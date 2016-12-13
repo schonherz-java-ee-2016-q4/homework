@@ -41,6 +41,7 @@ public class RegistrationServlet extends HttpServlet {
         }
         User user = createUser(form);
         service.addUser(user);
+        resp.sendRedirect("/web/resources/pages/public/login.jsp");
     }
 
     @Override
