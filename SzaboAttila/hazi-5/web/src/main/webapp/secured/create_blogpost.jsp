@@ -19,7 +19,7 @@
     
 
         <form class="form-horizontal"
-                action="<c:url value="/" ></c:url>" method="post">
+                action="<c:url value="/CreatePost" ></c:url>" method="post">
            <div class="form-group">
                <label for="user_username" class="col-sm-2 control-label">Title</label>
                <div class="col-sm-10">

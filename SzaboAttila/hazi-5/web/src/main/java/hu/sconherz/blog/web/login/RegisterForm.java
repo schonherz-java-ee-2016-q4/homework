@@ -27,9 +27,6 @@ public class RegisterForm implements Serializable {
     
     private String imageurl;
 
-    public RegisterForm() {
-    }
-    
     public RegisterForm(HttpServletRequest request) {
         username = request.getParameter("username");
         email = request.getParameter("email");

@@ -19,8 +19,7 @@
 <meta name="author" content="">
 <link rel="icon" href="../../favicon.ico">
 
-<link href="<c:url value="/resources/css/bootstrap.min.css"/>"
-	rel="stylesheet">
+<link href="<c:url value="/resources/css/bootstrap.min.css"/>" rel="stylesheet">
 <link href="<c:url value="/resources/css/blog.css"/>" rel="stylesheet">
 
 <title><jsp:invoke fragment="title" /></title>
@@ -33,8 +32,8 @@
 	<div class="blog-masthead">
 		<div class="container">
 			<nav class="blog-nav">
-				<a class="blog-nav-item" href="<c:url value="/index.jsp"/>"
-					id="nav_home">Home</a> <a class="blog-nav-item"
+				<a class="blog-nav-item" href="<c:url value="/index.jsp"/>"  id="nav_home">Home</a>
+				<a class="blog-nav-item"
 					href="<c:url value="/secured/secured.jsp"/>" id="nav_users">Users</a>
 
 				<div class="navbar-right">
@@ -44,9 +43,7 @@
 							href="<c:url value="/public/register.jsp"/>">Register</a>
 					</c:if>
 					<c:if test="${sessionScope.user !=null}">
-						<a class="blog-nav-item"
-							href="<c:url value="/secured/create_blogpost.jsp"/>">Create
-							post</a>
+					   <a class="blog-nav-item" href="<c:url value="/secured/create_blogpost.jsp"/>">Create post</a>
 						<a class="blog-nav-item" href="<c:url value="/Logout"/>">Logout</a>
 					</c:if>
 				</div>
@@ -56,30 +53,31 @@
 	</div>
 
 
-	<div class="container">
-		<jsp:invoke fragment="customBody" />
-	</div>
+    <div class="container">
+        <jsp:invoke fragment="customBody" />
+    </div>
 
 
-	<footer class="blog-footer">
-		<p>
-			Blog template built for <a href="http://getbootstrap.com">Bootstrap</a>
-			by <a href="https://twitter.com/mdo">@mdo</a>.
-		</p>
-		<p>
-			<a href="#">Back to top</a>
-		</p>
-	</footer>
+    <footer class="blog-footer">
+        <p>
+            Blog template built for <a href="http://getbootstrap.com">Bootstrap</a>
+            by <a href="https://twitter.com/mdo">@mdo</a>.
+        </p>
+        <p>
+            <a href="#">Back to top</a>
+        </p>
+    </footer>
 
-	<jsp:invoke fragment="customFooter" />
-
-	<script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-	<script src="<c:url value="/resources/js/bootstrap.min.js"/>"></script>
-
-	<jsp:invoke fragment="customScripts"></jsp:invoke>
-
-
+    <jsp:invoke fragment="customFooter" />
+    
+    <script
+        src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="<c:url value="/resources/js/bootstrap.min.js"/>"></script>
+    
+    <jsp:invoke fragment="customScripts"></jsp:invoke>
+    
+    
 </body>
 </html>
-
+    
+    
