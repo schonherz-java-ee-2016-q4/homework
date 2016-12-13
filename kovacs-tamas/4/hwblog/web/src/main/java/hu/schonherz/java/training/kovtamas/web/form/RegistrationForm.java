@@ -6,6 +6,7 @@ public class RegistrationForm {
 
     private String username;
     private String password;
+    private String confirmPassword;
 
     private String firstName;
     private String lastName;
@@ -24,8 +25,6 @@ public class RegistrationForm {
     private String phone;
     private String cell;
 
-    private String imageUrl;
-
     private RegistrationForm() {
     }
 
@@ -33,6 +32,7 @@ public class RegistrationForm {
         RegistrationForm form = new RegistrationForm();
         form.username = request.getParameter("username");
         form.password = request.getParameter("password");
+        form.confirmPassword = request.getParameter("confirmPassword");
         form.firstName = request.getParameter("firstName");
         form.lastName = request.getParameter("lastName");
         form.email = request.getParameter("email");
@@ -45,9 +45,26 @@ public class RegistrationForm {
         form.street = request.getParameter("street");
         form.phone = request.getParameter("phone");
         form.cell = request.getParameter("cell");
-        form.imageUrl = request.getParameter("imageUrl");
 
         return form;
+    }
+
+    public boolean hasNullOrEmpty() {
+        if (hasNull()) {
+            return true;
+        }
+
+        return username.length() == 0 || password.length() == 0 || confirmPassword.length() == 0
+                || firstName.length() == 0 || lastName.length() == 0 || email.length() == 0
+                || title.length() == 0 || gender.length() == 0 || dob.length() == 0
+                || state.length() == 0 || postCode.length() == 0 || city.length() == 0
+                || street.length() == 0 || phone.length() == 0 || cell.length() == 0;
+    }
+
+    private boolean hasNull() {
+        return username == null || password == null || confirmPassword == null || firstName == null
+                || lastName == null || email == null || title == null || gender == null || dob == null
+                || state == null || postCode == null || city == null || street == null || phone == null || cell == null;
     }
 
     public String getUsername() {
@@ -56,6 +73,10 @@ public class RegistrationForm {
 
     public String getPassword() {
         return password;
+    }
+
+    public String getConfirmPassword() {
+        return confirmPassword;
     }
 
     public String getFirstname() {
@@ -106,8 +127,9 @@ public class RegistrationForm {
         return cell;
     }
 
-    public String getImageurl() {
-        return imageUrl;
+    @Override
+    public String toString() {
+        return "RegistrationForm{" + "username=" + username + ", password=" + password + ", confirmPassword=" + confirmPassword + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email + ", gender=" + gender + ", dob=" + dob + ", title=" + title + ", state=" + state + ", postCode=" + postCode + ", city=" + city + ", street=" + street + ", phone=" + phone + ", cell=" + cell + '}';
     }
 
 }

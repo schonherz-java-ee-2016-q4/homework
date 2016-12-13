@@ -17,10 +17,13 @@ import java.util.Optional;
 
 public class UserServiceImpl implements UserService {
 
-    private UserResult result;
+    private static UserResult result;
+
+    static {
+        result = init();
+    }
 
     public UserServiceImpl() {
-        result = init();
     }
 
     @Override
@@ -28,9 +31,9 @@ public class UserServiceImpl implements UserService {
         return result.getResults();
     }
 
-    private UserResult init() {
+    private static UserResult init() {
         Gson gson = new Gson();
-        ClassLoader classLoader = getClass().getClassLoader();
+        ClassLoader classLoader = UserServiceImpl.class.getClassLoader();
         try (InputStream inputStream = classLoader.getResourceAsStream("example.txt");
                 BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream, "UTF-8"));) {
 
