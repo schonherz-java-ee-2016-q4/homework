@@ -5,6 +5,7 @@ import java.util.List;
 import hu.schonherz.blog.service.api.user.vo.User;
 
 public class BlogPost {
+    private int id;
     private List<String> tags;
     private String text;
     private String title;
@@ -54,10 +55,20 @@ public class BlogPost {
         this.poster = poster;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();
-        builder.append("Post [tags=");
+        builder.append("BlogPost [id=");
+        builder.append(id);
+        builder.append(", tags=");
         builder.append(tags);
         builder.append(", text=");
         builder.append(text);
@@ -70,5 +81,7 @@ public class BlogPost {
         builder.append("]");
         return builder.toString();
     }
+
+    
     
 }

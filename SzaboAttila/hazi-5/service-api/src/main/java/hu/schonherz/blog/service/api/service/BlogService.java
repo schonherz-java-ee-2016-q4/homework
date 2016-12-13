@@ -8,6 +8,6 @@ public interface BlogService {
 
     List<BlogPost> getAllBlogPostHeader();
     BlogPost getBlogPostById(int id);
-    void addNewBlogPost(BlogPost blogPost);
+    int addNewBlogPost(BlogPost blogPost);
     
 }

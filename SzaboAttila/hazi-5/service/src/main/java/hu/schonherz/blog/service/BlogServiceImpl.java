@@ -53,15 +53,15 @@ public class BlogServiceImpl implements BlogService {
     }
     
     @Override
-    public void addNewBlogPost(BlogPost blogPost) {
+    public int addNewBlogPost(BlogPost blogPost) {
         BlogPostToDTO conv;
         try {
             conv = new BlogPostToDTO(blogPost);
-            new PostHeaderDAO().save(conv.getHeader_dto(), conv.getContent_dto(), conv.getPostTags_dto());
+            return new PostHeaderDAO().save(conv.getHeader_dto(), conv.getContent_dto(), conv.getPostTags_dto());
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        
+        return -1;
     }
     
 }

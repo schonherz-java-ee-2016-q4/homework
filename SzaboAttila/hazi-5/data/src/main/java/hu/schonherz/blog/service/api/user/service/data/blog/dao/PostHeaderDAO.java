@@ -65,7 +65,7 @@ public class PostHeaderDAO {
         return back;
     }
 
-    public void save(PostHeaderDTO header_dto, PostContentDTO content_dto, List<PostTagDTO> postTag_dto ) {
+    public int save(PostHeaderDTO header_dto, PostContentDTO content_dto, List<PostTagDTO> postTag_dto ) {
         try (Connection connection = DataSourceManager.getDataSource().getConnection();
                 PreparedStatement statement = connection.prepareStatement(PostHeadersQueries.QUERY_SAVE,
                         Statement.RETURN_GENERATED_KEYS);) {
@@ -86,11 +86,12 @@ public class PostHeaderDAO {
                 
                 
                 new PostContentDAO().save(content_dto);
-                new PostTagDAO().saveAll(postTag_dto);                
+                new PostTagDAO().saveAll(postTag_dto);
+                return header_dto.getId();
             }
-
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return -1;
     }
 }

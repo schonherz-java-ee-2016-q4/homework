@@ -17,11 +17,12 @@
         <div class="blog-header">
             <h2 class="blog-post-title" id="post_title"></h2>
             <p class="blog-post-meta">
-                <span id="post_date"></span> by <a href="#" id="post_name"></a>
+                <span id="post_date"></span> by <a href="#" id="post_name"  onclick="showModal();"
+                data-toggle="modal" data-target="#myModal"></a>
             </p>
         </div>
 
-        <div class="blog-post" id="post_content">
+        <div class="blog-post" id="post_content" style="white-space:pre-wrap;">
             
 
         </div>
@@ -34,10 +35,10 @@
     </jsp:attribute>
     
     <jsp:attribute name="customFooter">
+    <div id="myModal" class="modal fade" role="dialog"></div>
     </jsp:attribute>
     
     <jsp:attribute name="customScripts">
-    <script src="<c:url value="/resources/js/micromarkdown.js"/>"></script>
     <script src="<c:url value="/resources/js/blogReader.js"/>"></script>
     </jsp:attribute>
 

@@ -20,7 +20,7 @@ import hu.schonherz.blog.service.api.service.BlogService;
 @WebServlet("/CreatePost")
 public class CreatePost extends HttpServlet {
     private static final long serialVersionUID = 1L;
-    private static final String INDEX_JSP_URL = "index.jsp";
+    private static final String CREATED_POST_JSP_URL = "secured/post.jsp?id=";
 
     
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -29,9 +29,9 @@ public class CreatePost extends HttpServlet {
 	    BlogPost blogPost = createBlogPost(cpf);
 	    
 	    BlogService blogService = new BlogServiceImpl();
-	    blogService.addNewBlogPost(blogPost);
+	    int created_id = blogService.addNewBlogPost(blogPost);
 	    
-	    response.sendRedirect(INDEX_JSP_URL);
+	    response.sendRedirect(CREATED_POST_JSP_URL + created_id);
 	}
 
 	private BlogPost createBlogPost(CreatePostForm cpf) {
@@ -41,7 +41,7 @@ public class CreatePost extends HttpServlet {
 	    bp.setText(cpf.getText());
 	    bp.setPosted(new SimpleDateFormat("yyyy-MM-dd").format(new Date()) + " 00:00:00");
 	    bp.setTags(cpf.getTags());
-	    bp.setPoster(cpf.getUser());	    
+	    bp.setPoster(cpf.getUser());
 	    
 	    return bp;
 	}
