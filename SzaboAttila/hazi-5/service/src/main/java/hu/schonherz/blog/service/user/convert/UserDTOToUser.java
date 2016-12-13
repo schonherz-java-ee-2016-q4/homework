@@ -1,4 +1,4 @@
-package hu.schonherz.blog.service.api.user.convert;
+package hu.schonherz.blog.service.user.convert;
 
 import hu.schonherz.blog.service.api.user.service.data.user.dto.LocationDTO;
 import hu.schonherz.blog.service.api.user.service.data.user.dto.LoginDTO;
@@ -23,7 +23,7 @@ public class UserDTOToUser {
         user.setRegistered(userDTO.getRegistered().toString());
         user.setEmail(userDTO.getEmail());
         user.setPhone(userDTO.getPhone());
-        user.setGender(userDTO.getGender().equals("f") ? "female" : "male");
+        user.setGender("f".equals(userDTO.getGender()) ? "female" : "male");
         
         Location loc = new Location();
         loc.setCity(locationDTO.getCity());

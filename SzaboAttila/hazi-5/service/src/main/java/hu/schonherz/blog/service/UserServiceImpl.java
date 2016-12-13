@@ -8,8 +8,6 @@ import java.util.List;
 
 import com.google.gson.Gson;
 
-import hu.schonherz.blog.service.api.user.convert.UserDTOToUser;
-import hu.schonherz.blog.service.api.user.convert.UserToUserDTO;
 import hu.schonherz.blog.service.api.user.exception.UserNotFoundException;
 import hu.schonherz.blog.service.api.user.service.UserService;
 import hu.schonherz.blog.service.api.user.service.data.user.dao.LocationDAO;
@@ -24,6 +22,8 @@ import hu.schonherz.blog.service.api.user.service.data.user.dto.PictureDTO;
 import hu.schonherz.blog.service.api.user.service.data.user.dto.UserDTO;
 import hu.schonherz.blog.service.api.user.vo.User;
 import hu.schonherz.blog.service.api.user.vo.UserResult;
+import hu.schonherz.blog.service.user.convert.UserDTOToUser;
+import hu.schonherz.blog.service.user.convert.UserToUserDTO;
 
 public class UserServiceImpl implements UserService {
 

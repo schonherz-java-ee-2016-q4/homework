@@ -1,4 +1,4 @@
-package hu.schonherz.blog.service.api.user.convert;
+package hu.schonherz.blog.service.user.convert;
 
 import java.sql.Date;
 import java.text.ParseException;
@@ -25,7 +25,7 @@ public class UserToUserDTO {
         userDTO.setEmail(user.getEmail());
         userDTO.setPhone(user.getPhone());
         userDTO.setCell(user.getCell());
-        userDTO.setGender(user.getGender().equals("female") ? "f" : "m");
+        userDTO.setGender("female".equals(user.getGender()) ? "f" : "m");
         userDTO.setDob( new Date ( new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").parse(user.getDob()).getTime() ) );
         userDTO.setRegistered( new Date ( new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").parse(user.getRegistered()).getTime() ) );
         

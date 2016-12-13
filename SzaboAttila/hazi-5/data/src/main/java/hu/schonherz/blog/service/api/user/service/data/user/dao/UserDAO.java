@@ -36,6 +36,25 @@ public class UserDAO {
 
         return back;
     }
+    
+    public UserDTO findByUsername(String username) {
+        UserDTO back = null;
+
+        try (Connection connection = DataSourceManager.getDataSource().getConnection()) {
+            PreparedStatement statement = connection.prepareStatement(UserQueries.QUERY_FIND_BY_USERNAME);
+            statement.setString(1, username);
+            ResultSet resultSet = statement.executeQuery();
+
+            while (resultSet.next()) {
+                back = toDTO(resultSet);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return back;
+    }
 
     private UserDTO toDTO(ResultSet rs) throws SQLException {
         UserDTO back = new UserDTO();
