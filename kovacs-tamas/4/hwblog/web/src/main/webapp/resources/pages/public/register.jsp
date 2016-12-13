@@ -4,6 +4,7 @@
 <html>
     <head>
         <link href="<c:url value="/resources/css/registration.css"/>" rel="stylesheet">
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     </head>
 
     <body>
@@ -29,8 +30,8 @@
                 <label>Gender:</label><br>
                 <input type="radio" name="gender" value="male" checked> Male<br>
                 <input type="radio" name="gender" value="female"> Female<br>
-                <label>Date of birth</label>
-                <input id="dob" class="req-input" type="date" placeholder="date of birth"/><br>
+                <label>Date of birth:</label>
+                <input type="text" id="datepicker" readonly=""><br>
 
                 <label>Title:</label>
                 <input id="title" class="req-input" type="text" placeholder="title"/><br>
@@ -56,5 +57,12 @@
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         <script src="<c:url value="/resources/js/registrationValidater.js"/>"></script>
+        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        <script>
+                $(function () {
+                    $("#datepicker").datepicker();
+                });
+        </script>
     </body>
 </html>
