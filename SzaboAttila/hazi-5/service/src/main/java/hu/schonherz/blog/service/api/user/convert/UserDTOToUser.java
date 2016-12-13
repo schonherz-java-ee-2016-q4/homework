@@ -23,7 +23,7 @@ public class UserDTOToUser {
         user.setRegistered(userDTO.getRegistered().toString());
         user.setEmail(userDTO.getEmail());
         user.setPhone(userDTO.getPhone());
-        user.setGender(userDTO.getGender() == "f" ? "female" : "male");
+        user.setGender(userDTO.getGender().equals("f") ? "female" : "male");
         
         Location loc = new Location();
         loc.setCity(locationDTO.getCity());

@@ -9,7 +9,7 @@ $(document)
 				function() {
 
 					i = 0;
-					selected = true;
+					selected = false;
 					passw = false;
 					mail = false;
 					panelSwitched();
@@ -132,6 +132,7 @@ function panelSwitched() {
 		$('.next').hide();
 		if (validateForm()) {
 			$('#register_button').show();
+			$('#register_button').prop('disabled', false);
 		}
 	}
 }
@@ -162,12 +163,6 @@ function validateForm() {
 }
 
 function onNext() {
-	/*
-	 * alert($('#user_dob').val());
-	 * 
-	 * alert($('#pictureSelectButton').fileinput('getFileStack')[0].name);
-	 * alert($('#pictureSelectButton').val());
-	 */
 	if (i < 3) {
 		i = i + 1;
 		panelSwitched();

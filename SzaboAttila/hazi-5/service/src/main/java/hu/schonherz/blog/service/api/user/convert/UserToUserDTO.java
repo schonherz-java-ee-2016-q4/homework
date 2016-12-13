@@ -25,7 +25,7 @@ public class UserToUserDTO {
         userDTO.setEmail(user.getEmail());
         userDTO.setPhone(user.getPhone());
         userDTO.setCell(user.getCell());
-        userDTO.setGender(user.getGender() == "female" ? "f" : "m");
+        userDTO.setGender(user.getGender().equals("female") ? "f" : "m");
         userDTO.setDob( new Date ( new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").parse(user.getDob()).getTime() ) );
         userDTO.setRegistered( new Date ( new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").parse(user.getRegistered()).getTime() ) );
         
