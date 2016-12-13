@@ -10,7 +10,7 @@ import hu.schonherz.blog.service.api.blog.vo.BlogPost;
 import hu.schonherz.blog.service.api.user.service.data.blog.dto.PostContentDTO;
 import hu.schonherz.blog.service.api.user.service.data.blog.dto.PostHeaderDTO;
 import hu.schonherz.blog.service.api.user.service.data.blog.dto.PostTagDTO;
-import hu.schonherz.blog.service.api.user.service.data.user.dao.UserDAO;
+import hu.schonherz.blog.service.api.user.service.data.user.dao.LoginDAO;
 
 public class BlogPostToDTO {
 
@@ -23,7 +23,8 @@ public class BlogPostToDTO {
         header_dto = new PostHeaderDTO();
         header_dto.setPosted( new Date ( new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").parse(blogPost.getPosted()).getTime() ) );
         header_dto.setTitle(blogPost.getTitle());
-        header_dto.setUser_id(new UserDAO().findByUsername(blogPost.getPoster().getLogin().getUsername()).getId());
+        header_dto.setUser_id(new LoginDAO().findByUserName(blogPost.getPoster().getLogin().getUsername()).getUser_id());
+        
         
         content_dto = new PostContentDTO();
         content_dto.setText(blogPost.getText());

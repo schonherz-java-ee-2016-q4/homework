@@ -14,8 +14,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
 import hu.schonherz.blog.service.UserServiceImpl;
+import hu.schonherz.blog.service.api.service.UserService;
 import hu.schonherz.blog.service.api.user.exception.UserNotFoundException;
-import hu.schonherz.blog.service.api.user.service.UserService;
 import hu.schonherz.blog.service.api.user.vo.Id;
 import hu.schonherz.blog.service.api.user.vo.Location;
 import hu.schonherz.blog.service.api.user.vo.Login;

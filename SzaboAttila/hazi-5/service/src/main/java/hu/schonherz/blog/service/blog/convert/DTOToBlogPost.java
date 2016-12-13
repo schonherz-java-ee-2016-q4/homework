@@ -18,7 +18,7 @@ public class DTOToBlogPost {
         
         blogPost.setPosted(header_dto.getPosted().toString());
         blogPost.setPoster(poster);
-        blogPost.setText(content_dto.getText());
+        blogPost.setText( content_dto == null ? "" : content_dto.getText());
         blogPost.setTitle(header_dto.getTitle());
         
         List<String> tags = new ArrayList<>();

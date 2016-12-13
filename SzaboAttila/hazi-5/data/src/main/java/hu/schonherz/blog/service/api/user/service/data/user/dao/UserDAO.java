@@ -38,11 +38,22 @@ public class UserDAO {
     }
     
     public UserDTO findByUsername(String username) {
+        LoginDTO login_dto = new LoginDAO().findByUserName(username);
+        if (login_dto != null) {
+            return findById(login_dto.getUser_id());
+        }
+        else {
+            return null;
+        }
+    }
+    
+
+    public UserDTO findById(int id) {
         UserDTO back = null;
 
         try (Connection connection = DataSourceManager.getDataSource().getConnection()) {
-            PreparedStatement statement = connection.prepareStatement(UserQueries.QUERY_FIND_BY_USERNAME);
-            statement.setString(1, username);
+            PreparedStatement statement = connection.prepareStatement(UserQueries.QUERY_FIND_BY_ID);
+            statement.setInt(1, id);
             ResultSet resultSet = statement.executeQuery();
 
             while (resultSet.next()) {

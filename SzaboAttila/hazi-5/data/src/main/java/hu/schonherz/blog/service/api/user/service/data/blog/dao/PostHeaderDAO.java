@@ -34,6 +34,25 @@ public class PostHeaderDAO {
 
         return back;
     }
+    
+    public PostHeaderDTO findByPostId(int id) {
+        PostHeaderDTO back = null;
+
+        try (Connection connection = DataSourceManager.getDataSource().getConnection()) {
+            PreparedStatement statement = connection.prepareStatement(PostHeadersQueries.QUERY_FIND_BY_POST_ID);
+            statement.setInt(1, id);
+            ResultSet resultSet = statement.executeQuery();
+
+            while (resultSet.next()) {
+                back = toDTO(resultSet);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return back;
+    }
 
     private PostHeaderDTO toDTO(ResultSet rs) throws SQLException {
         PostHeaderDTO back = new PostHeaderDTO();
