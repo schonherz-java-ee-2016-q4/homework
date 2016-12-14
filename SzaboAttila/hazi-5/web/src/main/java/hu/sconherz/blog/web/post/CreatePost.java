@@ -38,10 +38,10 @@ public class CreatePost extends HttpServlet {
 	    BlogPost bp = new BlogPost();
 	    
 	    bp.setTitle(cpf.getTitle());
-	    bp.setText(cpf.getText());
+	    bp.setContent(cpf.getContent());
 	    bp.setPosted(new SimpleDateFormat("yyyy-MM-dd").format(new Date()) + " 00:00:00");
 	    bp.setTags(cpf.getTags());
-	    bp.setPoster(cpf.getUser());
+	    bp.setAuthor(cpf.getAuthor());
 	    
 	    return bp;
 	}

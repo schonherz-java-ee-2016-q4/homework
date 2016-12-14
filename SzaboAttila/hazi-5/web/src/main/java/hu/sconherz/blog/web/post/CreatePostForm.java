@@ -10,20 +10,20 @@ import hu.schonherz.blog.service.api.user.vo.User;
 public class CreatePostForm {
 
     private String title;
-    private String text;
+    private String content;
     private List<String> tags;
-    private User user;
+    private User author;
     
     public CreatePostForm(HttpServletRequest request) {
         title = fixInjections(request.getParameter("title"));
         
-        text = fixInjections(request.getParameter("content"));
+        content = fixInjections(request.getParameter("content"));
         tags = new ArrayList<>();
         String[] plainTags = request.getParameter("tags").split(",");
         for (String tag : plainTags) {
             tags.add(fixInjections(tag.trim()));
         }
-        user = (User)request.getSession().getAttribute("user");
+        author = (User)request.getSession().getAttribute("user");
     }
     
     private String fixInjections(String in) {
@@ -34,32 +34,17 @@ public class CreatePostForm {
         return title;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getText() {
-        return text;
-    }
-
-    public void setText(String text) {
-        this.text = text;
+    public String getContent() {
+        return content;
     }
 
     public List<String> getTags() {
         return tags;
     }
 
-    public void setTags(List<String> tags) {
-        this.tags = tags;
+    public User getAuthor() {
+        return author;
     }
 
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
 
 }

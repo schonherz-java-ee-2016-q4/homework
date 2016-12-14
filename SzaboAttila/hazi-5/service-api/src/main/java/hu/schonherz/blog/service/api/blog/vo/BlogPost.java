@@ -7,12 +7,20 @@ import hu.schonherz.blog.service.api.user.vo.User;
 public class BlogPost {
     private int id;
     private List<String> tags;
-    private String text;
+    private String content;
     private String title;
     private String posted;
-    private User poster;
+    private User author;
     
     public BlogPost() {
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public List<String> getTags() {
@@ -23,12 +31,12 @@ public class BlogPost {
         this.tags = tags;
     }
 
-    public String getText() {
-        return text;
+    public String getContent() {
+        return content;
     }
 
-    public void setText(String text) {
-        this.text = text;
+    public void setContent(String content) {
+        this.content = content;
     }
 
     public String getTitle() {
@@ -47,20 +55,12 @@ public class BlogPost {
         this.posted = posted;
     }
 
-    public User getPoster() {
-        return poster;
+    public User getAuthor() {
+        return author;
     }
 
-    public void setPoster(User poster) {
-        this.poster = poster;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
+    public void setAuthor(User author) {
+        this.author = author;
     }
 
     @Override
@@ -70,18 +70,16 @@ public class BlogPost {
         builder.append(id);
         builder.append(", tags=");
         builder.append(tags);
-        builder.append(", text=");
-        builder.append(text);
+        builder.append(", content=");
+        builder.append(content);
         builder.append(", title=");
         builder.append(title);
         builder.append(", posted=");
         builder.append(posted);
-        builder.append(", poster=");
-        builder.append(poster);
+        builder.append(", author=");
+        builder.append(author);
         builder.append("]");
         return builder.toString();
     }
-
-    
     
 }

@@ -7,61 +7,50 @@ import java.util.ArrayList;
 import java.util.List;
 
 import hu.schonherz.blog.service.api.blog.vo.BlogPost;
-import hu.schonherz.blog.service.api.user.service.data.blog.dto.PostContentDTO;
 import hu.schonherz.blog.service.api.user.service.data.blog.dto.PostHeaderDTO;
 import hu.schonherz.blog.service.api.user.service.data.blog.dto.PostTagDTO;
 import hu.schonherz.blog.service.api.user.service.data.user.dao.LoginDAO;
 
 public class BlogPostToDTO {
 
-    private PostHeaderDTO header_dto;
-    private PostContentDTO content_dto;
-    private List<PostTagDTO> postTags_dto;
+    private PostHeaderDTO headerDTO;
+    private List<PostTagDTO> postTagsDTO;
     
     public BlogPostToDTO(BlogPost blogPost) throws ParseException {
         
-        header_dto = new PostHeaderDTO();
-        header_dto.setPosted( new Date ( new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").parse(blogPost.getPosted()).getTime() ) );
-        header_dto.setTitle(blogPost.getTitle());
-        header_dto.setUser_id(new LoginDAO().findByUserName(blogPost.getPoster().getLogin().getUsername()).getUser_id());
-        
-        
-        content_dto = new PostContentDTO();
-        content_dto.setText(blogPost.getText());
-        
-        postTags_dto = new ArrayList<>();
+        headerDTO = new PostHeaderDTO();
+        headerDTO.setPosted( new Date ( new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").parse(blogPost.getPosted()).getTime() ) );
+        headerDTO.setTitle(blogPost.getTitle());
+        headerDTO.setUser_id(new LoginDAO().findByUserName(blogPost.getAuthor().getLogin().getUsername()).getUser_id());
+        headerDTO.setContent(blogPost.getContent());
+
+        postTagsDTO = new ArrayList<>();
         for (String tag : blogPost.getTags()) {
             PostTagDTO e = new PostTagDTO();
             e.setTag(tag);
-            postTags_dto.add(e);
+            postTagsDTO.add(e);
         }
     }
 
-    public PostHeaderDTO getHeader_dto() {
-        return header_dto;
+    public PostHeaderDTO getHeaderDTO() {
+        return headerDTO;
     }
 
-    public PostContentDTO getContent_dto() {
-        return content_dto;
-    }
-
-    public List<PostTagDTO> getPostTags_dto() {
-        return postTags_dto;
+    public List<PostTagDTO> getPostTagsDTO() {
+        return postTagsDTO;
     }
 
     @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();
-        builder.append("BlogPostToDTO [header_dto=");
-        builder.append(header_dto);
-        builder.append(", content_dto=");
-        builder.append(content_dto);
-        builder.append(", postTags_dto=");
-        builder.append(postTags_dto);
+        builder.append("BlogPostToDTO [headerDTO=");
+        builder.append(headerDTO);
+        builder.append(", postTagsDTO=");
+        builder.append(postTagsDTO);
         builder.append("]");
         return builder.toString();
     }
-    
+
     
     
 }

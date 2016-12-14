@@ -4,11 +4,11 @@ $(document).ready(function() {
 	$.get("${pageContext.request.contextPath}/ReadPost?id=" + GetURLParameter('id'), function(res) {
 		$('#post_title').html(res.title);
 		$('#post_date').html(res.posted);
-		$('#post_name').html(res.poster.login.username);
+		$('#post_name').html(res.author.login.username);
 		
-		$('#post_content').html(res.text);
+		$('#post_content').html(res.content);
 		
-		value = res.poster;
+		value = res.author;
 		
 		$('#post_tags').html(res.tags.join(', '));
 	});

@@ -9,7 +9,7 @@ $(document).ready(function() {
 				var out = temp_res.replace("value_title", value.title);
 				out = out.replace("value_link", "${pageContext.request.contextPath}/secured/post.jsp?id=" + value.id);
 				out = out.replace("value_posted", value.posted);
-				out = out.replace("value_username", value.poster.login.username);
+				out = out.replace("value_username", value.author.login.username);
 				out = out.replace("number_i", i);
 				out = out.replace("number_i", i);
 				out = out.replace("value_tags", value.tags.join(', '));

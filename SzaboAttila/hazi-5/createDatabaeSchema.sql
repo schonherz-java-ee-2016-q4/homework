@@ -70,21 +70,11 @@ CREATE TABLE IF NOT EXISTS post_headers (
 	user_id INTEGER NOT NULL,
 	title VARCHAR(200) NOT NULL,
 	posted DATE NOT NULL,
+	content VARCHAR(2000),
 	
 	CONSTRAINT post_user_fk
         FOREIGN KEY (user_id)
         REFERENCES users(id)
-        ON UPDATE CASCADE
-        ON DELETE CASCADE
-);
-
-CREATE TABLE IF NOT EXISTS post_contents (
-	post_id INTEGER NOT NULL,
-	text VARCHAR(2000),
-	
-	CONSTRAINT post_fk
-        FOREIGN KEY (post_id)
-        REFERENCES post_headers(id) MATCH SIMPLE
         ON UPDATE CASCADE
         ON DELETE CASCADE
 );

@@ -22,15 +22,11 @@
             </p>
         </div>
 
-        <div class="blog-post" id="post_content" style="white-space:pre-wrap;">
-            
-
-        </div>
-        <div class="blog-header">
-            <p class="blog-post-meta">
-                Tags: <span id="post_tags"></span>
-            </p>
-        </div>
+        <div class="blog-post" id="post_content" style="white-space:pre-wrap;"></div>
+        
+        <p class="blog-post-meta">
+            Tags: <span id="post_tags"></span>
+        </p>
 
     </jsp:attribute>
     

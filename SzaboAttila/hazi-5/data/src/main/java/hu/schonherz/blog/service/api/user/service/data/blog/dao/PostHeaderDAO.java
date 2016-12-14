@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import hu.schonherz.blog.service.api.user.service.data.blog.dto.PostContentDTO;
 import hu.schonherz.blog.service.api.user.service.data.blog.dto.PostHeaderDTO;
 import hu.schonherz.blog.service.api.user.service.data.blog.dto.PostTagDTO;
 import hu.schonherz.blog.service.api.user.service.data.blog.queries.PostHeadersQueries;
@@ -17,15 +16,15 @@ import hu.schonherz.blog.service.api.user.service.data.datasource.DataSourceMana
 
 public class PostHeaderDAO {
 
-    public Collection<PostHeaderDTO> findAll() {
+    public Collection<PostHeaderDTO> findAllHeaders() {
         List<PostHeaderDTO> back = new ArrayList<>();
 
         try (Connection connection = DataSourceManager.getDataSource().getConnection()) {
             Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery(PostHeadersQueries.QUERY_FIND_ALL);
+            ResultSet resultSet = statement.executeQuery(PostHeadersQueries.QUERY_FIND_ALL_HEADERS);
 
             while (resultSet.next()) {
-                back.add(toDTO(resultSet));
+                back.add(toDTO(resultSet, false));
             }
 
         } catch (Exception e) {
@@ -44,7 +43,7 @@ public class PostHeaderDAO {
             ResultSet resultSet = statement.executeQuery();
 
             while (resultSet.next()) {
-                back = toDTO(resultSet);
+                back = toDTO(resultSet, true);
             }
 
         } catch (Exception e) {
@@ -54,40 +53,44 @@ public class PostHeaderDAO {
         return back;
     }
 
-    private PostHeaderDTO toDTO(ResultSet rs) throws SQLException {
+    private PostHeaderDTO toDTO(ResultSet rs, boolean useContent) throws SQLException {
         PostHeaderDTO back = new PostHeaderDTO();
 
         back.setId(rs.getInt("id"));
         back.setPosted(rs.getDate("posted"));
         back.setTitle(rs.getString("title"));
         back.setUser_id(rs.getInt("user_id"));
+        if (useContent) {
+            back.setContent(rs.getString("content"));
+        }
+        else {
+            back.setContent("");
+        }
 
         return back;
     }
 
-    public int save(PostHeaderDTO header_dto, PostContentDTO content_dto, List<PostTagDTO> postTag_dto ) {
+    public int save(PostHeaderDTO headerDTO, List<PostTagDTO> postTagDTO) {
         try (Connection connection = DataSourceManager.getDataSource().getConnection();
                 PreparedStatement statement = connection.prepareStatement(PostHeadersQueries.QUERY_SAVE,
                         Statement.RETURN_GENERATED_KEYS);) {
 
-            statement.setInt(1, header_dto.getUser_id());
-            statement.setString(2, header_dto.getTitle());
-            statement.setDate(3, header_dto.getPosted());
+            statement.setInt(1, headerDTO.getUser_id());
+            statement.setString(2, headerDTO.getTitle());
+            statement.setDate(3, headerDTO.getPosted());
+            statement.setString(4, headerDTO.getContent());
 
             statement.execute();
             ResultSet generatedKeys = statement.getGeneratedKeys();
             if (generatedKeys.next()) {
-                header_dto.setId(generatedKeys.getInt(1));
+                headerDTO.setId(generatedKeys.getInt(1));
                 
-                content_dto.setPost_id(header_dto.getId());
-                for (PostTagDTO tag : postTag_dto) {
-                    tag.setPost_id(header_dto.getId());
+                for (PostTagDTO tag : postTagDTO) {
+                    tag.setPost_id(headerDTO.getId());
                 }
                 
-                
-                new PostContentDAO().save(content_dto);
-                new PostTagDAO().saveAll(postTag_dto);
-                return header_dto.getId();
+                new PostTagDAO().saveAll(postTagDTO);
+                return headerDTO.getId();
             }
         } catch (Exception e) {
             e.printStackTrace();
