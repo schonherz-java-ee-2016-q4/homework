@@ -3,10 +3,12 @@ $(document).ready(function() {
 	
 	$.get("${pageContext.request.contextPath}/ReadPost?id=" + GetURLParameter('id'), function(res) {
 		$('#post_title').html(res.title);
+		document.title = res.title;
 		$('#post_date').html(res.posted);
 		$('#post_name').html(res.author.login.username);
 		
-		$('#post_content').html(res.content);
+		md = window.markdownit();
+		$('#post_content').html(md.render(res.content));
 		
 		value = res.author;
 		

@@ -24,7 +24,8 @@ public class CreatePost extends HttpServlet {
 
     
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	    
+	    request.setCharacterEncoding("UTF-8");
+        
 	    CreatePostForm cpf = new CreatePostForm(request);
 	    BlogPost blogPost = createBlogPost(cpf);
 	    

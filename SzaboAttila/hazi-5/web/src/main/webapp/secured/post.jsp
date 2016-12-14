@@ -5,7 +5,6 @@
 <template:template>
 
     <jsp:attribute name="title">
-    Create Post
     </jsp:attribute>
 
     <jsp:attribute name="customHead">
@@ -22,7 +21,7 @@
             </p>
         </div>
 
-        <div class="blog-post" id="post_content" style="white-space:pre-wrap;"></div>
+        <div class="blog-post" id="post_content"></div>
         
         <p class="blog-post-meta">
             Tags: <span id="post_tags"></span>
@@ -35,6 +34,7 @@
     </jsp:attribute>
     
     <jsp:attribute name="customScripts">
+    <script src="<c:url value="/resources/js/markdown-it.min.js"/>"></script>
     <script src="<c:url value="/resources/js/blogReader.js"/>"></script>
     </jsp:attribute>
 
