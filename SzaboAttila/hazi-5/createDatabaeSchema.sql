@@ -64,3 +64,27 @@ CREATE TABLE IF NOT EXISTS picture (
         ON UPDATE CASCADE
         ON DELETE CASCADE
 );
+
+CREATE TABLE IF NOT EXISTS post_headers (
+	id SERIAL PRIMARY KEY,
+	user_id INTEGER NOT NULL,
+	title VARCHAR(200) NOT NULL,
+	posted TIMESTAMP NOT NULL,
+	content VARCHAR(2000),
+	
+	CONSTRAINT post_user_fk
+        FOREIGN KEY (user_id)
+        REFERENCES users(id)
+        ON UPDATE CASCADE
+        ON DELETE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS post_tags (
+	post_id INTEGER NOT NULL,
+	tag VARCHAR(30) NOT NULL,
+	CONSTRAINT post_fk
+        FOREIGN KEY (post_id)
+        REFERENCES post_headers(id)
+        ON UPDATE CASCADE
+        ON DELETE CASCADE
+);

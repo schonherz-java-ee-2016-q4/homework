@@ -138,7 +138,8 @@ h6, .h6 {
  */
 
 .blog-post {
-  margin-bottom: 60px;
+  margin-bottom: 20px;
+  line-height: 1.4;
 }
 .blog-post-title {
   margin-bottom: 5px;
@@ -147,6 +148,11 @@ h6, .h6 {
 .blog-post-meta {
   margin-bottom: 20px;
   color: #999;
+}
+
+.blog-post td,
+.blog-post th {
+	padding: 10px;
 }
 
 
@@ -163,4 +169,8 @@ h6, .h6 {
 }
 .blog-footer p:last-child {
   margin-bottom: 0;
+}
+
+a .fa-rss {
+	color: white;
 }

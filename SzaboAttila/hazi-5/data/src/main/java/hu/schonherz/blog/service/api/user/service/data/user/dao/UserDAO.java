@@ -36,6 +36,36 @@ public class UserDAO {
 
         return back;
     }
+    
+    public UserDTO findByUsername(String username) {
+        LoginDTO login_dto = new LoginDAO().findByUserName(username);
+        if (login_dto != null) {
+            return findById(login_dto.getUser_id());
+        }
+        else {
+            return null;
+        }
+    }
+    
+
+    public UserDTO findById(int id) {
+        UserDTO back = null;
+
+        try (Connection connection = DataSourceManager.getDataSource().getConnection()) {
+            PreparedStatement statement = connection.prepareStatement(UserQueries.QUERY_FIND_BY_ID);
+            statement.setInt(1, id);
+            ResultSet resultSet = statement.executeQuery();
+
+            while (resultSet.next()) {
+                back = toDTO(resultSet);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return back;
+    }
 
     private UserDTO toDTO(ResultSet rs) throws SQLException {
         UserDTO back = new UserDTO();

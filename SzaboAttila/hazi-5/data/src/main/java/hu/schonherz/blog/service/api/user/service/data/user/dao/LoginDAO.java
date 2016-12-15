@@ -30,6 +30,25 @@ public class LoginDAO implements GenericDAO<LoginDTO> {
 
         return back;
     }
+    
+    public LoginDTO findByUserName(String username) {
+        LoginDTO back = null;
+
+        try (Connection connection = DataSourceManager.getDataSource().getConnection()) {
+            PreparedStatement statement = connection.prepareStatement(LoginQueries.QUERY_FIND_BY_USERNAME);
+            statement.setString(1, username);
+            ResultSet resultSet = statement.executeQuery();
+
+            while (resultSet.next()) {
+                back = toDTO(resultSet);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return back;
+    }
 
     private LoginDTO toDTO(ResultSet rs) throws SQLException {
         LoginDTO back = new LoginDTO();

@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.gson.Gson;
 
 import hu.schonherz.blog.service.UserServiceImpl;
-import hu.schonherz.blog.service.api.user.service.UserService;
+import hu.schonherz.blog.service.api.service.UserService;
 import hu.schonherz.blog.service.api.user.vo.User;
 import hu.schonherz.blog.service.api.user.vo.UserResult;
 

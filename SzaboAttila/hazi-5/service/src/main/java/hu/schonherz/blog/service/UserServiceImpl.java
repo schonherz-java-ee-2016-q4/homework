@@ -8,10 +8,8 @@ import java.util.List;
 
 import com.google.gson.Gson;
 
-import hu.schonherz.blog.service.api.user.convert.UserDTOToUser;
-import hu.schonherz.blog.service.api.user.convert.UserToUserDTO;
+import hu.schonherz.blog.service.api.service.UserService;
 import hu.schonherz.blog.service.api.user.exception.UserNotFoundException;
-import hu.schonherz.blog.service.api.user.service.UserService;
 import hu.schonherz.blog.service.api.user.service.data.user.dao.LocationDAO;
 import hu.schonherz.blog.service.api.user.service.data.user.dao.LoginDAO;
 import hu.schonherz.blog.service.api.user.service.data.user.dao.NameDAO;
@@ -24,23 +22,38 @@ import hu.schonherz.blog.service.api.user.service.data.user.dto.PictureDTO;
 import hu.schonherz.blog.service.api.user.service.data.user.dto.UserDTO;
 import hu.schonherz.blog.service.api.user.vo.User;
 import hu.schonherz.blog.service.api.user.vo.UserResult;
+import hu.schonherz.blog.service.user.convert.UserDTOToUser;
+import hu.schonherz.blog.service.user.convert.UserToUserDTO;
 
 public class UserServiceImpl implements UserService {
 
-    private UserResult result;
     private UserDAO user_dao;
 
     public UserServiceImpl() {
         user_dao = new UserDAO();
-        result = init();
+        init();
     }
 
     @Override
     public List<User> findAllUser() {
+        UserResult result = new UserResult();
+        List<User> users = new ArrayList<>();
+        for (UserDTO userDTO : user_dao.findAll()) {
+            NameDTO nameDTO = new NameDAO().findById(userDTO.getId());
+            PictureDTO pictureDTO = new PictureDAO().findById(userDTO.getId());
+            LoginDTO loginDTO = new LoginDAO().findById(userDTO.getId());
+            LocationDTO locationDTO = new LocationDAO().findById(userDTO.getId());;
+            
+            UserDTOToUser conv = new UserDTOToUser(userDTO, locationDTO, loginDTO, pictureDTO, nameDTO);
+            users.add(conv.getUser());
+        }
+        
+        result.setResults(users);
+
         return result.getResults();
     }
 
-    private UserResult init() {
+    private void init() {
         //if the database is empty fill it with example users
         if(user_dao.findAll().size() == 0) {
             Gson gson = new Gson();
@@ -57,24 +70,7 @@ public class UserServiceImpl implements UserService {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            
         }
-        
-        UserResult result = new UserResult();
-        List<User> users = new ArrayList<>();
-        for (UserDTO userDTO : user_dao.findAll()) {
-            NameDTO nameDTO = new NameDAO().findById(userDTO.getId());
-            PictureDTO pictureDTO = new PictureDAO().findById(userDTO.getId());
-            LoginDTO loginDTO = new LoginDAO().findById(userDTO.getId());
-            LocationDTO locationDTO = new LocationDAO().findById(userDTO.getId());;
-            
-            UserDTOToUser conv = new UserDTOToUser(userDTO, locationDTO, loginDTO, pictureDTO, nameDTO);
-            users.add(conv.getUser());
-        }
-        
-        result.setResults(users);
-
-        return result;
     }
 
     /**
@@ -82,22 +78,37 @@ public class UserServiceImpl implements UserService {
      * @return
      */
     public User findUserByName(String name) throws UserNotFoundException {
-        List<User> users = result.getResults();
-        for (User user : users) {
-            if (user.getLogin().getUsername().equals(name)) {
-                return user;
-            }
+        UserDTO userDTO = user_dao.findByUsername(name);
+        
+        if (userDTO == null) {
+            throw new UserNotFoundException();
         }
-        throw new UserNotFoundException();
-
+        
+        NameDTO nameDTO = new NameDAO().findById(userDTO.getId());
+        PictureDTO pictureDTO = new PictureDAO().findById(userDTO.getId());
+        LoginDTO loginDTO = new LoginDAO().findById(userDTO.getId());
+        LocationDTO locationDTO = new LocationDAO().findById(userDTO.getId());;
+        
+        UserDTOToUser conv = new UserDTOToUser(userDTO, locationDTO, loginDTO, pictureDTO, nameDTO);
+        return conv.getUser();
     }
 
+    public User findByUserId(int id) {
+        UserDTO userDTO = new UserDAO().findById(id);
+        NameDTO nameDTO = new NameDAO().findById(userDTO.getId());
+        PictureDTO pictureDTO = new PictureDAO().findById(userDTO.getId());
+        LoginDTO loginDTO = new LoginDAO().findById(userDTO.getId());
+        LocationDTO locationDTO = new LocationDAO().findById(userDTO.getId());;
+        
+        UserDTOToUser conv = new UserDTOToUser(userDTO, locationDTO, loginDTO, pictureDTO, nameDTO);
+        return conv.getUser();
+    }
+    
     public void addNewUser(User user) {
         try {
             UserToUserDTO conv = new UserToUserDTO(user);
             user_dao.save(conv.getUserDTO(), conv.getLocationDTO(), conv.getLoginDTO(), conv.getNameDTO(),
                     conv.getPictureDTO());
-            result.getResults().add(user);
         } catch (Exception e) {
             e.printStackTrace();
         }
