@@ -69,7 +69,7 @@ CREATE TABLE IF NOT EXISTS post_headers (
 	id SERIAL PRIMARY KEY,
 	user_id INTEGER NOT NULL,
 	title VARCHAR(200) NOT NULL,
-	posted DATE NOT NULL,
+	posted TIMESTAMP NOT NULL,
 	content VARCHAR(2000),
 	
 	CONSTRAINT post_user_fk

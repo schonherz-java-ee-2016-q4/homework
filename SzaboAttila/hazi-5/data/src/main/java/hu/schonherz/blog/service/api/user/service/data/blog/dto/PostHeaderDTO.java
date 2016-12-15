@@ -1,12 +1,12 @@
 package hu.schonherz.blog.service.api.user.service.data.blog.dto;
 
-import java.sql.Date;
+import java.sql.Timestamp;
 
 public class PostHeaderDTO {
     private int id;
     private int user_id;
     private String title;
-    private Date posted;
+    private Timestamp posted;
     private String content;
 
     public PostHeaderDTO() {
@@ -36,11 +36,11 @@ public class PostHeaderDTO {
         this.title = title;
     }
 
-    public Date getPosted() {
+    public Timestamp getPosted() {
         return posted;
     }
 
-    public void setPosted(Date posted) {
+    public void setPosted(Timestamp posted) {
         this.posted = posted;
     }
 

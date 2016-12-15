@@ -21,6 +21,7 @@
 
 <link href="<c:url value="/resources/css/bootstrap.min.css"/>"
 	rel="stylesheet">
+<link rel="stylesheet" href="<c:url value="/resources/css/font-awesome.min.css"/>">
 <link href="<c:url value="/resources/css/blog.css"/>" rel="stylesheet">
 
 <title><jsp:invoke fragment="title" /></title>
@@ -49,6 +50,7 @@
 							post</a>
 						<a class="blog-nav-item" href="<c:url value="/Logout"/>">Logout</a>
 					</c:if>
+					<a href="<c:url value="/BlogRSSFeed"/>"><i class="fa fa-rss" aria-hidden="true"></i></a>
 				</div>
 
 			</nav>

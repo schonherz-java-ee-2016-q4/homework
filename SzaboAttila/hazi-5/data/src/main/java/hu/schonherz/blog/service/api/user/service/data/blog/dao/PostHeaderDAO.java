@@ -57,7 +57,7 @@ public class PostHeaderDAO {
         PostHeaderDTO back = new PostHeaderDTO();
 
         back.setId(rs.getInt("id"));
-        back.setPosted(rs.getDate("posted"));
+        back.setPosted(rs.getTimestamp("posted"));
         back.setTitle(rs.getString("title"));
         back.setUser_id(rs.getInt("user_id"));
         if (useContent) {
@@ -77,7 +77,7 @@ public class PostHeaderDAO {
 
             statement.setInt(1, headerDTO.getUser_id());
             statement.setString(2, headerDTO.getTitle());
-            statement.setDate(3, headerDTO.getPosted());
+            statement.setTimestamp(3, headerDTO.getPosted());
             statement.setString(4, headerDTO.getContent());
 
             statement.execute();

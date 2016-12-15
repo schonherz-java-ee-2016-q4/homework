@@ -1,5 +1,6 @@
 package hu.schonherz.blog.service.blog.convert;
 
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,7 +17,7 @@ public class DTOToBlogPost {
         blogPost = new BlogPost();
         
         blogPost.setId(headerDTO.getId());
-        blogPost.setPosted(headerDTO.getPosted().toString());
+        blogPost.setPosted(headerDTO.getPosted().toLocalDateTime().format(DateTimeFormatter.ofPattern("yyyy.MM.dd kk:mm")));
         blogPost.setAuthor(author);
         blogPost.setContent(headerDTO.getContent());
         blogPost.setTitle(headerDTO.getTitle());

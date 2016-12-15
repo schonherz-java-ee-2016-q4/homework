@@ -1,6 +1,6 @@
 package hu.schonherz.blog.service.blog.convert;
 
-import java.sql.Date;
+import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -19,7 +19,7 @@ public class BlogPostToDTO {
     public BlogPostToDTO(BlogPost blogPost) throws ParseException {
         
         headerDTO = new PostHeaderDTO();
-        headerDTO.setPosted( new Date ( new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").parse(blogPost.getPosted()).getTime() ) );
+        headerDTO.setPosted( new Timestamp(new SimpleDateFormat("yyyy-MM-dd kk:mm").parse(blogPost.getPosted()).getTime()) );
         headerDTO.setTitle(blogPost.getTitle());
         headerDTO.setUser_id(new LoginDAO().findByUserName(blogPost.getAuthor().getLogin().getUsername()).getUser_id());
         headerDTO.setContent(blogPost.getContent());

@@ -40,7 +40,7 @@ public class CreatePost extends HttpServlet {
 	    
 	    bp.setTitle(cpf.getTitle());
 	    bp.setContent(cpf.getContent());
-	    bp.setPosted(new SimpleDateFormat("yyyy-MM-dd").format(new Date()) + " 00:00:00");
+	    bp.setPosted(new SimpleDateFormat("yyyy-MM-dd kk:mm").format(new Date()));
 	    bp.setTags(cpf.getTags());
 	    bp.setAuthor(cpf.getAuthor());
 	    
