@@ -26,8 +26,8 @@ import static hu.schonherz.java.training.kovtamas.web.form.RegistrationForm.from
 @WebServlet("/RegistrationServlet")
 public class RegistrationServlet extends HttpServlet {
 
-    private static UserServiceImpl service;
-    private static Logger log = LoggerFactory.getLogger(RegistrationServlet.class);
+    private final UserServiceImpl service;
+    private static final Logger LOG = LoggerFactory.getLogger(RegistrationServlet.class);
 
     public RegistrationServlet() {
         service = new UserServiceImpl();
@@ -69,7 +69,7 @@ public class RegistrationServlet extends HttpServlet {
 
         Location location = new Location();
         location.setCity(form.getCity());
-        log.info("post code: " + form.getPostcode());
+        LOG.info("post code: " + form.getPostcode());
         location.setPostcode(Integer.parseInt(form.getPostcode()));
         location.setState(form.getState());
         location.setStreet(form.getStreet());
@@ -84,8 +84,18 @@ public class RegistrationServlet extends HttpServlet {
         picture.setMedium(null);
         picture.setThumbnail(null);
 
-        return builder.Id(id).login(login).location(location).name(name).picture(picture)
-                .cell(form.getCell()).dob(form.getDob()).email(form.getEmail())
-                .nat("?").phone(form.getPhone()).gender(form.getGender()).build();
+        return builder
+                .Id(id)
+                .login(login)
+                .location(location)
+                .name(name)
+                .picture(picture)
+                .cell(form.getCell())
+                .dob(form.getDob())
+                .email(form.getEmail())
+                .nat("?")
+                .phone(form.getPhone())
+                .gender(form.getGender())
+                .build();
     }
 }
