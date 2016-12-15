@@ -23,21 +23,21 @@ import hu.schonherz.blog.service.BlogServiceImpl;
 import hu.schonherz.blog.service.api.blog.vo.BlogPost;
 import hu.schonherz.blog.service.api.service.BlogService;
 
-@WebServlet("/BlogRSSFeed")
+@WebServlet("/rss")
 public class BlogRSSFeed extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-
+    private static final long serialVersionUID = 3720497627172667065L;
+    BlogService blogService;
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        BlogService blogService = new BlogServiceImpl();
+        blogService = new BlogServiceImpl();
         List<BlogPost> blogPosts = blogService.getAllBlogPostHeader();
         
         SyndFeed feed = new SyndFeedImpl();
         feed.setFeedType("rss_2.0");
 
         feed.setTitle("Blog Posts");
-        String linkHome = request.getScheme() + "://" + request.getServerName() +
-                    ":" + request.getServerPort() +
-                    request.getContextPath() + "/index.jsp";
+        String linkHome = String.format("%s://%s:%d%s", request.getScheme(), request.getServerName(),
+                request.getServerPort(), request.getContextPath() + "/index.jsp");
         feed.setLink(linkHome);
         feed.setDescription("Blog posts RSS feed.");
 
@@ -48,10 +48,8 @@ public class BlogRSSFeed extends HttpServlet {
     
             entry = new SyndEntryImpl();
             entry.setTitle(blogPost.getTitle());
-            String url = request.getScheme() + "://" + request.getServerName() +
-                    ":" + request.getServerPort() +
-                    request.getContextPath() +
-                    "/secured/post.jsp?id=" + blogPost.getId();
+            String url =  String.format("%s://%s:%d%s", request.getScheme(), request.getServerName(),
+                    request.getServerPort(), request.getContextPath() + "/secured/post.jsp?id=" + blogPost.getId());
             entry.setLink(url);
             
             try {

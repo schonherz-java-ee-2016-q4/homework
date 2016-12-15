@@ -19,7 +19,7 @@ import hu.schonherz.blog.service.api.service.BlogService;
  */
 @WebServlet("/CreatePost")
 public class CreatePost extends HttpServlet {
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 7022889913125670918L;
     private static final String CREATED_POST_JSP_URL = "secured/post.jsp?id=";
 
     
