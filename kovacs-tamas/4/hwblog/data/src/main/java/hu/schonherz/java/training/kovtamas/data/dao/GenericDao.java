@@ -8,6 +8,8 @@ public interface GenericDao<T> {
 
     T findById(int id);
 
+    T findByUsername(String username);
+
     int save(T dto);
 
 }

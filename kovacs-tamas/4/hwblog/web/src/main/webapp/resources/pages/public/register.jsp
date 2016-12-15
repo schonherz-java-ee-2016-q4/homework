@@ -12,7 +12,8 @@
             <div id="req-inputs" class="form">
                 <p><h1>Register</h1></p>
                 <span id="errorMessage" class="hidden error-message">Empty or invalid data</span>
-                <form class="login-form" action="/web/RegistrationServlet" method="post" onsubmit="return validateRegForm()">
+                <form class="login-form" action="/web/RegistrationServlet"
+                      method="post" onsubmit="return validateRegForm()">
 
                     <p><label>Username:</label>
                         <input id="username" name="username" class="req-input" type="text"
@@ -33,19 +34,15 @@
                     <p><label>Email:</label>
                         <input id="email" name="email" class="req-input" type="email"
                                placeholder="email" required="true"/></p>
+                    <p><label>Phone:</label>
+                        <input id="phone" name="phone" class="req-input" type="number"
+                               placeholder="phone"/></p>
 
                     <p><input id="male" type="radio" name="gender" value="male" checked> Male
                         <input id="female" type="radio" name="gender" value="female"> Female</p>
                     <p><label>Date of birth:</label>
                         <input type="text" id="datepicker" name="dob" readonly="true" required="true"></p>
 
-                    <p><label>Title:</label>
-                        <input id="title" name="title" class="req-input" type="text"
-                               placeholder="title" required="true"/></p>
-
-                    <p><label>State:</label>
-                        <input id="state" name="state" class="req-input" type="text"
-                               placeholder="state" required="true"/></p>
                     <p><label>Post code:</label>
                         <input id="postCode" name="postCode" class="req-input" type="number"
                                placeholder="post code" required="true"/></p>
@@ -54,14 +51,7 @@
                                placeholder="city" required="true"/></p>
                     <p><label>Street:</label>
                         <input id="street" name="street" class="req-input" type="text"
-                               placeholder="street" required="true"/></p>
-
-                    <p><label>Phone:</label>
-                        <input id="phone" name="phone" class="req-input" type="number"
-                               placeholder="phone" required="true"/></p>
-                    <p><label>Cell:</label>
-                        <input id="cell" name="cell" class="req-input" type="text"
-                               placeholder="cell" required="true"/></p>
+                               placeholder="street"/></p>
 
                     <input id="submitReg" class="submit" type="submit" value="Register">
                     </div>
@@ -73,9 +63,9 @@
             <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
             <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
             <script>
-                    $(function () {
-                        $("#datepicker").datepicker();
-                    });
+                          $(function () {
+                              $("#datepicker").datepicker();
+                          });
             </script>
     </body>
 </html>
