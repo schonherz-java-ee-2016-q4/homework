@@ -19,9 +19,9 @@ import hu.schonherz.blog.service.api.service.BlogService;
  */
 @WebServlet("/ReadPost")
 public class ReadPost extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = -5680218059048118733L;
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	    BlogService blogService = new BlogServiceImpl();
 	    BlogPost bp = blogService.getBlogPostById(Integer.parseInt(request.getParameter("id")));
 	    

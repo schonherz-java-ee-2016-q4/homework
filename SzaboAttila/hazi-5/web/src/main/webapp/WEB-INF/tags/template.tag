@@ -50,7 +50,7 @@
 							post</a>
 						<a class="blog-nav-item" href="<c:url value="/Logout"/>">Logout</a>
 					</c:if>
-					<a href="<c:url value="/BlogRSSFeed"/>"><i class="fa fa-rss" aria-hidden="true"></i></a>
+					<a href="<c:url value="/rss"/>"><i class="fa fa-rss" aria-hidden="true"></i></a>
 				</div>
 
 			</nav>

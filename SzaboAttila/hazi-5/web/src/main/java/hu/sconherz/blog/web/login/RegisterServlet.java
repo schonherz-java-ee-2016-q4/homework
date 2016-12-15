@@ -30,8 +30,7 @@ import hu.schonherz.blog.service.api.user.vo.User;
 @MultipartConfig(maxFileSize=1024*1024*10,
     maxRequestSize=1024*1024*10)
 public class RegisterServlet extends HttpServlet {
-    private static final long serialVersionUID = 1L;
-
+    private static final long serialVersionUID = -6781766310304736612L;
     private static final String REGISTER_JSP_URL = "public/register.jsp";
     private static final String REGISTER_SUCC_JSP_URL = "secured/register_succes.jsp";
     private static final String SAVE_DIR = "Files";
