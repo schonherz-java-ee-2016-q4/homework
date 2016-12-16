@@ -15,58 +15,29 @@
     <title>Off Canvas Template for Bootstrap</title>
 
     <!-- Latest compiled and minified CSS -->
-    <link href="<%=request.getContextPath()%>/resources/css/bootstrap.min.css" rel="stylesheet">
-
+    <link href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css" rel="stylesheet">
     
 
     <!-- Custom styles for this template -->
-    <link href="<%=request.getContextPath()%>/resources/css/offcanvas.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/resources/css/offcanvas.css" rel="stylesheet">
 
     
   </head>
-<nav class="navbar navbar-fixed-top navbar-inverse col-sm-12">
-        <div class="container-fluid">
-            
-            <div class="navbar-header">
-                <a class="navbar-brand" href="<%=request.getContextPath()%>/index.jsp">Blog</a>
-            </div>
-        
-        <ul class="nav navbar-nav pull-right">
-            <li class="dropdown">
-                <a class="dropdown-toggle" data-toggle="dropdown" href="#">Menu
-                    <span class="caret"></span>
-                </a>
-                <ul class="dropdown-menu pull-right">
-                    <li><a href="<%=request.getContextPath()%>/secured/users.jsp">Users</a></li>
-                   <li><%
-                   if (session.getAttribute("user")==null)
-                       out.print("<a href="+request.getServletContext().getContextPath()+"/login.jsp>Login</a>");
-                       else  out.print("<a href="+request.getServletContext().getContextPath()+"/Logout>Logout("+session.getAttribute("user")+")</a>");%>
-                    </a></li>
-                </ul>
-            </li>
-
-        
-        </ul>
-        
-        </div>
-    </nav><!-- /.navbar -->
-
 
   <body>
-    <div id="navbar"></div>
-<div>
-<span class="glyphicons glyphicons-adjust"></span>
- </div>
+    <jsp:include page="/resources/content/navbar.jsp"/>
+    
+    <div id=result>
+    </div>
+
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
     <!-- Latest compiled and minified JavaScript -->
-<script src="<%=request.getContextPath()%>/resources/js/bootstrap.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
 
-    <script src="<%=request.getContextPath()%>/resources/js/offcanvas.js"></script>
-    <script src="<%=request.getContextPath()%>/resources/js/navbar.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/js/offcanvas.js"></script>
   </body>
 </html>
