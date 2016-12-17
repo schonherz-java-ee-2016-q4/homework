@@ -7,10 +7,13 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+
 import hu.schonherz.blog.blog.queries.PostTagQueries;
 import hu.schonherz.blog.data.blog.dto.PostTagDTO;
 import hu.schonherz.blog.data.datasource.DataSourceManager;
 
+@Repository
 public class PostTagDAO {
 
     public List<PostTagDTO> findByPostId(int id) {

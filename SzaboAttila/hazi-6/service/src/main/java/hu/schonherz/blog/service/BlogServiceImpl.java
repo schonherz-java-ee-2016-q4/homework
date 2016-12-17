@@ -4,6 +4,9 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import hu.schonherz.blog.data.blog.dao.PostHeaderDAO;
 import hu.schonherz.blog.data.blog.dao.PostTagDAO;
 import hu.schonherz.blog.data.blog.dto.PostHeaderDTO;
@@ -14,8 +17,14 @@ import hu.schonherz.blog.service.api.user.vo.User;
 import hu.schonherz.blog.service.blog.convert.BlogPostToDTO;
 import hu.schonherz.blog.service.blog.convert.DTOToBlogPost;
 
+@Service
 public class BlogServiceImpl implements BlogService {
 
+    @Autowired
+    private PostHeaderDAO postHeaderDao;
+    @Autowired
+    private PostTagDAO postTagDao;
+    
     public BlogServiceImpl() {
     }
     
@@ -38,8 +47,8 @@ public class BlogServiceImpl implements BlogService {
     
     @Override
     public BlogPost getBlogPostById(int id) {
-        PostHeaderDTO headerDTO = new PostHeaderDAO().findByPostId(id);
-        List<PostTagDTO> postTagsDTO = new PostTagDAO().findByPostId(id);
+        PostHeaderDTO headerDTO = postHeaderDao.findByPostId(id);
+        List<PostTagDTO> postTagsDTO = postTagDao.findByPostId(id);
         
         UserServiceImpl us = new UserServiceImpl();
         User poster = us.findByUserId(headerDTO.getUser_id());

@@ -9,11 +9,15 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+
 import hu.schonherz.blog.blog.queries.PostHeadersQueries;
 import hu.schonherz.blog.data.blog.dto.PostHeaderDTO;
 import hu.schonherz.blog.data.blog.dto.PostTagDTO;
 import hu.schonherz.blog.data.datasource.DataSourceManager;
 
+
+@Repository
 public class PostHeaderDAO {
 
     public Collection<PostHeaderDTO> findAllHeaders() {
