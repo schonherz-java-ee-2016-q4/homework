@@ -8,7 +8,8 @@ import hu.schonherz.blog.service.api.user.vo.User;
 public interface UserService {
 
 	List<User> findAllUser();
-
-	User findUserByName(String name) throws UserNotFoundException;
+	User findUserByUsername(String name) throws UserNotFoundException;
+	User findByUserId(int id);
+	
 	void addNewUser(User user);
 }

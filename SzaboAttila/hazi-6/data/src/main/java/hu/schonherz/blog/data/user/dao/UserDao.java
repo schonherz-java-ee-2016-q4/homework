@@ -29,13 +29,10 @@ public class UserDao {
     
     @Autowired
     private GenericDao<LocationDto> locationDao;
-    
     @Autowired
-    private GenericDao<LoginDto> loginDao;
-    
+    private LoginDao loginDao;
     @Autowired
     private GenericDao<NameDto> nameDao;
-    
     @Autowired
     private GenericDao<PictureDto> pictureDao;
     
@@ -44,7 +41,7 @@ public class UserDao {
     }
     
     public UserDto findByUsername(String username) {
-        LoginDto login_dto = new LoginDao().findByUserName(username);
+        LoginDto login_dto = loginDao.findByUserName(username);
         if (login_dto != null) {
             return findById(login_dto.getUser_id());
         }

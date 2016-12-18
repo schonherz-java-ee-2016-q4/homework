@@ -13,17 +13,17 @@ public class DtoToBlogPost {
 
     private BlogPost blogPost;
     
-    public DtoToBlogPost(PostDto headerDTO, User author, List<PostTagDto> postTagsDTO) {
+    public DtoToBlogPost(PostDto postDto, User author, List<PostTagDto> postTagsDto) {
         blogPost = new BlogPost();
         
-        blogPost.setId(headerDTO.getId());
-        blogPost.setPosted(headerDTO.getPosted().toLocalDateTime().format(DateTimeFormatter.ofPattern("yyyy.MM.dd kk:mm")));
+        blogPost.setId(postDto.getId());
+        blogPost.setPosted(postDto.getPosted().toLocalDateTime().format(DateTimeFormatter.ofPattern("yyyy.MM.dd kk:mm")));
         blogPost.setAuthor(author);
-        blogPost.setContent(headerDTO.getContent());
-        blogPost.setTitle(headerDTO.getTitle());
+        blogPost.setContent(postDto.getContent());
+        blogPost.setTitle(postDto.getTitle());
         
         List<String> tags = new ArrayList<>();
-        for (PostTagDto postTag : postTagsDTO) {
+        for (PostTagDto postTag : postTagsDto) {
             tags.add(postTag.getTag());
         }
         blogPost.setTags(tags);

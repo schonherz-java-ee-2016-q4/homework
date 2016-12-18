@@ -13,44 +13,40 @@ import hu.schonherz.blog.service.api.blog.vo.BlogPost;
 
 public class BlogPostToDto {
 
-    private PostDto headerDTO;
-    private List<PostTagDto> postTagsDTO;
+    private PostDto postDto;
+    private List<PostTagDto> postTagsDto;
     
     public BlogPostToDto(BlogPost blogPost) throws ParseException {
-        
-        headerDTO = new PostDto();
-        headerDTO.setPosted( new Timestamp(new SimpleDateFormat("yyyy-MM-dd kk:mm").parse(blogPost.getPosted()).getTime()) );
-        headerDTO.setTitle(blogPost.getTitle());
-        headerDTO.setUser_id(new LoginDao().findByUserName(blogPost.getAuthor().getLogin().getUsername()).getUser_id());
-        headerDTO.setContent(blogPost.getContent());
+        postDto = new PostDto();
+        postDto.setPosted( new Timestamp(new SimpleDateFormat("yyyy-MM-dd kk:mm").parse(blogPost.getPosted()).getTime()) );
+        postDto.setTitle(blogPost.getTitle());
+        postDto.setUser_id(new LoginDao().findByUserName(blogPost.getAuthor().getLogin().getUsername()).getUser_id());
+        postDto.setContent(blogPost.getContent());
 
-        postTagsDTO = new ArrayList<>();
+        postTagsDto = new ArrayList<>();
         for (String tag : blogPost.getTags()) {
             PostTagDto e = new PostTagDto();
             e.setTag(tag);
-            postTagsDTO.add(e);
+            postTagsDto.add(e);
         }
     }
 
-    public PostDto getHeaderDTO() {
-        return headerDTO;
+    public PostDto getPostDto() {
+        return postDto;
     }
 
-    public List<PostTagDto> getPostTagsDTO() {
-        return postTagsDTO;
+    public List<PostTagDto> getPostTagsDto() {
+        return postTagsDto;
     }
 
     @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();
-        builder.append("BlogPostToDTO [headerDTO=");
-        builder.append(headerDTO);
-        builder.append(", postTagsDTO=");
-        builder.append(postTagsDTO);
+        builder.append("BlogPostToDto [postDto=");
+        builder.append(postDto);
+        builder.append(", postTagsDto=");
+        builder.append(postTagsDto);
         builder.append("]");
         return builder.toString();
     }
-
-    
-    
 }

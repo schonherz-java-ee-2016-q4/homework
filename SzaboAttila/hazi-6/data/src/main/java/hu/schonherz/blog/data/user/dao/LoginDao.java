@@ -20,7 +20,11 @@ public class LoginDao implements GenericDao<LoginDto> {
     }
     
     public LoginDto findByUserName(String username) {
-        return jdbcTemplate.queryForObject(LoginQueries.QUERY_FIND_BY_USERNAME, new LoginMapper(), username);
+        try {
+            return jdbcTemplate.queryForObject(LoginQueries.QUERY_FIND_BY_USERNAME, new LoginMapper(), username);
+        } catch (Exception e) {
+            return null;
+        }
     }
 
 
