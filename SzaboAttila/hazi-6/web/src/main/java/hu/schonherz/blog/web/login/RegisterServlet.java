@@ -1,4 +1,4 @@
-package hu.sconherz.blog.web.login;
+package hu.schonherz.blog.web.login;
 
 import java.io.File;
 import java.io.IOException;
@@ -65,7 +65,7 @@ public class RegisterServlet extends HttpServlet {
         User user = null;
         
         try {
-            userService.findUserByName(username);
+            userService.findUserByUsername(username);
             request.setAttribute("error", "This username already exists!");
             request.getRequestDispatcher(REGISTER_JSP_URL).forward(request, response);
         } catch (UserNotFoundException e) {

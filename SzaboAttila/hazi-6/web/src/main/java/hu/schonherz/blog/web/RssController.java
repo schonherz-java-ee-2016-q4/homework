@@ -1,4 +1,4 @@
-package hu.sconherz.blog.web;
+package hu.schonherz.blog.web;
 
 import java.io.IOException;
 import java.text.ParseException;
@@ -6,11 +6,12 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.sun.syndication.feed.synd.SyndEntry;
 import com.sun.syndication.feed.synd.SyndEntryImpl;
@@ -19,17 +20,17 @@ import com.sun.syndication.feed.synd.SyndFeedImpl;
 import com.sun.syndication.io.FeedException;
 import com.sun.syndication.io.SyndFeedOutput;
 
-import hu.schonherz.blog.service.BlogServiceImpl;
 import hu.schonherz.blog.service.api.blog.vo.BlogPost;
 import hu.schonherz.blog.service.api.service.BlogService;
 
-@WebServlet("/rss")
-public class BlogRSSFeed extends HttpServlet {
-    private static final long serialVersionUID = 3720497627172667065L;
+@Controller
+public class RssController {
+    
+    @Autowired
     BlogService blogService;
 	
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        blogService = new BlogServiceImpl();
+    @RequestMapping(path="/rss")
+	public void rss(HttpServletRequest request, HttpServletResponse response) throws IOException {
         List<BlogPost> blogPosts = blogService.getAllBlogPostHeader();
         
         SyndFeed feed = new SyndFeedImpl();
@@ -75,10 +76,4 @@ public class BlogRSSFeed extends HttpServlet {
         response.setContentType("application/rss+xml");	    
         response.getWriter().write(out);
 	}
-
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
-	}
-
 }

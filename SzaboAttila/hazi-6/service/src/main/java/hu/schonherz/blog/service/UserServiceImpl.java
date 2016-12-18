@@ -42,7 +42,7 @@ public class UserServiceImpl implements UserService {
     
     public UserServiceImpl() {
         //if the database is empty fill it with example users
-        if(userDao.findAll().size() == 0) {
+        /*if(userDao.findAll().size() == 0) {
             Gson gson = new Gson();
             ClassLoader classLoader = getClass().getClassLoader();
             try (InputStream inputStream = classLoader.getResourceAsStream("example.txt");
@@ -57,7 +57,7 @@ public class UserServiceImpl implements UserService {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        }
+        }*/
     }
 
     @Override
