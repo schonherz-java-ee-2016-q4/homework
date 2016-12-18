@@ -2,14 +2,14 @@ package hu.schonherz.blog.data.blog.dto;
 
 import java.sql.Timestamp;
 
-public class PostHeaderDTO {
+public class PostDto {
     private int id;
     private int user_id;
     private String title;
     private Timestamp posted;
     private String content;
 
-    public PostHeaderDTO() {
+    public PostDto() {
     }
 
     public int getId() {

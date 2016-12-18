@@ -1,12 +1,12 @@
 package hu.schonherz.blog.data.user.dto;
 
-public class NameDTO {
+public class NameDto {
     private int user_id;
     private String title;
     private String first;
     private String last;
     
-    public NameDTO() {
+    public NameDto() {
     }
 
     public int getUser_id() {

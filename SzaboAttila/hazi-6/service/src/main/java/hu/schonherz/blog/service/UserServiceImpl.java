@@ -8,29 +8,29 @@ import java.util.List;
 
 import com.google.gson.Gson;
 
-import hu.schonherz.blog.data.user.dao.LocationDAO;
-import hu.schonherz.blog.data.user.dao.LoginDAO;
-import hu.schonherz.blog.data.user.dao.NameDAO;
-import hu.schonherz.blog.data.user.dao.PictureDAO;
-import hu.schonherz.blog.data.user.dao.UserDAO;
-import hu.schonherz.blog.data.user.dto.LocationDTO;
-import hu.schonherz.blog.data.user.dto.LoginDTO;
-import hu.schonherz.blog.data.user.dto.NameDTO;
-import hu.schonherz.blog.data.user.dto.PictureDTO;
-import hu.schonherz.blog.data.user.dto.UserDTO;
+import hu.schonherz.blog.data.user.dao.LocationDao;
+import hu.schonherz.blog.data.user.dao.LoginDao;
+import hu.schonherz.blog.data.user.dao.NameDao;
+import hu.schonherz.blog.data.user.dao.PictureDao;
+import hu.schonherz.blog.data.user.dao.UserDao;
+import hu.schonherz.blog.data.user.dto.LocationDto;
+import hu.schonherz.blog.data.user.dto.LoginDto;
+import hu.schonherz.blog.data.user.dto.NameDto;
+import hu.schonherz.blog.data.user.dto.PictureDto;
+import hu.schonherz.blog.data.user.dto.UserDto;
 import hu.schonherz.blog.service.api.service.UserService;
 import hu.schonherz.blog.service.api.user.exception.UserNotFoundException;
 import hu.schonherz.blog.service.api.user.vo.User;
 import hu.schonherz.blog.service.api.user.vo.UserResult;
-import hu.schonherz.blog.service.user.convert.UserDTOToUser;
-import hu.schonherz.blog.service.user.convert.UserToUserDTO;
+import hu.schonherz.blog.service.user.convert.UserDtoToUser;
+import hu.schonherz.blog.service.user.convert.UserToUserDto;
 
 public class UserServiceImpl implements UserService {
 
-    private UserDAO user_dao;
+    private UserDao user_dao;
 
     public UserServiceImpl() {
-        user_dao = new UserDAO();
+        user_dao = new UserDao();
         init();
     }
 
@@ -38,13 +38,13 @@ public class UserServiceImpl implements UserService {
     public List<User> findAllUser() {
         UserResult result = new UserResult();
         List<User> users = new ArrayList<>();
-        for (UserDTO userDTO : user_dao.findAll()) {
-            NameDTO nameDTO = new NameDAO().findById(userDTO.getId());
-            PictureDTO pictureDTO = new PictureDAO().findById(userDTO.getId());
-            LoginDTO loginDTO = new LoginDAO().findById(userDTO.getId());
-            LocationDTO locationDTO = new LocationDAO().findById(userDTO.getId());;
+        for (UserDto userDTO : user_dao.findAll()) {
+            NameDto nameDTO = new NameDao().findById(userDTO.getId());
+            PictureDto pictureDTO = new PictureDao().findById(userDTO.getId());
+            LoginDto loginDTO = new LoginDao().findById(userDTO.getId());
+            LocationDto locationDTO = new LocationDao().findById(userDTO.getId());;
             
-            UserDTOToUser conv = new UserDTOToUser(userDTO, locationDTO, loginDTO, pictureDTO, nameDTO);
+            UserDtoToUser conv = new UserDtoToUser(userDTO, locationDTO, loginDTO, pictureDTO, nameDTO);
             users.add(conv.getUser());
         }
         
@@ -63,7 +63,7 @@ public class UserServiceImpl implements UserService {
                 UserResult result = gson.fromJson(bufferedReader, UserResult.class);
                 
                 for (User user : result.getResults()) {
-                    UserToUserDTO conv = new UserToUserDTO(user);
+                    UserToUserDto conv = new UserToUserDto(user);
                     user_dao.save(conv.getUserDTO(), conv.getLocationDTO(), conv.getLoginDTO(), conv.getNameDTO(),
                             conv.getPictureDTO());
                 }
@@ -78,35 +78,35 @@ public class UserServiceImpl implements UserService {
      * @return
      */
     public User findUserByName(String name) throws UserNotFoundException {
-        UserDTO userDTO = user_dao.findByUsername(name);
+        UserDto userDTO = user_dao.findByUsername(name);
         
         if (userDTO == null) {
             throw new UserNotFoundException();
         }
         
-        NameDTO nameDTO = new NameDAO().findById(userDTO.getId());
-        PictureDTO pictureDTO = new PictureDAO().findById(userDTO.getId());
-        LoginDTO loginDTO = new LoginDAO().findById(userDTO.getId());
-        LocationDTO locationDTO = new LocationDAO().findById(userDTO.getId());;
+        NameDto nameDTO = new NameDao().findById(userDTO.getId());
+        PictureDto pictureDTO = new PictureDao().findById(userDTO.getId());
+        LoginDto loginDTO = new LoginDao().findById(userDTO.getId());
+        LocationDto locationDTO = new LocationDao().findById(userDTO.getId());;
         
-        UserDTOToUser conv = new UserDTOToUser(userDTO, locationDTO, loginDTO, pictureDTO, nameDTO);
+        UserDtoToUser conv = new UserDtoToUser(userDTO, locationDTO, loginDTO, pictureDTO, nameDTO);
         return conv.getUser();
     }
 
     public User findByUserId(int id) {
-        UserDTO userDTO = new UserDAO().findById(id);
-        NameDTO nameDTO = new NameDAO().findById(userDTO.getId());
-        PictureDTO pictureDTO = new PictureDAO().findById(userDTO.getId());
-        LoginDTO loginDTO = new LoginDAO().findById(userDTO.getId());
-        LocationDTO locationDTO = new LocationDAO().findById(userDTO.getId());;
+        UserDto userDTO = new UserDao().findById(id);
+        NameDto nameDTO = new NameDao().findById(userDTO.getId());
+        PictureDto pictureDTO = new PictureDao().findById(userDTO.getId());
+        LoginDto loginDTO = new LoginDao().findById(userDTO.getId());
+        LocationDto locationDTO = new LocationDao().findById(userDTO.getId());;
         
-        UserDTOToUser conv = new UserDTOToUser(userDTO, locationDTO, loginDTO, pictureDTO, nameDTO);
+        UserDtoToUser conv = new UserDtoToUser(userDTO, locationDTO, loginDTO, pictureDTO, nameDTO);
         return conv.getUser();
     }
     
     public void addNewUser(User user) {
         try {
-            UserToUserDTO conv = new UserToUserDTO(user);
+            UserToUserDto conv = new UserToUserDto(user);
             user_dao.save(conv.getUserDTO(), conv.getLocationDTO(), conv.getLoginDTO(), conv.getNameDTO(),
                     conv.getPictureDTO());
         } catch (Exception e) {

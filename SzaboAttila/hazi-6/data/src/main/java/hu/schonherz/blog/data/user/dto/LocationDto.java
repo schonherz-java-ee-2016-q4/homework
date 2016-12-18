@@ -1,13 +1,13 @@
 package hu.schonherz.blog.data.user.dto;
 
-public class LocationDTO {
+public class LocationDto {
     private int user_id;
     private String street;
     private String city;
     private String state;
     private int postcode;
     
-    public LocationDTO() {
+    public LocationDto() {
     }
 
     public int getUser_id() {

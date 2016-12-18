@@ -1,11 +1,11 @@
 package hu.schonherz.blog.data.user.dto;
 
-public class LoginDTO {
+public class LoginDto {
     private int user_id;
     private String username;
     private String password;
     
-    public LoginDTO() {
+    public LoginDto() {
     }
 
     public int getUser_id() {

@@ -1,19 +1,17 @@
-package hu.schonherz.blog.data.datasource;
+package hu.schonherz.blog.data.config;
 
 import javax.sql.DataSource;
 
 import org.postgresql.ds.PGPoolingDataSource;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 
-public class DataSourceManager {
-    private static PGPoolingDataSource inst = null;
-    
-    private DataSourceManager() {}
-    
-    public static DataSource getDataSource() {
-        if (inst != null)
-            return inst;
-        
-        inst = new PGPoolingDataSource();
+@Configuration
+public class SpringJdbcConfig {
+
+    @Bean
+    public DataSource createDataSource() {
+        PGPoolingDataSource inst = new PGPoolingDataSource();
         inst.setServerName("localhost");
         inst.setDatabaseName("postgres");
         inst.setPortNumber(5432);

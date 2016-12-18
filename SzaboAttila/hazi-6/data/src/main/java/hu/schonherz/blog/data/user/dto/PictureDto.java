@@ -1,12 +1,12 @@
 package hu.schonherz.blog.data.user.dto;
 
-public class PictureDTO {
+public class PictureDto {
     private int user_id;
     private String large;
     private String medium;
     private String thumbnail;
     
-    public PictureDTO() {
+    public PictureDto() {
     }
 
     public int getUser_id() {

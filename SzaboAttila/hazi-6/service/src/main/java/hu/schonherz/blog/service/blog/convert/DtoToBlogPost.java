@@ -4,16 +4,16 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
-import hu.schonherz.blog.data.blog.dto.PostHeaderDTO;
-import hu.schonherz.blog.data.blog.dto.PostTagDTO;
+import hu.schonherz.blog.data.blog.dto.PostDto;
+import hu.schonherz.blog.data.blog.dto.PostTagDto;
 import hu.schonherz.blog.service.api.blog.vo.BlogPost;
 import hu.schonherz.blog.service.api.user.vo.User;
 
-public class DTOToBlogPost {
+public class DtoToBlogPost {
 
     private BlogPost blogPost;
     
-    public DTOToBlogPost(PostHeaderDTO headerDTO, User author, List<PostTagDTO> postTagsDTO) {
+    public DtoToBlogPost(PostDto headerDTO, User author, List<PostTagDto> postTagsDTO) {
         blogPost = new BlogPost();
         
         blogPost.setId(headerDTO.getId());
@@ -23,7 +23,7 @@ public class DTOToBlogPost {
         blogPost.setTitle(headerDTO.getTitle());
         
         List<String> tags = new ArrayList<>();
-        for (PostTagDTO postTag : postTagsDTO) {
+        for (PostTagDto postTag : postTagsDTO) {
             tags.add(postTag.getTag());
         }
         blogPost.setTags(tags);

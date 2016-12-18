@@ -2,7 +2,7 @@ package hu.schonherz.blog.data.user.dto;
 
 import java.sql.Date;
 
-public class UserDTO {
+public class UserDto {
     private int id;
     private String email;
     private Date dob;
@@ -11,7 +11,7 @@ public class UserDTO {
     private String cell;
     private String gender;
     
-    public UserDTO() {
+    public UserDto() {
     }
 
     public int getId() {

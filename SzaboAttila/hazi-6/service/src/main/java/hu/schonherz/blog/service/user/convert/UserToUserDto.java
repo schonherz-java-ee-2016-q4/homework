@@ -4,23 +4,23 @@ import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
-import hu.schonherz.blog.data.user.dto.LocationDTO;
-import hu.schonherz.blog.data.user.dto.LoginDTO;
-import hu.schonherz.blog.data.user.dto.NameDTO;
-import hu.schonherz.blog.data.user.dto.PictureDTO;
-import hu.schonherz.blog.data.user.dto.UserDTO;
+import hu.schonherz.blog.data.user.dto.LocationDto;
+import hu.schonherz.blog.data.user.dto.LoginDto;
+import hu.schonherz.blog.data.user.dto.NameDto;
+import hu.schonherz.blog.data.user.dto.PictureDto;
+import hu.schonherz.blog.data.user.dto.UserDto;
 import hu.schonherz.blog.service.api.user.vo.User;
 
-public class UserToUserDTO {
+public class UserToUserDto {
 
-    private UserDTO userDTO;
-    private LocationDTO locationDTO;
-    private LoginDTO loginDTO;
-    private PictureDTO pictureDTO;
-    private NameDTO nameDTO;
+    private UserDto userDTO;
+    private LocationDto locationDTO;
+    private LoginDto loginDTO;
+    private PictureDto pictureDTO;
+    private NameDto nameDTO;
     
-    public UserToUserDTO(User user) throws ParseException {
-        userDTO = new UserDTO();
+    public UserToUserDto(User user) throws ParseException {
+        userDTO = new UserDto();
         
         userDTO.setEmail(user.getEmail());
         userDTO.setPhone(user.getPhone());
@@ -29,49 +29,49 @@ public class UserToUserDTO {
         userDTO.setDob( new Date ( new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").parse(user.getDob()).getTime() ) );
         userDTO.setRegistered( new Date ( new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").parse(user.getRegistered()).getTime() ) );
         
-        locationDTO = new LocationDTO();
+        locationDTO = new LocationDto();
         
         locationDTO.setCity(user.getLocation().getCity());
         locationDTO.setPostcode(user.getLocation().getPostcode());
         locationDTO.setState(user.getLocation().getState());
         locationDTO.setStreet(user.getLocation().getStreet());
         
-        nameDTO = new NameDTO();
+        nameDTO = new NameDto();
         
         nameDTO.setFirst(user.getName().getFirst());
         nameDTO.setLast(user.getName().getLast());
         nameDTO.setTitle(user.getName().getTitle());
         
-        pictureDTO = new PictureDTO();
+        pictureDTO = new PictureDto();
         
         pictureDTO.setLarge(user.getPicture().getLarge());
         pictureDTO.setMedium(user.getPicture().getMedium());
         pictureDTO.setThumbnail(user.getPicture().getThumbnail());
         
-        loginDTO = new LoginDTO();
+        loginDTO = new LoginDto();
         
         loginDTO.setPassword(user.getLogin().getPassword());
         loginDTO.setUsername(user.getLogin().getUsername());
         
     }
 
-    public UserDTO getUserDTO() {
+    public UserDto getUserDTO() {
         return userDTO;
     }
 
-    public LocationDTO getLocationDTO() {
+    public LocationDto getLocationDTO() {
         return locationDTO;
     }
 
-    public LoginDTO getLoginDTO() {
+    public LoginDto getLoginDTO() {
         return loginDTO;
     }
 
-    public PictureDTO getPictureDTO() {
+    public PictureDto getPictureDTO() {
         return pictureDTO;
     }
 
-    public NameDTO getNameDTO() {
+    public NameDto getNameDTO() {
         return nameDTO;
     }
 

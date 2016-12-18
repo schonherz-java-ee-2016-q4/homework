@@ -6,37 +6,37 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-import hu.schonherz.blog.data.blog.dto.PostHeaderDTO;
-import hu.schonherz.blog.data.blog.dto.PostTagDTO;
-import hu.schonherz.blog.data.user.dao.LoginDAO;
+import hu.schonherz.blog.data.blog.dto.PostDto;
+import hu.schonherz.blog.data.blog.dto.PostTagDto;
+import hu.schonherz.blog.data.user.dao.LoginDao;
 import hu.schonherz.blog.service.api.blog.vo.BlogPost;
 
-public class BlogPostToDTO {
+public class BlogPostToDto {
 
-    private PostHeaderDTO headerDTO;
-    private List<PostTagDTO> postTagsDTO;
+    private PostDto headerDTO;
+    private List<PostTagDto> postTagsDTO;
     
-    public BlogPostToDTO(BlogPost blogPost) throws ParseException {
+    public BlogPostToDto(BlogPost blogPost) throws ParseException {
         
-        headerDTO = new PostHeaderDTO();
+        headerDTO = new PostDto();
         headerDTO.setPosted( new Timestamp(new SimpleDateFormat("yyyy-MM-dd kk:mm").parse(blogPost.getPosted()).getTime()) );
         headerDTO.setTitle(blogPost.getTitle());
-        headerDTO.setUser_id(new LoginDAO().findByUserName(blogPost.getAuthor().getLogin().getUsername()).getUser_id());
+        headerDTO.setUser_id(new LoginDao().findByUserName(blogPost.getAuthor().getLogin().getUsername()).getUser_id());
         headerDTO.setContent(blogPost.getContent());
 
         postTagsDTO = new ArrayList<>();
         for (String tag : blogPost.getTags()) {
-            PostTagDTO e = new PostTagDTO();
+            PostTagDto e = new PostTagDto();
             e.setTag(tag);
             postTagsDTO.add(e);
         }
     }
 
-    public PostHeaderDTO getHeaderDTO() {
+    public PostDto getHeaderDTO() {
         return headerDTO;
     }
 
-    public List<PostTagDTO> getPostTagsDTO() {
+    public List<PostTagDto> getPostTagsDTO() {
         return postTagsDTO;
     }
 

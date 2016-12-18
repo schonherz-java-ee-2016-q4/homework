@@ -7,23 +7,23 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import hu.schonherz.blog.data.blog.dao.PostHeaderDAO;
-import hu.schonherz.blog.data.blog.dao.PostTagDAO;
-import hu.schonherz.blog.data.blog.dto.PostHeaderDTO;
-import hu.schonherz.blog.data.blog.dto.PostTagDTO;
+import hu.schonherz.blog.data.blog.dao.PostDao;
+import hu.schonherz.blog.data.blog.dao.PostTagDao;
+import hu.schonherz.blog.data.blog.dto.PostDto;
+import hu.schonherz.blog.data.blog.dto.PostTagDto;
 import hu.schonherz.blog.service.api.blog.vo.BlogPost;
 import hu.schonherz.blog.service.api.service.BlogService;
 import hu.schonherz.blog.service.api.user.vo.User;
-import hu.schonherz.blog.service.blog.convert.BlogPostToDTO;
-import hu.schonherz.blog.service.blog.convert.DTOToBlogPost;
+import hu.schonherz.blog.service.blog.convert.BlogPostToDto;
+import hu.schonherz.blog.service.blog.convert.DtoToBlogPost;
 
 @Service
 public class BlogServiceImpl implements BlogService {
 
     @Autowired
-    private PostHeaderDAO postHeaderDao;
+    private PostDao postHeaderDao;
     @Autowired
-    private PostTagDAO postTagDao;
+    private PostTagDao postTagDao;
     
     public BlogServiceImpl() {
     }
@@ -32,36 +32,36 @@ public class BlogServiceImpl implements BlogService {
     public List<BlogPost> getAllBlogPostHeader() {
         List<BlogPost> t = new ArrayList<>();
         
-        List<PostHeaderDTO> headers = (List<PostHeaderDTO>) new PostHeaderDAO().findAllHeaders();
+        List<PostDto> headers = (List<PostDto>) new PostDao().findAllHeaders();
         
-        for (PostHeaderDTO headerDTO : headers) {
-            List<PostTagDTO> postTagsDTO = new PostTagDAO().findByPostId(headerDTO.getId());
+        for (PostDto headerDTO : headers) {
+            List<PostTagDto> postTagsDTO = new PostTagDao().findByPostId(headerDTO.getId());
             
             UserServiceImpl us = new UserServiceImpl();
             User author = us.findByUserId(headerDTO.getUser_id());
             
-            t.add(new DTOToBlogPost(headerDTO, author, postTagsDTO).getBlogPost());
+            t.add(new DtoToBlogPost(headerDTO, author, postTagsDTO).getBlogPost());
         }
         return t;
     }
     
     @Override
     public BlogPost getBlogPostById(int id) {
-        PostHeaderDTO headerDTO = postHeaderDao.findByPostId(id);
-        List<PostTagDTO> postTagsDTO = postTagDao.findByPostId(id);
+        PostDto headerDTO = postHeaderDao.findByPostId(id);
+        List<PostTagDto> postTagsDTO = postTagDao.findByPostId(id);
         
         UserServiceImpl us = new UserServiceImpl();
         User poster = us.findByUserId(headerDTO.getUser_id());
         
-        return new DTOToBlogPost(headerDTO, poster, postTagsDTO).getBlogPost();
+        return new DtoToBlogPost(headerDTO, poster, postTagsDTO).getBlogPost();
     }
     
     @Override
     public int addNewBlogPost(BlogPost blogPost) {
-        BlogPostToDTO conv;
+        BlogPostToDto conv;
         try {
-            conv = new BlogPostToDTO(blogPost);
-            return new PostHeaderDAO().save(conv.getHeaderDTO(), conv.getPostTagsDTO());
+            conv = new BlogPostToDto(blogPost);
+            return new PostDao().save(conv.getHeaderDTO(), conv.getPostTagsDTO());
         } catch (ParseException e) {
             e.printStackTrace();
         }

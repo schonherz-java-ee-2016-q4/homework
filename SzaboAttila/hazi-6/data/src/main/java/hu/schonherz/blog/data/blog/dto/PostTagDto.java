@@ -1,10 +1,10 @@
 package hu.schonherz.blog.data.blog.dto;
 
-public class PostTagDTO {
+public class PostTagDto {
     private int post_id;
     private String tag;
     
-    public PostTagDTO() {
+    public PostTagDto() {
     }
 
     public int getPost_id() {

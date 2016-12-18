@@ -1,21 +1,21 @@
 package hu.schonherz.blog.service.user.convert;
 
-import hu.schonherz.blog.data.user.dto.LocationDTO;
-import hu.schonherz.blog.data.user.dto.LoginDTO;
-import hu.schonherz.blog.data.user.dto.NameDTO;
-import hu.schonherz.blog.data.user.dto.PictureDTO;
-import hu.schonherz.blog.data.user.dto.UserDTO;
+import hu.schonherz.blog.data.user.dto.LocationDto;
+import hu.schonherz.blog.data.user.dto.LoginDto;
+import hu.schonherz.blog.data.user.dto.NameDto;
+import hu.schonherz.blog.data.user.dto.PictureDto;
+import hu.schonherz.blog.data.user.dto.UserDto;
 import hu.schonherz.blog.service.api.user.vo.Location;
 import hu.schonherz.blog.service.api.user.vo.Login;
 import hu.schonherz.blog.service.api.user.vo.Name;
 import hu.schonherz.blog.service.api.user.vo.Picture;
 import hu.schonherz.blog.service.api.user.vo.User;
 
-public class UserDTOToUser {
+public class UserDtoToUser {
     private User user;
 
-    public UserDTOToUser(UserDTO userDTO, LocationDTO locationDTO, LoginDTO loginDTO, PictureDTO pictureDTO,
-            NameDTO nameDTO) {
+    public UserDtoToUser(UserDto userDTO, LocationDto locationDTO, LoginDto loginDTO, PictureDto pictureDTO,
+            NameDto nameDTO) {
         user = new User();
         
         user.setCell(userDTO.getCell());
