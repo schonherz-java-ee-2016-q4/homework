@@ -1,4 +1,4 @@
-package hu.schonherz.blog.service;
+package hu.schonherz.blog.service.userservice;
 
 import java.util.ArrayList;
 import java.util.List;
