@@ -8,11 +8,7 @@ import javax.servlet.FilterConfig;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.annotation.WebFilter;
-import javax.servlet.http.HttpServletResponse;
-
-import hu.sconherz.blog.web.register.RegisterFormValidator;
 
 @WebFilter(filterName = "RegisterFilter", urlPatterns = "/Register")
 public class RegisterFilter implements Filter {
@@ -28,16 +24,17 @@ public class RegisterFilter implements Filter {
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
             throws IOException, ServletException {
-        System.out.println("Filtered");
-        RegisterFormValidator validator = new RegisterFormValidator((HttpServletRequest) request);
-
-        if (validator.isValidForm()) {
-            chain.doFilter(request, response);
-        } else {
-            request.setAttribute("error", "Incorrect data");
-            request.getRequestDispatcher(REGISTER_JSP_URL).forward(request, response);
-        }
-
+        // RegisterFormValidator validator = new
+        // RegisterFormValidator((HttpServletRequest) request);
+        //
+        // if (validator.isValidForm()) {
+        // chain.doFilter(request, response);
+        // } else {
+        // request.setAttribute("error", "Incorrect data");
+        // request.getRequestDispatcher(REGISTER_JSP_URL).forward(request,
+        // response);
+        // }
+        chain.doFilter(request, response);
     }
 
     @Override
