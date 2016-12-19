@@ -10,12 +10,20 @@
    http://www.springframework.org/schema/context 
    http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 
-   <context:component-scan base-package="hu.sconherz.blog" />
+   <context:component-scan base-package="hu.schonherz.blog" />
    
    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
       <property name="prefix" value="/" />
       <property name="suffix" value=".jsp" />
    </bean>
+   
+    <bean id="multipartResolver"
+        class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+
+         <!-- setting maximum upload size -->
+        <property name="maxUploadSize" value="10485760" />
+
+    </bean>
    
    <!-- itt adjuk meg hogy a resource-okat hol keresse, ha ezt kihagyjuk nem fognak működni a c:url-es dolgok -->
    <!-- első a minta amit a forrásban fogunk használni a második pedig, hogy melyik mappában keresse az adott resources-t -->

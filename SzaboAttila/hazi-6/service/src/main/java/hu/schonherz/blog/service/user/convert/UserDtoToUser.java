@@ -14,39 +14,39 @@ import hu.schonherz.blog.service.api.user.vo.User;
 public class UserDtoToUser {
     private User user;
 
-    public UserDtoToUser(UserDto userDTO, LocationDto locationDTO, LoginDto loginDTO, PictureDto pictureDTO,
-            NameDto nameDTO) {
+    public UserDtoToUser(UserDto userDto, LocationDto locationDto, LoginDto loginDto, PictureDto pictureDto,
+            NameDto nameDto) {
         user = new User();
         
-        user.setCell(userDTO.getCell());
-        user.setDob(userDTO.getDob().toString());
-        user.setRegistered(userDTO.getRegistered().toString());
-        user.setEmail(userDTO.getEmail());
-        user.setPhone(userDTO.getPhone());
-        user.setGender("f".equals(userDTO.getGender()) ? "female" : "male");
+        user.setCell(userDto.getCell());
+        user.setDob(userDto.getDob().toString());
+        user.setRegistered(userDto.getRegistered().toString());
+        user.setEmail(userDto.getEmail());
+        user.setPhone(userDto.getPhone());
+        user.setGender("f".equals(userDto.getGender()) ? "female" : "male");
         
         Location loc = new Location();
-        loc.setCity(locationDTO.getCity());
-        loc.setPostcode(locationDTO.getPostcode());
-        loc.setState(locationDTO.getState());
-        loc.setStreet(locationDTO.getStreet());
+        loc.setCity(locationDto.getCity());
+        loc.setPostcode(locationDto.getPostcode());
+        loc.setState(locationDto.getState());
+        loc.setStreet(locationDto.getStreet());
         user.setLocation(loc);
         
         Picture picture = new Picture();
-        picture.setLarge(pictureDTO.getLarge());
-        picture.setMedium(pictureDTO.getMedium());
-        picture.setThumbnail(pictureDTO.getThumbnail());
+        picture.setLarge(pictureDto.getLarge());
+        picture.setMedium(pictureDto.getMedium());
+        picture.setThumbnail(pictureDto.getThumbnail());
         user.setPicture(picture);
         
         Login login = new Login();
-        login.setPassword(loginDTO.getPassword());
-        login.setUsername(loginDTO.getUsername());
+        login.setPassword(loginDto.getPassword());
+        login.setUsername(loginDto.getUsername());
         user.setLogin(login);
         
         Name name = new Name();
-        name.setFirst(nameDTO.getFirst());
-        name.setLast(nameDTO.getLast());
-        name.setTitle(nameDTO.getTitle());
+        name.setFirst(nameDto.getFirst());
+        name.setLast(nameDto.getLast());
+        name.setTitle(nameDto.getTitle());
         user.setName(name);
         
     }

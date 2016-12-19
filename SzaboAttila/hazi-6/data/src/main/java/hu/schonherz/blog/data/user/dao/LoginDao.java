@@ -1,6 +1,7 @@
 package hu.schonherz.blog.data.user.dao;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -20,7 +21,11 @@ public class LoginDao implements GenericDao<LoginDto> {
     }
     
     public LoginDto findByUserName(String username) {
-        return jdbcTemplate.queryForObject(LoginQueries.QUERY_FIND_BY_USERNAME, new LoginMapper(), username);
+        try {
+            return jdbcTemplate.queryForObject(LoginQueries.QUERY_FIND_BY_USERNAME, new LoginMapper(), username);
+        } catch (DataAccessException e) {
+            return null;
+        }
     }
 
 

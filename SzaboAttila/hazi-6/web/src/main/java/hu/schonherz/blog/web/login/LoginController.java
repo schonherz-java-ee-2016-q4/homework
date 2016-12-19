@@ -1,51 +1,38 @@
-package hu.sconherz.blog.web.login;
+package hu.schonherz.blog.web.login;
 
 import java.io.IOException;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import hu.schonherz.blog.service.UserServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
 import hu.schonherz.blog.service.api.service.UserService;
 import hu.schonherz.blog.service.api.user.exception.UserNotFoundException;
 import hu.schonherz.blog.service.api.user.vo.User;
 
-/**
- * Servlet implementation class Login
- */
-@WebServlet("/Login")
-public class LoginServlet extends HttpServlet {
-    private static final long serialVersionUID = -4885921404903800270L;
+@Controller
+public class LoginController {
     private static final String LOGIN_JSP_URL = "public/login.jsp";
 	private static final String SECURED_JSP_URL = "secured/secured.jsp";
 
-	/**
-	 * @see HttpServlet#HttpServlet()
-	 */
-	public LoginServlet() {
-		super();
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	@Autowired
+	private UserService userService;
+	
+	@RequestMapping(path="/Login", method=RequestMethod.POST)
+	public void login(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		LoginForm loginForm = new LoginForm(request);
 
 		String username = loginForm.getUsername();
-		UserService userService = new UserServiceImpl();
 		User user = null;
 		
 		try {
-
-			user = userService.findUserByName(username);
-
+			user = userService.findUserByUsername(username);
 		} catch (UserNotFoundException e) {
 			request.setAttribute("error", "Hibás felhasználónév vagy jelszó!");
 			request.getRequestDispatcher(LOGIN_JSP_URL).forward(request, response);
@@ -64,12 +51,5 @@ public class LoginServlet extends HttpServlet {
 			}
 		}
 
-	}
-
-	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-
-		request.getRequestDispatcher(LOGIN_JSP_URL).forward(request, response);
 	}
 }

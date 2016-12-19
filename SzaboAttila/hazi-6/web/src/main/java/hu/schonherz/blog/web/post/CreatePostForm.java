@@ -1,4 +1,4 @@
-package hu.sconherz.blog.web.post;
+package hu.schonherz.blog.web.post;
 
 import java.util.ArrayList;
 import java.util.List;

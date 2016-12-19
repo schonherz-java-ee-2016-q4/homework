@@ -1,13 +1,12 @@
-package hu.sconherz.blog.web.login;
+package hu.schonherz.blog.web.login;
 
 import java.io.Serializable;
 
 import javax.servlet.http.HttpServletRequest;
 
 public class RegisterForm implements Serializable {
+    private static final long serialVersionUID = -2361403626435692420L;
 
-    private static final long serialVersionUID = 1L;
-    
     private String username;
     private String email;
     private String password;
@@ -44,7 +43,6 @@ public class RegisterForm implements Serializable {
         street = request.getParameter("street");
         phone = request.getParameter("phone");
         cell = request.getParameter("cell");
-        
     }
 
     public String getUsername() {

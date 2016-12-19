@@ -1,4 +1,4 @@
-package hu.sconherz.blog.web.filter;
+package hu.schonherz.blog.web.filter;
 
 import java.io.IOException;
 import javax.servlet.Filter;

@@ -7,7 +7,7 @@ $(document).ready(function() {
 		$(".loader").show();
 		
 		var size = new Number($('#number').val());
-		$.get("${pageContext.request.contextPath}/UserServlet", function(res) {
+		$.get(getContextPath() + "/UserServlet", function(res) {
 			$('#result').html('');
 			results = res.results;
 			$.each(res.results, function(index, value) {
@@ -120,7 +120,7 @@ function calculateAge(birthYear, birthMonth, birthDay)
 
 function showModal(id) {
 	$('#myModal').html('');
-	$.get('${pageContext.request.contextPath}/content/modal.html', function(modal_res) {
+	$.get(getContextPath() + '/content/modal.html', function(modal_res) {
 		
 		$.each(results, function(index, value) {
 			if (index == id) {
@@ -149,7 +149,7 @@ function showModal(id) {
 
 
 function addPersonToList(index, value) {
-	$.get('${pageContext.request.contextPath}/content/content.html', function(template) {
+	$.get(getContextPath() + '/content/content.html', function(template) {
 		var t=	template.replace('user_name',value.name.first +' '+value.name.last);
 		t=t.replace('img_url',value.picture.large);
 		t=t.replace('city',value.location.postcode + ' ' + value.location.city);

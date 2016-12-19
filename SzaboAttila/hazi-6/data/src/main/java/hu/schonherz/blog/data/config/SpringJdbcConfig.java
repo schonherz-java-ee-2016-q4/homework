@@ -5,10 +5,12 @@ import javax.sql.DataSource;
 import org.postgresql.ds.PGPoolingDataSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.jdbc.core.JdbcTemplate;
 
 @Configuration
 public class SpringJdbcConfig {
 
+    
     @Bean
     public DataSource createDataSource() {
         PGPoolingDataSource inst = new PGPoolingDataSource();
@@ -20,8 +22,12 @@ public class SpringJdbcConfig {
         
         inst.setInitialConnections(10);
         inst.setMaxConnections(20);
-        
         return inst;
+    }
+    
+    @Bean
+    public JdbcTemplate setJdbcTemplate() {
+        return new JdbcTemplate(createDataSource());
     }
     
 }

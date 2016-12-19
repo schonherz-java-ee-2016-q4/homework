@@ -1,4 +1,4 @@
-package hu.sconherz.blog.web.login;
+package hu.schonherz.blog.web.login;
 
 import java.io.Serializable;
 

@@ -1,28 +1,29 @@
-package hu.sconherz.blog.web.post;
+package hu.schonherz.blog.web.post;
 
 import java.io.IOException;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
 import com.google.gson.Gson;
 
-import hu.schonherz.blog.service.BlogServiceImpl;
 import hu.schonherz.blog.service.api.blog.vo.BlogPost;
 import hu.schonherz.blog.service.api.service.BlogService;
 
-/**
- * Servlet implementation class ReadPost
- */
-@WebServlet("/ReadPost")
-public class ReadPost extends HttpServlet {
-    private static final long serialVersionUID = -5680218059048118733L;
+@Controller
+public class ReadPostController {
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	    BlogService blogService = new BlogServiceImpl();
+    @Autowired
+    private BlogService blogService;
+    
+    @RequestMapping(path="/ReadPost", method= RequestMethod.GET)
+    public void getBlog(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	    BlogPost bp = blogService.getBlogPostById(Integer.parseInt(request.getParameter("id")));
 	    
         Gson gson = new Gson();
@@ -33,6 +34,4 @@ public class ReadPost extends HttpServlet {
         
         response.getWriter().write(resultJson);
 	}
-
-
 }

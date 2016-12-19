@@ -13,84 +13,82 @@ import hu.schonherz.blog.service.api.user.vo.User;
 
 public class UserToUserDto {
 
-    private UserDto userDTO;
-    private LocationDto locationDTO;
-    private LoginDto loginDTO;
-    private PictureDto pictureDTO;
-    private NameDto nameDTO;
+    private UserDto userDto;
+    private LocationDto locationDto;
+    private LoginDto loginDto;
+    private PictureDto pictureDto;
+    private NameDto nameDto;
     
     public UserToUserDto(User user) throws ParseException {
-        userDTO = new UserDto();
+        userDto = new UserDto();
         
-        userDTO.setEmail(user.getEmail());
-        userDTO.setPhone(user.getPhone());
-        userDTO.setCell(user.getCell());
-        userDTO.setGender("female".equals(user.getGender()) ? "f" : "m");
-        userDTO.setDob( new Date ( new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").parse(user.getDob()).getTime() ) );
-        userDTO.setRegistered( new Date ( new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").parse(user.getRegistered()).getTime() ) );
+        userDto.setEmail(user.getEmail());
+        userDto.setPhone(user.getPhone());
+        userDto.setCell(user.getCell());
+        userDto.setGender("female".equals(user.getGender()) ? "f" : "m");
+        userDto.setDob( new Date ( new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").parse(user.getDob()).getTime() ) );
+        userDto.setRegistered( new Date ( new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").parse(user.getRegistered()).getTime() ) );
         
-        locationDTO = new LocationDto();
+        locationDto = new LocationDto();
         
-        locationDTO.setCity(user.getLocation().getCity());
-        locationDTO.setPostcode(user.getLocation().getPostcode());
-        locationDTO.setState(user.getLocation().getState());
-        locationDTO.setStreet(user.getLocation().getStreet());
+        locationDto.setCity(user.getLocation().getCity());
+        locationDto.setPostcode(user.getLocation().getPostcode());
+        locationDto.setState(user.getLocation().getState());
+        locationDto.setStreet(user.getLocation().getStreet());
         
-        nameDTO = new NameDto();
+        nameDto = new NameDto();
         
-        nameDTO.setFirst(user.getName().getFirst());
-        nameDTO.setLast(user.getName().getLast());
-        nameDTO.setTitle(user.getName().getTitle());
+        nameDto.setFirst(user.getName().getFirst());
+        nameDto.setLast(user.getName().getLast());
+        nameDto.setTitle(user.getName().getTitle());
         
-        pictureDTO = new PictureDto();
+        pictureDto = new PictureDto();
         
-        pictureDTO.setLarge(user.getPicture().getLarge());
-        pictureDTO.setMedium(user.getPicture().getMedium());
-        pictureDTO.setThumbnail(user.getPicture().getThumbnail());
+        pictureDto.setLarge(user.getPicture().getLarge());
+        pictureDto.setMedium(user.getPicture().getMedium());
+        pictureDto.setThumbnail(user.getPicture().getThumbnail());
         
-        loginDTO = new LoginDto();
+        loginDto = new LoginDto();
         
-        loginDTO.setPassword(user.getLogin().getPassword());
-        loginDTO.setUsername(user.getLogin().getUsername());
+        loginDto.setPassword(user.getLogin().getPassword());
+        loginDto.setUsername(user.getLogin().getUsername());
         
     }
 
-    public UserDto getUserDTO() {
-        return userDTO;
+    public UserDto getUserDto() {
+        return userDto;
     }
 
-    public LocationDto getLocationDTO() {
-        return locationDTO;
+    public LocationDto getLocationDto() {
+        return locationDto;
     }
 
-    public LoginDto getLoginDTO() {
-        return loginDTO;
+    public LoginDto getLoginDto() {
+        return loginDto;
     }
 
-    public PictureDto getPictureDTO() {
-        return pictureDTO;
+    public PictureDto getPictureDto() {
+        return pictureDto;
     }
 
-    public NameDto getNameDTO() {
-        return nameDTO;
+    public NameDto getNameDto() {
+        return nameDto;
     }
 
     @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();
-        builder.append("UserToUserDTO [userDTO=");
-        builder.append(userDTO);
-        builder.append(", locationDTO=");
-        builder.append(locationDTO);
-        builder.append(", loginDTO=");
-        builder.append(loginDTO);
-        builder.append(", pictureDTO=");
-        builder.append(pictureDTO);
-        builder.append(", nameDTO=");
-        builder.append(nameDTO);
+        builder.append("UserToUserDto [userDto=");
+        builder.append(userDto);
+        builder.append(", locationDto=");
+        builder.append(locationDto);
+        builder.append(", loginDto=");
+        builder.append(loginDto);
+        builder.append(", pictureDto=");
+        builder.append(pictureDto);
+        builder.append(", nameDto=");
+        builder.append(nameDto);
         builder.append("]");
         return builder.toString();
     }
-    
-    
 }

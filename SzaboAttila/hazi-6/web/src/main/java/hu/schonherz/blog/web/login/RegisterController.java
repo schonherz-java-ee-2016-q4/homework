@@ -1,19 +1,23 @@
-package hu.sconherz.blog.web.login;
+package hu.schonherz.blog.web.login;
 
+import java.io.BufferedOutputStream;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.MultipartConfig;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.Part;
 
-import hu.schonherz.blog.service.UserServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+
 import hu.schonherz.blog.service.api.service.UserService;
 import hu.schonherz.blog.service.api.user.exception.UserNotFoundException;
 import hu.schonherz.blog.service.api.user.vo.Id;
@@ -23,53 +27,30 @@ import hu.schonherz.blog.service.api.user.vo.Name;
 import hu.schonherz.blog.service.api.user.vo.Picture;
 import hu.schonherz.blog.service.api.user.vo.User;
 
-/**
- * Servlet implementation class RegisterServlet
- */
-@WebServlet("/Register")
-@MultipartConfig(maxFileSize=1024*1024*10,
-    maxRequestSize=1024*1024*10)
-public class RegisterServlet extends HttpServlet {
-    private static final long serialVersionUID = -6781766310304736612L;
+@Controller
+public class RegisterController {
     private static final String REGISTER_JSP_URL = "public/register.jsp";
     private static final String REGISTER_SUCC_JSP_URL = "secured/register_succes.jsp";
     private static final String SAVE_DIR = "Files";
+
+    @Autowired
+    private UserService userService;
     
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public RegisterServlet() {
-        super();
-    }
-
-    /**
-     * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-     *      response)
-     */
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+    @RequestMapping(path="/Register", method=RequestMethod.POST)
+    public void registerNewUser(HttpServletRequest request, HttpServletResponse response,
+            @RequestParam("file") MultipartFile file)
             throws ServletException, IOException {
-        request.getRequestDispatcher(REGISTER_JSP_URL).forward(request, response);
-    }
-
-    /**
-     * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-     *      response)
-     */
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-
         RegisterForm registerForm = new RegisterForm(request);
 
         String username = registerForm.getUsername();
-        UserService userService = new UserServiceImpl();
         User user = null;
         
         try {
-            userService.findUserByName(username);
+            userService.findUserByUsername(username);
             request.setAttribute("error", "This username already exists!");
             request.getRequestDispatcher(REGISTER_JSP_URL).forward(request, response);
         } catch (UserNotFoundException e) {
-            registerForm.setImageurl(uploadFile(request, username));
+            registerForm.setImageurl(upload(file, request, username));
             user = createUser(registerForm, userService);
             userService.addNewUser(user);
             
@@ -79,48 +60,39 @@ public class RegisterServlet extends HttpServlet {
 
     }
 
-    private String uploadFile(HttpServletRequest request, String username) { 
-        // gets absolute path of the web application
-        String appPath = request.getServletContext().getRealPath("");
-        // constructs path of the directory to save uploaded file
-        String savePath = appPath + SAVE_DIR;
-        String out = "";
-        // creates the save directory if it does not exists
-        File fileSaveDir = new File(savePath);
-        if (!fileSaveDir.exists()) {
-            fileSaveDir.mkdir();
-        }
+    private String upload(MultipartFile file, HttpServletRequest request, String username ) {
         try {
-            for (Part part : request.getParts()) {
-                String fileName = extractFileName(part);
-                // refines the fileName in case it is an absolute path
-                fileName = new File(fileName).getName();
-                if (fileName != "") {
-                    out = savePath + File.separator + username;
-                    part.write(out);
-                    out = "..\\" + SAVE_DIR + File.separator + username;
-                }
+            byte[] bytes = file.getBytes();
+            
+            // gets absolute path of the web application
+            String appPath = request.getServletContext().getRealPath("");
+            // constructs path of the directory to save uploaded file
+            String savePath = appPath + SAVE_DIR;
+            //System.out.println("savePath: " + savePath);
+            String out = "";
+            // creates the save directory if it does not exists
+            File fileSaveDir = new File(savePath);
+            if (!fileSaveDir.exists()) {
+                fileSaveDir.mkdir();
             }
+
+            out = savePath + File.separator + username;
+            //System.out.println("fileRealPath: " + out);
+            // Create the file on server
+            File serverFile = new File(out);
+            BufferedOutputStream stream = new BufferedOutputStream(
+                    new FileOutputStream(serverFile));
+            stream.write(bytes);
+            stream.close();
+            
+            out = "..\\" + SAVE_DIR + File.separator + username;
+            //System.out.println("fileFakePath: " + out);
+            return out;
+        } catch (Exception e) {
+            return "";
         }
-        catch (Exception e) {
-            e.printStackTrace();
-        }
-        return out;
     }
     
-    /**
-     * Extracts file name from HTTP header content-disposition
-     */
-    private String extractFileName(Part part) {
-        String contentDisp = part.getHeader("content-disposition");
-        String[] items = contentDisp.split(";");
-        for (String s : items) {
-            if (s.trim().startsWith("filename")) {
-                return s.substring(s.indexOf("=") + 2, s.length()-1);
-            }
-        }
-        return "";
-    }
 
     private User createUser(RegisterForm registerForm, UserService userService) {
         User user = new User();

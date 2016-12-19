@@ -65,7 +65,7 @@ CREATE TABLE IF NOT EXISTS picture (
         ON DELETE CASCADE
 );
 
-CREATE TABLE IF NOT EXISTS post_headers (
+CREATE TABLE IF NOT EXISTS posts (
 	id SERIAL PRIMARY KEY,
 	user_id INTEGER NOT NULL,
 	title VARCHAR(200) NOT NULL,
@@ -84,7 +84,7 @@ CREATE TABLE IF NOT EXISTS post_tags (
 	tag VARCHAR(30) NOT NULL,
 	CONSTRAINT post_fk
         FOREIGN KEY (post_id)
-        REFERENCES post_headers(id)
+        REFERENCES posts(id)
         ON UPDATE CASCADE
         ON DELETE CASCADE
 );
