@@ -1,7 +1,7 @@
 var value;
 $(document).ready(function() {
 	
-	$.get("${pageContext.request.contextPath}/ReadPost?id=" + GetURLParameter('id'), function(res) {
+	$.get(getContextPath() + "/ReadPost?id=" + GetURLParameter('id'), function(res) {
 		$('#post_title').html(res.title);
 		document.title = res.title;
 		$('#post_date').html(res.posted);
@@ -30,7 +30,7 @@ function GetURLParameter(sParam) {
 
 function showModal() {
 	$('#myModal').html('');
-	$.get('${pageContext.request.contextPath}/content/modal.html', function(modal_res) {
+	$.get(getContextPath() + '/content/modal.html', function(modal_res) {
 		var t=	modal_res.replace('user_name',value.name.title + ' ' + value.name.first + ' ' + value.name.last);
 		t = t.replace('email', value.email);
 		t = t.replace('username', value.login.username);

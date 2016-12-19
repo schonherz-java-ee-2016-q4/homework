@@ -1,13 +1,13 @@
 $(document).ready(function() {
 	
 	$('#nav_home').addClass('active');
-	$.get('${pageContext.request.contextPath}/content/blog_table_line.html', function(temp_res) {
-		$.get("${pageContext.request.contextPath}/ListPosts", function(res) {
+	$.get(getContextPath() + '/content/blog_table_line.html', function(temp_res) {
+		$.get(getContextPath() + "/ListPosts", function(res) {
 			i = 0;
 			$.each(res, function(index, value) {
 				i++;
 				var out = temp_res.replace("value_title", value.title);
-				out = out.replace("value_link", "${pageContext.request.contextPath}/secured/post.jsp?id=" + value.id);
+				out = out.replace("value_link", getContextPath() + "/secured/post.jsp?id=" + value.id);
 				out = out.replace("value_posted", value.posted);
 				out = out.replace("value_username", value.author.login.username);
 				out = out.replace("number_i", i);

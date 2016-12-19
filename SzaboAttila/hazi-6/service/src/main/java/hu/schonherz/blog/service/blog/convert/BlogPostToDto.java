@@ -8,7 +8,6 @@ import java.util.List;
 
 import hu.schonherz.blog.data.blog.dto.PostDto;
 import hu.schonherz.blog.data.blog.dto.PostTagDto;
-import hu.schonherz.blog.data.user.dao.LoginDao;
 import hu.schonherz.blog.service.api.blog.vo.BlogPost;
 
 public class BlogPostToDto {
@@ -16,11 +15,11 @@ public class BlogPostToDto {
     private PostDto postDto;
     private List<PostTagDto> postTagsDto;
     
-    public BlogPostToDto(BlogPost blogPost) throws ParseException {
+    public BlogPostToDto(BlogPost blogPost, int user_id) throws ParseException {
         postDto = new PostDto();
         postDto.setPosted( new Timestamp(new SimpleDateFormat("yyyy-MM-dd kk:mm").parse(blogPost.getPosted()).getTime()) );
         postDto.setTitle(blogPost.getTitle());
-        postDto.setUser_id(new LoginDao().findByUserName(blogPost.getAuthor().getLogin().getUsername()).getUser_id());
+        postDto.setUser_id(user_id);
         postDto.setContent(blogPost.getContent());
 
         postTagsDto = new ArrayList<>();

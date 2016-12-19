@@ -6,6 +6,8 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -40,9 +42,10 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private GenericDao<PictureDto> pictureDao;
     
-    public UserServiceImpl() {
+    @PostConstruct
+    private void init() {
         //if the database is empty fill it with example users
-        /*if(userDao.findAll().size() == 0) {
+        if(userDao.findAll().size() == 0) {
             Gson gson = new Gson();
             ClassLoader classLoader = getClass().getClassLoader();
             try (InputStream inputStream = classLoader.getResourceAsStream("example.txt");
@@ -57,9 +60,9 @@ public class UserServiceImpl implements UserService {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        }*/
+        }
     }
-
+    
     @Override
     public List<User> findAllUser() {
         UserResult result = new UserResult();

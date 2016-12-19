@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.google.gson.Gson;
 
@@ -23,7 +24,7 @@ public class UserController {
     @Autowired
     private UserService userService; 
     
-    @RequestMapping(path="/UserServlet")
+    @RequestMapping(path="/UserServlet", method=RequestMethod.GET)
 	public void listUsers(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		List<User> users = userService.findAllUser();

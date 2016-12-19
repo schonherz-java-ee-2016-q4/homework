@@ -26,7 +26,7 @@ public class UserDao {
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
-    
+
     @Autowired
     private GenericDao<LocationDto> locationDao;
     @Autowired
@@ -35,31 +35,28 @@ public class UserDao {
     private GenericDao<NameDto> nameDao;
     @Autowired
     private GenericDao<PictureDto> pictureDao;
-    
+
     public Collection<UserDto> findAll() {
         return jdbcTemplate.query(UserQueries.QUERY_FIND_ALL, new UserMapper());
     }
-    
+
     public UserDto findByUsername(String username) {
         LoginDto login_dto = loginDao.findByUserName(username);
         if (login_dto != null) {
             return findById(login_dto.getUser_id());
-        }
-        else {
+        } else {
             return null;
         }
     }
-    
 
     public UserDto findById(int id) {
         return jdbcTemplate.queryForObject(UserQueries.QUERY_FIND_BY_ID, new UserMapper(), id);
     }
 
-    public void save(UserDto user_dto, LocationDto location_dto, LoginDto login_dto, NameDto name_dto, PictureDto picture_dto ) {
-        
+    public void save(UserDto user_dto, LocationDto location_dto, LoginDto login_dto, NameDto name_dto,
+            PictureDto picture_dto) {
         KeyHolder keyHolder = new GeneratedKeyHolder();
         jdbcTemplate.update(new PreparedStatementCreator() {
-            
             @Override
             public PreparedStatement createPreparedStatement(Connection connection) throws SQLException {
                 PreparedStatement statement = connection.prepareStatement(UserQueries.QUERY_SAVE,
@@ -74,12 +71,12 @@ public class UserDao {
             }
         }, keyHolder);
         
-        user_dto.setId(keyHolder.getKey().intValue());
+        user_dto.setId((int)keyHolder.getKeys().get("id"));
         location_dto.setUser_id(user_dto.getId());
         login_dto.setUser_id(user_dto.getId());
         name_dto.setUser_id(user_dto.getId());
         picture_dto.setUser_id(user_dto.getId());
-        
+
         locationDao.save(location_dto);
         loginDao.save(login_dto);
         nameDao.save(name_dto);

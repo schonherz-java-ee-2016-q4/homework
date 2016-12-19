@@ -54,7 +54,7 @@ public class PostDao {
             }
         }, keyHolder);
         
-        headerDto.setId(keyHolder.getKey().intValue());
+        headerDto.setId((int)keyHolder.getKeys().get("id"));
         
         for (PostTagDto tag : postTagDto) {
             tag.setPost_id(headerDto.getId());

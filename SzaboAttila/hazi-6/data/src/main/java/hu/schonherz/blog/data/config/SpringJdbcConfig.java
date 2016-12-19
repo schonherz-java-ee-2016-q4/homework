@@ -3,6 +3,7 @@ package hu.schonherz.blog.data.config;
 import javax.sql.DataSource;
 
 import org.postgresql.ds.PGPoolingDataSource;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.core.JdbcTemplate;
 
@@ -10,7 +11,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 public class SpringJdbcConfig {
 
     
-    //@Bean
+    @Bean
     public DataSource createDataSource() {
         PGPoolingDataSource inst = new PGPoolingDataSource();
         inst.setServerName("localhost");
@@ -21,11 +22,10 @@ public class SpringJdbcConfig {
         
         inst.setInitialConnections(10);
         inst.setMaxConnections(20);
-        
         return inst;
     }
     
-    //@Bean
+    @Bean
     public JdbcTemplate setJdbcTemplate() {
         return new JdbcTemplate(createDataSource());
     }

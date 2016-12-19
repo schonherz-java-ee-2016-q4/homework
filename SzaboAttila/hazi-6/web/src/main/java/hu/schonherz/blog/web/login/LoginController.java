@@ -6,11 +6,11 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import hu.schonherz.blog.service.UserServiceImpl;
 import hu.schonherz.blog.service.api.service.UserService;
 import hu.schonherz.blog.service.api.user.exception.UserNotFoundException;
 import hu.schonherz.blog.service.api.user.vo.User;
@@ -20,13 +20,15 @@ public class LoginController {
     private static final String LOGIN_JSP_URL = "public/login.jsp";
 	private static final String SECURED_JSP_URL = "secured/secured.jsp";
 
+	@Autowired
+	private UserService userService;
+	
 	@RequestMapping(path="/Login", method=RequestMethod.POST)
 	public void login(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		LoginForm loginForm = new LoginForm(request);
 
 		String username = loginForm.getUsername();
-		UserService userService = new UserServiceImpl();
 		User user = null;
 		
 		try {
