@@ -150,10 +150,15 @@ function showModal(id) {
 
 function addPersonToList(index, value) {
 	$.get(getContextPath() + '/content/content.html', function(template) {
-		var t=	template.replace('user_name',value.name.first +' '+value.name.last);
+		nev = value.name.first +' '+value.name.last;
+		var t;
+		if (nev.length > 15) {
+			t =	template.replace('user_name', nev.substr(0, 15) + '...');
+		} else {
+			t = template.replace('user_name', nev);
+		}
 		t=t.replace('img_url',value.picture.large);
-		t=t.replace('city',value.location.postcode + ' ' + value.location.city);
-		t=t.replace('street',value.location.street);
+		t=t.replace('city', value.location.postcode + ' ' + value.location.city);
 		t=t.replace('mail_addr',value.email);
 		t=t.replace('number', index);
 		

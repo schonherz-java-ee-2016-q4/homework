@@ -14,7 +14,7 @@ public class CreatePostForm {
     private List<String> tags;
     private User author;
     
-    public CreatePostForm(HttpServletRequest request) {
+    public CreatePostForm(HttpServletRequest request, User user) {
         title = fixInjections(request.getParameter("title"));
         
         content = fixInjections(request.getParameter("content"));
@@ -23,7 +23,7 @@ public class CreatePostForm {
         for (String tag : plainTags) {
             tags.add(fixInjections(tag.trim()));
         }
-        author = (User)request.getSession().getAttribute("user");
+        author = user;
     }
     
     private String fixInjections(String in) {

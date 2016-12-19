@@ -41,7 +41,7 @@ CREATE TABLE IF NOT EXISTS login (
 	user_id INTEGER NOT NULL,
 	
     username VARCHAR(50) NOT NULL,
-    password VARCHAR(50) NOT NULL,
+    password VARCHAR(64) NOT NULL,
     
 	CONSTRAINT name_user_fk
         FOREIGN KEY (user_id)

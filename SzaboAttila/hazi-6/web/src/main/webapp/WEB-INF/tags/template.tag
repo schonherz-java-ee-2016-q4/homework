@@ -39,16 +39,16 @@
 					href="<c:url value="/secured/secured.jsp"/>" id="nav_users">Users</a>
 
 				<div class="navbar-right">
-					<c:if test="${sessionScope.user ==null}">
+					<c:if test="${pageContext.request.userPrincipal==null}">
 						<a class="blog-nav-item" href="<c:url value="/public/login.jsp"/>">Login</a>
 						<a class="blog-nav-item"
 							href="<c:url value="/public/register.jsp"/>">Register</a>
 					</c:if>
-					<c:if test="${sessionScope.user !=null}">
+					<c:if test="${pageContext.request.userPrincipal!=null}">
 						<a class="blog-nav-item"
 							href="<c:url value="/secured/create_blogpost.jsp"/>" id="nav_create_post">Create
 							post</a>
-						<a class="blog-nav-item" href="<c:url value="/Logout"/>">Logout</a>
+						<a class="blog-nav-item" href="<c:url value="/logout"/>">Logout</a>
 					</c:if>
 					<a href="<c:url value="/rss"/>"><i class="fa fa-rss" aria-hidden="true"></i></a>
 				</div>

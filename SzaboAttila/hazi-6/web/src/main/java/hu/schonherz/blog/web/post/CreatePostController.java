@@ -15,19 +15,26 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import hu.schonherz.blog.service.api.blog.vo.BlogPost;
 import hu.schonherz.blog.service.api.service.BlogService;
+import hu.schonherz.blog.service.api.service.UserService;
+import hu.schonherz.blog.service.api.user.exception.UserNotFoundException;
+import hu.schonherz.blog.service.api.user.vo.User;
 
 @Controller
 public class CreatePostController {
     private static final String CREATED_POST_JSP_URL = "secured/post.jsp?id=";
 
     @Autowired
+    private UserService userService;
+    @Autowired
     private BlogService blogService;
     
     @RequestMapping(path="/CreatePost", method = RequestMethod.POST)
-	public void createPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public void createPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, UserNotFoundException {
 	    request.setCharacterEncoding("UTF-8");
         
-	    CreatePostForm cpf = new CreatePostForm(request);
+	    User user = userService.findUserByUsername(request.getUserPrincipal().getName());
+	    
+	    CreatePostForm cpf = new CreatePostForm(request, user);
 	    BlogPost blogPost = createBlogPost(cpf);
 	    int created_id = blogService.addNewBlogPost(blogPost);
 	    

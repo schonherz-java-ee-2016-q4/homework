@@ -54,7 +54,6 @@ public class RegisterController {
             user = createUser(registerForm, userService);
             userService.addNewUser(user);
             
-            request.getSession().setAttribute("user", user);
             response.sendRedirect(REGISTER_SUCC_JSP_URL);
         }
 

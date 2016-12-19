@@ -31,4 +31,7 @@
    
    <!-- annotációkból is fogunk megadni elérhetőségeket, enélkül azokat nem látná, tehát pl. egy Controllerben megadott /hello 404 lenne -->
    <mvc:annotation-driven />
+   
+   <import resource="/spring-security.xml" />
+   
 </beans>

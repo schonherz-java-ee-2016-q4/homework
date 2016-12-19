@@ -73,7 +73,7 @@ public class RssController {
         }
 	    
 	    response.setCharacterEncoding("UTF-8");
-        response.setContentType("application/rss+xml");	    
+        response.setContentType("application/rss+xml");
         response.getWriter().write(out);
 	}
 }
