@@ -7,7 +7,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -17,16 +20,52 @@ public class UserDao implements GenericDao<UserDto> {
 
     @Override
     public Collection<UserDto> findAll() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try (Connection conn = DataSourceManager.getDataSource().getConnection()) {
+            Statement statement = conn.createStatement();
+            ResultSet results = statement.executeQuery(UserQueries.FIND_ALL_USER);
+            Set<UserDto> users = new HashSet<>();
+            while (results.next()) {
+                users.add(convertRecordToDto(results));
+            }
+
+            return users;
+        } catch (SQLException sqle) {
+            LOG.warn("Find all users failed!", sqle);
+            return new HashSet<>();
+        }
     }
 
     @Override
     public UserDto findById(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try (Connection conn = DataSourceManager.getDataSource().getConnection()) {
+            PreparedStatement prStatement = conn.prepareStatement(UserQueries.FIND_USER_BY_ID);
+            prStatement.setInt(1, id);
+
+            ResultSet result = prStatement.executeQuery();
+            if (result.next()) {
+                return convertRecordToDto(result);
+            }
+            return null;
+        } catch (SQLException sqle) {
+            LOG.warn("Find user by id failed!", sqle);
+            return null;
+        }
     }
 
     public UserDto findByUsername(String username) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try (Connection conn = DataSourceManager.getDataSource().getConnection()) {
+            PreparedStatement prStatement = conn.prepareStatement(UserQueries.FIND_USER_BY_USERNAME);
+            prStatement.setString(1, username);
+
+            ResultSet result = prStatement.executeQuery();
+            if (result.next()) {
+                return convertRecordToDto(result);
+            }
+            return null;
+        } catch (SQLException sqle) {
+            LOG.warn("Find user by id failed!", sqle);
+            return null;
+        }
     }
 
     @Override
@@ -61,6 +100,27 @@ public class UserDao implements GenericDao<UserDto> {
             LOG.error(message, sqle);
             throw new SaveUnsuccessfulException(message, sqle);
         }
+    }
+
+    private UserDto convertRecordToDto(ResultSet record) throws SQLException {
+        UserDto dto = new UserDto();
+
+        dto.setId(record.getInt("id"));
+        dto.setGender(record.getString("gender"));
+        dto.setFirstName(record.getString("first_name"));
+        dto.setLastName(record.getString("last_name"));
+        dto.setStreet(record.getString("street"));
+        dto.setCity(record.getString("city"));
+        dto.setPostCode(record.getInt("post_code"));
+        dto.setEmail(record.getString("email"));
+        dto.setUsername(record.getString("username"));
+        dto.setPassword(record.getString("password"));
+        dto.setDob(record.getDate("date_of_birth"));
+        dto.setRegistered(record.getDate("registered"));
+        dto.setPhone(record.getString("phone"));
+        dto.setPicUrl(record.getString("pic_url"));
+
+        return dto;
     }
 
 }
