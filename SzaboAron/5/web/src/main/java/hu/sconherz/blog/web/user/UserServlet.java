@@ -62,10 +62,10 @@ public class UserServlet extends HttpServlet {
 
     private List<UserVO> scanUserList(HttpServletRequest request, List<UserVO> userList) {
         if (!"".equals(request.getParameter("email"))) {
-            userList = userList.stream().filter(user -> user.getEmail().equals(request.getParameter("e-mail")))
+            userList = userList.stream().filter(user -> user.getEmail().equals(request.getParameter("email")))
                     .collect(Collectors.toList());
         }
-        if (!"".equals(request.getParameter("city").equals(""))) {
+        if (!"".equals(request.getParameter("city"))) {
             userList = userList.stream().filter(user -> user.getCity().equals(request.getParameter("city")))
                     .collect(Collectors.toList());
         }
