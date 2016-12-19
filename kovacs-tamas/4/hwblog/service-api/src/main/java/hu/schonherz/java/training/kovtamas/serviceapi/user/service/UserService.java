@@ -1,8 +1,7 @@
 package hu.schonherz.java.training.kovtamas.serviceapi.user.service;
 
-import hu.schonherz.java.training.kovtamas.serviceapi.user.exception.UserAlreadyExistsException;
 import hu.schonherz.java.training.kovtamas.serviceapi.user.exception.UserNotFoundException;
-import hu.schonherz.java.training.kovtamas.serviceapi.user.vo.User;
+import hu.schonherz.java.training.kovtamas.serviceapi.user.oldvo.User;
 import java.util.List;
 
 public interface UserService {

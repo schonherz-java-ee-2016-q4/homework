@@ -1,69 +1,27 @@
 package hu.schonherz.java.training.kovtamas.serviceapi.user.vo;
 
-import javax.annotation.Generated;
-
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
-
-@Generated("org.jsonschema2pojo")
 public class Name {
 
-    @SerializedName("title")
-    @Expose
-    private String title;
-    @SerializedName("first")
-    @Expose
-    private String first;
-    @SerializedName("last")
-    @Expose
-    private String last;
+    private String firstName;
+    private String lastName;
 
-    /**
-     *
-     * @return The title
-     */
-    public String getTitle() {
-        return title;
+    public Name() {
     }
 
-    /**
-     *
-     * @param title The title
-     */
-    public void setTitle(String title) {
-        this.title = title;
+    public String getFirstName() {
+        return firstName;
     }
 
-    /**
-     *
-     * @return The first
-     */
-    public String getFirst() {
-        return first;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    /**
-     *
-     * @param first The first
-     */
-    public void setFirst(String first) {
-        this.first = first;
+    public String getLastName() {
+        return lastName;
     }
 
-    /**
-     *
-     * @return The last
-     */
-    public String getLast() {
-        return last;
-    }
-
-    /**
-     *
-     * @param last The last
-     */
-    public void setLast(String last) {
-        this.last = last;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
 }

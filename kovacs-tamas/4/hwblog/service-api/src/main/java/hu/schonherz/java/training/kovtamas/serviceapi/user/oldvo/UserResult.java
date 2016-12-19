@@ -1,4 +1,4 @@
-package hu.schonherz.java.training.kovtamas.serviceapi.user.vo;
+package hu.schonherz.java.training.kovtamas.serviceapi.user.oldvo;
 
 import java.util.ArrayList;
 import java.util.List;

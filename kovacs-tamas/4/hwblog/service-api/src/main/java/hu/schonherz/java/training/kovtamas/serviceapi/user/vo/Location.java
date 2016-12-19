@@ -1,88 +1,36 @@
 package hu.schonherz.java.training.kovtamas.serviceapi.user.vo;
 
-import javax.annotation.Generated;
-
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
-
-@Generated("org.jsonschema2pojo")
 public class Location {
 
-    @SerializedName("street")
-    @Expose
-    private String street;
-    @SerializedName("city")
-    @Expose
+    private int postCode;
     private String city;
-    @SerializedName("state")
-    @Expose
-    private String state;
-    @SerializedName("postcode")
-    @Expose
-    private Integer postcode;
+    private String street;
 
-    /**
-     *
-     * @return The street
-     */
-    public String getStreet() {
-        return street;
+    public Location() {
     }
 
-    /**
-     *
-     * @param street The street
-     */
-    public void setStreet(String street) {
-        this.street = street;
+    public int getPostCode() {
+        return postCode;
     }
 
-    /**
-     *
-     * @return The city
-     */
+    public void setPostCode(int postCode) {
+        this.postCode = postCode;
+    }
+
     public String getCity() {
         return city;
     }
 
-    /**
-     *
-     * @param city The city
-     */
     public void setCity(String city) {
         this.city = city;
     }
 
-    /**
-     *
-     * @return The state
-     */
-    public String getState() {
-        return state;
+    public String getStreet() {
+        return street;
     }
 
-    /**
-     *
-     * @param state The state
-     */
-    public void setState(String state) {
-        this.state = state;
-    }
-
-    /**
-     *
-     * @return The postcode
-     */
-    public Integer getPostcode() {
-        return postcode;
-    }
-
-    /**
-     *
-     * @param postcode The postcode
-     */
-    public void setPostcode(Integer postcode) {
-        this.postcode = postcode;
+    public void setStreet(String street) {
+        this.street = street;
     }
 
 }
