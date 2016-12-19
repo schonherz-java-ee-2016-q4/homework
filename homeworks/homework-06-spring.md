@@ -3,9 +3,11 @@
 
 **A feladat a következő**:  
 Az 5. házi feladatban leimplementált blog alkalmazást refaktoráljátok a Spring keretrendszer segítségével.
-A data layer használja Spring JDBC modulját, a megjelenítési réteg Servleteit pedig cseréljétek le Spring Web MVC-s megoldásra.
-A kódkomponenseket Springesítsétek, hogy tudjatok dependency injectiont alkalmazni.
-A felhasználókezelést, autentikációt, autorizációt a Spring Security modul segítségével oldjátok meg.
+- A data layer használja Spring JDBC modulját.
+- A servleteket/filtereket cseréljétek le Spring Web MVC-s megoldásra.
+- A kódkomponenseket Springesítsétek, hogy tudjatok dependency injectiont alkalmazni.
+- A felhasználókezelést, autentikációt, autorizációt a Spring Security modul segítségével oldjátok meg.
+- Bónusz: normális logging használata (SLF4J + Logback vagy Log4J)
 
 A következő találkozásunkig van időtök elkészíteni.
 Mindenkinek boldog karácsonyt, kellemes szilvesztert, sok locsolót kívánok!
