@@ -12,9 +12,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
 
-import hu.schonherz.blog.service.UserServiceImpl;
 import hu.schonherz.blog.service.api.user.service.UserService;
 import hu.schonherz.blog.service.api.user.vo.UserVO;
+import hu.schonherz.blog.service.userservice.UserServiceImpl;
 
 /**
  * Servlet implementation class UserServlet
@@ -23,7 +23,7 @@ import hu.schonherz.blog.service.api.user.vo.UserVO;
 public class UserServlet extends HttpServlet {
     private static final long serialVersionUID = 7157138471151322569L;
     private final UserService userService = new UserServiceImpl();
-    private final Gson GSON = new Gson();
+    private final Gson gson = new Gson();
 
     /**
      * @see HttpServlet#HttpServlet()
@@ -43,7 +43,7 @@ public class UserServlet extends HttpServlet {
         if (!request.getParameterMap().isEmpty()) {
             users = scanUserList(request, users);
         }
-        String resultJson = GSON.toJson(users);
+        String resultJson = gson.toJson(users);
         response.setCharacterEncoding("UTF-8");
         response.setContentType("application/json");
         response.getWriter().write(resultJson);

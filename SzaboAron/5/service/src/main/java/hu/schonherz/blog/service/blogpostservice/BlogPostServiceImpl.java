@@ -5,6 +5,8 @@ import java.util.List;
 
 import hu.schonherz.blog.data.dao.BlogPostDAOImpl;
 import hu.schonherz.blog.data.dao.GenericDAO;
+import hu.schonherz.blog.data.dao.UserDAO;
+import hu.schonherz.blog.data.dao.UserDAOImpl;
 import hu.schonherz.blog.data.dto.BlogPostDTO;
 import hu.schonherz.blog.service.api.blogpost.service.BlogPostService;
 import hu.schonherz.blog.service.api.blogpost.vo.BlogPostVO;
@@ -12,12 +14,14 @@ import hu.schonherz.blog.service.api.blogpost.vo.BlogPostVO;
 public class BlogPostServiceImpl implements BlogPostService {
 
     GenericDAO<BlogPostDTO> dao = new BlogPostDAOImpl();
+    UserDAO userdao = new UserDAOImpl();
 
     @Override
     public List<BlogPostVO> findAllPost() {
         List<BlogPostVO> postList = new ArrayList<>();
         for (BlogPostDTO dto : dao.findAll()) {
             postList.add(toVO(dto));
+
         }
         return postList;
     }

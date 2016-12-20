@@ -223,21 +223,13 @@
                 </div>
             </div>
 
-            </div>
-            <!-- /.form-group -->
-
-
-            <!-- /.form-group -->
-
             <div class="form-group">
                 <div class="col-sm-12">
                     <button type="submit" class="btn btn-primary btn-block" id="btn_register">Register</button>
                 </div>
             </div>
         </form>
-        <!-- /form -->
     </div>
-    <!-- ./container -->
 
 
 

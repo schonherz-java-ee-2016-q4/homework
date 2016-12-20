@@ -24,7 +24,6 @@ function get_user_list() {
 	$(".loader").show();
 	var size = new Number($('#number').val());
 	$.get("${pageContext.request.contextPath}/UserServlet", function(res) {
-		console.log(res);
 		display_user_list(res);
 		$(".loader").hide();
 		$('#result').show();

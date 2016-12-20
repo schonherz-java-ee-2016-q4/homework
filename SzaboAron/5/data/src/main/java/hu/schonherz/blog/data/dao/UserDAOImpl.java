@@ -29,7 +29,6 @@ public class UserDAOImpl implements UserDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
         return users;
     }
 

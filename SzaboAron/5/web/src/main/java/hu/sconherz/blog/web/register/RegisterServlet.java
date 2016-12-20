@@ -11,9 +11,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import hu.schonherz.blog.service.UserServiceImpl;
 import hu.schonherz.blog.service.api.user.service.UserService;
 import hu.schonherz.blog.service.api.user.vo.UserVO;
+import hu.schonherz.blog.service.userservice.UserServiceImpl;
 
 @WebServlet("/Register")
 public class RegisterServlet extends HttpServlet {
