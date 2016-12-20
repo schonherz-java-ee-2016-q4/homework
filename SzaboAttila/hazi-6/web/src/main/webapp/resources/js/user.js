@@ -7,7 +7,7 @@ $(document).ready(function() {
 		$(".loader").show();
 		
 		var size = new Number($('#number').val());
-		$.get(getContextPath() + "/UserServlet", function(res) {
+		$.get(getContextPath() + "/listUsers", function(res) {
 			$('#result').html('');
 			results = res.results;
 			$.each(res.results, function(index, value) {

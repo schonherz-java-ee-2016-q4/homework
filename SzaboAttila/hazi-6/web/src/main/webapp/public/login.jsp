@@ -1,71 +1,53 @@
-<!DOCTYPE html>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-
+<%@taglib prefix="template" tagdir="/WEB-INF/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<template:template>
 
+    <jsp:attribute name="title">
+    Sign in
+    </jsp:attribute>
 
-<title>Signin Template for Bootstrap</title>
+    <jsp:attribute name="customHead">
+    <link href="<c:url value="/resources/css/signin.css"/>" rel="stylesheet">
+    </jsp:attribute>
 
-<!-- Bootstrap core CSS -->
-<link href="<c:url value="/resources/css/bootstrap.min.css"/>"
-	rel="stylesheet">
+    <jsp:attribute name="customBody">
+        <div class="row">
+            <div class="col-sm-6 col-sm-offset-3">
+                <c:if test="${param.error}">
+                    <div class="alert alert-danger" role="alert">
+                        <span class="glyphicon glyphicon-exclamation-sign"
+                            aria-hidden="true"></span> Invalid username or password!
+                    </div>
+                </c:if>
+            </div>
+        </div>
+        <div class="row">
+            <form class="form-signin" action="<c:url value="/login" ></c:url>"
+                method="post">
+                <h2 class="form-signin-heading">Please sign in</h2>
+                <label for="inputEmail" class="sr-only">Username</label>
+                <input
+                    type="text" name="j_username" id="inputEmail" class="form-control"
+                    placeholder="Username" required autofocus>
+                <label for="inputPassword" class="sr-only">Password</label>
+                <input
+                    type="password" name="j_password" id="inputPassword"
+                    class="form-control" placeholder="Password" required>
+                <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+            </form>
+        </div>
+    </jsp:attribute>
+    
+    <jsp:attribute name="customFooter">
+    </jsp:attribute>
+    
+    <jsp:attribute name="customScripts">
+    <script>
+        $('#nav_login').addClass('active');
+    </script>
+    </jsp:attribute>
 
-
-<!-- Custom styles for this template -->
-<link href="<c:url value="/resources/css/signin.css"/>" rel="stylesheet">
-
-<!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
-<!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
-
-<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-<!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
-</head>
-
-<body>
-
-	<div class="container">
-		<div class="row">
-			<div class="col-sm-6 col-sm-offset-3">
-				<c:if test="${param.error}">
-					<div class="alert alert-danger" role="alert"
-						style="display: block;">
-						<span class="glyphicon glyphicon-exclamation-sign"
-							aria-hidden="true"></span> Invalid username or password!
-					</div>
-				</c:if>
-			</div>
-		</div>
-		<div class="row">
-			<form class="form-signin" action="<c:url value="/login" ></c:url>"
-				method="post">
-				<h2 class="form-signin-heading">Please sign in</h2>
-				<label for="inputEmail" class="sr-only">Username</label>
-				<input
-					type="text" name="j_username" id="inputEmail" class="form-control"
-					placeholder="Username" required autofocus>
-				<label for="inputPassword" class="sr-only">Password</label>
-				<input
-					type="password" name="j_password" id="inputPassword"
-					class="form-control" placeholder="Password" required>
-				<button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-			</form>
-		</div>
-
-	</div>
-	<!-- /container -->
-
-
-
-</body>
-</html>
+</template:template>
+        

@@ -15,7 +15,8 @@
     <jsp:attribute name="customBody">
 
         <div class="blog-header">
-            <h1 class="blog-title">Registration successful</h1>
+            <h1 class="blog-title" align="center">Registration successful.</h1>
+            <h3 align="center">Create your own posts now!</h3>
         </div>
         
     </jsp:attribute>
