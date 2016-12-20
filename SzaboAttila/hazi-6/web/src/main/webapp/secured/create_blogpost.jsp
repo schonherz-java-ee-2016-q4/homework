@@ -63,9 +63,6 @@
     </jsp:attribute>
     
     <jsp:attribute name="customScripts">
-         <script>
-        $('#nav_create_post').addClass('active');
-        </script>
     </jsp:attribute>
 
 </template:template>

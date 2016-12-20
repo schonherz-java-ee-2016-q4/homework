@@ -14,7 +14,9 @@
 	<jsp:attribute name="customBody">
 		<div class="blog-header">
 			<h1 class="blog-title">Blog</h1>
-			<p class="lead blog-description">Log in and select a post!</p>
+			<c:if test="${pageContext.request.userPrincipal==null}">
+			<p class="lead blog-description">Log in and read blog posts!</p>
+			</c:if>
 		</div>
 
 		<div class="row">
@@ -41,6 +43,9 @@
 	</jsp:attribute>
 	<jsp:attribute name="customScripts">
 	    <script src="<c:url value="/resources/js/index.js"/>"></script>
+	    <script>
+	      $('#nav_home').addClass('active');
+	    </script>
     </jsp:attribute>
 
 </template:template>

@@ -13,11 +13,11 @@
     </jsp:attribute>
 
     <jsp:attribute name="customBody">
-
-        <div class="blog-header">
-            <h1 class="blog-title">Registration successful</h1>
-        </div>
-        
+	    <div class="jumbotron">
+			<h1>Registration successful</h1>
+			<p>Now you can log in anytime you like!</p>
+			<p><a class="btn btn-primary btn-lg" href="<c:url value="/public/login.jsp"/>">Login</a></p>
+	    </div>
     </jsp:attribute>
     
     <jsp:attribute name="customFooter">

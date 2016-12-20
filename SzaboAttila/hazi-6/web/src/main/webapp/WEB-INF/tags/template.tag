@@ -30,43 +30,61 @@
 
 </head>
 <body>
-
-	<div class="blog-masthead">
-		<div class="container">
-			<nav class="blog-nav">
-				<a class="blog-nav-item" href="<c:url value="/index.jsp"/>"
-					id="nav_home">Home</a> <a class="blog-nav-item"
-					href="<c:url value="/secured/secured.jsp"/>" id="nav_users">Users</a>
-
-				<div class="navbar-right">
-					<c:if test="${pageContext.request.userPrincipal==null}">
-						<a class="blog-nav-item" href="<c:url value="/public/login.jsp"/>">Login</a>
-						<a class="blog-nav-item"
-							href="<c:url value="/public/register.jsp"/>">Register</a>
-					</c:if>
-					<c:if test="${pageContext.request.userPrincipal!=null}">
-						<a class="blog-nav-item"
-							href="<c:url value="/secured/create_blogpost.jsp"/>" id="nav_create_post">Create
-							post</a>
-						<a class="blog-nav-item" href="<c:url value="/logout"/>">Logout</a>
-					</c:if>
-					<a href="<c:url value="/rss"/>"><i class="fa fa-rss" aria-hidden="true"></i></a>
-				</div>
-
-			</nav>
-		</div>
-	</div>
-
-
+	<nav class="navbar navbar-default">
+	  <div class="container">
+	    <div class="navbar-header">
+	      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+	        <span class="sr-only">Toggle navigation</span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	      </button>
+	      <a class="navbar-brand" href="<c:url value="/index.jsp"/>">Blog</a>
+	    </div>
+	
+	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+	      <ul class="nav navbar-nav">
+	        <li id="nav_home"><a class="blog-nav-item" href="<c:url value="/index.jsp"/>">Home</a></li>
+	        <c:if test="${pageContext.request.userPrincipal!=null}">
+	        <li id="nav_users"><a class="blog-nav-item" href="<c:url value="/secured/secured.jsp"/>">Users</a></li>
+	        </c:if>
+	      </ul>
+	      <ul class="nav navbar-nav navbar-right">
+	        <c:if test="${pageContext.request.userPrincipal==null}">
+	        <li id="nav_login"><a class="blog-nav-item" href="<c:url value="/public/login.jsp"/>">Login</a></li>
+	        <li id="nav_register"><a class="blog-nav-item" href="<c:url value="/public/register.jsp"/>">Register</a></li>
+	        </c:if>
+	        
+	        <c:if test="${pageContext.request.userPrincipal!=null}">
+	        <li class="dropdown">
+                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">${pageContext.request.userPrincipal.name} <span class="caret"></span></a>
+                 <ul class="dropdown-menu" role="menu">
+                   <li><a class="blog-nav-item" href="<c:url value="/secured/create_blogpost.jsp"/>">Create post</a></li>
+                   <li class="divider"></li>
+                   <li><a class="blog-nav-item" href="<c:url value="/logout"/>">Logout</a></li>
+                 </ul>
+               </li>
+               </c:if>
+               
+               <li><a href="<c:url value="/rss"/>"><i class="fa fa-rss" aria-hidden="true"></i></a></li>
+	      </ul>
+	    </div>
+	  </div>
+   </nav>
+	
+	
 	<div class="container">
+        <div class="row">
+          <div class="col-md-10 col-md-offset-1">
 		<jsp:invoke fragment="customBody" />
+		  </div>
+		</div>
 	</div>
 
 
 	<footer class="blog-footer">
 		<p>
-			Blog template built for <a href="http://getbootstrap.com">Bootstrap</a>
-			by <a href="https://twitter.com/mdo">@mdo</a>.
+			Thanks to visit the site!
 		</p>
 		<p>
 			<a href="#">Back to top</a>

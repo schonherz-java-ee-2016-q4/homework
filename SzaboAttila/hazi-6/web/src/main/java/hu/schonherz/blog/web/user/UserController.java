@@ -24,7 +24,7 @@ public class UserController {
     @Autowired
     private UserService userService; 
     
-    @RequestMapping(path="/UserServlet", method=RequestMethod.GET)
+    @RequestMapping(path="/listUsers", method=RequestMethod.GET)
 	public void listUsers(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		List<User> users = userService.findAllUser();

@@ -25,7 +25,6 @@ public class CustomUserDetailsService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(final String username)
             throws UsernameNotFoundException {
-
         hu.schonherz.blog.service.api.user.vo.User user;
         try {
             user = userService.findUserByUsername(username);
@@ -41,13 +40,11 @@ public class CustomUserDetailsService implements UserDetailsService {
             e.printStackTrace();
             throw new UsernameNotFoundException(e.getMessage());
         }
-
     }
 
     private User buildUserForAuthentication(hu.schonherz.blog.service.api.user.vo.User user,
             List<GrantedAuthority> authorities) {
-        return new User(user.getLogin().getUsername(), user.getLogin().getPassword(), true, true,
-                true, true, authorities);
+        return new User(user.getLogin().getUsername(), user.getLogin().getPassword(), authorities);
     }
     
     private List<GrantedAuthority> buildUserAuthority(List<String> userRoles) {
