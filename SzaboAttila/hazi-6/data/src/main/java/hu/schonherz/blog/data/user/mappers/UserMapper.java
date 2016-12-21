@@ -11,7 +11,6 @@ public class UserMapper implements RowMapper<UserDto> {
     @Override
     public UserDto mapRow(ResultSet rs, int arg1) throws SQLException {
         UserDto back = new UserDto();
-
         back.setId(rs.getInt("id"));
         back.setDob(rs.getDate("dob"));
         back.setRegistered(rs.getDate("registered"));
@@ -19,7 +18,7 @@ public class UserMapper implements RowMapper<UserDto> {
         back.setEmail(rs.getString("email"));
         back.setGender(rs.getString("gender"));
         back.setPhone(rs.getString("phone"));
-
+        back.setRole(rs.getString("role"));
         return back;
     }
 }

@@ -7,13 +7,13 @@ import java.util.List;
 import hu.schonherz.blog.data.blog.dto.PostDto;
 import hu.schonherz.blog.data.blog.dto.PostTagDto;
 import hu.schonherz.blog.service.api.blog.vo.BlogPost;
-import hu.schonherz.blog.service.api.user.vo.User;
+import hu.schonherz.blog.service.api.user.vo.UserVo;
 
 public class DtoToBlogPost {
 
     private BlogPost blogPost;
     
-    public DtoToBlogPost(PostDto postDto, User author, List<PostTagDto> postTagsDto) {
+    public DtoToBlogPost(PostDto postDto, UserVo author, List<PostTagDto> postTagsDto) {
         blogPost = new BlogPost();
         
         blogPost.setId(postDto.getId());

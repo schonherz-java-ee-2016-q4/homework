@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.google.gson.Gson;
 
 import hu.schonherz.blog.service.api.service.UserService;
-import hu.schonherz.blog.service.api.user.vo.User;
-import hu.schonherz.blog.service.api.user.vo.UserResult;
+import hu.schonherz.blog.service.api.user.vo.UserVo;
+import hu.schonherz.blog.service.api.user.vo.UserResultVo;
 
 @Controller
 public class UserController {
@@ -27,9 +27,9 @@ public class UserController {
     @RequestMapping(path="/listUsers", method=RequestMethod.GET)
 	public void listUsers(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		List<User> users = userService.findAllUser();
+		List<UserVo> users = userService.findAllUser();
 		Gson gson = new Gson();
-		UserResult result = new UserResult();
+		UserResultVo result = new UserResultVo();
 		result.setResults(users);
 		String resultJson = gson.toJson(result);
 		

@@ -3,13 +3,13 @@ package hu.schonherz.blog.service.api.service;
 import java.util.List;
 
 import hu.schonherz.blog.service.api.user.exception.UserNotFoundException;
-import hu.schonherz.blog.service.api.user.vo.User;
+import hu.schonherz.blog.service.api.user.vo.UserVo;
 
 public interface UserService {
 
-	List<User> findAllUser();
-	User findUserByUsername(String name) throws UserNotFoundException;
-	User findByUserId(int id);
+	List<UserVo> findAllUser();
+	UserVo findUserByUsername(String name) throws UserNotFoundException;
+	UserVo findByUserId(int id);
 	
-	void addNewUser(User user);
+	void addNewUser(UserVo user);
 }

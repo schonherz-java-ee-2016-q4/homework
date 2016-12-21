@@ -10,6 +10,7 @@ public class UserDto {
     private String phone;
     private String cell;
     private String gender;
+    private String role;
     
     public UserDto() {
     }
@@ -70,26 +71,34 @@ public class UserDto {
         this.gender = gender;
     }
 
-    @Override
-    public String toString() {
-        StringBuilder builder = new StringBuilder();
-        builder.append("UserDTO [id=");
-        builder.append(id);
-        builder.append(", email=");
-        builder.append(email);
-        builder.append(", dob=");
-        builder.append(dob);
-        builder.append(", registered=");
-        builder.append(registered);
-        builder.append(", phone=");
-        builder.append(phone);
-        builder.append(", cell=");
-        builder.append(cell);
-        builder.append(", gender=");
-        builder.append(gender);
-        builder.append("]");
-        return builder.toString();
-    }
-    
-    
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("UserDto [id=");
+		builder.append(id);
+		builder.append(", email=");
+		builder.append(email);
+		builder.append(", dob=");
+		builder.append(dob);
+		builder.append(", registered=");
+		builder.append(registered);
+		builder.append(", phone=");
+		builder.append(phone);
+		builder.append(", cell=");
+		builder.append(cell);
+		builder.append(", gender=");
+		builder.append(gender);
+		builder.append(", role=");
+		builder.append(role);
+		builder.append("]");
+		return builder.toString();
+	}
 }

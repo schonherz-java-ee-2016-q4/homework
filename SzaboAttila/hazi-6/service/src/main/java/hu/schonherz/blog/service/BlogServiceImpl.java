@@ -15,7 +15,7 @@ import hu.schonherz.blog.data.user.dao.LoginDao;
 import hu.schonherz.blog.service.api.blog.vo.BlogPost;
 import hu.schonherz.blog.service.api.service.BlogService;
 import hu.schonherz.blog.service.api.service.UserService;
-import hu.schonherz.blog.service.api.user.vo.User;
+import hu.schonherz.blog.service.api.user.vo.UserVo;
 import hu.schonherz.blog.service.blog.convert.BlogPostToDto;
 import hu.schonherz.blog.service.blog.convert.DtoToBlogPost;
 
@@ -40,7 +40,7 @@ public class BlogServiceImpl implements BlogService {
         
         for (PostDto postDto : headers) {
             List<PostTagDto> postTagsDto = postTagDao.findByPostId(postDto.getId());
-            User author = userService.findByUserId(postDto.getUser_id());
+            UserVo author = userService.findByUserId(postDto.getUser_id());
             
             t.add(new DtoToBlogPost(postDto, author, postTagsDto).getBlogPost());
         }
@@ -51,7 +51,7 @@ public class BlogServiceImpl implements BlogService {
     public BlogPost getBlogPostById(int id) {
         PostDto postDto = postDao.findByPostId(id);
         List<PostTagDto> postTagsDto = postTagDao.findByPostId(id);
-        User poster = userService.findByUserId(postDto.getUser_id());
+        UserVo poster = userService.findByUserId(postDto.getUser_id());
         
         return new DtoToBlogPost(postDto, poster, postTagsDto).getBlogPost();
     }
