@@ -15,6 +15,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import hu.schonherz.blog.service.api.service.UserService;
+import hu.schonherz.blog.service.api.user.vo.UserVo;
 
 @Service("customUserDetailsService")
 public class CustomUserDetailsService implements UserDetailsService {
@@ -25,16 +26,14 @@ public class CustomUserDetailsService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(final String username)
             throws UsernameNotFoundException {
-        hu.schonherz.blog.service.api.user.vo.User user;
+        UserVo user;
         try {
             user = userService.findUserByUsername(username);
             
             if (user == null) {
                 throw new UsernameNotFoundException(username);
             }
-            List<String> userRoles = new ArrayList<>();
-            userRoles.add("ROLE_USER");
-            List<GrantedAuthority> authorities = buildUserAuthority(userRoles);
+            List<GrantedAuthority> authorities = buildUserAuthority(user);
             return buildUserForAuthentication(user, authorities);
         } catch (Exception e) {
             e.printStackTrace();
@@ -42,13 +41,27 @@ public class CustomUserDetailsService implements UserDetailsService {
         }
     }
 
-    private User buildUserForAuthentication(hu.schonherz.blog.service.api.user.vo.User user,
+    private User buildUserForAuthentication(UserVo user,
             List<GrantedAuthority> authorities) {
         return new User(user.getLogin().getUsername(), user.getLogin().getPassword(), authorities);
     }
     
-    private List<GrantedAuthority> buildUserAuthority(List<String> userRoles) {
-
+    private List<GrantedAuthority> buildUserAuthority(UserVo user) {
+    	List<String> userRoles = new ArrayList<>();
+    	
+    	if ("user".equals(user.getRole())) {
+    		userRoles.add("ROLE_USER");
+    	}
+    	if ("moderator".equals(user.getRole())) {
+    		userRoles.add("ROLE_USER");
+    		userRoles.add("ROLE_MOD");
+    	}
+    	if ("admin".equals(user.getRole())) {
+    		userRoles.add("ROLE_USER");
+    		userRoles.add("ROLE_MOD");
+    		userRoles.add("ROLE_ADMIN");
+    	}
+    	
         Set<GrantedAuthority> setAuths = new HashSet<GrantedAuthority>();
 
         for (String userRole : userRoles) {

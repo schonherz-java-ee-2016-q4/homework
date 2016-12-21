@@ -2,7 +2,7 @@ package hu.schonherz.blog.service.api.blog.vo;
 
 import java.util.List;
 
-import hu.schonherz.blog.service.api.user.vo.User;
+import hu.schonherz.blog.service.api.user.vo.UserVo;
 
 public class BlogPost {
     private int id;
@@ -10,7 +10,7 @@ public class BlogPost {
     private String content;
     private String title;
     private String posted;
-    private User author;
+    private UserVo author;
     
     public BlogPost() {
     }
@@ -55,11 +55,11 @@ public class BlogPost {
         this.posted = posted;
     }
 
-    public User getAuthor() {
+    public UserVo getAuthor() {
         return author;
     }
 
-    public void setAuthor(User author) {
+    public void setAuthor(UserVo author) {
         this.author = author;
     }
 

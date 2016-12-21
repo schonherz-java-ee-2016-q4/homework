@@ -9,7 +9,8 @@ CREATE TABLE IF NOT EXISTS users (
     registered DATE NOT NULL,
     phone VARCHAR(30) NOT NULL,
     cell VARCHAR(30) NOT NULL,
-    gender VARCHAR(1) NOT NULL
+    gender VARCHAR(1) NOT NULL,
+    role VARCHAR(20) DEFAULT 'user'
 );
 
 CREATE TABLE IF NOT EXISTS location (

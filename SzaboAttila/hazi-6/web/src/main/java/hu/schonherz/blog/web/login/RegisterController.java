@@ -20,12 +20,12 @@ import org.springframework.web.multipart.MultipartFile;
 
 import hu.schonherz.blog.service.api.service.UserService;
 import hu.schonherz.blog.service.api.user.exception.UserNotFoundException;
-import hu.schonherz.blog.service.api.user.vo.Id;
-import hu.schonherz.blog.service.api.user.vo.Location;
-import hu.schonherz.blog.service.api.user.vo.Login;
-import hu.schonherz.blog.service.api.user.vo.Name;
-import hu.schonherz.blog.service.api.user.vo.Picture;
-import hu.schonherz.blog.service.api.user.vo.User;
+import hu.schonherz.blog.service.api.user.vo.IdVo;
+import hu.schonherz.blog.service.api.user.vo.LocationVo;
+import hu.schonherz.blog.service.api.user.vo.LoginVo;
+import hu.schonherz.blog.service.api.user.vo.NameVo;
+import hu.schonherz.blog.service.api.user.vo.PictureVo;
+import hu.schonherz.blog.service.api.user.vo.UserVo;
 
 @Controller
 public class RegisterController {
@@ -43,7 +43,7 @@ public class RegisterController {
         RegisterForm registerForm = new RegisterForm(request);
 
         String username = registerForm.getUsername();
-        User user = null;
+        UserVo user = null;
         
         try {
             userService.findUserByUsername(username);
@@ -93,16 +93,16 @@ public class RegisterController {
     }
     
 
-    private User createUser(RegisterForm registerForm, UserService userService) {
-        User user = new User();
+    private UserVo createUser(RegisterForm registerForm, UserService userService) {
+        UserVo user = new UserVo();
         
-        Login login = new Login();
+        LoginVo login = new LoginVo();
         login.setUsername(registerForm.getUsername());
         login.setPassword(registerForm.getPassword());
         user.setEmail(registerForm.getEmail());
         user.setLogin(login);
         
-        Name name = new Name();
+        NameVo name = new NameVo();
         name.setTitle(registerForm.getTitle());
         name.setFirst(registerForm.getFirstname());
         name.setLast(registerForm.getLastname());
@@ -110,7 +110,7 @@ public class RegisterController {
         user.setGender(registerForm.getGender());
         user.setDob(registerForm.getDob() + " 00:00:00");
         
-        Location location = new Location();
+        LocationVo location = new LocationVo();
         location.setState(registerForm.getState());
         location.setPostcode(Integer.parseInt(registerForm.getPostcode()));
         location.setCity(registerForm.getCity());
@@ -121,13 +121,13 @@ public class RegisterController {
         user.setCell(registerForm.getCell());
         user.setRegistered(new SimpleDateFormat("yyyy-MM-dd").format(new Date()) + " 00:00:00");
         
-        Picture picture = new Picture();
+        PictureVo picture = new PictureVo();
         picture.setLarge(registerForm.getImageurl());
         picture.setMedium(registerForm.getImageurl());
         picture.setThumbnail(registerForm.getImageurl());
         user.setPicture(picture);
         
-        Id id = new Id();
+        IdVo id = new IdVo();
         id.setName("");
         id.setValue("");
         user.setId(id);

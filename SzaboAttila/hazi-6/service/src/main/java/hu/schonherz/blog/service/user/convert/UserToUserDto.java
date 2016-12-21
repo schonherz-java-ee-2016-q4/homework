@@ -9,7 +9,7 @@ import hu.schonherz.blog.data.user.dto.LoginDto;
 import hu.schonherz.blog.data.user.dto.NameDto;
 import hu.schonherz.blog.data.user.dto.PictureDto;
 import hu.schonherz.blog.data.user.dto.UserDto;
-import hu.schonherz.blog.service.api.user.vo.User;
+import hu.schonherz.blog.service.api.user.vo.UserVo;
 
 public class UserToUserDto {
 
@@ -19,7 +19,7 @@ public class UserToUserDto {
     private PictureDto pictureDto;
     private NameDto nameDto;
     
-    public UserToUserDto(User user) throws ParseException {
+    public UserToUserDto(UserVo user) throws ParseException {
         userDto = new UserDto();
         
         userDto.setEmail(user.getEmail());

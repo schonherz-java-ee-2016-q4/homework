@@ -17,7 +17,7 @@ import hu.schonherz.blog.service.api.blog.vo.BlogPost;
 import hu.schonherz.blog.service.api.service.BlogService;
 import hu.schonherz.blog.service.api.service.UserService;
 import hu.schonherz.blog.service.api.user.exception.UserNotFoundException;
-import hu.schonherz.blog.service.api.user.vo.User;
+import hu.schonherz.blog.service.api.user.vo.UserVo;
 
 @Controller
 public class CreatePostController {
@@ -32,7 +32,7 @@ public class CreatePostController {
 	public void createPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, UserNotFoundException {
 	    request.setCharacterEncoding("UTF-8");
         
-	    User user = userService.findUserByUsername(request.getUserPrincipal().getName());
+	    UserVo user = userService.findUserByUsername(request.getUserPrincipal().getName());
 	    
 	    CreatePostForm cpf = new CreatePostForm(request, user);
 	    BlogPost blogPost = createBlogPost(cpf);

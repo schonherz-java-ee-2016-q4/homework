@@ -5,18 +5,18 @@ import hu.schonherz.blog.data.user.dto.LoginDto;
 import hu.schonherz.blog.data.user.dto.NameDto;
 import hu.schonherz.blog.data.user.dto.PictureDto;
 import hu.schonherz.blog.data.user.dto.UserDto;
-import hu.schonherz.blog.service.api.user.vo.Location;
-import hu.schonherz.blog.service.api.user.vo.Login;
-import hu.schonherz.blog.service.api.user.vo.Name;
-import hu.schonherz.blog.service.api.user.vo.Picture;
-import hu.schonherz.blog.service.api.user.vo.User;
+import hu.schonherz.blog.service.api.user.vo.LocationVo;
+import hu.schonherz.blog.service.api.user.vo.LoginVo;
+import hu.schonherz.blog.service.api.user.vo.NameVo;
+import hu.schonherz.blog.service.api.user.vo.PictureVo;
+import hu.schonherz.blog.service.api.user.vo.UserVo;
 
 public class UserDtoToUser {
-    private User user;
+    private UserVo user;
 
     public UserDtoToUser(UserDto userDto, LocationDto locationDto, LoginDto loginDto, PictureDto pictureDto,
             NameDto nameDto) {
-        user = new User();
+        user = new UserVo();
         
         user.setCell(userDto.getCell());
         user.setDob(userDto.getDob().toString());
@@ -24,26 +24,27 @@ public class UserDtoToUser {
         user.setEmail(userDto.getEmail());
         user.setPhone(userDto.getPhone());
         user.setGender("f".equals(userDto.getGender()) ? "female" : "male");
+        user.setRole(userDto.getRole());
         
-        Location loc = new Location();
+        LocationVo loc = new LocationVo();
         loc.setCity(locationDto.getCity());
         loc.setPostcode(locationDto.getPostcode());
         loc.setState(locationDto.getState());
         loc.setStreet(locationDto.getStreet());
         user.setLocation(loc);
         
-        Picture picture = new Picture();
+        PictureVo picture = new PictureVo();
         picture.setLarge(pictureDto.getLarge());
         picture.setMedium(pictureDto.getMedium());
         picture.setThumbnail(pictureDto.getThumbnail());
         user.setPicture(picture);
         
-        Login login = new Login();
+        LoginVo login = new LoginVo();
         login.setPassword(loginDto.getPassword());
         login.setUsername(loginDto.getUsername());
         user.setLogin(login);
         
-        Name name = new Name();
+        NameVo name = new NameVo();
         name.setFirst(nameDto.getFirst());
         name.setLast(nameDto.getLast());
         name.setTitle(nameDto.getTitle());
@@ -51,7 +52,7 @@ public class UserDtoToUser {
         
     }
 
-    public User getUser() {
+    public UserVo getUser() {
         return user;
     }
 

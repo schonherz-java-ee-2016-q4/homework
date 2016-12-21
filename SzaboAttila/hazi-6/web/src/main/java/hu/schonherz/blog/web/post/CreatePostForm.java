@@ -5,16 +5,16 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
-import hu.schonherz.blog.service.api.user.vo.User;
+import hu.schonherz.blog.service.api.user.vo.UserVo;
 
 public class CreatePostForm {
 
     private String title;
     private String content;
     private List<String> tags;
-    private User author;
+    private UserVo author;
     
-    public CreatePostForm(HttpServletRequest request, User user) {
+    public CreatePostForm(HttpServletRequest request, UserVo user) {
         title = fixInjections(request.getParameter("title"));
         
         content = fixInjections(request.getParameter("content"));
@@ -42,7 +42,7 @@ public class CreatePostForm {
         return tags;
     }
 
-    public User getAuthor() {
+    public UserVo getAuthor() {
         return author;
     }
 

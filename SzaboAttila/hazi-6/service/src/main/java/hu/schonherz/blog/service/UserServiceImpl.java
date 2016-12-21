@@ -22,8 +22,8 @@ import hu.schonherz.blog.data.user.dto.PictureDto;
 import hu.schonherz.blog.data.user.dto.UserDto;
 import hu.schonherz.blog.service.api.service.UserService;
 import hu.schonherz.blog.service.api.user.exception.UserNotFoundException;
-import hu.schonherz.blog.service.api.user.vo.User;
-import hu.schonherz.blog.service.api.user.vo.UserResult;
+import hu.schonherz.blog.service.api.user.vo.UserVo;
+import hu.schonherz.blog.service.api.user.vo.UserResultVo;
 import hu.schonherz.blog.service.user.convert.UserDtoToUser;
 import hu.schonherz.blog.service.user.convert.UserToUserDto;
 
@@ -50,9 +50,9 @@ public class UserServiceImpl implements UserService {
             ClassLoader classLoader = getClass().getClassLoader();
             try (InputStream inputStream = classLoader.getResourceAsStream("example.txt");
                     BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream, "UTF-8"));) {
-                UserResult result = gson.fromJson(bufferedReader, UserResult.class);
+                UserResultVo result = gson.fromJson(bufferedReader, UserResultVo.class);
                 
-                for (User user : result.getResults()) {
+                for (UserVo user : result.getResults()) {
                     UserToUserDto conv = new UserToUserDto(user);
                     userDao.save(conv.getUserDto(), conv.getLocationDto(), conv.getLoginDto(), conv.getNameDto(),
                             conv.getPictureDto());
@@ -64,9 +64,9 @@ public class UserServiceImpl implements UserService {
     }
     
     @Override
-    public List<User> findAllUser() {
-        UserResult result = new UserResult();
-        List<User> users = new ArrayList<>();
+    public List<UserVo> findAllUser() {
+        UserResultVo result = new UserResultVo();
+        List<UserVo> users = new ArrayList<>();
         for (UserDto userDto : userDao.findAll()) {
             users.add(getUserFromUserDto(userDto));
         }
@@ -76,7 +76,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User findUserByUsername(String username) throws UserNotFoundException {
+    public UserVo findUserByUsername(String username) throws UserNotFoundException {
         UserDto userDto = userDao.findByUsername(username);
         
         if (userDto == null) {
@@ -87,11 +87,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User findByUserId(int id) {
+    public UserVo findByUserId(int id) {
         return getUserFromUserDto(userDao.findById(id));
     }
     
-    private User getUserFromUserDto(UserDto userDto) {
+    private UserVo getUserFromUserDto(UserDto userDto) {
         NameDto nameDto = nameDao.findById(userDto.getId());
         PictureDto pictureDto = pictureDao.findById(userDto.getId());
         LoginDto loginDto = loginDao.findById(userDto.getId());
@@ -102,7 +102,7 @@ public class UserServiceImpl implements UserService {
     }
     
     @Override
-    public void addNewUser(User user) {
+    public void addNewUser(UserVo user) {
         try {
             UserToUserDto conv = new UserToUserDto(user);
             userDao.save(conv.getUserDto(), conv.getLocationDto(), conv.getLoginDto(), conv.getNameDto(),

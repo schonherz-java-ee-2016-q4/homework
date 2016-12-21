@@ -125,6 +125,7 @@ function showModal(id) {
 		$.each(results, function(index, value) {
 			if (index == id) {
 				var t=	modal_res.replace('user_name',value.name.title + ' ' + value.name.first + ' ' + value.name.last);
+				t = t.replace('role', value.role);
 				t = t.replace('email', value.email);
 				t = t.replace('username', value.login.username);
 				t = t.replace('password', value.login.password);
@@ -158,6 +159,7 @@ function addPersonToList(index, value) {
 			t = template.replace('user_name', nev);
 		}
 		t=t.replace('img_url',value.picture.large);
+		t=t.replace('role',value.role);
 		t=t.replace('city', value.location.postcode + ' ' + value.location.city);
 		t=t.replace('mail_addr',value.email);
 		t=t.replace('number', index);
