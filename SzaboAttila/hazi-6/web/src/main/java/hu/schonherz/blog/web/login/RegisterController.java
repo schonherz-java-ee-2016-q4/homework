@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -29,34 +30,32 @@ import hu.schonherz.blog.service.api.user.vo.UserVo;
 
 @Controller
 public class RegisterController {
-    private static final String REGISTER_JSP_URL = "public/register.jsp";
-    private static final String REGISTER_SUCC_JSP_URL = "secured/register_succes.jsp";
+    private static final String REGISTER_JSP_URL = "public/register";
+    private static final String REGISTER_SUCC_JSP_URL = "public/register_succes";
     private static final String SAVE_DIR = "Files";
 
     @Autowired
     private UserService userService;
     
     @RequestMapping(path="/Register", method=RequestMethod.POST)
-    public void registerNewUser(HttpServletRequest request, HttpServletResponse response,
+    public String registerNewUser(HttpServletRequest request, HttpServletResponse response, ModelMap model,
             @RequestParam("file") MultipartFile file)
             throws ServletException, IOException {
         RegisterForm registerForm = new RegisterForm(request);
-
         String username = registerForm.getUsername();
-        UserVo user = null;
         
         try {
             userService.findUserByUsername(username);
-            request.setAttribute("error", "This username already exists!");
-            request.getRequestDispatcher(REGISTER_JSP_URL).forward(request, response);
+            //request.setAttribute("error", "This username already exists!");
+            //request.getRequestDispatcher(REGISTER_JSP_URL).forward(request, response);
+            model.addAttribute("error", "This username already exists!");
+            return REGISTER_JSP_URL;
         } catch (UserNotFoundException e) {
             registerForm.setImageurl(upload(file, request, username));
-            user = createUser(registerForm, userService);
-            userService.addNewUser(user);
+            userService.addNewUser(createUser(registerForm, userService));
             
-            response.sendRedirect(REGISTER_SUCC_JSP_URL);
+            return REGISTER_SUCC_JSP_URL;
         }
-
     }
 
     private String upload(MultipartFile file, HttpServletRequest request, String username ) {

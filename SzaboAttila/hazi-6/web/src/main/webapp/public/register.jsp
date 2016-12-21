@@ -27,11 +27,11 @@
                 </h1>
             </div>
 
-            <c:if test="${requestScope.error != null}">
+            <c:if test="${error != null}">
                 <div class="alert alert-danger" role="alert"
 					style="display: block;">
                     <span class="glyphicon glyphicon-exclamation-sign"
-						aria-hidden="true"></span> ${requestScope.error}
+						aria-hidden="true"></span> ${error}
                 </div>
             </c:if>
             <div class="alert alert-danger" role="alert" id="mail_alert">

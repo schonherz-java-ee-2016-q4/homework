@@ -30,9 +30,6 @@ public class CustomUserDetailsService implements UserDetailsService {
         try {
             user = userService.findUserByUsername(username);
             
-            if (user == null) {
-                throw new UsernameNotFoundException(username);
-            }
             List<GrantedAuthority> authorities = buildUserAuthority(user);
             return buildUserForAuthentication(user, authorities);
         } catch (Exception e) {

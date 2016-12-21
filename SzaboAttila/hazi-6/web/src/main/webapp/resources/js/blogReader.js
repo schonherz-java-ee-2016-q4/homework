@@ -1,7 +1,7 @@
 var value;
 $(document).ready(function() {
 	
-	$.get(getContextPath() + "/ReadPost?id=" + GetURLParameter('id'), function(res) {
+	$.get(getContextPath() + "/ReadPost/" + GetURLParameter('id'), function(res) {
 		$('#post_title').html(res.title);
 		document.title = res.title;
 		$('#post_date').html(res.posted);
