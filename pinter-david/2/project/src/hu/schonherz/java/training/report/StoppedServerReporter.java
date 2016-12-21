@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 import hu.schonherz.java.training.domain.people.SystemAdministrator;
 import hu.schonherz.java.training.domain.server.Server;
 import hu.schonherz.java.training.domain.server.ServerStatus;
-import hu.schonherz.java.training.utility.MultiMap;
+import hu.schonherz.java.training.utility.map.MultiMap;
 
 public class StoppedServerReporter implements Reporter {
     private MultiMap<Server, SystemAdministrator> reportData;

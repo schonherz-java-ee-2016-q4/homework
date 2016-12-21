@@ -1,4 +1,4 @@
-package hu.schonherz.java.training.utility;
+package hu.schonherz.java.training.utility.file.handler;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -16,8 +16,10 @@ import hu.schonherz.java.training.domain.server.Server;
 import hu.schonherz.java.training.domain.server.ServerBuilder;
 import hu.schonherz.java.training.domain.server.ServerStatus;
 import hu.schonherz.java.training.domain.server.ServerType;
+import hu.schonherz.java.training.utility.map.MultimapImpl;
+import hu.schonherz.java.training.utility.map.MultiMap;
 
-public class DefaultFileHandler implements FileHandler<Server, SystemAdministrator> {
+public class FileHandlerImpl implements FileHandler<Server, SystemAdministrator> {
 
     private final String projectDir = "project";
     private final String filesDir = "files";
@@ -26,20 +28,20 @@ public class DefaultFileHandler implements FileHandler<Server, SystemAdministrat
 
     private final Path pathToServerFile = Paths.get("2", projectDir, filesDir, serverFileName);
     private final Path pathToSysadminFile = Paths.get("2", projectDir, filesDir, sysAdminFileName);
-    
+
     private File serverFile;
     private File sysAdminFile;
-    
+
     private long serverFileModDateCache;
     private long sysAdminFileModDateCache;
 
-    public DefaultFileHandler() throws FileNotFoundException {
+    public FileHandlerImpl() throws FileNotFoundException {
         serverFile = pathToServerFile.toFile();
 
         if (!serverFile.exists()) {
             throw new FileNotFoundException("Server file not found");
         }
-        
+
         serverFileModDateCache = serverFile.lastModified();
 
         sysAdminFile = pathToSysadminFile.toFile();
@@ -47,36 +49,41 @@ public class DefaultFileHandler implements FileHandler<Server, SystemAdministrat
         if (!sysAdminFile.exists()) {
             throw new FileNotFoundException("Sysadmin file not found");
         }
-        
+
         sysAdminFileModDateCache = sysAdminFile.lastModified();
 
     }
 
     @Override
-    public MultiMap<Server, SystemAdministrator> read() {
-        
+    public MultiMap<Server, SystemAdministrator> assemble() {
+
         Map<Integer, Server> serversById = new HashMap<>();
         ServerBuilder serverBuilder = new ServerBuilder();
 
+        List<Server> serverList = new ArrayList<>();
         List<SystemAdministrator> sysAdminList = new ArrayList<>();
         
+
         try (BufferedReader br = new BufferedReader(new FileReader(serverFile))) {
             String line;
             while ((line = br.readLine()) != null) {
                 String[] splitted = line.split(",");
-                Server tmpServer = serverBuilder.id(Integer.parseInt(splitted[0])).name(splitted[1])
-                        .type(getServerType(splitted[2])).status(getServerStatus(splitted[3])).build();
+                Server tmpServer = serverBuilder.id(Integer.parseInt(splitted[0]))
+                    .name(splitted[1])
+                    .type(getServerType(splitted[2]))
+                    .status(getServerStatus(splitted[3]))
+                    .build();
                 serversById.put(Integer.parseInt(splitted[0]), tmpServer);
             }
 
             try (BufferedReader saReader = new BufferedReader(new FileReader(sysAdminFile))) {
                 while ((line = saReader.readLine()) != null) {
                     String[] splitted = line.split(",");
-                    
+
                     SystemAdministrator tmpSysadmin = new SystemAdministrator();
                     tmpSysadmin.setName(splitted[0]);
                     tmpSysadmin.setEmployeeID(Integer.parseInt(splitted[1]));
-                    
+
                     List<Server> tmpServers = new ArrayList<>();
                     for (int i = 2; i < splitted.length; i++) {
                         tmpServers.add(serversById.get(Integer.parseInt(splitted[i])));
@@ -92,30 +99,30 @@ public class DefaultFileHandler implements FileHandler<Server, SystemAdministrat
         } catch (IOException e) {
             e.printStackTrace();
         }
-        DefaultMultiMap<Server, SystemAdministrator> returnValue = new DefaultMultiMap<>();
-        
+        MultimapImpl<Server, SystemAdministrator> returnValue = new MultimapImpl<>();
+
         for (SystemAdministrator systemAdministrator : sysAdminList) {
             for (Server server : systemAdministrator.getServers()) {
                 returnValue.put(server, systemAdministrator);
             }
         }
-        
+
         return returnValue;
     }
 
     @Override
     public MultiMap<Server, SystemAdministrator> refresh(MultiMap<Server, SystemAdministrator> multiMap) {
-        
+
         boolean serverFileModified = sysAdminFileModDateCache != sysAdminFile.lastModified();
         boolean sysAdminFileModified = serverFileModDateCache != serverFile.lastModified();
-        
-        if(serverFileModified || sysAdminFileModified) {
+
+        if (serverFileModified || sysAdminFileModified) {
             sysAdminFileModDateCache = sysAdminFile.lastModified();
             serverFileModDateCache = serverFile.lastModified();
             System.out.println("File modified");
-            return read();
+            return assemble();
         }
-        
+
         return multiMap;
     }
 

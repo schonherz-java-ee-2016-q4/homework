@@ -1,4 +1,4 @@
-package hu.schonherz.java.training.utility;
+package hu.schonherz.java.training.utility.map;
 
 import java.util.ArrayList;
 import java.util.Collection;

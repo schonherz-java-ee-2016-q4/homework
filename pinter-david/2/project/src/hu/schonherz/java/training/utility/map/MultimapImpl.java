@@ -1,15 +1,15 @@
-package hu.schonherz.java.training.utility;
+package hu.schonherz.java.training.utility.map;
 
 import java.util.*;
 
-public class DefaultMultiMap<K, V> implements MultiMap<K, V> {
+public class MultimapImpl<K, V> implements MultiMap<K, V> {
     private Map<K, ArrayList<V>> data;
 
-    public DefaultMultiMap(){
+    public MultimapImpl(){
         data = new HashMap<>();
     }
 
-    public DefaultMultiMap(Map<K, ArrayList<V>> data) {
+    public MultimapImpl(Map<K, ArrayList<V>> data) {
         this.data = data;
     }
 
@@ -83,7 +83,7 @@ public class DefaultMultiMap<K, V> implements MultiMap<K, V> {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        DefaultMultiMap<?, ?> that = (DefaultMultiMap<?, ?>) o;
+        MultimapImpl<?, ?> that = (MultimapImpl<?, ?>) o;
 
         return data != null ? data.equals(that.data) : that.data == null;
 
