@@ -31,7 +31,6 @@ public class BlogPostServlet extends HttpServlet {
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        System.out.println(request.getParameter("post"));
         service.savePost(toVO(request));
         response.sendRedirect("index.jsp");
     }
@@ -41,7 +40,6 @@ public class BlogPostServlet extends HttpServlet {
         vo.setPostBody(request.getParameter("post"));
         vo.setPostTitle(request.getParameter("title"));
         vo.setPostPublishTime(Date.valueOf(LocalDate.now()));
-        System.out.println(request.getAttribute("user"));
         vo.setUserId(100);
         return vo;
     }
