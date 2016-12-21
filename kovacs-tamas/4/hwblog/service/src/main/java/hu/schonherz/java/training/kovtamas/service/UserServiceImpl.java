@@ -1,81 +1,47 @@
 package hu.schonherz.java.training.kovtamas.service;
 
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.util.List;
-
-import com.google.gson.Gson;
-import hu.schonherz.java.training.kovtamas.serviceapi.user.exception.UserAlreadyExistsException;
+import hu.schonherz.java.training.kovtamas.data.dao.UserDao;
+import hu.schonherz.java.training.kovtamas.data.dto.UserDto;
+import hu.schonherz.java.training.kovtamas.service.converter.VoDtoConverter;
 
 import hu.schonherz.java.training.kovtamas.serviceapi.user.exception.UserNotFoundException;
 import hu.schonherz.java.training.kovtamas.serviceapi.user.service.UserService;
-import hu.schonherz.java.training.kovtamas.serviceapi.user.vo.Id;
-import hu.schonherz.java.training.kovtamas.serviceapi.user.vo.User;
-import hu.schonherz.java.training.kovtamas.serviceapi.user.vo.UserResult;
-import java.util.Optional;
+import hu.schonherz.java.training.kovtamas.serviceapi.user.vo.UserVo;
+import java.util.Collection;
+import java.util.HashSet;
 
 public class UserServiceImpl implements UserService {
 
-    private static UserResult result;
+    private static final UserDao dao;
 
     static {
-        result = init();
+        dao = new UserDao();
     }
 
     public UserServiceImpl() {
     }
 
     @Override
-    public List<User> findAllUser() {
-        return result.getResults();
-    }
-
-    private static UserResult init() {
-        Gson gson = new Gson();
-        ClassLoader classLoader = UserServiceImpl.class.getClassLoader();
-        try (InputStream inputStream = classLoader.getResourceAsStream("example.txt");
-                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream, "UTF-8"));) {
-
-            result = gson.fromJson(bufferedReader, UserResult.class);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return result;
-    }
-
-    public User findUserByName(String name) throws UserNotFoundException {
-
-        List<User> users = result.getResults();
-        for (User user : users) {
-            if (user.getLogin().getUsername().equals(name)) {
-                return user;
-            }
-        }
-        throw new UserNotFoundException();
+    public Collection<UserVo> findAllUser() {
+        Collection<UserDto> allUserDtos = dao.findAll();
+        Collection<UserVo> allUserVos = new HashSet<>();
+        allUserDtos.forEach(dto -> allUserVos.add(VoDtoConverter.convert(dto)));
+        return allUserVos;
     }
 
     @Override
-    public void addUser(User user) {
-        if (!isUniqueUser(user)) {
-            throw new UserAlreadyExistsException();
+    public UserVo findUserByName(String name) throws UserNotFoundException {
+        UserDto dto = dao.findByUsername(name);
+        if (dto == null) {
+            throw new UserNotFoundException();
         }
-
-        result.getResults().add(user);
+        return VoDtoConverter.convert(dto);
     }
 
-    private boolean isUniqueUser(User user) {
-        Id id = user.getId();
-        if (id == null) {
-            throw new IllegalArgumentException("User ID must not be null!");
-        }
-
-        Optional<User> duplicate = result.getResults()
-                .stream()
-                .filter(usr -> id.equals(usr.getId()))
-                .findAny();
-        return !duplicate.isPresent();
+    @Override
+    public void addUser(UserVo user) {
+        UserDto dto = VoDtoConverter.convert(user);
+        dao.save(dto);
     }
 
 }

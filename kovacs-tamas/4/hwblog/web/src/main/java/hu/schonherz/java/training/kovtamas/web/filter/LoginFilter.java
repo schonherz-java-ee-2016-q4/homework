@@ -1,6 +1,6 @@
 package hu.schonherz.java.training.kovtamas.web.filter;
 
-import hu.schonherz.java.training.kovtamas.serviceapi.user.vo.User;
+import hu.schonherz.java.training.kovtamas.serviceapi.user.vo.UserVo;
 import java.io.IOException;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -26,7 +26,7 @@ public class LoginFilter implements Filter {
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-        User user = (User) ((HttpServletRequest) request).getSession().getAttribute("user");
+        UserVo user = (UserVo) ((HttpServletRequest) request).getSession().getAttribute("user");
         if (user == null) {
             log.debug("User tried to proceed to the secure pages without logging in");
             ((HttpServletResponse) response).sendRedirect("/web/resources/pages/public/login.jsp");

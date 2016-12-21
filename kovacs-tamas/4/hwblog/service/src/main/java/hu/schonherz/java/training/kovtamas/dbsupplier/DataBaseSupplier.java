@@ -1,17 +1,7 @@
 package hu.schonherz.java.training.kovtamas.dbsupplier;
 
-import hu.schonherz.java.training.kovtamas.data.dao.GenericDao;
-import hu.schonherz.java.training.kovtamas.data.dao.UserDao;
-import hu.schonherz.java.training.kovtamas.data.dto.UserDto;
-import hu.schonherz.java.training.kovtamas.service.UserServiceImpl;
-import hu.schonherz.java.training.kovtamas.serviceapi.user.service.UserService;
-import hu.schonherz.java.training.kovtamas.serviceapi.user.vo.User;
-import java.sql.Date;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.List;
+public class DataBaseSupplier {
+}
 
 /*
 This class is not supposed to be used. It was only used once with the purpose of putting the
@@ -44,9 +34,9 @@ CREATE TABLE blog.USER (
     PIC_URL VARCHAR
 );
  */
-public class DataBaseSupplier {
+//public class DataBaseSupplier {
 
-    /*
+/*
     The main method could not have been started as a single file because of it's dependencies.
     Instead, I started it from the index.jsp using the following code as the first part of the <body>:
         <%
@@ -54,46 +44,46 @@ public class DataBaseSupplier {
         %>
 
     This scriplet is now removed from the index.jsp
-     */
-    public static void main(String[] args) {
-        UserService service = new UserServiceImpl();
-        List<User> givenUsers = service.findAllUser();
-        List<UserDto> dtos = new ArrayList<>();
-        givenUsers.forEach(usr -> dtos.add(convertUserToDto(usr)));
-
-        GenericDao dao = new UserDao();
-        dtos.forEach(dto -> dao.save(dto));
-    }
-
-    private static UserDto convertUserToDto(User user) {
-        UserDto dto = new UserDto();
-        dto.setUsername(user.getLogin().getUsername());
-        dto.setPassword(user.getLogin().getPassword());
-        dto.setGender(user.getGender());
-        dto.setFirstName(user.getName().getFirst());
-        dto.setLastName(user.getName().getLast());
-        dto.setPostCode(user.getLocation().getPostcode());
-        dto.setCity(user.getLocation().getCity());
-        dto.setStreet(user.getLocation().getStreet());
-        dto.setEmail(user.getEmail());
-        dto.setPhone(user.getPhone());
-        dto.setPicUrl(user.getPicture().getMedium());
-
-        DateFormat df = new SimpleDateFormat("yyyy-MM-DD");
-        String dobDateString = user.getDob().split(" ")[0];
-        String regDateString = user.getRegistered().split(" ")[0];
-        try {
-            java.util.Date utilDob = df.parse(dobDateString);
-            java.util.Date utilReg = df.parse(regDateString);
-            Date sqlDob = new Date(utilDob.getYear(), utilDob.getMonth(), utilDob.getDay());
-            Date sqlReg = new Date(utilReg.getYear(), utilReg.getMonth(), utilReg.getDay());
-            dto.setDob(sqlDob);
-            dto.setRegistered(sqlReg);
-        } catch (ParseException pe) {
-            throw new RuntimeException("Could not parse date of birth and registration date!");
-        }
-
-        return dto;
-    }
-
-}
+ */
+//    public static void main(String[] args) {
+//        UserService service = new UserServiceImpl();
+//        List<User> givenUsers = service.findAllUser();
+//        List<UserDto> dtos = new ArrayList<>();
+//        givenUsers.forEach(usr -> dtos.add(convertUserToDto(usr)));
+//
+//        GenericDao dao = new UserDao();
+//        dtos.forEach(dto -> dao.save(dto));
+//    }
+//
+//    private static UserDto convertUserToDto(User user) {
+//        UserDto dto = new UserDto();
+//        dto.setUsername(user.getLogin().getUsername());
+//        dto.setPassword(user.getLogin().getPassword());
+//        dto.setGender(user.getGender());
+//        dto.setFirstName(user.getName().getFirst());
+//        dto.setLastName(user.getName().getLast());
+//        dto.setPostCode(user.getLocation().getPostcode());
+//        dto.setCity(user.getLocation().getCity());
+//        dto.setStreet(user.getLocation().getStreet());
+//        dto.setEmail(user.getEmail());
+//        dto.setPhone(user.getPhone());
+//        dto.setPicUrl(user.getPicture().getMedium());
+//
+//        DateFormat df = new SimpleDateFormat("yyyy-MM-DD");
+//        String dobDateString = user.getDob().split(" ")[0];
+//        String regDateString = user.getRegistered().split(" ")[0];
+//        try {
+//            java.util.Date utilDob = df.parse(dobDateString);
+//            java.util.Date utilReg = df.parse(regDateString);
+//            Date sqlDob = new Date(utilDob.getYear(), utilDob.getMonth(), utilDob.getDay());
+//            Date sqlReg = new Date(utilReg.getYear(), utilReg.getMonth(), utilReg.getDay());
+//            dto.setDob(sqlDob);
+//            dto.setRegistered(sqlReg);
+//        } catch (ParseException pe) {
+//            throw new RuntimeException("Could not parse date of birth and registration date!");
+//        }
+//
+//        return dto;
+//    }
+//
+//}

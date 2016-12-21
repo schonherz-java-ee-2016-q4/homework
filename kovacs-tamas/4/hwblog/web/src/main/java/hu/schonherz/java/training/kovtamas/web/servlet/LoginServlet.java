@@ -3,7 +3,7 @@ package hu.schonherz.java.training.kovtamas.web.servlet;
 import hu.schonherz.java.training.kovtamas.service.UserServiceImpl;
 import hu.schonherz.java.training.kovtamas.serviceapi.user.exception.UserNotFoundException;
 import hu.schonherz.java.training.kovtamas.serviceapi.user.service.UserService;
-import hu.schonherz.java.training.kovtamas.serviceapi.user.vo.User;
+import hu.schonherz.java.training.kovtamas.serviceapi.user.vo.UserVo;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -29,7 +29,7 @@ public class LoginServlet extends HttpServlet {
         String password = req.getParameter("psw");
 
         try {
-            User user = userService.findUserByName(username);
+            UserVo user = userService.findUserByName(username);
             if (!user.getLogin().getPassword().equals(password)) {
                 forwardToLoginPage(req, resp);
             }

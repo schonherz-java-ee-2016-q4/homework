@@ -1,7 +1,6 @@
 package hu.schonherz.java.training.kovtamas.web.servlet;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,8 +11,9 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.gson.Gson;
 import hu.schonherz.java.training.kovtamas.service.UserServiceImpl;
 import hu.schonherz.java.training.kovtamas.serviceapi.user.service.UserService;
-import hu.schonherz.java.training.kovtamas.serviceapi.user.vo.User;
-import hu.schonherz.java.training.kovtamas.serviceapi.user.vo.UserResult;
+import hu.schonherz.java.training.kovtamas.serviceapi.user.vo.UserContainer;
+import hu.schonherz.java.training.kovtamas.serviceapi.user.vo.UserVo;
+import java.util.Collection;
 
 /**
  * Servlet implementation class UserServlet
@@ -37,11 +37,11 @@ public class UserServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         UserService userService = new UserServiceImpl();
-        List<User> users = userService.findAllUser();
+        Collection<UserVo> users = userService.findAllUser();
+        UserContainer container = new UserContainer(users);
+
         Gson gson = new Gson();
-        UserResult result = new UserResult();
-        result.setResults(users);
-        String resultJson = gson.toJson(result);
+        String resultJson = gson.toJson(container);
 
         response.setCharacterEncoding("UTF-8");
         response.setContentType("application/json");

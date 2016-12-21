@@ -1,14 +1,14 @@
 package hu.schonherz.java.training.kovtamas.serviceapi.user.service;
 
 import hu.schonherz.java.training.kovtamas.serviceapi.user.exception.UserNotFoundException;
-import hu.schonherz.java.training.kovtamas.serviceapi.user.oldvo.User;
-import java.util.List;
+import hu.schonherz.java.training.kovtamas.serviceapi.user.vo.UserVo;
+import java.util.Collection;
 
 public interface UserService {
 
-    List<User> findAllUser();
+    Collection<UserVo> findAllUser();
 
-    User findUserByName(String name) throws UserNotFoundException;
+    UserVo findUserByName(String name) throws UserNotFoundException;
 
-    void addUser(User user);
+    void addUser(UserVo user);
 }
