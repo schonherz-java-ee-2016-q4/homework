@@ -6,16 +6,16 @@ import hu.schonherz.java.training.domain.people.SystemAdministrator;
 import hu.schonherz.java.training.domain.server.Server;
 import hu.schonherz.java.training.report.Reporter;
 import hu.schonherz.java.training.report.StoppedServerReporter;
-import hu.schonherz.java.training.utility.DefaultFileHandler;
-import hu.schonherz.java.training.utility.FileHandler;
-import hu.schonherz.java.training.utility.MultiMap;
+import hu.schonherz.java.training.utility.file.handler.FileHandlerImpl;
+import hu.schonherz.java.training.utility.file.handler.FileHandler;
+import hu.schonherz.java.training.utility.map.MultiMap;
 
 public class Main {
     public static void main(final String... args) {
         try {
 
-            FileHandler<Server, SystemAdministrator> fileHandler = new DefaultFileHandler();
-            MultiMap<Server, SystemAdministrator> serverMap = fileHandler.read();
+            FileHandler<Server, SystemAdministrator> fileHandler = new FileHandlerImpl();
+            MultiMap<Server, SystemAdministrator> serverMap = fileHandler.assemble();
             
 
             while (true) {

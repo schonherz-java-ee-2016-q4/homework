@@ -1,6 +1,7 @@
 package hu.sconherz.blog.web.login;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import hu.schonherz.blog.service.UserServiceImpl;
 import hu.schonherz.blog.service.api.user.exception.UserNotFoundException;
 import hu.schonherz.blog.service.api.user.service.UserService;
-import hu.schonherz.blog.service.api.user.vo.User;
+import hu.schonherz.blog.service.api.user.vo.UserVO;
 
 /**
  * Servlet implementation class Login
@@ -32,25 +33,19 @@ public class LoginServlet extends HttpServlet {
 	}
 
 	/**
-     * @param request
-     * @param response
-     * @throws javax.servlet.ServletException
-     * @throws java.io.IOException
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
-    @Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
 		LoginForm loginForm = new LoginForm(request);
-
 		String username = loginForm.getUsername();
 		UserService userService = new UserServiceImpl();
-		User user = null;
+		UserVO userVO = null;
 		try {
 
-			user = userService.findUserByName(username);
+			userVO = userService.findByUsername(username);
 
 		} catch (UserNotFoundException e) {
 			request.setAttribute("error", "Hibás felhasználónév vagy jelszó!");
@@ -58,10 +53,10 @@ public class LoginServlet extends HttpServlet {
 			return;
 		}
 
-		if (user != null) {
+		if (userVO != null) {
 			String password = loginForm.getPassword();
-			if (user.getLogin().getPassword().equals(password)) {
-				request.getSession().setAttribute("user", user);
+			if (userVO.getPassword().equals(password)) {
+				request.getSession().setAttribute("user", userVO);
 				response.sendRedirect(SECURED_JSP_URL);
 
 			} else {
