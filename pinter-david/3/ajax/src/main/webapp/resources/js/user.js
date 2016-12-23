@@ -22,8 +22,7 @@ $(document).ready(function () {
             console.log(res);
             $.each(res.results, function (index, value) {
 
-                $.get('/WebApp/content/content.html', function (template) {
-//                   
+                $.get('/WebApp/content/content.html', function (template) {                 
                     var t = template.replace('user_name', capitalizeFirstLetter(value.name.first)
                             + ' ' + capitalizeFirstLetter(value.name.last));
                     t = t.replace('img_url', value.picture.large);
@@ -33,8 +32,6 @@ $(document).ready(function () {
                     t = t.replace('nationality', value.nat);
                     t = t.replace('registration_date', value.registered);
                     t = t.replace('date_of_birth', value.dob.substr(0, 10));
-
-
 
                     var age = new Date(Date.parse(value.dob.substr(0, 10)));
                     var ageYear = age.getFullYear();
@@ -49,25 +46,15 @@ $(document).ready(function () {
                         var index = Math.floor((Math.random() * motto_return.mottos.length));
                         var motto = motto_return.mottos[index].text;
                         if (motto.length > 45) {
-                            t = t.replace('motto_popover_text',motto);
+                            t = t.replace('motto_popover_text', motto);
                             $('.mottoPopOver').popover();
-                            motto = motto.substr(0,45) + "...";
-                            
+                            motto = motto.substr(0, 45) + "...";
                         }
-                      
+                        
                         t = t.replace('motto_text', motto);
                         $('#result').append(t);
                     });
-
-
-
-
-
-//                    var gender = template.replace('gender',value.gender);
-//                   
                 });
-
-
             });
 
         }).done(function () {
