@@ -14,7 +14,7 @@
         <meta name="author" content="">
         <link rel="icon" href="../../favicon.ico">
 
-        <title>Login</title>
+        <title>Users</title>
 
         <!-- Bootstrap core CSS -->
         <link href="<c:url value="/resources/css/bootstrap.min.css"/>" rel="stylesheet">
@@ -22,6 +22,7 @@
         <link href="<c:url value="/resources/css/blog.css"/>" rel="stylesheet">
         <!-- Custom styles for this template -->
         <link href="<c:url value="/resources/css/my.css"/>" rel="stylesheet">
+        <link href="<c:url value="/resources/css/users.css"/>" rel="stylesheet">
     </head>
 
     <body>
@@ -32,6 +33,27 @@
                     <label>Welcome, ${sessionScope.user.login.username}</label>
                     <a class="blog-nav-item" href="<c:url value="/logOutServlet"/>">Logout</a>
                 </nav>
+            </div>
+        </div>
+
+        <div class="dark1 center">
+            <!--<label id="title">Filter users</label>-->
+            <div>
+                <label>Username:</label>
+                <input id="username-filter" class="dark-input" type="text" placeholder="username"/>
+                <label>Age:</label>
+                <input id="age-filer" class="dark-input" type="number" placeholder="age"/>
+                <label>Gender:</label>
+                <select id="gender-filter" class="dark-input">
+                    <option value="both">both</option>
+                    <option value="male">male</option>
+                    <option value="female">female</option>
+                </select>
+                <label>Email:</label>
+                <input id="email-filter" class="dark-input" type="email" placeholder="email"/>
+                <label>City</label>
+                <input id="city-filter" class="dark-input" type="text" placeholder="city"/>
+                <input id="filter-button" class="dark-input" type="button" value="Filter" onclick="filter()"/>
             </div>
         </div>
 
