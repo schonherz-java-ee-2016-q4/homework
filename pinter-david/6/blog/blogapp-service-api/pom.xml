@@ -8,8 +8,8 @@
 		<artifactId>blogapp</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
-	<artifactId>service</artifactId>
-	<name>service</name>
+	<artifactId>blogapp-service-api</artifactId>
+	<name>blogapp-service-api</name>
 	<url>http://maven.apache.org</url>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -20,10 +20,8 @@
 			<artifactId>junit</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>hu.schonherz.blog</groupId>
-			<artifactId>service-api</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
+			<groupId>com.google.code.gson</groupId>
+			<artifactId>gson</artifactId>
 		</dependency>
-
 	</dependencies>
 </project>

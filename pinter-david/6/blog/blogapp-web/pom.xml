@@ -8,9 +8,9 @@
 		<artifactId>blogapp</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
-	<artifactId>web</artifactId>
+	<artifactId>blogapp-web</artifactId>
 	<packaging>war</packaging>
-	<name>web Maven Webapp</name>
+	<name>blogapp-web</name>
 	<url>http://maven.apache.org</url>
 	<dependencies>
 		<dependency>
