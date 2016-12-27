@@ -6,4 +6,5 @@ public class UserQueries {
     public static final String QUERY_SAVE =
             "INSERT INTO blog_homework.users(email, dob, registered, phone, cell, gender)" +
             "VALUES (?,?,?,?,?,?)";
+    public static final String QUERY_CHANGE_STATUS = "UPDATE blog_homework.users SET active=? WHERE id=?";
 }

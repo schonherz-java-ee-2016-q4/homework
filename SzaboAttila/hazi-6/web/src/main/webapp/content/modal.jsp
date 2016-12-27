@@ -1,3 +1,6 @@
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
+
 <div class="modal-dialog">
 
 	<!-- Modal content-->
@@ -32,6 +35,12 @@
           <td>Registered</td>
           <td>registered</td>
           </tr>
+          <sec:authorize access="hasRole('ADMIN')">
+          <tr>
+          <td>Active</td>
+          <td>active</td>
+          </tr>
+          </sec:authorize>
           <tr>
           <td>Gender</td>
           <td>gender</td>

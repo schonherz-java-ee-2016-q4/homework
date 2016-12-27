@@ -82,5 +82,9 @@ public class UserDao {
         nameDao.save(name_dto);
         pictureDao.save(picture_dto);
     }
+    
+    public void changeUserStatus(int id, boolean active) {
+    	jdbcTemplate.update(UserQueries.QUERY_CHANGE_STATUS, active, id);
+    }
 
 }

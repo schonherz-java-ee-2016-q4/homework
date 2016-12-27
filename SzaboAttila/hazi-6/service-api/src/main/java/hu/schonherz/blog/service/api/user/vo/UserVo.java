@@ -14,6 +14,7 @@ public class UserVo {
 	private PictureVo picture;
 	private String nat;
 	private String role;
+	private boolean active;
 	
 	public String getGender() {
 		return gender;
@@ -92,5 +93,11 @@ public class UserVo {
 	}
 	public void setRole(String role) {
 		this.role = role;
+	}
+	public boolean getActive() {
+		return active;
+	}
+	public void setActive(boolean active) {
+		this.active = active;
 	}
 }

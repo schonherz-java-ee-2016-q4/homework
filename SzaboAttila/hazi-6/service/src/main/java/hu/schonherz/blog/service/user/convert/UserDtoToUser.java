@@ -25,6 +25,7 @@ public class UserDtoToUser {
         user.setPhone(userDto.getPhone());
         user.setGender("f".equals(userDto.getGender()) ? "female" : "male");
         user.setRole(userDto.getRole());
+        user.setActive(userDto.getActive());
         
         LocationVo loc = new LocationVo();
         loc.setCity(locationDto.getCity());

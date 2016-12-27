@@ -35,6 +35,7 @@
     
     <jsp:attribute name="customScripts">
     <script src="<c:url value="/resources/js/markdown-it.min.js"/>"></script>
+    <script src="<c:url value="/resources/js/userModal.js"/>"></script>
     <script src="<c:url value="/resources/js/blogReader.js"/>"></script>
     </jsp:attribute>
 
