@@ -2,6 +2,11 @@ Homework Repository
 ===================
 This repository contains homework descriptions stated by the trainers and the solutions by trainees.
 
+7th Homework - Spring security
+---
+**[Description](https://github.com/schonherz-java-ee-2016-q4/homework/blob/master/homeworks/homework-07-spring-security.md)**  
+**Deadline**: January 08, Monday, 20:00
+
 6th Homework - Spring
 ---
 **[Description](https://github.com/schonherz-java-ee-2016-q4/homework/blob/master/homeworks/homework-06-spring.md)**  
