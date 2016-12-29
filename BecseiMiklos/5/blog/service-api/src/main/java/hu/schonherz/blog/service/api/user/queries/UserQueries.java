@@ -11,6 +11,6 @@ public final class UserQueries {
 
     public static final String QUERY_INSERT =
             "INSERT INTO blog.members (firstName, lastName, username, password, email, " +
-                    "gender, date_of_birth, location, phone, imh) VALUES (?,?,?,?,?,?,?,?,?,?)";
+                    "gender, date_of_birth, location, phone, img) VALUES (?,?,?,?,?,?,?,?,?,?)";
 
 }

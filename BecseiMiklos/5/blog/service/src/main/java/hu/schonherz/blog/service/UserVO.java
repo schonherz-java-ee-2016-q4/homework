@@ -1,4 +1,4 @@
-package vo;
+package hu.schonherz.blog.service;
 
 public class UserVO {
     private int id;
@@ -98,7 +98,6 @@ public class UserVO {
         this.phone = phone;
     }
 
-
     public String getImg() {
         return img;
     }
@@ -114,7 +113,7 @@ public class UserVO {
         builder.append(id);
         builder.append(", firstName=");
         builder.append(firstName);
-        builder.append(", LastName=");
+        builder.append(", lastName=");
         builder.append(lastName);
         builder.append(", username=");
         builder.append(username);

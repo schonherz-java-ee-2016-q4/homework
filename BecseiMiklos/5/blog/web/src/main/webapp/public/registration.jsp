@@ -54,7 +54,7 @@
 					<h2>Registration</h2>
 
 					<div class="panel panel-default">
-						<div class="panel-heading">Personal data</div>
+						<div class="panel-heading">User data</div>
 						<div class="panel-body">
 							<div class="form-group">
 
@@ -73,9 +73,10 @@
 									<label for="inputConfirmPassword">Confirm password:</label> <input
 									type="password" class="form-control" id="inputConfirmPassword" 
 									name="confirmpassword" placeholder="Confirm password">
-									
-								<label for="phone">Phone:</label> <input type="text"
-									class="form-control" id="phone" name="phone" placeholder="(555) 555-5555">
+                                <label for="img">Profile picture link:</label> <input
+                                    type="img" class="form-control" id="img"
+                                    name="img" placeholder="...">
+
 							</div>
 
 
@@ -88,12 +89,18 @@
 						<div class="panel-body">
 							<div class="form-group">
 
-								<label for="title">Title:</label> <input type="text"
-									class="form-control" id="title" name="title" placeholder="Title"> <label
+								<label
 									for="first">First:</label> <input type="text"
 									class="form-control" id="first" name="first" placeholder="First name">
 								<label for="last">Last:</label> <input type="text"
 									class="form-control" id="last" name="last" placeholder="Last name">
+								<label for="gender">Gender:</label> <input type="text"
+                                    class="form-control" id="gender" name="gender" placeholder="Male/Female">
+                                <label for="date_of_birth">Date of Birth:</label> <input type="text"
+                                    class="form-control" id="date_of_birth"" name="date_of_birth" placeholder="yyyy.mm.dd">
+                                <label for="phone">Phone:</label> <input type="text"
+                                     class="form-control" id="phone" name="phone" placeholder="(555) 555-5555">
+
 							</div>
 
 
@@ -105,14 +112,8 @@
 						<div class="panel-body">
 							<div class="form-group">
 
-								<label for="street">Street:</label> <input type="text"
-									class="form-control" id="street" name="street" placeholder="Street">
-								<label for="city">City:</label> <input type="text"
-									class="form-control" id="city" name="city" placeholder="City"> <label
-									for="state">State:</label> <input type="text"
-									class="form-control" id="state" name="state" placeholder="State"> <label
-									for="postcode">Postcode:</label> <input type="number"
-									class="form-control" id="postcode" name="postcode" placeholder="ZIP">
+								<label for="location">Street:</label> <input type="text"
+									class="form-control" id="location" name="location" placeholder="ZIP, City, Street">
 							</div>
 
 

@@ -1,20 +1,17 @@
 package hu.sconherz.blog.web.login;
 
-import java.io.IOException;
+import hu.schonherz.blog.service.UserService;
+import hu.schonherz.blog.service.UserServiceImpl;
+import hu.schonherz.blog.service.api.user.dto.UserDTO;
+import hu.schonherz.blog.service.api.user.exception.UserNotFoundException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
-import hu.schonherz.blog.service.UserServiceImpl;
-import hu.schonherz.blog.service.api.user.exception.UserNotFoundException;
-import hu.schonherz.blog.service.api.user.service.UserService;
-import hu.schonherz.blog.service.api.user.vo.User;
-
-/**
- * Servlet implementation class Login
- */
 @WebServlet("/Login")
 public class LoginServlet extends HttpServlet {
 
@@ -35,7 +32,7 @@ public class LoginServlet extends HttpServlet {
 
 		String username = loginForm.getUsername();
 		UserService userService = new UserServiceImpl();
-		User user = null;
+		UserDTO user = null;
 		try {
 
 			user = userService.findUserByName(username);
@@ -48,7 +45,7 @@ public class LoginServlet extends HttpServlet {
 
 		if (user != null) {
 			String password = loginForm.getPassword();
-			if (user.getLogin().getPassword().equals(password)) {
+			if (user.getPassword().equals(password)) {
 				request.getSession().setAttribute("user", user);
 				response.sendRedirect(SECURED_JSP_URL);
 

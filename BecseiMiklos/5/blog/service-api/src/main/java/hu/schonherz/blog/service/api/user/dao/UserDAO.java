@@ -89,5 +89,7 @@ public class UserDAO implements GenericDAO<UserDTO> {
         userDTO.setLocation(rs.getString("location"));
         userDTO.setPhone(rs.getString("phone"));
         userDTO.setImg(rs.getString("img"));
+
+        return userDTO;
     }
 }
