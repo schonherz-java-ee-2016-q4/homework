@@ -11,15 +11,15 @@ import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 
-import hu.sconherz.blog.web.register.validator.RegisterFormValidator;
+import hu.sconherz.blog.web.blogpost.postcreator.validator.PostCreatorFormValidator;
 
-@WebFilter(filterName = "RegisterFilter", urlPatterns = "/Register")
-public class RegisterFilter implements Filter {
+@WebFilter(filterName = "POstCreatorFilter", urlPatterns = "/PostCreator")
+public class PostCreatorFilter implements Filter {
 
-    private static final String REGISTER_JSP_URL = "public/registration/register.jsp";
+    private static final String INDEX_JSP_URL = "index.jsp";
 
     @Override
-    public void destroy() {
+    public void init(FilterConfig filterConfig) throws ServletException {
         // TODO Auto-generated method stub
 
     }
@@ -27,18 +27,17 @@ public class RegisterFilter implements Filter {
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
             throws IOException, ServletException {
-        RegisterFormValidator validator = new RegisterFormValidator((HttpServletRequest) request);
-
+        PostCreatorFormValidator validator = new PostCreatorFormValidator((HttpServletRequest) request);
         if (!validator.isValidForm()) {
             request.setAttribute("error", "Incorrect data");
-            request.getRequestDispatcher(REGISTER_JSP_URL).forward(request, response);
+            request.getRequestDispatcher(INDEX_JSP_URL).forward(request, response);
         } else {
             chain.doFilter(request, response);
         }
     }
 
     @Override
-    public void init(FilterConfig arg0) throws ServletException {
+    public void destroy() {
         // TODO Auto-generated method stub
 
     }

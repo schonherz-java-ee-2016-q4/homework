@@ -18,13 +18,18 @@
 <title>Blog Template for Bootstrap</title>
 
 <!-- Bootstrap core CSS -->
-<link href="<c:url value="resources/css/bootstrap.min.css"/>" rel="stylesheet">
+<link href="<c:url value="/resources/css/bootstrap.min.css"/>" rel="stylesheet">
 
 
 <!-- Custom styles for this template -->
-<link href="<c:url value="resources/css/blog.css"/>" rel="stylesheet">
+<link href="<c:url value="/resources/css/blog.css"/>" rel="stylesheet">
 
 
+<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+<!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
 
 </head>
 
@@ -57,52 +62,9 @@
         </div>
     </div>
 
-    <div class="container">
-
-        <div class="blog-header">
-            <h1 class="blog-title">JavaEE Homework Blog</h1>
-            <p class="lead blog-description">This is my homework project</p>
-        </div>
-
-        <div class="row">
-            <c:if test="${sessionScope.user !=null}">
-                <div class="panel panel-primary">
-                    <div class="panel-heading mypanel " id="filter_heading" onclick="on_header_clocked()">
-                        <h3>New Post</h3>
-
-                    </div>
-                    <div class="panel-body" id="new_post_form">
-                        <form class="form-horizontal" action="PostCreator" method="post" accept-charset="UTF-8">
-                            <div class="form-group">
-                                <label for="title" class="col-sm-3 control-label">Title</label>
-                                <div class="col-sm-9">
-                                    <div>
-                                        <input type="text" name="title" id="title" placeholder="Title" class="form-control">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="post" class="col-sm-3 control-label">Post</label>
-                                <div class="col-sm-9">
-                                    <div class="">
-                                        <textarea class="form-control noresize" id="body" name="body"></textarea>
-                                    </div>
-                                </div>
-                            </div>
-                            <button class="btn btn-default" type="submit" id="submit_post">Submit</button>
-                        </form>
-                    </div>
-                </div>
-            </c:if>
-            <div class="col-sm-8 blog-main" id="posts"></div>
-            <!-- /.blog-main -->
-
-
-        </div>
-        <!-- /.row -->
-
+    <div class="container" id="fullpost">
+        
     </div>
-    <!-- /.container -->
 
     <footer class="blog-footer">
         <p>
@@ -113,18 +75,14 @@
         </p>
     </footer>
 
-
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script>
-					window.jQuery
-							|| document
-									.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')
-				</script>
-    <script src="resources/js/bootstrap.min.js"></script>
-    <script src="<c:url value="/resources/js/blogpost.js"/>"></script>
+                    window.jQuery
+                            || document
+                                    .write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')
+                </script>
+    <script src="/Blog/resources/js/bootstrap.min.js"></script>
+    <script src="/Blog/resources/js/postreader.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 </body>

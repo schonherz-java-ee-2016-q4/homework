@@ -2,20 +2,36 @@ package hu.schonherz.blog.service.api.blogpost.vo;
 
 import java.sql.Date;
 
+import hu.schonherz.blog.data.dto.BlogPostDTO;
+import hu.schonherz.blog.data.dto.UserDTO;
+import hu.schonherz.blog.service.api.user.vo.UserVO;
+
 public class BlogPostVO {
     private int id;
     private String postTitle;
     private String postBody;
     private Date postPublishTime;
-    private int userId;
-    private String username;
+    private UserVO owner;
 
-    public String getUsername() {
-        return username;
+    public static BlogPostVO toVO(BlogPostDTO blogPostdto, UserDTO userDTO) {
+        BlogPostVO post = new BlogPostVO();
+        post.setId(blogPostdto.getId());
+        post.setOwner(UserVO.toVO(userDTO));
+        post.setPostBody(blogPostdto.getPostBody());
+        post.setPostPublishTime(blogPostdto.getPostPublishTime());
+        post.setPostTitle(blogPostdto.getPostTitle());
+        return post;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public static BlogPostDTO toDTO(BlogPostVO blogPostVO) {
+        BlogPostDTO post = new BlogPostDTO();
+        post.setId(blogPostVO.getId());
+        System.out.println(blogPostVO.getOwner());
+        post.setUserId(blogPostVO.getOwner().getId());
+        post.setPostBody(blogPostVO.getPostBody());
+        post.setPostPublishTime(blogPostVO.getPostPublishTime());
+        post.setPostTitle(blogPostVO.getPostTitle());
+        return post;
     }
 
     public int getId() {
@@ -50,11 +66,12 @@ public class BlogPostVO {
         this.postPublishTime = postPublishTime;
     }
 
-    public int getUserId() {
-        return userId;
+    public UserVO getOwner() {
+        return owner;
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public void setOwner(UserVO owner) {
+        this.owner = owner;
     }
+
 }

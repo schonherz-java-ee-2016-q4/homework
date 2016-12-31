@@ -22,7 +22,7 @@ public class LoginServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     private static final String LOGIN_JSP_URL = "public/login.jsp";
-    private static final String SECURED_JSP_URL = "secured/secured.jsp";
+    private static final String INDEX_JSP_URL = "index.jsp";
 
     /**
      * @see HttpServlet#HttpServlet()
@@ -56,7 +56,7 @@ public class LoginServlet extends HttpServlet {
             String password = loginForm.getPassword();
             if (user.getPassword().equals(password)) {
                 request.getSession().setAttribute("user", user);
-                response.sendRedirect(SECURED_JSP_URL);
+                response.sendRedirect(INDEX_JSP_URL);
 
             } else {
                 request.setAttribute("error", "Hibás felhasználónév vagy jelszó!");

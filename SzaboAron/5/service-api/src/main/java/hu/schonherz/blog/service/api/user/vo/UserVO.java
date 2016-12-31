@@ -2,6 +2,8 @@ package hu.schonherz.blog.service.api.user.vo;
 
 import java.sql.Date;
 
+import hu.schonherz.blog.data.dto.UserDTO;
+
 public class UserVO {
     private int id;
     private String email;
@@ -21,6 +23,52 @@ public class UserVO {
     private String largePic;
     private String mediumPic;
     private String thumbnailPic;
+
+    public static UserVO toVO(UserDTO userDTO) {
+        UserVO user = new UserVO();
+        user.setCity(userDTO.getCity());
+        user.setDateOfBirth(userDTO.getDateOfBirth());
+        user.setEmail(userDTO.getEmail());
+        user.setFirstName(userDTO.getFirstName());
+        user.setGender(userDTO.getGender());
+        user.setId(userDTO.getId());
+        user.setLargePic(userDTO.getLargePic());
+        user.setLastName(userDTO.getLastName());
+        user.setMediumPic(userDTO.getMediumPic());
+        user.setNameTitle(userDTO.getNameTitle());
+        user.setPassword(userDTO.getPassword());
+        user.setPhone(userDTO.getPhone());
+        user.setPostcode(userDTO.getPostcode());
+        user.setRegistered(userDTO.getRegistered());
+        user.setState(userDTO.getState());
+        user.setStreet(userDTO.getStreet());
+        user.setThumbnailPic(userDTO.getThumbnailPic());
+        user.setUsername(userDTO.getUsername());
+        return user;
+    }
+
+    public static UserDTO toDTO(UserVO userVO) {
+        UserDTO user = new UserDTO();
+        user.setCity(userVO.getCity());
+        user.setDateOfBirth(userVO.getDateOfBirth());
+        user.setEmail(userVO.getEmail());
+        user.setFirstName(userVO.getFirstName());
+        user.setGender(userVO.getGender());
+        user.setId(userVO.getId());
+        user.setLargePic(userVO.getLargePic());
+        user.setLastName(userVO.getLastName());
+        user.setMediumPic(userVO.getMediumPic());
+        user.setNameTitle(userVO.getNameTitle());
+        user.setPassword(userVO.getPassword());
+        user.setPhone(userVO.getPhone());
+        user.setPostcode(userVO.getPostcode());
+        user.setRegistered(userVO.getRegistered());
+        user.setState(userVO.getState());
+        user.setStreet(userVO.getStreet());
+        user.setThumbnailPic(userVO.getThumbnailPic());
+        user.setUsername(userVO.getUsername());
+        return user;
+    }
 
     public UserVO() {
 
@@ -173,7 +221,7 @@ public class UserVO {
     @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();
-        builder.append("UserDTO [id=");
+        builder.append("UserVO [id=");
         builder.append(id);
         builder.append(", email=");
         builder.append(email);

@@ -10,19 +10,20 @@ function init(){
 }
 
 function getPosts(){
-	$.get("${pageContext.request.contextPath}/BlogPostServlet", function(res) {
+	$.get("${pageContext.request.contextPath}/PostLister", function(res) {
 		console.log(res);
 		displayPostList(res);
 	})
 }
 
-function displayPostList(user_list) {
+function displayPostList(list) {
 	$('#posts').html('');
-	$.each(user_list, function(index, value) {
+	$.each(list, function(index, value) {
 		$.get('${pageContext.request.contextPath}/content/blogpost.html',
 				function(template) {
 					var t = template.replace('date', value.postPublishTime);
 					t = t.replace('myTitle', value.postTitle);
+					t = t.replace('username', value.owner.username);
 					console.log(t);
 					$('#posts').append(t);
 

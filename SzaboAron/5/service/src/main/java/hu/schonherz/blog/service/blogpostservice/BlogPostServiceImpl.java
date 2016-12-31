@@ -5,22 +5,24 @@ import java.util.List;
 
 import hu.schonherz.blog.data.dao.BlogPostDAOImpl;
 import hu.schonherz.blog.data.dao.GenericDAO;
-import hu.schonherz.blog.data.dao.UserDAO;
-import hu.schonherz.blog.data.dao.UserDAOImpl;
 import hu.schonherz.blog.data.dto.BlogPostDTO;
 import hu.schonherz.blog.service.api.blogpost.service.BlogPostService;
 import hu.schonherz.blog.service.api.blogpost.vo.BlogPostVO;
+import hu.schonherz.blog.service.api.user.vo.UserVO;
+import hu.schonherz.blog.service.userservice.UserServiceImpl;
 
 public class BlogPostServiceImpl implements BlogPostService {
 
-    GenericDAO<BlogPostDTO> dao = new BlogPostDAOImpl();
-    UserDAO userdao = new UserDAOImpl();
+    GenericDAO<BlogPostDTO> blogPostDao = new BlogPostDAOImpl();
+    UserServiceImpl userService = new UserServiceImpl();
 
     @Override
     public List<BlogPostVO> findAllPost() {
         List<BlogPostVO> postList = new ArrayList<>();
-        for (BlogPostDTO dto : dao.findAll()) {
-            postList.add(toVO(dto));
+        for (BlogPostDTO dto : blogPostDao.findAll()) {
+            System.out.println(dto);
+            UserVO user = userService.findUserById(dto.getUserId());
+            postList.add(BlogPostVO.toVO(dto, UserVO.toDTO(user)));
 
         }
         return postList;
@@ -28,28 +30,15 @@ public class BlogPostServiceImpl implements BlogPostService {
 
     @Override
     public void savePost(BlogPostVO post) {
-        dao.save(toDTO(post));
+        blogPostDao.save(BlogPostVO.toDTO(post));
 
     }
 
-    private static BlogPostVO toVO(BlogPostDTO dto) {
-        BlogPostVO post = new BlogPostVO();
-        post.setId(dto.getId());
-        post.setPostBody(dto.getPostBody());
-        post.setPostTitle(dto.getPostTitle());
-        post.setPostPublishTime(dto.getPostPublishTime());
-        post.setUserId(dto.getUserId());
-        return post;
-    }
-
-    private static BlogPostDTO toDTO(BlogPostVO vo) {
-        BlogPostDTO post = new BlogPostDTO();
-        post.setId(vo.getId());
-        post.setPostBody(vo.getPostBody());
-        post.setPostTitle(vo.getPostTitle());
-        post.setPostPublishTime(vo.getPostPublishTime());
-        post.setUserId(vo.getUserId());
-        return post;
+    @Override
+    public BlogPostVO findPostById(int id) {
+        BlogPostDTO dto = blogPostDao.findById(id);
+        UserVO user = userService.findUserById(dto.getUserId());
+        return BlogPostVO.toVO(dto, UserVO.toDTO(user));
     }
 
 }

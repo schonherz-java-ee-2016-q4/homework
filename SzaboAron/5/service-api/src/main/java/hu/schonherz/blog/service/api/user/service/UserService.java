@@ -11,5 +11,7 @@ public interface UserService {
 
     UserVO findUserByName(String name) throws UserNotFoundException;
 
+    UserVO findUserById(int id);
+
     void saveUser(UserVO user);
 }

@@ -77,7 +77,7 @@ public class BlogPostDAOImpl implements GenericDAO<BlogPostDTO> {
         post.setPostTitle(rs.getString("post_title"));
         post.setPostBody(rs.getString("post_body"));
         post.setPostPublishTime(Date.valueOf(rs.getString("post_publish_time")));
-        post.setUserId(rs.getInt("id"));
+        post.setUserId(rs.getInt("user_id"));
         return post;
     }
 
