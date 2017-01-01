@@ -3,16 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package hu.schonherz.blog.data.dto;
+package hu.schonherz.blog.service.api.user.vo;
 
-import java.sql.Date;
-import lombok.Builder;
-import lombok.Data;
-import lombok.extern.slf4j.Slf4j;
+import java.util.Date;
 
-@Data
-@Builder
-public class UserDTO {
+
+public class UserVO {
     private Integer id;
     //basic info
     private String gender;
@@ -37,5 +33,4 @@ public class UserDTO {
     private String userName;
     private String pass;
     private Date regDate;
-    
 }
