@@ -23,3 +23,6 @@ CREATE TABLE blog_app.users(
     pass VARCHAR(30),
     register_date DATE
 )
+-- forgot to create auto incrementation for id
+CREATE SEQUENCE id_seq START WITH 1; -- replace 12345 with max above
+ALTER TABLE  blog_app.users ALTER COLUMN id SET DEFAULT nextval('id_seq');
