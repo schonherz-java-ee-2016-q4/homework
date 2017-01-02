@@ -1,6 +1,6 @@
-package hu.schonherz.blog.service.api.user.dto;
+package hu.schonherz.blog.service.api.user.pojo;
 
-public class UserDTO {
+public class User {
 
     private int id;
     private String firstName;
@@ -14,7 +14,8 @@ public class UserDTO {
     private String phone;
     private String img;
 
-    public UserDTO() {
+    public User() {
+        super();
     }
 
     public int getId() {
@@ -65,6 +66,7 @@ public class UserDTO {
         this.email = email;
     }
 
+
     public String getGender() {
         return gender;
     }
@@ -103,5 +105,34 @@ public class UserDTO {
 
     public void setImg(String img) {
         this.img = img;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder builder = new StringBuilder();
+        builder.append("UserVO [id=");
+        builder.append(id);
+        builder.append(", firstName=");
+        builder.append(firstName);
+        builder.append(", lastName=");
+        builder.append(lastName);
+        builder.append(", username=");
+        builder.append(username);
+        builder.append(", password=");
+        builder.append(password);
+        builder.append(", email=");
+        builder.append(email);
+        builder.append(", gender=");
+        builder.append(gender);
+        builder.append(", date_of_birth=");
+        builder.append(date_of_birth);
+        builder.append(", location=");
+        builder.append(location);
+        builder.append(", phone=");
+        builder.append(phone);
+        builder.append(", img=");
+        builder.append(img);
+        builder.append("]");
+        return builder.toString();
     }
 }

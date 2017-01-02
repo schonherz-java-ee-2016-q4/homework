@@ -1,7 +1,5 @@
 package hu.sconherz.blog.web.login;
 
-import hu.schonherz.blog.service.UserService;
-import hu.schonherz.blog.service.UserServiceImpl;
 import hu.schonherz.blog.service.api.user.dto.UserDTO;
 import hu.schonherz.blog.service.api.user.exception.UserNotFoundException;
 

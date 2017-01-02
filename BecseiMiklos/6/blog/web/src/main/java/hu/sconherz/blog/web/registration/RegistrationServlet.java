@@ -1,9 +1,5 @@
 package hu.sconherz.blog.web.registration;
 
-import hu.schonherz.blog.service.UserService;
-import hu.schonherz.blog.service.UserServiceImpl;
-import hu.schonherz.blog.service.UserVO;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
