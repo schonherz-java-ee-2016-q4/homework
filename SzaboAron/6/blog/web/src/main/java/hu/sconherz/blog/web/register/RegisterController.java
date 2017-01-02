@@ -1,42 +1,35 @@
 package hu.sconherz.blog.web.register;
 
-import java.io.File;
 import java.io.IOException;
 import java.sql.Date;
 import java.time.LocalDate;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
 import hu.schonherz.blog.service.api.user.service.UserService;
 import hu.schonherz.blog.service.api.user.vo.UserVO;
-import hu.schonherz.blog.service.userservice.UserServiceImpl;
 
-@WebServlet("/Register")
-public class RegisterServlet extends HttpServlet {
-    UserService userService = new UserServiceImpl();
-    private static final long serialVersionUID = 1L;
-    private static final String LOGIN_JSP_URL = "public/login.jsp";
-    private static final String INDEX_JSP_URL = "index.jsp";
+@Controller
+public class RegisterController {
+
     private static final String SUCCESS_JSP_URL = "public/registration/success.jsp";
-    private final String UPLOAD_DIRECTORY = "C:" + File.separator + "uploads";
+    // private final String UPLOAD_DIRECTORY = "C:" + File.separator +
+    // "uploads";
+    @Autowired
+    UserService userService;
 
-    public RegisterServlet() {
-        super();
-    }
-
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+    @RequestMapping(path = "/Register", method = RequestMethod.POST)
+    protected String registerUser(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         userService.saveUser(buildUserFromRequest(request));
-        response.sendRedirect(SUCCESS_JSP_URL);
-    }
-
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+        return SUCCESS_JSP_URL;
     }
 
     private UserVO buildUserFromRequest(HttpServletRequest request) {
