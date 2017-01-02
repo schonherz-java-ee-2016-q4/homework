@@ -15,6 +15,7 @@ import hu.schonherz.blog.service.UserServiceImpl;
 import hu.schonherz.blog.service.api.user.service.UserService;
 import hu.schonherz.blog.service.api.user.vo.User;
 import hu.schonherz.blog.service.api.user.vo.UserResult;
+import hu.schonherz.blog.service.api.user.vo.UserVO;
 
 /**
  * Servlet implementation class UserServlet
@@ -37,17 +38,17 @@ public class UserServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		UserService userService = new UserServiceImpl();
-		List<User> users = userService.findAllUser();
-		Gson gson = new Gson();
-		UserResult result = new UserResult();
-		result.setResults(users);
-		String resultJson = gson.toJson(result);
-		
-		response.setCharacterEncoding("UTF-8");
-		response.setContentType("application/json");
-		
-		response.getWriter().write(resultJson);
+//		UserService userService = new UserServiceImpl();
+//		List<UserVO> users = userService.findAllUser();
+//		Gson gson = new Gson();
+//		UserResult result = new UserResult();
+//		result.setResults(users);
+//		String resultJson = gson.toJson(result);
+//                
+//		response.setCharacterEncoding("UTF-8");
+//		response.setContentType("application/json");
+//		
+//		response.getWriter().write(resultJson);
 		
 		
 	}

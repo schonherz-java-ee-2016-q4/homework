@@ -8,14 +8,17 @@ package hu.schonherz.blog.data.mapper;
 import hu.schonherz.blog.data.dto.UserDTO;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.jdbc.core.RowMapper;
-
 
 /**
  *
  * @author pintyo
  */
-public class UserMapper implements RowMapper<UserDTO>{
+public class UserMapper implements RowMapper<UserDTO> {
+
+    private static final Logger LOG = LoggerFactory.getLogger(UserMapper.class);
 
     @Override
     public UserDTO mapRow(ResultSet rs, int i) throws SQLException {
@@ -40,5 +43,5 @@ public class UserMapper implements RowMapper<UserDTO>{
                 .regDate(rs.getDate("register_date"))
                 .build();
     }
-    
+
 }

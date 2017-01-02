@@ -6,12 +6,16 @@
 package hu.schonherz.blog.data.dto;
 
 import java.sql.Date;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
-@Data
 @Builder
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
 public class UserDTO {
     private Integer id;
     //basic info

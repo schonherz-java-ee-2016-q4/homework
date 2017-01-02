@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package hu.schonherz.blog.data.configuration;
+package hu.schonherz.blog.data.config;
 
 import javax.sql.DataSource;
 import org.postgresql.ds.PGPoolingDataSource;
@@ -13,7 +13,7 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 @ComponentScan(basePackages = {"hu.schonherz.blog.data"})
-public class DataBaseConfiguration {
+public class BlogAppDataModuleConfig {
 
     @Bean
     public DataSource createDataSource() {

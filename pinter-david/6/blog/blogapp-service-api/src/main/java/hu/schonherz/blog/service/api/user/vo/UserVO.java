@@ -6,8 +6,16 @@
 package hu.schonherz.blog.service.api.user.vo;
 
 import java.util.Date;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
 public class UserVO {
     private Integer id;
     //basic info
