@@ -28,6 +28,7 @@ public class UserToUserDto {
         userDto.setGender("female".equals(user.getGender()) ? "f" : "m");
         userDto.setDob( new Date ( new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").parse(user.getDob()).getTime() ) );
         userDto.setRegistered( new Date ( new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").parse(user.getRegistered()).getTime() ) );
+        userDto.setActive(user.getActive());
         
         locationDto = new LocationDto();
         

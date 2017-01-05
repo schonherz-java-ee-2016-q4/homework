@@ -19,6 +19,7 @@ public class UserMapper implements RowMapper<UserDto> {
         back.setGender(rs.getString("gender"));
         back.setPhone(rs.getString("phone"));
         back.setRole(rs.getString("role"));
+        back.setActive(rs.getBoolean("active"));
         return back;
     }
 }

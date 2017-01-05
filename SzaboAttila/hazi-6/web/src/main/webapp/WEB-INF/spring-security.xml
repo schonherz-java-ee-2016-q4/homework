@@ -11,6 +11,8 @@
             access="isAnonymous()" />
         <security:intercept-url pattern="/secured/*"
             access="hasRole('USER')" />
+        <security:intercept-url pattern="/admin/*"
+            access="hasRole('ADMIN')" />
         <security:form-login login-page="/public/login.jsp"
             login-processing-url="/login" default-target-url="/index.jsp"
             authentication-failure-url="/public/login.jsp?error=true"

@@ -11,6 +11,7 @@ public class UserDto {
     private String cell;
     private String gender;
     private String role;
+    private boolean active;
     
     public UserDto() {
     }
@@ -79,6 +80,14 @@ public class UserDto {
 		this.role = role;
 	}
 
+	public boolean getActive() {
+		return active;
+	}
+
+	public void setActive(boolean active) {
+		this.active = active;
+	}
+
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
@@ -98,6 +107,8 @@ public class UserDto {
 		builder.append(gender);
 		builder.append(", role=");
 		builder.append(role);
+		builder.append(", active=");
+		builder.append(active);
 		builder.append("]");
 		return builder.toString();
 	}

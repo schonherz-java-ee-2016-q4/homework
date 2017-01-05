@@ -119,35 +119,13 @@ function calculateAge(birthYear, birthMonth, birthDay)
 
 
 function showModal(id) {
-	$('#myModal').html('');
-	$.get(getContextPath() + '/content/modal.html', function(modal_res) {
-		
-		$.each(results, function(index, value) {
-			if (index == id) {
-				var t=	modal_res.replace('user_name',value.name.title + ' ' + value.name.first + ' ' + value.name.last);
-				t = t.replace('role', value.role);
-				t = t.replace('email', value.email);
-				t = t.replace('username', value.login.username);
-				t = t.replace('password', value.login.password);
-				t = t.replace('phone', value.phone);
-				t = t.replace('dob', value.dob);
-				t = t.replace('gender', value.gender);
-				t = t.replace('registered', value.registered);
-				t = t.replace('cell', value.cell);
-				t = t.replace('location', value.location.postcode + ' '
-						+ value.location.city + ', '
-						+ value.location.street);
-				t = t.replace('img_url', value.picture.large);
-				
-				$('#myModal').append(t);
-				return;
-			}
-			
-		});
-		
+	$.each(results, function(index, value) {
+		if (index == id) {
+			fillModal(value);
+			return;
+		}
 	});
 }
-
 
 function addPersonToList(index, value) {
 	$.get(getContextPath() + '/content/content.html', function(template) {

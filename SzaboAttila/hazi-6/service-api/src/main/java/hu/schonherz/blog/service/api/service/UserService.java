@@ -10,6 +10,7 @@ public interface UserService {
 	List<UserVo> findAllUser();
 	UserVo findUserByUsername(String name) throws UserNotFoundException;
 	UserVo findByUserId(int id);
+	boolean switchUserStatus(String username);
 	
 	void addNewUser(UserVo user);
 }

@@ -10,7 +10,8 @@ CREATE TABLE IF NOT EXISTS users (
     phone VARCHAR(30) NOT NULL,
     cell VARCHAR(30) NOT NULL,
     gender VARCHAR(1) NOT NULL,
-    role VARCHAR(20) DEFAULT 'user'
+    role VARCHAR(20) DEFAULT 'user',
+    active BOOLEAN DEFAULT TRUE
 );
 
 CREATE TABLE IF NOT EXISTS location (

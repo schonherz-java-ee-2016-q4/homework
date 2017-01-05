@@ -91,6 +91,7 @@
     </jsp:attribute>
     
     <jsp:attribute name="customScripts">
+        <script src="<c:url value="/resources/js/userModal.js"/>"></script>
         <script src="<c:url value="/resources/js/user.js"/>"></script>
         <script>
           $('#nav_users').addClass('active');

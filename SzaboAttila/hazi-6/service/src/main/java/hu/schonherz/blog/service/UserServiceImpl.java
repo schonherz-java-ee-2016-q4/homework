@@ -85,7 +85,7 @@ public class UserServiceImpl implements UserService {
         
         return getUserFromUserDto(userDto);
     }
-
+    
     @Override
     public UserVo findByUserId(int id) {
         return getUserFromUserDto(userDao.findById(id));
@@ -112,4 +112,15 @@ public class UserServiceImpl implements UserService {
         }
     }
 
+    @Override
+    public boolean switchUserStatus(String username) {
+    	UserDto userDto = userDao.findByUsername(username);
+    	UserVo user = getUserFromUserDto(userDto);
+    	
+    	boolean newValue = !user.getActive();
+    	user.setActive(newValue);
+    	userDao.changeUserStatus(userDto.getId(), newValue);
+    	
+    	return newValue;
+    }
 }
