@@ -12,8 +12,9 @@ import org.slf4j.LoggerFactory;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 @RequestMapping("/login")
@@ -26,7 +27,7 @@ public class LoginController {
     public LoginController() {
     }
 
-    @RequestMapping(method = RequestMethod.POST)
+    @PostMapping
     protected String login(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String username = req.getParameter("username");
         String password = req.getParameter("psw");
@@ -35,21 +36,21 @@ public class LoginController {
         try {
             UserVo user = userService.findUserByName(username);
             if (!user.getLogin().getPassword().equals(password)) {
-                log.info(unsuccessfulMsgTemplate, username);
+                log.warn(unsuccessfulMsgTemplate, username);
                 req.setAttribute("invalidLogin", "invalidLogin");
                 return PageNames.LOGIN_PAGE;
             }
             req.getSession().setAttribute("user", user);
-            log.debug(unsuccessfulMsgTemplate, username);
+            log.debug("The user {} has logged in", username);
             return PageNames.SECURE_PAGE;
         } catch (UserNotFoundException unfe) {
-            log.info("unsuccessful login try with username: {}", username);
+            log.warn(unsuccessfulMsgTemplate, username);
             req.setAttribute("invalidLogin", "invalidLogin");
             return PageNames.LOGIN_PAGE;
         }
     }
 
-    @RequestMapping(method = RequestMethod.GET)
+    @GetMapping
     protected String getMethod(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         return PageNames.LOGIN_PAGE;
     }
