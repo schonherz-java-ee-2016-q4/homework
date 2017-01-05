@@ -11,9 +11,11 @@ import hu.schonherz.java.training.kovtamas.serviceapi.user.vo.UserContainer;
 import hu.schonherz.java.training.kovtamas.serviceapi.user.vo.UserVo;
 import java.util.Collection;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
@@ -26,14 +28,14 @@ public class UserController {
     public UserController() {
     }
 
-    @RequestMapping(method = RequestMethod.GET)
+    @GetMapping(produces = "application/json")
     @ResponseBody
-    protected UserContainer getAllUsers(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    public ResponseEntity<UserContainer> getAllUsers() throws ServletException, IOException {
         Collection<UserVo> users = userService.findAllUser();
         UserContainer container = new UserContainer(users);
+        ResponseEntity<UserContainer> entities = new ResponseEntity<>(container, HttpStatus.OK);
 
-        return container;
+        return entities;
     }
 
 }

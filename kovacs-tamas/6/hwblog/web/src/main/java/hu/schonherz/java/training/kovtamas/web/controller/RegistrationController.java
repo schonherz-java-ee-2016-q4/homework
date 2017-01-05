@@ -21,8 +21,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 import static hu.schonherz.java.training.kovtamas.web.form.RegistrationForm.fromRequest;
 
@@ -37,7 +38,7 @@ public class RegistrationController {
     public RegistrationController() {
     }
 
-    @RequestMapping(method = RequestMethod.POST)
+    @PostMapping
     protected String registerUser(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         RegistrationForm form = fromRequest(req);
         if (!isValidForm(form)) {
@@ -49,7 +50,7 @@ public class RegistrationController {
         }
     }
 
-    @RequestMapping(method = RequestMethod.GET)
+    @GetMapping
     protected String getMethod(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         return PageNames.REGISTRATION_PAGE;
     }
