@@ -4,13 +4,13 @@ import javax.sql.DataSource;
 
 import org.postgresql.ds.PGPoolingDataSource;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 @Configuration
-@ComponentScan(basePackages = "hu.schonherz.blog.data")
+// @ComponentScan(basePackages = "hu.schonherz.blog.data")
 public class DataSourceManager {
+
     @Bean
     public DataSource createDataSource() {
         PGPoolingDataSource dataSource = new PGPoolingDataSource();
