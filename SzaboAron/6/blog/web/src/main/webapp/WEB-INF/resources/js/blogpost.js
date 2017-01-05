@@ -18,14 +18,18 @@ function getPosts() {
 function displayPostList(list) {
     $('#posts').html('');
     $.each(list, function (index, value) {
+        console.log(value);
         $.get('/resources/content/blogpost.html',
             function (template) {
-                var t = template.replace('date', value.postPublishTime);
-                t = t.replace('myTitle', value.postTitle);
-                t = t.replace('username', value.owner.username);
+                var t = template.replace('spec_date', value.postPublishTime);
+                t = t.replace('spec_title', value.postTitle);
+                t = t.replace('spec_username', value.owner.username);
+                t = t.replace('spec_id', value.id);
                 $('#posts').append(t);
 
-            });
+            }
+        )
+        ;
     });
 }
 

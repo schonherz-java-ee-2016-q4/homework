@@ -4,6 +4,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 
 <html lang="en">
 <head>
@@ -62,10 +63,12 @@
         </nav>
     </div>
 </div>
-
-<div class="container" id="fullpost">
-
+<div class="panel panel-default">
+    <div class="panel-heading"><h2 class="blog-post-title">${postModel.title}</h2></div>
+    <div class="panel-body blog-post">${postModel.body}</div>
+    <div class="panel-footer"><p class="blog-post-meta">${postModel.date} ${postModel.username}</p></div>
 </div>
+
 
 <footer class="blog-footer">
     <p>
