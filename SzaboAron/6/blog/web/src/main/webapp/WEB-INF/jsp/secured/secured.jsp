@@ -39,17 +39,16 @@
 
 <div class="blog-masthead navbar-fixed-top" class="container" data-spy="affix" data-offset-top="0">
     <div class="container">
-        <nav class="nav blog-nav ">
-            <a class="blog-nav-item" href="<c:url value="/WEB-INF/jsp/index.jsp/jsp/index.jsp"/>">Home</a> <a
-                class="blog-nav-item "
-                href="<c:url value="/WEB-INF/jsp/public/registration/register.jsp"/>">Register</a>
+        <nav class="blog-nav">
+            <a class="blog-nav-item " href="<c:url value="/"/>">Home</a> <a
+                class="blog-nav-item" href="<c:url value="/registration/"/>">Register</a>
             <c:if test="${sessionScope.user ==null}">
-                <a class="blog-nav-item" href="<c:url value="/public/login.jsp"/>">Login</a>
+                <a class="blog-nav-item" href="<c:url value="/login/"/>">Login</a>
             </c:if>
             <c:if test="${sessionScope.user !=null}">
-                <a class="blog-nav-item" href="<c:url value="/Logout"/>">Logout</a>
+                <a class="blog-nav-item" href="<c:url value="/logout/"/>">Logout</a>
             </c:if>
-            <a class="blog-nav-item active" href="<c:url value="/secured/secured.jsp"/>">Users</a>
+            <a class="blog-nav-item active" href="<c:url value="/users/"/>">Users</a>
             <c:if test="${sessionScope.user !=null}">
                 <div class="dropdown pull-right">
                     <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
@@ -57,11 +56,11 @@
                         <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu">
-
                     </ul>
                 </div>
 
             </c:if>
+
         </nav>
         <div class="panel panel-primary">
             <div class="panel-heading mypanel " id="filter_heading" onclick="on_header_clocked()">

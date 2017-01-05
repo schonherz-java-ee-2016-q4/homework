@@ -19,9 +19,7 @@ public class PostCreatorForm {
         this.title = request.getParameter("title");
         this.body = request.getParameter("body");
         this.labels = new ArrayList<>();
-        // labels.addAll(Arrays.asList(request.getParameter("labels").split(";")));
         owner = (UserVO) request.getSession().getAttribute("user");
-        System.out.println(owner);
     }
 
     public String getTitle() {

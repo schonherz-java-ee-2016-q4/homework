@@ -1,9 +1,9 @@
 package hu.sconherz.blog.web.register.validator;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.apache.commons.validator.routines.DateValidator;
 import org.apache.commons.validator.routines.EmailValidator;
+
+import javax.servlet.http.HttpServletRequest;
 
 public class RegisterFormValidator {
 
@@ -27,13 +27,10 @@ public class RegisterFormValidator {
         DateValidator dateValidator = DateValidator.getInstance();
         try {
             if (dateValidator.validate(birthdate, "MM/dd/yyyy") != null) {
-                System.out.println("ok");
                 return true;
             }
-            System.out.println("ok");
             return false;
         } catch (Exception e) {
-            System.out.println("ok");
             return false;
         }
 
