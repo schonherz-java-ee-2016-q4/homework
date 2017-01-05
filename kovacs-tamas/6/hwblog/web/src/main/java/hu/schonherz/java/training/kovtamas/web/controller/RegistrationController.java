@@ -7,6 +7,7 @@ import hu.schonherz.java.training.kovtamas.serviceapi.user.vo.Login;
 import hu.schonherz.java.training.kovtamas.serviceapi.user.vo.Name;
 import hu.schonherz.java.training.kovtamas.serviceapi.user.vo.UserVo;
 import hu.schonherz.java.training.kovtamas.web.form.RegistrationForm;
+import hu.schonherz.java.training.kovtamas.web.pageinfo.PageNames;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -37,20 +38,20 @@ public class RegistrationController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    protected void registerUser(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected String registerUser(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         RegistrationForm form = fromRequest(req);
         if (!isValidForm(form)) {
-            resp.sendRedirect("/web/resources/pages/public/register.jsp");
+            return PageNames.REGISTRATION_PAGE;
         } else {
             UserVo user = createUser(form);
             service.addUser(user);
-            resp.sendRedirect("/web/resources/pages/public/login.jsp");
+            return PageNames.LOGIN_PAGE;
         }
     }
 
     @RequestMapping(method = RequestMethod.GET)
-    protected void getMethod(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.sendRedirect("/web/resources/pages/public/register.jsp");
+    protected String getMethod(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        return PageNames.REGISTRATION_PAGE;
     }
 
     private boolean isValidForm(RegistrationForm form) {

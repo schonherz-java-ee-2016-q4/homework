@@ -37,12 +37,6 @@ public class UserController {
         response.setContentType("application/json");
 
         response.getWriter().write(resultJson);
-
     }
 
-//    @RequestMapping(method = RequestMethod.POST)
-//    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-//            throws ServletException, IOException {
-//        getAllUsers(request, response);
-//    }
 }

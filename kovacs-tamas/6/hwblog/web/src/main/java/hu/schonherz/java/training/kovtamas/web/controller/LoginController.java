@@ -3,6 +3,7 @@ package hu.schonherz.java.training.kovtamas.web.controller;
 import hu.schonherz.java.training.kovtamas.serviceapi.user.exception.UserNotFoundException;
 import hu.schonherz.java.training.kovtamas.serviceapi.user.service.UserService;
 import hu.schonherz.java.training.kovtamas.serviceapi.user.vo.UserVo;
+import hu.schonherz.java.training.kovtamas.web.pageinfo.PageNames;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -25,36 +26,28 @@ public class LoginController {
     public LoginController() {
     }
 
-//    @RequestMapping(path = "/login", method = RequestMethod.POST)
     @RequestMapping(method = RequestMethod.POST)
-    protected void login(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected String login(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String username = req.getParameter("username");
         String password = req.getParameter("psw");
 
         try {
             UserVo user = userService.findUserByName(username);
             if (!user.getLogin().getPassword().equals(password)) {
-                forwardToLoginPage(req, resp);
+                return PageNames.LOGIN_PAGE;
             }
             req.getSession().setAttribute("user", user);
             log.debug("login successful for user: {}", username);
-            resp.sendRedirect("resources/pages/secure/securePage.jsp");
+            return PageNames.SECURE_PAGE;
         } catch (UserNotFoundException unfe) {
             log.info("unsuccessful login try with username: {}", username);
-            forwardToLoginPage(req, resp);
+            return PageNames.LOGIN_PAGE;
         }
     }
 
-//    @RequestMapping(path = "/login", method = RequestMethod.GET)
     @RequestMapping(method = RequestMethod.GET)
-    protected void getMethod(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        forwardToLoginPage(req, resp);
-    }
-
-    private void forwardToLoginPage(HttpServletRequest req, HttpServletResponse resp)
-            throws ServletException, IOException {
-        req.setAttribute("invalidLogin", "invalidLogin");
-        req.getRequestDispatcher("resources/pages/public/login.jsp").forward(req, resp);
+    protected String getMethod(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        return PageNames.LOGIN_PAGE;
     }
 
 }

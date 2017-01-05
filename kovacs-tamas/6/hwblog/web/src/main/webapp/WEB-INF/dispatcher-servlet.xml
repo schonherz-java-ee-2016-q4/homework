@@ -17,12 +17,11 @@
     <mvc:resources location="/resources/" mapping="/resources/**" />
 
 	<!-- resolve view name -->
-	<!-- eg: hello -> /WEB-INF/jsp/hello.jsp -->
-<!--	<bean
+	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<property name="prefix" value="/WEB-INF/resources/pages/" />
+		<property name="prefix" value="/resources/pages/" />
 		<property name="suffix" value=".jsp" />
-	</bean>-->
+	</bean>
 
 <!--	<bean name="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="org.postgresql.Driver"></property>

@@ -1,5 +1,6 @@
 package hu.schonherz.java.training.kovtamas.web.controller;
 
+import hu.schonherz.java.training.kovtamas.web.pageinfo.PageNames;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -13,18 +14,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class LogOutController {
 
     @RequestMapping(method = RequestMethod.GET)
-    protected void getMethod(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        redirectToLoginPage(req, resp);
+    protected String getMethod(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        return PageNames.LOGIN_PAGE;
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    protected void logout(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected String logout(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.getSession().removeAttribute("user");
-        redirectToLoginPage(req, resp);
-    }
-
-    private void redirectToLoginPage(HttpServletRequest req, HttpServletResponse resp)
-            throws ServletException, IOException {
-        resp.sendRedirect("resources/pages/public/login.jsp");
+        return PageNames.LOGIN_PAGE;
     }
 }
