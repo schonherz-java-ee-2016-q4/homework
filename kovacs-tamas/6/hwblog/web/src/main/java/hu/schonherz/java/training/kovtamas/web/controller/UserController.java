@@ -6,8 +6,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.google.gson.Gson;
-import hu.schonherz.java.training.kovtamas.service.UserServiceImpl;
 import hu.schonherz.java.training.kovtamas.serviceapi.user.service.UserService;
 import hu.schonherz.java.training.kovtamas.serviceapi.user.vo.UserContainer;
 import hu.schonherz.java.training.kovtamas.serviceapi.user.vo.UserVo;
@@ -36,13 +34,6 @@ public class UserController {
         UserContainer container = new UserContainer(users);
 
         return container;
-//        Gson gson = new Gson();
-//        String resultJson = gson.toJson(container);
-//
-//        response.setCharacterEncoding("UTF-8");
-//        response.setContentType("application/json");
-//
-//        response.getWriter().write(resultJson);
     }
 
 }
