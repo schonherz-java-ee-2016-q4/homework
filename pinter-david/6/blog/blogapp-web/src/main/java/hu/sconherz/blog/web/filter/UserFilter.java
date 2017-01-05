@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet Filter implementation class UserFilter
  */
-@WebFilter("/secured/*")
+//@WebFilter("/secured/*")
 public class UserFilter implements Filter {
 
 	/**

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-
+<%@ page isELIgnored="false" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
@@ -59,6 +59,7 @@
 
             <div class="blog-header">
                 <h1 class="blog-title">The Bootstrap Blog</h1>
+                <h1 class="blog-title">na megye?: ${message}</h1>
                 <p class="lead blog-description">The official example template of
                     creating a blog with Bootstrap.</p>
             </div>

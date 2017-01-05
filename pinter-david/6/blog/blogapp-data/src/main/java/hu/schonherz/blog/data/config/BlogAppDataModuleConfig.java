@@ -10,9 +10,10 @@ import org.postgresql.ds.PGPoolingDataSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.jdbc.core.JdbcTemplate;
 
 @Configuration
-@ComponentScan(basePackages = {"hu.schonherz.blog.data"})
+@ComponentScan("hu.schonherz.blog.data")
 public class BlogAppDataModuleConfig {
 
     @Bean
@@ -28,5 +29,10 @@ public class BlogAppDataModuleConfig {
         dataSource.setPassword("pass");
 
         return dataSource;
+    }
+    
+    @Bean
+    public JdbcTemplate createJdbcTemplate() {
+        return new JdbcTemplate(createDataSource());
     }
 }
