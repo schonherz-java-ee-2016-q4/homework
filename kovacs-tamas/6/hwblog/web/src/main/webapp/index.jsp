@@ -10,9 +10,9 @@
     <body>
         <!--If user is already logged in, redirect to the secure page-->
         <c:if test="${sessionScope.user != null}">
-            <c:redirect url="resources/pages/secure/securePage.jsp"/>
+            <c:redirect url="/secure/securePage.jsp"/>
         </c:if>
         <!--If user is not logged in, redirect to the login page-->
-        <c:redirect url="resources/pages/public/login.jsp"/>
+        <c:redirect url="/login"/>
     </body>
 </html>
