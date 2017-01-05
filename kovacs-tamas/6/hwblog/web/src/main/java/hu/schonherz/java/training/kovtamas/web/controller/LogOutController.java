@@ -15,12 +15,8 @@ public class LogOutController {
 
     @RequestMapping(method = RequestMethod.GET)
     protected String getMethod(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        return PageNames.LOGIN_PAGE;
-    }
-
-    @RequestMapping(method = RequestMethod.POST)
-    protected String logout(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.getSession().removeAttribute("user");
         return PageNames.LOGIN_PAGE;
     }
+
 }

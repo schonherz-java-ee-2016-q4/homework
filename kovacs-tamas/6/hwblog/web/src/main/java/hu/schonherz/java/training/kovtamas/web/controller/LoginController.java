@@ -30,17 +30,21 @@ public class LoginController {
     protected String login(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String username = req.getParameter("username");
         String password = req.getParameter("psw");
+        String unsuccessfulMsgTemplate = "unsuccessful login try with username: {}";
 
         try {
             UserVo user = userService.findUserByName(username);
             if (!user.getLogin().getPassword().equals(password)) {
+                log.info(unsuccessfulMsgTemplate, username);
+                req.setAttribute("invalidLogin", "invalidLogin");
                 return PageNames.LOGIN_PAGE;
             }
             req.getSession().setAttribute("user", user);
-            log.debug("login successful for user: {}", username);
+            log.debug(unsuccessfulMsgTemplate, username);
             return PageNames.SECURE_PAGE;
         } catch (UserNotFoundException unfe) {
             log.info("unsuccessful login try with username: {}", username);
+            req.setAttribute("invalidLogin", "invalidLogin");
             return PageNames.LOGIN_PAGE;
         }
     }
