@@ -40,7 +40,7 @@
             <c:if test="${sessionScope.user !=null}">
                 <a class="blog-nav-item" href="<c:url value="/logout/"/>">Logout</a>
             </c:if>
-            <a class="blog-nav-item" href="<c:url value="/users"/>">Users</a>
+            <a class="blog-nav-item" href="<c:url value="/users/"/>">Users</a>
             <c:if test="${sessionScope.user !=null}">
                 <div class="dropdown pull-right">
                     <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">

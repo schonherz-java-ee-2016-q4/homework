@@ -10,7 +10,7 @@ function init() {
 }
 
 function getPosts() {
-    $.get("/postlist", function (res) {
+    $.get("/list", function (res) {
         displayPostList(res);
     })
 }

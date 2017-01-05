@@ -85,8 +85,7 @@
     || document
         .write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')
 </script>
-<script src="/Blog/resources/js/bootstrap.min.js"></script>
-<script src="/Blog/resources/js/postreader.js"></script>
+<script src="/resources/js/bootstrap.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 </body>
