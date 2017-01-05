@@ -1,4 +1,4 @@
-package hu.schonherz.java.training.kovtamas.web.servlet;
+package hu.schonherz.java.training.kovtamas.web.controller;
 
 import hu.schonherz.java.training.kovtamas.service.UserServiceImpl;
 import hu.schonherz.java.training.kovtamas.serviceapi.user.vo.Dates;
@@ -26,7 +26,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import static hu.schonherz.java.training.kovtamas.web.form.RegistrationForm.fromRequest;
 
 @Controller
-@RequestMapping("/web/RegistrationServlet")
+@RequestMapping("/registration")
 public class RegistrationController {
 
     @Autowired

@@ -6,7 +6,7 @@ $(document).ready(function () {     // Only executes when the document is comple
     $(".loader").show();
     var size = new Number($('#number').val());
     // Get the user data from the UserServlet and apply this function to the returned data
-    $.get("/web/UserServlet", function (res) {
+    $.get("/web/user", function (res) {
         $('#result').html(''); // Some sort of clear, emptiing the result container
         console.log(res); // Print out the data returned by the get function, aka all the user data
 
@@ -17,7 +17,7 @@ $(document).ready(function () {     // Only executes when the document is comple
         // Now that all the data has been processed, it's time to hide the loading indicator and show the results
         $(".loader").hide();
         $('#result').show();
-    }); // UserServlet get
+    });
 }); // document - ready
 
 function addToUserList(index, value) {
@@ -38,7 +38,6 @@ function addToUserList(index, value) {
 
 
 function handleClick(id) {
-//alert(id);
     $('#myModal').html('');
     $.get('/web/content/modal.html', function (modal_res) {
 

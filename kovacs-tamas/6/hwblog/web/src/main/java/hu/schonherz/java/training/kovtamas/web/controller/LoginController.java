@@ -1,4 +1,4 @@
-package hu.schonherz.java.training.kovtamas.web.servlet;
+package hu.schonherz.java.training.kovtamas.web.controller;
 
 import hu.schonherz.java.training.kovtamas.serviceapi.user.exception.UserNotFoundException;
 import hu.schonherz.java.training.kovtamas.serviceapi.user.service.UserService;
@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-@RequestMapping("loginServlet")
+@RequestMapping("/login")
 public class LoginController {
 
     @Autowired
@@ -25,6 +25,7 @@ public class LoginController {
     public LoginController() {
     }
 
+//    @RequestMapping(path = "/login", method = RequestMethod.POST)
     @RequestMapping(method = RequestMethod.POST)
     protected void login(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String username = req.getParameter("username");
@@ -44,6 +45,7 @@ public class LoginController {
         }
     }
 
+//    @RequestMapping(path = "/login", method = RequestMethod.GET)
     @RequestMapping(method = RequestMethod.GET)
     protected void getMethod(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         forwardToLoginPage(req, resp);

@@ -1,4 +1,4 @@
-package hu.schonherz.java.training.kovtamas.web.servlet;
+package hu.schonherz.java.training.kovtamas.web.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-@RequestMapping("/web/logOutServlet")
+@RequestMapping("/logout")
 public class LogOutController {
 
     @RequestMapping(method = RequestMethod.GET)

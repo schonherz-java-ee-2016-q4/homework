@@ -1,4 +1,4 @@
-package hu.schonherz.java.training.kovtamas.web.servlet;
+package hu.schonherz.java.training.kovtamas.web.controller;
 
 import java.io.IOException;
 
@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-@RequestMapping("/web/UserServlet")
+@RequestMapping("/user")
 public class UserController {
 
     public UserController() {

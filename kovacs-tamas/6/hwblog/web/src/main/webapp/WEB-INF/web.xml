@@ -5,37 +5,16 @@
 <web-app>
     <display-name>Archetype Created Web Application</display-name>
 
-    <!-- The jsps will be handle by jsp servlet -->
-<!--    <servlet>
-        <servlet-name>jsp</servlet-name>
-        <servlet-class>org.apache.jasper.servlet.JspServlet</servlet-class>
-    </servlet>
-
-    <servlet-mapping>
-        <servlet-name>jsp</servlet-name>
-        <url-pattern>/WEB-INF/resources/pages/*</url-pattern>
-    </servlet-mapping>-->
-
     <!-- Spring section -->
     <servlet>
-        <servlet-name>SpringBlog</servlet-name>
+        <servlet-name>dispatcher</servlet-name>
         <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
         <load-on-startup>1</load-on-startup>
     </servlet>
 
     <servlet-mapping>
-        <servlet-name>SpringBlog</servlet-name>
-        <url-pattern>/*</url-pattern>
+        <servlet-name>dispatcher</servlet-name>
+        <url-pattern>/</url-pattern>
     </servlet-mapping>
-
-    <!-- needed for ContextLoaderListener -->
-    <context-param>
-        <param-name>contextConfigLocation</param-name>
-        <param-value>/WEB-INF/SpringBlog-servlet.xml</param-value>
-    </context-param>
-
-    <!--    <listener>
-        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-    </listener>-->
 
 </web-app>

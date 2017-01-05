@@ -31,7 +31,7 @@
             <div class="container">
                 <nav class="blog-nav">
                     <label>Welcome, ${sessionScope.user.login.username}</label>
-                    <a class="blog-nav-item" href="<c:url value="/logOutServlet"/>">Logout</a>
+                    <a class="blog-nav-item" href="<c:url value="/logout"/>">Logout</a>
                 </nav>
             </div>
         </div>

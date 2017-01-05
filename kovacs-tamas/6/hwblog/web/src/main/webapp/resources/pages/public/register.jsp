@@ -12,7 +12,7 @@
             <div id="req-inputs" class="form">
                 <p><h1>Register</h1></p>
                 <span id="errorMessage" class="hidden error-message">Empty or invalid data</span>
-                <form class="login-form" action="/web/RegistrationServlet"
+                <form class="login-form" action="<c:url value="/registration" />"
                       method="post" onsubmit="return validateRegForm()">
 
                     <p><label>Username:</label>
