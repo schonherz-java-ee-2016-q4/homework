@@ -1,10 +1,10 @@
 package hu.schonherz.blog.service.api.blogpost.vo;
 
-import java.sql.Date;
-
 import hu.schonherz.blog.data.dto.BlogPostDTO;
 import hu.schonherz.blog.data.dto.UserDTO;
 import hu.schonherz.blog.service.api.user.vo.UserVO;
+
+import java.sql.Date;
 
 public class BlogPostVO {
     private int id;
@@ -26,7 +26,6 @@ public class BlogPostVO {
     public static BlogPostDTO toDTO(BlogPostVO blogPostVO) {
         BlogPostDTO post = new BlogPostDTO();
         post.setId(blogPostVO.getId());
-        System.out.println(blogPostVO.getOwner());
         post.setUserId(blogPostVO.getOwner().getId());
         post.setPostBody(blogPostVO.getPostBody());
         post.setPostPublishTime(blogPostVO.getPostPublishTime());

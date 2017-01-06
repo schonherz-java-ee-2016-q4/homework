@@ -40,7 +40,7 @@
             <c:if test="${sessionScope.user !=null}">
                 <a class="blog-nav-item" href="<c:url value="/logout/"/>">Logout</a>
             </c:if>
-            <a class="blog-nav-item" href="<c:url value="/users"/>">Users</a>
+            <a class="blog-nav-item" href="<c:url value="/users/"/>">Users</a>
             <c:if test="${sessionScope.user !=null}">
                 <div class="dropdown pull-right">
                     <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
@@ -72,7 +72,7 @@
 
                 </div>
                 <div class="panel-body" id="new_post_form">
-                    <form class="form-horizontal" action="PostCreator" method="post" accept-charset="UTF-8">
+                    <form class="form-horizontal" action="/create" method="post" accept-charset="UTF-8">
                         <div class="form-group">
                             <label for="title" class="col-sm-3 control-label">Title</label>
                             <div class="col-sm-9">

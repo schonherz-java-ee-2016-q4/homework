@@ -4,6 +4,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 
 <html lang="en">
 <head>
@@ -62,10 +63,12 @@
         </nav>
     </div>
 </div>
-
-<div class="container" id="fullpost">
-
+<div class="panel panel-default">
+    <div class="panel-heading"><h2 class="blog-post-title">${postModel.title}</h2></div>
+    <div class="panel-body blog-post">${postModel.body}</div>
+    <div class="panel-footer"><p class="blog-post-meta">${postModel.date} ${postModel.username}</p></div>
 </div>
+
 
 <footer class="blog-footer">
     <p>
@@ -82,8 +85,7 @@
     || document
         .write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')
 </script>
-<script src="/Blog/resources/js/bootstrap.min.js"></script>
-<script src="/Blog/resources/js/postreader.js"></script>
+<script src="/resources/js/bootstrap.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 </body>
