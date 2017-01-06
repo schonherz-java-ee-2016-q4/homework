@@ -24,7 +24,7 @@ public class WebInitializer implements WebApplicationInitializer {
         AnnotationConfigWebApplicationContext ctx = new AnnotationConfigWebApplicationContext();
         ctx.register(BlogAppWebModuleConfig.class);
         ctx.setServletContext(servletContext);
-//        servletContext.addListener(new ContextLoaderListener(ctx));
+        servletContext.addListener(new ContextLoaderListener(ctx));
         Dynamic servlet = servletContext.addServlet("dispatcher", new DispatcherServlet(ctx));
         servlet.addMapping("/");
         servlet.setLoadOnStartup(1);
