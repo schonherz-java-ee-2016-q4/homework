@@ -1,15 +1,13 @@
 var results;    // Will contain the data of the users, as some sort of collection
+var contextPath;
 
 $(document).ready(function () {     // Only executes when the document is completely loaded
 // While loading the data, hide the result container and show the loading indicator
     $('#result').hide();
     $(".loader").show();
-    var size = new Number($('#number').val());
     // Get the user data from the UserServlet and apply this function to the returned data
-    $.get("/web/UserServlet", function (res) {
+    $.get("/web/user", function (res) {
         $('#result').html(''); // Some sort of clear, emptiing the result container
-        console.log(res); // Print out the data returned by the get function, aka all the user data
-
         results = res.results; // Save the returned results to a variable that is accessible from the other method
         $.each(results, function (index, value) {
             addToUserList(index, value);
@@ -17,12 +15,16 @@ $(document).ready(function () {     // Only executes when the document is comple
         // Now that all the data has been processed, it's time to hide the loading indicator and show the results
         $(".loader").hide();
         $('#result').show();
-    }); // UserServlet get
+    });
 }); // document - ready
+
+function setContextPath(path) {
+    contextPath = path;
+}
 
 function addToUserList(index, value) {
     // Read the template html and replace default values with real user data
-    $.get('/web/content/content.html', function (template) {
+    $.get(contextPath + '/resources/content/content.html', function (template) {
         var t = template.replace('user_name', value.name.firstName + ' ' + value.name.lastName);
         t = t.replace('img_url', value.picUrl);
         t = t.replace('city', value.location.postCode + ' ' + value.location.city);
@@ -38,9 +40,8 @@ function addToUserList(index, value) {
 
 
 function handleClick(id) {
-//alert(id);
     $('#myModal').html('');
-    $.get('/web/content/modal.html', function (modal_res) {
+    $.get(contextPath + '/resources/content/modal.html', function (modal_res) {
 
         $.each(results, function (index, value) {
             if (index == id) {
