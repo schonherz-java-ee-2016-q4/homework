@@ -5,9 +5,11 @@
  */
 package hu.schonherz.blog.web.config;
 
+import hu.schonherz.blog.service.config.BlogAppServiceModuleConfig;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
@@ -20,8 +22,9 @@ import org.springframework.web.servlet.view.UrlBasedViewResolver;
  */
 @Configuration
 @ComponentScan("hu.schonherz.blog")
+@Import(BlogAppServiceModuleConfig.class)
 @EnableWebMvc   
-public class ViewConfig extends WebMvcConfigurerAdapter {  
+public class BlogAppWebModuleConfig extends WebMvcConfigurerAdapter {  
       
     @Bean  
     public UrlBasedViewResolver setupViewResolver() {  

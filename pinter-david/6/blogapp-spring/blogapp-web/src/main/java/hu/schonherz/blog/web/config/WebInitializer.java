@@ -22,9 +22,9 @@ public class WebInitializer implements WebApplicationInitializer {
     @Override
     public void onStartup(ServletContext servletContext) throws ServletException {
         AnnotationConfigWebApplicationContext ctx = new AnnotationConfigWebApplicationContext();
-        ctx.register(ViewConfig.class);
+        ctx.register(BlogAppWebModuleConfig.class);
         ctx.setServletContext(servletContext);
-        servletContext.addListener(new ContextLoaderListener(ctx));
+//        servletContext.addListener(new ContextLoaderListener(ctx));
         Dynamic servlet = servletContext.addServlet("dispatcher", new DispatcherServlet(ctx));
         servlet.addMapping("/");
         servlet.setLoadOnStartup(1);

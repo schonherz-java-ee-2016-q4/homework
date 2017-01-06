@@ -8,19 +8,24 @@
     <properties>
         <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        
         <spring.version>4.3.4.RELEASE</spring.version>
+        
         <jstl.version>1.2</jstl.version>
         <javax.servlet.version>3.1.0</javax.servlet.version>
+        
+        <lombok.version>1.16.12</lombok.version>
+        
+        <logback.version>1.1.8</logback.version>
+        <slf4j.version>1.7.21</slf4j.version>
+        
+        <modelmapper.version>0.7.5</modelmapper.version>
     </properties>
     <dependencyManagement>
         <dependencies>
-            <dependency>
-                <groupId>javax</groupId>
-                <artifactId>javaee-web-api</artifactId>
-                <version>7.0</version>
-                <scope>provided</scope>
-            </dependency>
+            
         
+            <!--Spring-->
             <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-core</artifactId>
@@ -38,7 +43,67 @@
                 <artifactId>spring-webmvc</artifactId>
                 <version>${spring.version}</version>
             </dependency>
+            
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-context</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
 
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-jdbc</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+            
+            <!-- lombok -->
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${lombok.version}</version>
+            </dependency>
+            
+            <!-- logging -->
+            <dependency>
+                <groupId>ch.qos.logback</groupId>
+                <artifactId>logback-classic</artifactId>
+                <version>${logback.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-api</artifactId>
+                <version>${slf4j.version}</version>
+            </dependency>
+            
+            <!-- validation -->
+            <dependency>
+                <groupId>commons-validator</groupId>
+                <artifactId>commons-validator</artifactId>
+                <version>1.4.0</version>
+            </dependency>
+            
+            <!-- modelmapper -->
+            <dependency>
+                <groupId>org.modelmapper</groupId>
+                <artifactId>modelmapper</artifactId>
+                <version>${modelmapper.version}</version>
+            </dependency>
+            
+            <!-- DB -->
+            <dependency>
+                <groupId>org.postgresql</groupId>
+                <artifactId>postgresql</artifactId>
+                <version>9.4.1212.jre7</version>
+            </dependency>
+            
+            <!-- javaee -->
+            <dependency>
+                <groupId>javax</groupId>
+                <artifactId>javaee-web-api</artifactId>
+                <version>7.0</version>
+                <scope>provided</scope>
+            </dependency>
+            
             <dependency>  
                 <groupId>javax.servlet</groupId>  
                 <artifactId>javax.servlet-api</artifactId>  
@@ -52,7 +117,7 @@
                 <version>${jstl.version}</version>  
             </dependency>  
     
-        
+            
         </dependencies>
     </dependencyManagement>
     <build>
@@ -109,5 +174,9 @@
     </build>
     <modules>
         <module>blogapp-web</module>
+        <module>blogapp-service-api</module>
+        <module>blogapp-service</module>
+        <module>blogapp-data</module>
     </modules>
+    <name>blogap-parent-spring</name>
 </project>
