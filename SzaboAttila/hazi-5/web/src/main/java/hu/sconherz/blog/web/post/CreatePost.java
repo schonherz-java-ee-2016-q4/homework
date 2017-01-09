@@ -19,7 +19,7 @@ import hu.schonherz.blog.service.api.service.BlogService;
  */
 @WebServlet("/CreatePost")
 public class CreatePost extends HttpServlet {
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 7022889913125670918L;
     private static final String CREATED_POST_JSP_URL = "secured/post.jsp?id=";
 
     
@@ -40,7 +40,7 @@ public class CreatePost extends HttpServlet {
 	    
 	    bp.setTitle(cpf.getTitle());
 	    bp.setContent(cpf.getContent());
-	    bp.setPosted(new SimpleDateFormat("yyyy-MM-dd").format(new Date()) + " 00:00:00");
+	    bp.setPosted(new SimpleDateFormat("yyyy-MM-dd kk:mm").format(new Date()));
 	    bp.setTags(cpf.getTags());
 	    bp.setAuthor(cpf.getAuthor());
 	    

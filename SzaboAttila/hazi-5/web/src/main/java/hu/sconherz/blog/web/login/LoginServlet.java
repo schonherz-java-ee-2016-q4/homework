@@ -18,10 +18,8 @@ import hu.schonherz.blog.service.api.user.vo.User;
  */
 @WebServlet("/Login")
 public class LoginServlet extends HttpServlet {
-
-	private static final long serialVersionUID = 1L;
-
-	private static final String LOGIN_JSP_URL = "public/login.jsp";
+    private static final long serialVersionUID = -4885921404903800270L;
+    private static final String LOGIN_JSP_URL = "public/login.jsp";
 	private static final String SECURED_JSP_URL = "secured/secured.jsp";
 
 	/**

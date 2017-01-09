@@ -17,7 +17,7 @@ import hu.schonherz.blog.service.api.service.BlogService;
 
 @WebServlet("/ListPosts")
 public class ListPosts extends HttpServlet {
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = -2268539799997507013L;
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

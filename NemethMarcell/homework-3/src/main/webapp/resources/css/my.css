@@ -19,21 +19,22 @@
 .right-addon input { padding-right: 30px; }
 
 body{
-	background-color: #FAFAFA;
+	background-color: #33b5e5;
 }
 
 .jumbotron{
-	background-color: #2E2E2E;
+	background-color: #ffbb33;
 	margin-top:40px;
 	border-radius:25px;
+	border: 2px solid #FAFAFA;
 }
 .navbar {
 	background-color:#FAFAFA;
 }
 .thumbnail{
-	background-color:#2E2E2E;
+	background-color:#ffbb33;
 	border-radius:10px;
-	
+	border: 2px solid #FAFAFA;
 }
 #img{
 	border-radius:50%;
@@ -53,3 +54,8 @@ body{
 	
 }
 
+.my-box {
+    text-align: center;
+    margin-bottom: 20px;
+    margin-top: 10px;
+}

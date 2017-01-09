@@ -21,9 +21,9 @@ import hu.schonherz.blog.service.api.user.vo.UserResult;
  */
 @WebServlet("/UserServlet")
 public class UserServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = -295362583280158055L;
 
-	/**
+    /**
 	 * @see HttpServlet#HttpServlet()
 	 */
 	public UserServlet() {
