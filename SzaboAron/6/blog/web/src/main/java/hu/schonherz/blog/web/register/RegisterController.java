@@ -2,21 +2,22 @@ package hu.schonherz.blog.web.register;
 
 import hu.schonherz.blog.service.api.user.service.UserService;
 import hu.schonherz.blog.service.api.user.vo.UserVO;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
-import java.io.IOException;
 import java.sql.Date;
 import java.time.LocalDate;
 
 @Controller
 @RequestMapping(path = "/registration")
 public class RegisterController {
-
+    private static final Logger LOGGER = LoggerFactory.getLogger(RegisterController.class);
     private static final String SUCCESS_JSP_URL = "public/registration/success";
     private static final String REGISTER_JSP_URL = "public/registration/register";
     // private final String UPLOAD_DIRECTORY = "C:" + File.separator +
@@ -24,14 +25,14 @@ public class RegisterController {
     @Autowired
     UserService userService;
 
-    @RequestMapping(path = "/", method = RequestMethod.GET)
+    @GetMapping(path = "/")
     public String registerPage() {
         return REGISTER_JSP_URL;
 
     }
 
-    @RequestMapping(path = "/register", method = RequestMethod.POST)
-    public String registerUser(HttpServletRequest request) throws ServletException, IOException {
+    @PostMapping(path = "/register")
+    public String registerUser(HttpServletRequest request) {
         userService.saveUser(buildUserFromRequest(request));
         return SUCCESS_JSP_URL;
     }

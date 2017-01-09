@@ -15,7 +15,7 @@
     <meta name="author" content="">
     <link rel="icon" href="../../favicon.ico">
 
-    <title>Blog Template for Bootstrap</title>
+    <title>JavaEE homework</title>
 
     <!-- Bootstrap core CSS -->
     <link href="<c:url value="/resources/css/bootstrap.min.css"/>" rel="stylesheet">
@@ -72,7 +72,7 @@
 
                 </div>
                 <div class="panel-body" id="new_post_form">
-                    <form class="form-horizontal" action="/create" method="post" accept-charset="UTF-8">
+                    <form class="form-horizontal" accept-charset="UTF-8" id="create_post">
                         <div class="form-group">
                             <label for="title" class="col-sm-3 control-label">Title</label>
                             <div class="col-sm-9">
@@ -123,8 +123,8 @@
     || document
         .write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')
 </script>
-<script src="../../resources/js/bootstrap.min.js"></script>
 <script src="<c:url value="/resources/js/blogpost.js"/>"></script>
+<script src="<c:url value="/resources/js/blogpostcreator.js"/>"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 </body>

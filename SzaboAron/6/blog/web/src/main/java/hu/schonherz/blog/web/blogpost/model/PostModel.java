@@ -15,5 +15,4 @@ public class PostModel {
     private String body;
     private String username;
     private Date date;
-
 }

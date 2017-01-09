@@ -3,22 +3,18 @@ package hu.schonherz.blog.web.blogpost.createform;
 import hu.schonherz.blog.service.api.user.vo.UserVO;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.ArrayList;
-import java.util.List;
 
 public class PostCreatorForm {
     private String title;
 
     private String body;
 
-    private List<String> labels;
-
     private UserVO owner;
 
     public PostCreatorForm(HttpServletRequest request) {
         this.title = request.getParameter("title");
         this.body = request.getParameter("body");
-        this.labels = new ArrayList<>();
+
         owner = (UserVO) request.getSession().getAttribute("user");
     }
 
@@ -38,14 +34,6 @@ public class PostCreatorForm {
         this.body = body;
     }
 
-    public List<String> getLabels() {
-        return labels;
-    }
-
-    public void setLabels(List<String> labels) {
-        this.labels = labels;
-    }
-
     public UserVO getOwner() {
         return owner;
     }
@@ -56,7 +44,7 @@ public class PostCreatorForm {
 
     @Override
     public String toString() {
-        return "PostCreatorForm [title=" + title + ", body=" + body + ", labels=" + labels + ", owner=" + owner + "]";
+        return "PostCreatorForm [title=" + title + ", body=" + body + ", labels=" + ", owner=" + owner + "]";
     }
 
 }
