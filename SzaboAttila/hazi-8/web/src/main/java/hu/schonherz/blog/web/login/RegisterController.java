@@ -46,8 +46,6 @@ public class RegisterController {
         
         try {
             userService.findUserByUsername(username);
-            //request.setAttribute("error", "This username already exists!");
-            //request.getRequestDispatcher(REGISTER_JSP_URL).forward(request, response);
             model.addAttribute("error", "This username already exists!");
             return REGISTER_JSP_URL;
         } catch (UserNotFoundException e) {

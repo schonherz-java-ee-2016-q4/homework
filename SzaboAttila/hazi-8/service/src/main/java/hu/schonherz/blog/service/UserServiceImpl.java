@@ -1,51 +1,36 @@
 package hu.schonherz.blog.service;
 
+import com.google.gson.Gson;
+import hu.schonherz.blog.data.domain.UserEntity;
+import hu.schonherz.blog.data.repository.UserRepository;
+import hu.schonherz.blog.service.api.service.UserService;
+import hu.schonherz.blog.service.api.user.exception.UserNotFoundException;
+import hu.schonherz.blog.service.api.user.vo.UserResultVo;
+import hu.schonherz.blog.service.api.user.vo.UserVo;
+import hu.schonherz.blog.service.converter.UserConverter;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
+import javax.annotation.PostConstruct;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
 import java.util.List;
-
-import javax.annotation.PostConstruct;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import com.google.gson.Gson;
-
-import hu.schonherz.blog.data.user.dao.GenericDao;
-import hu.schonherz.blog.data.user.dao.UserDao;
-import hu.schonherz.blog.data.user.dto.LocationDto;
-import hu.schonherz.blog.data.user.dto.LoginDto;
-import hu.schonherz.blog.data.user.dto.NameDto;
-import hu.schonherz.blog.data.user.dto.PictureDto;
-import hu.schonherz.blog.data.user.dto.UserDto;
-import hu.schonherz.blog.service.api.service.UserService;
-import hu.schonherz.blog.service.api.user.exception.UserNotFoundException;
-import hu.schonherz.blog.service.api.user.vo.UserVo;
-import hu.schonherz.blog.service.api.user.vo.UserResultVo;
-import hu.schonherz.blog.service.user.convert.UserDtoToUser;
-import hu.schonherz.blog.service.user.convert.UserToUserDto;
 
 @Service
 public class UserServiceImpl implements UserService {
 
     @Autowired
-    private UserDao userDao;
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Autowired
-    private GenericDao<LocationDto> locationDao;
-    @Autowired
-    private GenericDao<LoginDto> loginDao;
-    @Autowired
-    private GenericDao<NameDto> nameDao;
-    @Autowired
-    private GenericDao<PictureDto> pictureDao;
+    private UserRepository userRepository;
     
     @PostConstruct
     private void init() {
         //if the database is empty fill it with example users
-        if(userDao.findAll().size() == 0) {
+        if(userRepository.count() == 0) {
             Gson gson = new Gson();
             ClassLoader classLoader = getClass().getClassLoader();
             try (InputStream inputStream = classLoader.getResourceAsStream("example.txt");
@@ -53,9 +38,7 @@ public class UserServiceImpl implements UserService {
                 UserResultVo result = gson.fromJson(bufferedReader, UserResultVo.class);
                 
                 for (UserVo user : result.getResults()) {
-                    UserToUserDto conv = new UserToUserDto(user);
-                    userDao.save(conv.getUserDto(), conv.getLocationDto(), conv.getLoginDto(), conv.getNameDto(),
-                            conv.getPictureDto());
+                    addNewUser(user);
                 }
             } catch (Exception e) {
                 e.printStackTrace();
@@ -65,48 +48,31 @@ public class UserServiceImpl implements UserService {
     
     @Override
     public List<UserVo> findAllUser() {
-        UserResultVo result = new UserResultVo();
-        List<UserVo> users = new ArrayList<>();
-        for (UserDto userDto : userDao.findAll()) {
-            users.add(getUserFromUserDto(userDto));
-        }
-        result.setResults(users);
-
-        return result.getResults();
+        return UserConverter.toVO(userRepository.findAll());
     }
 
     @Override
     public UserVo findUserByUsername(String username) throws UserNotFoundException {
-        UserDto userDto = userDao.findByUsername(username);
-        
-        if (userDto == null) {
+        UserEntity foundUser = userRepository.findByUsername(username);
+        if (foundUser == null)
             throw new UserNotFoundException();
-        }
-        
-        return getUserFromUserDto(userDto);
+
+        return UserConverter.toVO(foundUser);
     }
     
     @Override
     public UserVo findByUserId(int id) {
-        return getUserFromUserDto(userDao.findById(id));
-    }
-    
-    private UserVo getUserFromUserDto(UserDto userDto) {
-        NameDto nameDto = nameDao.findById(userDto.getId());
-        PictureDto pictureDto = pictureDao.findById(userDto.getId());
-        LoginDto loginDto = loginDao.findById(userDto.getId());
-        LocationDto locationDto = locationDao.findById(userDto.getId());
-        
-        UserDtoToUser conv = new UserDtoToUser(userDto, locationDto, loginDto, pictureDto, nameDto);
-        return conv.getUser();
+        return UserConverter.toVO(userRepository.findOne(id));
     }
     
     @Override
     public void addNewUser(UserVo user) {
         try {
-            UserToUserDto conv = new UserToUserDto(user);
-            userDao.save(conv.getUserDto(), conv.getLocationDto(), conv.getLoginDto(), conv.getNameDto(),
-                    conv.getPictureDto());
+            UserEntity entity = UserConverter.toEntity(user);
+            entity.setPassword(bCryptPasswordEncoder.encode(entity.getPassword()));
+            entity.setActive(true);
+            entity.setRole("user");
+            userRepository.save(entity);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -114,13 +80,10 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public boolean switchUserStatus(String username) {
-    	UserDto userDto = userDao.findByUsername(username);
-    	UserVo user = getUserFromUserDto(userDto);
+        UserEntity user = userRepository.findByUsername(username);
+    	user.setActive(!user.isActive());
+        userRepository.save(user);
     	
-    	boolean newValue = !user.getActive();
-    	user.setActive(newValue);
-    	userDao.changeUserStatus(userDto.getId(), newValue);
-    	
-    	return newValue;
+    	return user.isActive();
     }
 }
