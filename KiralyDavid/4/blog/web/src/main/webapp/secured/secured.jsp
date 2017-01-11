@@ -17,8 +17,7 @@
 <title>Starter Template for Bootstrap</title>
 
 <!-- Bootstrap core CSS -->
-<link href="<c:url value="/resources/css/bootstrap.min.css"/>"
-	rel="stylesheet">
+<link href="<c:url value="/resources/css/bootstrap.min.css"/>" rel="stylesheet">
 
 
 <!-- Custom styles for this template -->
@@ -39,26 +38,72 @@
 
 <body>
 
-	<div class="blog-masthead">
+	<div class="blog-masthead navbar-fixed-top" class="container" data-spy="affix" data-offset-top="0">
 		<div class="container">
-			<nav class="blog-nav">
-				<a class="blog-nav-item " href="<c:url value="/index.jsp"/>">Home</a>
+			<nav class="nav blog-nav ">
+				<a class="blog-nav-item" href="<c:url value="/index.jsp"/>">Home</a> <a class="blog-nav-item " href="<c:url value="/public/registration/register.jsp"/>">Register</a>
 				<c:if test="${sessionScope.user ==null}">
 					<a class="blog-nav-item" href="<c:url value="/public/login.jsp"/>">Login</a>
 				</c:if>
 				<c:if test="${sessionScope.user !=null}">
 					<a class="blog-nav-item" href="<c:url value="/Logout"/>">Logout</a>
 				</c:if>
-				<a class="blog-nav-item active"
-					href="<c:url value="/secured/secured.jsp"/>">Users</a>
+				<a class="blog-nav-item active" href="<c:url value="/secured/secured.jsp"/>">Users</a>
+				<c:if test="${sessionScope.user !=null}">
+					<div class="dropdown pull-right">
+						<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+							<c:out value="${sessionScope.user}"></c:out>
+							<span class="caret"></span>
+						</button>
+						<ul class="dropdown-menu">
 
+						</ul>
+					</div>
+
+				</c:if>
 			</nav>
+			<div class="panel panel-primary">
+				<div class="panel-heading mypanel " id="filter_heading" onclick="on_header_clocked()">
+						<h3>Keresés</h3>
+
+				</div>
+				<div class="panel-body" id="filter_body">
+					<form class="form-horizontal" id="filter_form" action="" method="get">
+						<div class="form-group">
+							<label for="age" class="col-sm-3 control-label">Age:</label>
+							<div class="col-sm-9">
+								<div>
+									<input type="text" name="age" id="age" placeholder="Age" class="form-control">
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="email" class="col-sm-3 control-label">E-mail:</label>
+							<div class="col-sm-9">
+								<div>
+									<input type="text" name="email" id="email" placeholder="E-mail" class="form-control">
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="city" class="col-sm-3 control-label">City:</label>
+							<div class="col-sm-9">
+								<div>
+									<input type="text" name="city" id="city" placeholder="city" class="form-control">
+								</div>
+							</div>
+						</div>
+						<button class="btn btn-default" type="submit" id="get_user">Filter</button>
+					</form>
+				</div>
+			</div>
 		</div>
 	</div>
+	<div class="col-xs-12"></div>
 
-	<div class="container">
 
 
+	<div class="container" id="result">
 		<div class="row" id="result"></div>
 	</div>
 	<!-- /.container -->
@@ -69,8 +114,7 @@
 	<!-- Bootstrap core JavaScript
     ================================================== -->
 	<!-- Placed at the end of the document so the pages load faster -->
-	<script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 	<script src="<c:url value="/resources/js/bootstrap.min.js"/>"></script>
 	<script src="<c:url value="/resources/js/user.js"/>"></script>
 </body>
