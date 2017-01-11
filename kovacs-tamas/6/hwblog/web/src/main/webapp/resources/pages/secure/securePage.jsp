@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ page isELIgnored="false" %>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
@@ -30,8 +31,8 @@
         <div class="blog-masthead">
             <div class="container">
                 <nav class="blog-nav">
-                    <label>Welcome, ${sessionScope.user.login.username}</label>
-                    <a class="blog-nav-item" href="<c:url value="/logOutServlet"/>">Logout</a>
+                    <label>Welcome, <c:out value="${sessionScope.user.login.username}"/></label>
+                    <a class="blog-nav-item" href="<c:url value="/logout"/>">Logout</a>
                 </nav>
             </div>
         </div>
@@ -69,5 +70,7 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         <script src="<c:url value="/resources/js/bootstrap.min.js"/>"></script>
         <script src="<c:url value="/resources/js/user.js"/>"></script>
+        <!-- Set the context path to a javascript variable so I can use it in the user.js -->
+        <script>setContextPath("${pageContext.request.contextPath}");</script>
     </body>
 </html>

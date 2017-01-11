@@ -20,7 +20,7 @@ import hu.schonherz.blog.service.api.user.vo.UserVO;
 /**
  * Servlet implementation class UserServlet
  */
-@WebServlet("/UserServlet")
+//@WebServlet("/UserServlet")
 public class UserServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 

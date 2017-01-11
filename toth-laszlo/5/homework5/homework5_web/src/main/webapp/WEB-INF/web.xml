@@ -1,13 +1,9 @@
-<!DOCTYPE web-app PUBLIC
- "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
- "http://java.sun.com/dtd/web-app_2_3.dtd" >
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" version="3.1">
 
-<web-app>
   <display-name>Archetype Created Web Application</display-name>
   <filter>
   	<filter-name>Login</filter-name>
-  	<display-name>Login</display-name>
-  	<description></description>
   	<filter-class>filters.Login</filter-class>
   </filter>
   <filter-mapping>
@@ -16,27 +12,23 @@
   </filter-mapping>
   <servlet>
   	<servlet-name>LoginServlet</servlet-name>
-  	<display-name>LoginServlet</display-name>
-  	<description></description>
   	<servlet-class>servlets.LoginServlet</servlet-class>
   </servlet>
   <servlet>
   	<servlet-name>Logout</servlet-name>
-  	<display-name>Logout</display-name>
-  	<description></description>
   	<servlet-class>servlets.Logout</servlet-class>
   </servlet>
   <servlet>
   	<servlet-name>Userservlet</servlet-name>
-  	<display-name>Userservlet</display-name>
-  	<description></description>
   	<servlet-class>servlets.Userservlet</servlet-class>
   </servlet>
   <servlet>
   	<servlet-name>PostsServlet</servlet-name>
-  	<display-name>PostsServlet</display-name>
-  	<description></description>
   	<servlet-class>servlets.PostsServlet</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>Post</servlet-name>
+  	<servlet-class>servlets.Post</servlet-class>
   </servlet>
  
   <servlet-mapping>
@@ -54,5 +46,9 @@
   <servlet-mapping>
   	<servlet-name>PostsServlet</servlet-name>
   	<url-pattern>/Posts</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>Post</servlet-name>
+  	<url-pattern>/secured/Post</url-pattern>
   </servlet-mapping>
 </web-app>
