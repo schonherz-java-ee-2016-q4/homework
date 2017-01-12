@@ -12,11 +12,4 @@
 
     <context:component-scan base-package="hu.schonherz.blog" />
 
-
-    <!-- itt adjuk meg hogy a resource-okat hol keresse, ha ezt kihagyjuk nem fognak működni a c:url-es dolgok -->
-    <!-- első a minta amit a forrásban fogunk használni a második pedig, hogy melyik mappában keresse az adott resources-t -->
-
-    <!-- annotációkból is fogunk megadni elérhetőségeket, enélkül azokat nem látná, tehát pl. egy Controllerben megadott /hello 404 lenne -->
-
-
 </beans>
