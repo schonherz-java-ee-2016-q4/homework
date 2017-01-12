@@ -28,7 +28,7 @@ public class SpringContextConfig extends WebMvcConfigurerAdapter {
     @Override
     public void addResourceHandlers(final ResourceHandlerRegistry registry) {
         registry
-                .addResourceHandler("/resources/**")
-                .addResourceLocations("/WEB-INF/resources/"); // DON'T forget to end your resource location with a /!!
+                .addResourceHandler("/**")
+                .addResourceLocations("/"); // DON'T forget to end your resource location with a /!!
     }
 }

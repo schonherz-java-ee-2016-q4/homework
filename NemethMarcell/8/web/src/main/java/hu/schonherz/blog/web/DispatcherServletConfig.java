@@ -1,4 +1,4 @@
-package hu.schonherz.blog.web;
+/*package hu.schonherz.blog.web;
 import org.springframework.stereotype.Component;
 import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.ContextLoaderListener;
@@ -30,4 +30,4 @@ public class DispatcherServletConfig implements WebApplicationInitializer {
         dispatcher.setLoadOnStartup(1);
         dispatcher.addMapping("/");
     }
-}
+}*/
