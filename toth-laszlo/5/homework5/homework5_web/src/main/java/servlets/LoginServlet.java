@@ -38,7 +38,7 @@ public class LoginServlet extends HttpServlet {
 		if((uservo=service.findByUserName(user))!=null){
 		    if(uservo.getPassword().equals(pass)){
 		        request.getSession().setAttribute("user", user);
-		        response.sendRedirect("secured/welcome.jsp");
+		        response.sendRedirect("secured/users.jsp");
 		    }
 		    else out.write(":(");
 		}

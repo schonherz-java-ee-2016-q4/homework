@@ -5,19 +5,34 @@
  */
 package hu.sconherz.blog.web.config;
 
+import hu.schonherz.blog.service.config.BlogAppServiceModuleConfig;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.servlet.ViewResolver;
+import org.springframework.context.annotation.Import;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-import org.springframework.web.servlet.view.InternalResourceViewResolver;
+import org.springframework.web.servlet.view.JstlView;
+import org.springframework.web.servlet.view.UrlBasedViewResolver;
 
 @Configuration
+@ComponentScan("hu.schonherz.blog")
 @EnableWebMvc
-@ComponentScan("hu.schonherz.blog.web")
-public class BlogAppWebModuleConfig {
+@Import(BlogAppServiceModuleConfig.class)
+public class BlogAppWebModuleConfig extends WebMvcConfigurerAdapter {
+
     @Bean
-    public ViewResolver createViewResolver() {
-        return new InternalResourceViewResolver("/", ".jsp");
+    public UrlBasedViewResolver setupViewResolver() {
+        UrlBasedViewResolver resolver = new UrlBasedViewResolver();
+        resolver.setPrefix("/WEB-INF/jsp/");
+        resolver.setSuffix(".jsp");
+        resolver.setViewClass(JstlView.class);
+        return resolver;
+    }
+
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry.addResourceHandler("/resources/**").addResourceLocations("/WEB-INF/resources/");
     }
 }

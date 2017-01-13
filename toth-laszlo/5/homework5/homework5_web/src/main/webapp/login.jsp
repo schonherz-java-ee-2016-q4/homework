@@ -1,4 +1,9 @@
 <!DOCTYPE html>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -7,45 +12,21 @@
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="description" content="">
     <meta name="author" content="">
+    <title>Off Canvas Template for Bootstrap</title>
+
+    <!-- Latest compiled and minified CSS -->
+    <link href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css" rel="stylesheet">
     
-    <title>Signin Template for Bootstrap</title>
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- Custom styles for this template -->
+    <link href="${pageContext.request.contextPath}/resources/css/signin.css" rel="stylesheet">
 
-
-    <link href="resources/css/signin.css" rel="stylesheet">
-
+    
   </head>
 
   <body>
-<nav class="navbar navbar-fixed-top navbar-inverse col-sm-12">
-        <div class="container-fluid">
-            
-            <div class="navbar-header">
-                <a class="navbar-brand" href="<%=request.getContextPath()%>/index.jsp">Blog</a>
-            </div>
-        
-        <ul class="nav navbar-nav pull-right">
-            <li class="dropdown">
-                <a class="dropdown-toggle" data-toggle="dropdown" href="#">Menu
-                    <span class="caret"></span>
-                </a>
-                <ul class="dropdown-menu pull-right">
-                    <li><a href="<%=request.getContextPath()%>/secured/users.jsp">Users</a></li>
-                   <li><%
-                   if (session.getAttribute("user")==null)
-                       out.print("<a href="+request.getServletContext().getContextPath()+"/login.jsp>Login</a>");
-                       else  out.print("<a href="+request.getServletContext().getContextPath()+"/Logout>Logout("+session.getAttribute("user")+")</a>");%>
-                    </a></li>
-                </ul>
-            </li>
-
-        
-        </ul>
-        
-        </div>
-    </nav><!-- /.navbar -->  
-
+    <jsp:include page="/resources/content/navbar.jsp"/>
+    
     <div class="container">
 
       <form class="form-signin" action="LoginServlet" method="post">
@@ -65,13 +46,14 @@
         <a href="register.jsp" align=>Register</a>
     </div>
     </div> <!-- /container -->
-    
-    
+
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
-    <script src="<%=request.getContextPath()%>/resources/js/bootstrap.min.js"></script>
+    <!-- Latest compiled and minified JavaScript -->
+<script src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
+
   </body>
 </html>
