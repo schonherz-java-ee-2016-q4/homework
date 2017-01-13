@@ -69,18 +69,18 @@ function init() {
 	$('#danger_confirm').hide();
 	$('#danger_email').hide();
 	$('#danger_date').hide();
-	$('#date').datepicker({ dateFormat: 'yy-mm-dd' });
+	$('#date').datepicker();
 	//$('#btn_register').prop('disabled', true);
 	getCountries();
 }
 
 function getCountries() {
 	$.get("https://restcountries.eu/rest/v1/all", function(res) {
-		$('#state').html('');
+		$('#country').html('');
 		console.log(res);
 		countryList = res.results;
 		$.each(res, function(index, value) {
-			$('#state').append('<option>' + value.name + '</option>');
+			$('#country').append('<option>' + value.name + '</option>');
 		});
 
 	});

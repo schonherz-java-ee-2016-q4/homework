@@ -1,28 +1,24 @@
 package hu.sconherz.blog.web.register;
 
-import java.io.File;
-import java.io.IOException;
-import java.sql.Date;
-import java.time.LocalDate;
+import hu.schonherz.blog.service.UserService;
+import hu.schonherz.blog.service.UserServiceImpl;
+import hu.schonherz.blog.service.UserVO;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import hu.schonherz.blog.service.api.user.service.UserService;
-import hu.schonherz.blog.service.api.user.vo.UserVO;
-import hu.schonherz.blog.service.userservice.UserServiceImpl;
+import java.io.IOException;
 
 @WebServlet("/Register")
 public class RegisterServlet extends HttpServlet {
-    UserService userService = new UserServiceImpl();
+
     private static final long serialVersionUID = 1L;
-    private static final String LOGIN_JSP_URL = "public/login.jsp";
-    private static final String INDEX_JSP_URL = "index.jsp";
+    private static final String REGISTRATION_JSP_URL = "public/registration.jsp";
     private static final String SUCCESS_JSP_URL = "public/registration/success.jsp";
-    private final String UPLOAD_DIRECTORY = "C:" + File.separator + "uploads";
+    private UserVO vo = new UserVO();
+    private UserService userService = new UserServiceImpl();
 
     public RegisterServlet() {
         super();
@@ -30,34 +26,72 @@ public class RegisterServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        userService.saveUser(buildUserFromRequest(request));
+
+        RegistrationForm regForm = new RegistrationForm(request);
+
+        if (regForm.getEmail() == "") {
+            request.setAttribute("error", "Email cannot be blank!");
+            request.getRequestDispatcher(REGISTRATION_JSP_URL).forward(request, response);
+        }
+
+        if (regForm.getUsername() == "") {
+            request.setAttribute("error", "Username cannot be blank!");
+            request.getRequestDispatcher(REGISTRATION_JSP_URL).forward(request, response);
+        }
+
+        if (regForm.getPassword() == "") {
+            request.setAttribute("error", "Password cannot be blank!");
+            request.getRequestDispatcher(REGISTRATION_JSP_URL).forward(request, response);
+        }
+
+        if (regForm.getPhone() == "") {
+            request.setAttribute("error", "Phone cannot be blank!");
+            request.getRequestDispatcher(REGISTRATION_JSP_URL).forward(request, response);
+        }
+
+        if (regForm.getEmail() == "") {
+            request.setAttribute("error", "Email cannot be blank!");
+            request.getRequestDispatcher(REGISTRATION_JSP_URL).forward(request, response);
+        }
+
+
+        if (regForm.getFirstName() == "") {
+            request.setAttribute("error", "First name cannot be blank!");
+            request.getRequestDispatcher(REGISTRATION_JSP_URL).forward(request, response);
+        }
+
+        if (regForm.getLastName() == "") {
+            request.setAttribute("error", "Last name cannot be blank!");
+            request.getRequestDispatcher(REGISTRATION_JSP_URL).forward(request, response);
+        }
+
+        if (regForm.getLocation() == "") {
+            request.setAttribute("error", "Location cannot be blank!");
+            request.getRequestDispatcher(REGISTRATION_JSP_URL).forward(request, response);
+        }
+
+        if (regForm.getImg() == "") {
+            request.setAttribute("error", "Image link cannot be blank!");
+            request.getRequestDispatcher(REGISTRATION_JSP_URL).forward(request, response);
+        }
+
+        vo.setEmail(regForm.getEmail());
+        vo.setUsername(regForm.getUsername());
+        vo.setPassword(regForm.getPassword());
+        vo.setPhone(regForm.getPhone());
+        vo.setFirstName(regForm.getFirstName());
+        vo.setLastName(regForm.getLastName());
+        vo.setGender(regForm.getGender());
+        vo.setDate_of_birth(regForm.getDate_of_birth());
+        vo.setLocation(regForm.getLocation());
+        vo.setImg(regForm.getImg());
+
+        userService.save(vo);
         response.sendRedirect(SUCCESS_JSP_URL);
     }
 
-    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
     }
 
-    private UserVO buildUserFromRequest(HttpServletRequest request) {
-        UserVO user = new UserVO();
-        user.setCity(request.getParameter("city"));
-        user.setState(request.getParameter("state"));
-        user.setStreet(request.getParameter("street"));
-        user.setNameTitle(request.getParameter("title"));
-        user.setFirstName(request.getParameter("firstname"));
-        user.setLastName(request.getParameter("lastname"));
-        user.setEmail(request.getParameter("email"));
-        user.setGender(request.getParameter("gender"));
-        user.setPhone(request.getParameter("phone"));
-        user.setPassword(request.getParameter("password"));
-        user.setPostcode(Integer.parseInt(request.getParameter("postcode")));
-        user.setDateOfBirth(Date.valueOf(request.getParameter("birthdate")));
-        user.setRegistered(Date.valueOf(LocalDate.now()));
-        user.setUsername(request.getParameter("username"));
-        user.setLargePic("");
-        user.setMediumPic("");
-        user.setThumbnailPic("");
-        return user;
-    }
 }
