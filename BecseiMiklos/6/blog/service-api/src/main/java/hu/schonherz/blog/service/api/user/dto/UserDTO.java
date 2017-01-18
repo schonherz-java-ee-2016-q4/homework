@@ -1,10 +1,11 @@
-package hu.schonherz.blog.service.api.user.pojo;
+package hu.schonherz.blog.service.api.user.dto;
 
-public class User {
+
+public class UserDTO {
 
     private int id;
     private String firstName;
-    private String lastName;
+    private String LastName;
     private String username;
     private String password;
     private String email;
@@ -14,9 +15,7 @@ public class User {
     private String phone;
     private String img;
 
-    public User() {
-        super();
-    }
+    public UserDTO() {}
 
     public int getId() {
         return id;
@@ -35,11 +34,11 @@ public class User {
     }
 
     public String getLastName() {
-        return lastName;
+        return LastName;
     }
 
     public void setLastName(String lastName) {
-        this.lastName = lastName;
+        LastName = lastName;
     }
 
     public String getUsername() {
@@ -65,7 +64,6 @@ public class User {
     public void setEmail(String email) {
         this.email = email;
     }
-
 
     public String getGender() {
         return gender;
@@ -107,32 +105,4 @@ public class User {
         this.img = img;
     }
 
-    @Override
-    public String toString() {
-        StringBuilder builder = new StringBuilder();
-        builder.append("UserVO [id=");
-        builder.append(id);
-        builder.append(", firstName=");
-        builder.append(firstName);
-        builder.append(", lastName=");
-        builder.append(lastName);
-        builder.append(", username=");
-        builder.append(username);
-        builder.append(", password=");
-        builder.append(password);
-        builder.append(", email=");
-        builder.append(email);
-        builder.append(", gender=");
-        builder.append(gender);
-        builder.append(", date_of_birth=");
-        builder.append(date_of_birth);
-        builder.append(", location=");
-        builder.append(location);
-        builder.append(", phone=");
-        builder.append(phone);
-        builder.append(", img=");
-        builder.append(img);
-        builder.append("]");
-        return builder.toString();
-    }
 }

@@ -1,5 +1,6 @@
 package hu.schonherz.blog.service.api.user.mapper;
 
+import hu.schonherz.blog.service.api.user.dto.UserDTO;
 import hu.schonherz.blog.service.api.user.pojo.User;
 import org.springframework.jdbc.core.RowMapper;
 
@@ -7,11 +8,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 
-public class UserMapper implements RowMapper<User> {
+public class UserMapper implements RowMapper<UserDTO> {
 
     @Override
-    public User mapRow(ResultSet rs, int rowNum) throws SQLException {
-        User user = new User();
+    public UserDTO mapRow(ResultSet rs, int rowNum) throws SQLException {
+
+        UserDTO user = new UserDTO();
         user.setId(rs.getInt("id"));
         user.setFirstName(rs.getString("firstName"));
         user.setLastName(rs.getString("lastName"));
@@ -23,6 +25,7 @@ public class UserMapper implements RowMapper<User> {
         user.setLocation(rs.getString("location"));
         user.setPhone(rs.getString("phone"));
         user.setImg(rs.getString("img"));
+
         return user;
     }
 }
