@@ -12,9 +12,7 @@ public class LoginForm implements Serializable {
 
 	private String password;
 
-	public LoginForm() {
-
-	}
+	public LoginForm() {}
 
 	public LoginForm(HttpServletRequest request) {
 		username = request.getParameter("username");

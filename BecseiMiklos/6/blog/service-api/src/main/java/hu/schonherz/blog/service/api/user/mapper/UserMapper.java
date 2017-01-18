@@ -1,7 +1,6 @@
 package hu.schonherz.blog.service.api.user.mapper;
 
 import hu.schonherz.blog.service.api.user.dto.UserDTO;
-import hu.schonherz.blog.service.api.user.pojo.User;
 import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;
