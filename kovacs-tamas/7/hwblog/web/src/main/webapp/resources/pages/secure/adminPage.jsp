@@ -15,26 +15,32 @@
 
         <title>Administrator</title>
 
-        <!-- Bootstrap core CSS -->
-        <link href="<c:url value="/resources/css/bootstrap.min.css"/>" rel="stylesheet">
-        <!-- Custom styles for this template -->
-        <link href="<c:url value="/resources/css/blog.css"/>" rel="stylesheet">
+        <link href="<c:url value="/resources/css/registration.css"/>" rel="stylesheet">
     </head>
 
     <body>
 
-        <c:if test="${processMsg != null}">
-            <label>${processMsg}</label>
-        </c:if>
-
-        <form method="POST">
-            <input type="text" placeholder="username" name="username"/>
-            <select name="role">
-                <option value="user">User</option>
-                <option value="admin">Admin</option>
-            </select>
-            <input type="submit" value="Set role"/>
-        </form>
-
+        <div class="login-page">
+            <div id="req-inputs" class="form">
+                <c:if test="${processMsg != null}">
+                    <label <c:if test="${processMsg == 'Success!'}">
+                            class="success-message"
+                        </c:if>
+                        <c:if test="${processMsg != 'Success!'}">
+                            class="error-message"
+                        </c:if>>${processMsg}</label>
+                </c:if>
+                <form method="POST">
+                    <label>Username:</label>
+                    <input type="text" placeholder="username" name="username"/><br>
+                    <label>Role:</label>
+                    <select name="role">
+                        <option value="user">User</option>
+                        <option value="admin">Admin</option>
+                    </select><br>
+                    <input type="submit" value="Set role"/>
+                </form>
+            </div>
+        </div>
     </body>
 </html>

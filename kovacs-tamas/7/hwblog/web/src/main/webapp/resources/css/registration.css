@@ -6,6 +6,10 @@
     color: red;
     font-size: small;
 }
+.success-message {
+    color: green;
+    font-size: small;
+}
 
 /*p {
     display: block;
