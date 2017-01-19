@@ -48,7 +48,7 @@
 
 			<div class="row">
 
-				<form name="regform" action="<c:url value="/Register"></c:url>"
+				<form name="regform" action="<c:url value="/Registration"></c:url>"
 					onsubmit="return validatePasswords(this)" method="post">
 
 					<h2>Registration</h2>

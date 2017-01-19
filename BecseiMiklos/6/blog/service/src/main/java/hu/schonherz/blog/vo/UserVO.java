@@ -1,15 +1,11 @@
-package hu.sconherz.blog.web.registration;
+package hu.schonherz.blog.vo;
 
-import java.io.Serializable;
 
-import javax.servlet.http.HttpServletRequest;
+public class UserVO {
 
-public class RegistrationForm implements Serializable {
-
-    private static final long serialVersionUID = 1L;
-
+    private int id;
     private String firstName;
-    private String lastName;
+    private String LastName;
     private String username;
     private String password;
     private String email;
@@ -19,23 +15,15 @@ public class RegistrationForm implements Serializable {
     private String phone;
     private String img;
 
-    public RegistrationForm() {}
+    public UserVO() {}
 
-    public RegistrationForm(HttpServletRequest request) {
-
-        email = request.getParameter("email");
-        username = request.getParameter("username");
-        password = request.getParameter("password");
-        phone = request.getParameter("phone");
-        firstName = request.getParameter("first");
-        lastName = request.getParameter("last");
-        gender = request.getParameter("gender");
-        date_of_birth = request.getParameter("date_of_birth");
-        location = request.getParameter("location");
-
+    public int getId() {
+        return id;
     }
 
-
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getFirstName() {
         return firstName;
@@ -46,11 +34,11 @@ public class RegistrationForm implements Serializable {
     }
 
     public String getLastName() {
-        return lastName;
+        return LastName;
     }
 
     public void setLastName(String lastName) {
-        this.lastName = lastName;
+        LastName = lastName;
     }
 
     public String getUsername() {
@@ -116,6 +104,5 @@ public class RegistrationForm implements Serializable {
     public void setImg(String img) {
         this.img = img;
     }
-
 
 }
