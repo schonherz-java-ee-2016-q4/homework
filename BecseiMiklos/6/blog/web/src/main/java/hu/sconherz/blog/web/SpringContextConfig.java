@@ -1,7 +1,6 @@
 package hu.sconherz.blog.web;
 
 
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.ViewResolver;
@@ -14,14 +13,13 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan(value = "hu.schonherz.blog")
+@ComponentScan(basePackages = "hu.schonherz.blog")
 public class SpringContextConfig extends WebMvcConfigurerAdapter {
 
-    @Bean
     @Override
     public void configureViewResolvers(ViewResolverRegistry registry) {
 
-        ViewResolver resolver = new InternalResourceViewResolver("/",".jsp");
+        ViewResolver resolver = new InternalResourceViewResolver("/", ".jsp");
         registry.viewResolver(resolver);
     }
 
