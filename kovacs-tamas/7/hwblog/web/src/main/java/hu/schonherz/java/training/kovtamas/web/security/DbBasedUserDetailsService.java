@@ -29,7 +29,15 @@ public class DbBasedUserDetailsService implements UserDetailsService {
         try {
             UserVo userVo = userService.findUserByName(username);
             List<GrantedAuthority> authorities = new ArrayList<>();
-            authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
+            switch (userVo.getRole().toUpperCase()) {
+                case "USER":
+                    authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
+                    break;
+                case "ADMIN":
+                    authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
+                    authorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
+                    break;
+            }
 
             return new User(userVo.getLogin().getUsername(), userVo.getLogin().getPassword(), authorities);
         } catch (UserNotFoundException unfe) {

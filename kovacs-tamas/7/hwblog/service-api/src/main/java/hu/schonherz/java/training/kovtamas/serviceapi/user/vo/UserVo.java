@@ -3,6 +3,7 @@ package hu.schonherz.java.training.kovtamas.serviceapi.user.vo;
 public class UserVo {
 
     private int id;
+    private String role;
     private String gender;
     private String email;
     private String phone;
@@ -19,6 +20,14 @@ public class UserVo {
 
     public int getId() {
         return id;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 
     public void setId(int id) {

@@ -12,6 +12,7 @@ public class UserMapper implements RowMapper<UserDto> {
         UserDto dto = new UserDto();
 
         dto.setId(results.getInt("id"));
+        dto.setRole(results.getString("role_of_user"));
         dto.setGender(results.getString("gender"));
         dto.setFirstName(results.getString("first_name"));
         dto.setLastName(results.getString("last_name"));

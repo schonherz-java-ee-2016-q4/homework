@@ -40,6 +40,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void addUser(UserVo user) {
+        user.setRole("USER");
         UserDto dto = VoDtoConverter.convert(user);
         dao.save(dto);
     }

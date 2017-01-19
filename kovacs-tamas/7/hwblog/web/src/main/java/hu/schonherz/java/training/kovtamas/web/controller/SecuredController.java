@@ -11,6 +11,6 @@ public class SecuredController {
 
     @GetMapping
     public String redirectToSecuredPage() {
-        return PageNames.SECURE_PAGE;
+        return PageNames.USER_PAGE;
     }
 }

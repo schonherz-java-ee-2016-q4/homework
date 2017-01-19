@@ -34,6 +34,7 @@ public class VoDtoConverter {
         vo.setLocation(location);
         vo.setLogin(login);
         vo.setDates(dates);
+        vo.setRole(dto.getRole());
 
         vo.setId(dto.getId());
         vo.setGender(dto.getGender());
@@ -47,6 +48,7 @@ public class VoDtoConverter {
     public static UserDto convert(UserVo vo) {
         UserDto dto = new UserDto();
         dto.setId(vo.getId());
+        dto.setRole(vo.getRole());
         dto.setGender(vo.getGender());
         dto.setPhone(vo.getPhone());
         dto.setEmail(vo.getEmail());
@@ -72,22 +74,12 @@ public class VoDtoConverter {
 
     @SuppressWarnings("deprecation")
     private static java.util.Date convert(java.sql.Date sqlDate) {
-        java.util.Date utilDate = new java.util.Date(sqlDate.getYear(), sqlDate.getMonth(), sqlDate.getDay());
-//        utilDate.setHours(sqlDate.getHours());
-//        utilDate.setMinutes(sqlDate.getMinutes());
-//        utilDate.setSeconds(sqlDate.getSeconds());
-
-        return utilDate;
+        return new java.util.Date(sqlDate.getYear(), sqlDate.getMonth(), sqlDate.getDay());
     }
 
     @SuppressWarnings("deprecation")
     private static java.sql.Date convert(java.util.Date utilDate) {
-        java.sql.Date sqlDate = new java.sql.Date(utilDate.getYear(), utilDate.getMonth(), utilDate.getDay());
-//        sqlDate.setHours(utilDate.getHours());
-//        sqlDate.setMinutes(utilDate.getMinutes());
-//        sqlDate.setSeconds(utilDate.getSeconds());
-
-        return sqlDate;
+        return new java.sql.Date(utilDate.getYear(), utilDate.getMonth(), utilDate.getDay());
     }
 
 }

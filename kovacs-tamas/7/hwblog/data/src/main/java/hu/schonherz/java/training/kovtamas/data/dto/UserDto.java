@@ -5,6 +5,7 @@ import java.sql.Date;
 public class UserDto {
 
     private int id;
+    private String role;
     private String gender;
 
     private String firstName;
@@ -27,6 +28,14 @@ public class UserDto {
     private String picUrl;
 
     public UserDto() {
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 
     public int getId() {
