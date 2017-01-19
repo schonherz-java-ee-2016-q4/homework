@@ -6,20 +6,36 @@ import javax.servlet.http.HttpServletRequest;
 
 public class RegistrationForm implements Serializable {
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	private String firstName;
-	private String lastName;
-	private String username;
-	private String password;
-	private String email;
-	private String gender;
-	private String date_of_birth;
-	private String location;
-	private String phone;
-	private String img;
+    private String firstName;
+    private String lastName;
+    private String username;
+    private String password;
+    private String email;
+    private String gender;
+    private String date_of_birth;
+    private String location;
+    private String phone;
+    private String img;
 
-	public RegistrationForm() {}
+    public RegistrationForm() {}
+
+    public RegistrationForm(HttpServletRequest request) {
+
+        email = request.getParameter("email");
+        username = request.getParameter("username");
+        password = request.getParameter("password");
+        phone = request.getParameter("phone");
+        firstName = request.getParameter("first");
+        lastName = request.getParameter("last");
+        gender = request.getParameter("gender");
+        date_of_birth = request.getParameter("date_of_birth");
+        location = request.getParameter("location");
+
+    }
+
+
 
     public String getFirstName() {
         return firstName;
@@ -101,19 +117,5 @@ public class RegistrationForm implements Serializable {
         this.img = img;
     }
 
-    public RegistrationForm(HttpServletRequest request) {
-
-		email = request.getParameter("email");
-		username = request.getParameter("username");
-		password = request.getParameter("password");
-		phone = request.getParameter("phone");
-		firstName = request.getParameter("first");
-		lastName = request.getParameter("last");
-		gender = request.getParameter("gender");
-        date_of_birth = request.getParameter("date_of_birth");
-        location = request.getParameter("location");
-        img = request.getParameter("img");
-
-	}
 
 }

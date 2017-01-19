@@ -1,0 +1,59 @@
+.center {
+    margin: auto;
+}
+
+.dark1 {
+    background-color: #262626;
+    color: gold;
+}
+
+.modal-content, .modal-body {
+    background-color: #262626;
+    color: #c2aa33;
+}
+
+.dark-input {
+    background-color: #333300;
+    color: #00ffcc;
+}
+
+body {
+    background-color: rgb(30, 30, 10);
+    color: gold;
+    font-family: "Times new roman";
+}
+
+#result {
+    background-color: rgb(35, 35, 15);
+    font-family: "Courier New";
+    border-color: rgba(0, 0, 0, 1);
+    border-style: solid;
+    border-width: 1px;
+}
+
+.user {
+    border-color: rgba(0, 0, 0, 0.2);
+    border-style: solid;
+    border-width: 1px;
+    color: gold;
+}
+
+#number, #get_user {
+    color: black;
+    background-color: rgba(33, 33, 26, 1);
+    color: rgba(150, 200, 230, .9);
+    font-style: normal;
+    border-color: rgba(0, 0, 0, 1);
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin: 0;
+}
+
+h2 {
+    color: #00ffcc;
+}
