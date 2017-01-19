@@ -29,26 +29,8 @@ public class LoginController {
     }
 
     @PostMapping
-    protected String login(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String username = req.getParameter("username");
-        String password = req.getParameter("psw");
-        String unsuccessfulMsgTemplate = "unsuccessful login try with username: {}";
-
-        try {
-            UserVo user = userService.findUserByName(username);
-            if (!user.getLogin().getPassword().equals(password)) {
-                log.warn(unsuccessfulMsgTemplate, username);
-                req.setAttribute("invalidLogin", "invalidLogin");
-                return PageNames.LOGIN_PAGE;
-            }
-            req.getSession().setAttribute("user", user);
-            log.debug("The user {} has logged in", username);
-            return PageNames.SECURE_PAGE;
-        } catch (UserNotFoundException unfe) {
-            log.warn(unsuccessfulMsgTemplate, username);
-            req.setAttribute("invalidLogin", "invalidLogin");
-            return PageNames.LOGIN_PAGE;
-        }
+    public String login() {
+        return PageNames.SECURE_PAGE;
     }
 
     @GetMapping

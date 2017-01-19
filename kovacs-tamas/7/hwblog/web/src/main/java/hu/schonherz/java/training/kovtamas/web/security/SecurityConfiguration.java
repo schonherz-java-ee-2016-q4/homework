@@ -24,11 +24,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
-                .defaultSuccessUrl("/secured")
                 .loginPage("/login")
-                .usernameParameter("j_username")
-                .passwordParameter("j_password")
-                .failureUrl("/login/error")
+                .loginProcessingUrl("/login")
+                .usernameParameter("username")
+                .passwordParameter("password")
+                .defaultSuccessUrl("/secured")
+                .failureUrl("/login?error")
                 .permitAll();
     }
 

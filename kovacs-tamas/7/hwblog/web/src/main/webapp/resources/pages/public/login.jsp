@@ -24,10 +24,9 @@
                     </c:if>
 
                 <!-- Old login form -->
-                <form name = "loginForm" onsubmit="return validateLogin()" class="login-form"
-                      action="<c:url value='j_spring_security_check'/>" method="post">
-                    <input type="text" placeholder="username" id="username" name="j_username"/>
-                    <input type="password" placeholder="password" id="psw" name="j_password"/>
+                <form onsubmit="return validateLogin()" class="login-form" method="post">
+                    <input type="text" placeholder="username" id="username" name="username"/>
+                    <input type="password" placeholder="password" id="psw" name="password"/>
                     <input id="submitLogin" type="submit" value="Login"/>
                     <p class="message">Not registered?
                         <a href="<c:url value="/registration"/>">Register here</a>
