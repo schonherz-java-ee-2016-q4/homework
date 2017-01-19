@@ -16,12 +16,19 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http
+        http.csrf().disable()
                 .authorizeRequests()
+                .antMatchers("/registration").permitAll()
+                .antMatchers("/*resources/css/**").permitAll()
+                .antMatchers("/*resources/js/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
-                //                .loginPage("/login")
+                .defaultSuccessUrl("/secured")
+                .loginPage("/login")
+                .usernameParameter("j_username")
+                .passwordParameter("j_password")
+                .failureUrl("/login/error")
                 .permitAll();
     }
 
@@ -29,5 +36,4 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected UserDetailsService userDetailsService() {
         return userDetailsService;
     }
-
 }

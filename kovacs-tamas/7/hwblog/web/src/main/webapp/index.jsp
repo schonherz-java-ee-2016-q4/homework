@@ -8,8 +8,6 @@
         <title>Welcome</title>
     </head>
     <body>
-        <!--If user is already logged in, redirect to the secure page-->
-        <c:redirect url="/resources/pages/secure/securePage.jsp" />
-        <!--If user is not logged in, redirect to the login page-->
+        <c:redirect url="/login" />
     </body>
 </html>

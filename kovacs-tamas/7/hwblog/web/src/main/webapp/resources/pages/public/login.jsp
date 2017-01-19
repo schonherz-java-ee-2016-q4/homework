@@ -16,26 +16,24 @@
                 <!-- Error messages -->
                 <span id="empty-field-message" class="hidden error-message">
                     Missing username or password</span>
-                    <c:if test="${not empty requestScope.invalidLogin}">
+
+                <c:if test="${error != null}">
                     <span id="invalid-field-message" class="error-message">
                         <br>Invalid username or password</span>
                         <c:remove var="invalidLogin" scope="request"/>
                     </c:if>
+
                 <!-- Old login form -->
-                <form onsubmit="return validateLogin()" class="login-form" action="<c:url value="/login"/>" method="post">
-                    <input type="text" placeholder="username" id="username" name="username"/>
-                    <input type="password" placeholder="password" id="psw" name="psw"/>
+                <form name = "loginForm" onsubmit="return validateLogin()" class="login-form"
+                      action="<c:url value='j_spring_security_check'/>" method="post">
+                    <input type="text" placeholder="username" id="username" name="j_username"/>
+                    <input type="password" placeholder="password" id="psw" name="j_password"/>
                     <input id="submitLogin" type="submit" value="Login"/>
                     <p class="message">Not registered?
-                        <a href="<c:url value="resources/pages/public/register.jsp"/>">Register here</a>
+                        <a href="<c:url value="/registration"/>">Register here</a>
                         <!--<a href="/web/resources/pages/public/register.jsp">Register here</a>-->
                     </p>
                 </form>
-
-                <!-- Spring login form -->
-
-
-
             </div>
         </div>
 
