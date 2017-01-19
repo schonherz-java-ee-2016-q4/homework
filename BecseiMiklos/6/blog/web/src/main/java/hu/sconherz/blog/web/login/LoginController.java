@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
 @Controller
-@RequestMapping("/Login")
+@RequestMapping("/login")
 public class LoginController {
 
     private static final String LOGIN_JSP_URL = "public/login";

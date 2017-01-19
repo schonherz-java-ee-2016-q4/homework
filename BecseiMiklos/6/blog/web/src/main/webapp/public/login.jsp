@@ -71,7 +71,7 @@
         </div>
     </div>
     <div class="row">
-        <form class="form-signin" action="<c:url value="/Login" ></c:url>"
+        <form class="form-signin" action="<c:url value="/login" ></c:url>"
               method="post">
 
             <h2 class="form-signin-heading">Please sign in</h2>
