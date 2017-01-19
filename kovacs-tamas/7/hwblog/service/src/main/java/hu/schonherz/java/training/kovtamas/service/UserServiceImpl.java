@@ -45,4 +45,9 @@ public class UserServiceImpl implements UserService {
         dao.save(dto);
     }
 
+    @Override
+    public void updateRole(UserVo user) {
+        dao.updateRole(VoDtoConverter.convert(user));
+    }
+
 }

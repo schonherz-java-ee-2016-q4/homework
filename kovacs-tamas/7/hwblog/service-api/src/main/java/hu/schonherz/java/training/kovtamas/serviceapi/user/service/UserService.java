@@ -11,4 +11,6 @@ public interface UserService {
     UserVo findUserByName(String name) throws UserNotFoundException;
 
     void addUser(UserVo user);
+
+    public void updateRole(UserVo user);
 }

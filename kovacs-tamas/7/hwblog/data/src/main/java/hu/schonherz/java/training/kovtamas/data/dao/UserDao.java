@@ -65,4 +65,9 @@ public class UserDao implements GenericDao<UserDto> {
         return generatedKey;
     }
 
+    @Override
+    public void updateRole(UserDto user) {
+        jdbcTemplate.update(UserQueries.UPDATE_ROLE, user.getRole(), user.getId());
+    }
+
 }

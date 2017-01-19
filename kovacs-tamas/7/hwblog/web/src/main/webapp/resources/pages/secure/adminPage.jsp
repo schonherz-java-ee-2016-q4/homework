@@ -23,17 +23,17 @@
 
     <body>
 
+        <c:if test="${processMsg != null}">
+            <label>${processMsg}</label>
+        </c:if>
+
         <form method="POST">
             <input type="text" placeholder="username" name="username"/>
             <select name="role">
                 <option value="user">User</option>
                 <option value="admin">Admin</option>
             </select>
-            <select name="action">
-                <option value="grant">Grant</option>
-                <option value="remove">Remove</option>
-            </select>
-            <input type="submit" value="Do"/>
+            <input type="submit" value="Set role"/>
         </form>
 
     </body>

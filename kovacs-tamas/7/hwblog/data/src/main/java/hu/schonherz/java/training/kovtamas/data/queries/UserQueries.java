@@ -21,4 +21,8 @@ public class UserQueries {
             + "REGISTERED, PHONE, PIC_URL)"
             + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
+    public static final String UPDATE_ROLE = "UPDATE blog.USER"
+            + " SET ROLE_OF_USER = ?"
+            + " WHERE ID = ?";
+
 }
