@@ -14,7 +14,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan(value = "hu.shonherz.blog")
+@ComponentScan(value = "hu.schonherz.blog")
 public class SpringContextConfig extends WebMvcConfigurerAdapter {
 
     @Bean
