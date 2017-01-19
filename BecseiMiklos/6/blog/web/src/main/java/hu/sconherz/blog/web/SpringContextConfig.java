@@ -20,6 +20,7 @@ public class SpringContextConfig extends WebMvcConfigurerAdapter {
     public void configureViewResolvers(ViewResolverRegistry registry) {
 
         ViewResolver resolver = new InternalResourceViewResolver("/",".jsp");
+        registry.viewResolver(resolver);
     }
 
     @Override
