@@ -1,4 +1,4 @@
-package hu.schonherz.blog.service.api.user.configuration;
+package hu.sconherz.blog.web;
 
 
 import org.springframework.web.WebApplicationInitializer;
@@ -14,7 +14,7 @@ public class WebAppInitializer implements WebApplicationInitializer {
     public void onStartup(ServletContext servletContext) {
 
         AnnotationConfigWebApplicationContext dispatcherContext = new AnnotationConfigWebApplicationContext();
-        dispatcherContext.register(DataSourceConfig.class);
+        dispatcherContext.register(SpringContextConfig.class);
 
         ServletRegistration.Dynamic dispatcher = servletContext.addServlet("dispatcher", new DispatcherServlet(dispatcherContext));
         dispatcher.setLoadOnStartup(1);

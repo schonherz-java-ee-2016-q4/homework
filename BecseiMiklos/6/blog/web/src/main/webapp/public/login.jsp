@@ -45,11 +45,11 @@
             </c:if>
 
             <c:if test="${sessionScope.user ==null}">
-                <a class="blog-nav-item" href="<c:url value="/public/Registration.jsp"/>">Registration</a>
+                <a class="blog-nav-item" href="<c:url value="/public/registration.jsp"/>">Registration</a>
             </c:if>
 
             <c:if test="${sessionScope.user !=null}">
-                <a class="blog-nav-item" href="<c:url value="/Logout"/>">Logout</a>
+                <a class="blog-nav-item" href="<c:url value="/logout"/>">Logout</a>
             </c:if>
             <a class="blog-nav-item"
                href="<c:url value="/secured/secured.jsp"/>">Users</a>
@@ -71,7 +71,7 @@
         </div>
     </div>
     <div class="row">
-        <form class="form-signin" action="<c:url value="/Login" ></c:url>"
+        <form class="form-signin" action="<c:url value="/login" ></c:url>"
               method="post">
 
             <h2 class="form-signin-heading">Please sign in</h2>

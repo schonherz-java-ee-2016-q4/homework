@@ -1,6 +1,5 @@
 package hu.sconherz.blog.web.login;
 
-import com.sun.deploy.net.HttpResponse;
 import hu.schonherz.blog.service.UserService;
 import hu.schonherz.blog.service.api.user.dto.UserDTO;
 import hu.schonherz.blog.service.api.user.exception.UserNotFoundException;
@@ -13,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
 @Controller
-@RequestMapping("/Login")
+@RequestMapping("/login")
 public class LoginController {
 
     private static final String LOGIN_JSP_URL = "public/login";
@@ -23,7 +22,7 @@ public class LoginController {
     UserService userService;
 
     @RequestMapping(path = "/")
-    private String Login(HttpServletRequest request, HttpResponse response) throws ServletException, IOException {
+    private String Login(HttpServletRequest request) throws ServletException, IOException {
 
         LoginForm loginForm = new LoginForm(request);
 
