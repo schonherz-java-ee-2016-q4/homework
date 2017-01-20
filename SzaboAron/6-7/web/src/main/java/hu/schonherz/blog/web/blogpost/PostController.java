@@ -3,19 +3,17 @@ package hu.schonherz.blog.web.blogpost;
 import com.google.gson.Gson;
 import hu.schonherz.blog.service.api.blogpost.service.BlogPostService;
 import hu.schonherz.blog.service.api.blogpost.vo.BlogPostVO;
-import hu.schonherz.blog.service.api.user.vo.UserVO;
+import hu.schonherz.blog.service.api.user.service.UserService;
 import hu.schonherz.blog.web.blogpost.createform.PostCreatorForm;
 import hu.schonherz.blog.web.blogpost.model.PostModel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-
-import java.sql.Date;
-import java.time.LocalDate;
 
 /**
  * Created by Áron on 2017. 01. 05..
@@ -28,26 +26,29 @@ public class PostController {
     private static final String READ_JSP_URL = "public/blogpost/blogpostreader";
 
     @Autowired
-    private BlogPostService service;
+    private BlogPostService postService;
+
+    @Autowired
+    private UserService userService;
 
     @PostMapping(path = "/create")
-    public String createNewPost(@RequestBody PostCreatorForm form, @SessionAttribute UserVO user) {
-        form.setOwner(user);
-        LOGGER.debug(form.toString());
-        service.savePost(formToVO(form));
+    public String createNewPost(@RequestParam("title") String title, @RequestParam("body") String body) {
+        PostCreatorForm form = new PostCreatorForm(title, body, userService.findUserByName(SecurityContextHolder
+                .getContext().getAuthentication().getName()));
+        postService.savePost(form.toVO());
         return INDEX_JSP_URL;
     }
 
     @GetMapping(path = "/list", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @ResponseBody
     public String listPosts() {
-        return gson.toJson(service.findAllPost());
+        return gson.toJson(postService.findAllPost());
     }
 
     @GetMapping(path = "/read{id}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @ResponseBody
     public ModelAndView readPost(@PathVariable int id) {
-        BlogPostVO vo = service.findPostById(id);
+        BlogPostVO vo = postService.findPostById(id);
         PostModel model = PostModel.builder().
                 title(vo.getPostTitle()).
                 body(vo.getPostBody()).
@@ -58,13 +59,4 @@ public class PostController {
         return new ModelAndView(READ_JSP_URL, "postModel", model);
     }
 
-
-    private static BlogPostVO formToVO(PostCreatorForm form) {
-        BlogPostVO vo = new BlogPostVO();
-        vo.setPostBody(form.getBody());
-        vo.setPostTitle(form.getTitle());
-        vo.setPostPublishTime(Date.valueOf(LocalDate.now()));
-        vo.setOwner(form.getOwner());
-        return vo;
-    }
 }

@@ -1,8 +1,10 @@
 package hu.schonherz.blog.web.blogpost.createform;
 
+import hu.schonherz.blog.service.api.blogpost.vo.BlogPostVO;
 import hu.schonherz.blog.service.api.user.vo.UserVO;
 
-import javax.servlet.http.HttpServletRequest;
+import java.sql.Date;
+import java.time.LocalDate;
 
 public class PostCreatorForm {
     private String title;
@@ -11,11 +13,13 @@ public class PostCreatorForm {
 
     private UserVO owner;
 
-    public PostCreatorForm(HttpServletRequest request) {
-        this.title = request.getParameter("title");
-        this.body = request.getParameter("body");
+    public PostCreatorForm(String title, String body, UserVO owner) {
+        this.title = title;
+        this.body = body;
+        this.owner = owner;
+    }
 
-        owner = (UserVO) request.getSession().getAttribute("user");
+    public PostCreatorForm() {
     }
 
     public String getTitle() {
@@ -40,6 +44,15 @@ public class PostCreatorForm {
 
     public void setOwner(UserVO owner) {
         this.owner = owner;
+    }
+
+    public BlogPostVO toVO() {
+        BlogPostVO vo = new BlogPostVO();
+        vo.setPostBody(title);
+        vo.setPostTitle(body);
+        vo.setPostPublishTime(Date.valueOf(LocalDate.now()));
+        vo.setOwner(owner);
+        return vo;
     }
 
     @Override

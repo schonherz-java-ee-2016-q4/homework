@@ -17,14 +17,15 @@
     </jsp:attribute>
 
     <jsp:attribute name="customBody">
-        <c:if test="${sessionScope.user !=null}">
+        <c:if test="${pageContext.request.userPrincipal !=null}">
             <div class="panel panel-primary">
                 <div class="panel-heading mypanel " id="filter_heading" onclick="on_header_clocked()">
                     <h3>New Post</h3>
 
                 </div>
                 <div class="panel-body" id="new_post_form">
-                    <form class="form-horizontal" accept-charset="UTF-8" id="create_post">
+                    <form class="form-horizontal" accept-charset="UTF-8" id="create_post" action="/create"
+                          method="post">
                         <div class="form-group">
                             <label for="title" class="col-sm-3 control-label">Title</label>
                             <div class="col-sm-9">
@@ -54,6 +55,5 @@
     </jsp:attribute>
     <jsp:attribute name="customScripts">
         <script src="/resources/js/blogpost.js"></script>
-        <script src="/resources/js/blogpostcreator.js"></script>
     </jsp:attribute>
 </masterLayout:mastrerLayout>

@@ -38,7 +38,7 @@
             <c:if test="${pageContext.request.userPrincipal !=null}">
                 <div class=" dropdown pull-right">
                     <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
-                        <c:out value="${pageContext.request.userPrincipal}"></c:out>
+                        <c:out value="${pageContext.request.userPrincipal.name}"></c:out>
                         <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu">

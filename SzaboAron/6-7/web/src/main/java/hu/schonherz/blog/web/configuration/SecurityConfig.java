@@ -35,5 +35,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .exceptionHandling().accessDeniedPage("/public/login/denied.jsp")
                 .and()
                 .csrf().disable();
+
+        http.authorizeRequests()
+                .antMatchers("/secured/**").access("hasRole('ROLE_USER')")
+                .and()
+                .formLogin().loginPage("/public/login/login.jsp").loginProcessingUrl("/login").defaultSuccessUrl
+                ("/index.jsp").failureUrl("/public/login/login.jsp?error=true")
+                .usernameParameter("username").passwordParameter("password")
+                .and()
+                .logout().logoutUrl("/logout").logoutSuccessUrl("/public/login/login.jsp?logout=true")
+                .and()
+                .exceptionHandling().accessDeniedPage("/public/login/denied.jsp")
+                .and()
+                .csrf().disable();
     }
 }
+
