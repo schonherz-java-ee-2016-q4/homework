@@ -5,7 +5,7 @@ public class UserVO {
 
     private int id;
     private String firstName;
-    private String LastName;
+    private String lastName;
     private String username;
     private String password;
     private String email;
@@ -34,11 +34,11 @@ public class UserVO {
     }
 
     public String getLastName() {
-        return LastName;
+        return lastName;
     }
 
     public void setLastName(String lastName) {
-        LastName = lastName;
+        lastName = lastName;
     }
 
     public String getUsername() {
