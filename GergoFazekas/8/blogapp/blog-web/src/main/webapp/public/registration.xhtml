@@ -1,0 +1,52 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui"
+    template="/templates/masterLayout.xhtml">
+    <ui:define name="pageTitle">Registration</ui:define>
+    <ui:define name="content">
+        <h:form id="registratonForm">
+            <div class="row">
+                <div class="col-sm-4">
+	                <h:outputLabel value="First Name:" for="firstName" />
+	                <p:inputText id="firstName"
+	                    value="#{registrationView.user.firstName}" required="true" />
+	                <p:message for="firstName" />
+                </div>
+                <div class="col-sm-4">
+                    <h:outputLabel value="Last Name:" for="lastName" />
+                    <p:inputText id="lastName"
+                        value="#{registrationView.user.lastName}" required="true" />
+                    <p:message for="lastName" />
+                </div>
+                <div class="col-sm-4">
+                    <h:panelGrid columns="2" cellpadding="5">
+	                    <p:outputLabel for="gender" value="Gender:" />
+	                    <p:selectOneRadio id="gender" value="#{registrationView.user.gender}">
+	                        <f:selectItem itemLabel="Female" itemValue="female" />
+	                        <f:selectItem itemLabel="Male" itemValue="male"  />
+	                    </p:selectOneRadio>
+                    </h:panelGrid>
+                </div>
+            </div>
+            <p:outputLabel for="dob" value="Date of Birth:" />
+            <p:calendar id="dob" value="#{registrationView.user.dob}" />
+            <div class="row">
+                <div class="col-sm-6">
+                    <h:outputLabel value="Password:" for="password1" />
+                    <p:inputText id="password1"
+                        value="#{registrationView.user.password}" required="true" />
+                    <p:message for="password1" />
+                </div>
+                <div class="col-sm-6">
+                    <h:outputLabel value="Password Confirm:" for="password2" />
+                    <p:inputText id="password2" required="true" />
+                    <p:message for="password2" />
+                </div>
+            </div>
+            <p:commandButton value="Registration"
+                actionListener="#{registrationView.registration()}"></p:commandButton>
+        </h:form>
+    </ui:define>
+</ui:composition>
