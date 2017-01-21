@@ -1,17 +1,16 @@
 package hu.sconherz.blog.web.login;
 
-import java.io.IOException;
+import hu.schonherz.blog.service.UserService;
+import hu.schonherz.blog.service.UserServiceImpl;
+import hu.schonherz.blog.service.api.user.dto.UserDTO;
+import hu.schonherz.blog.service.api.user.exception.UserNotFoundException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import hu.schonherz.blog.service.api.user.exception.UserNotFoundException;
-import hu.schonherz.blog.service.api.user.service.UserService;
-import hu.schonherz.blog.service.api.user.vo.UserVO;
-import hu.schonherz.blog.service.userservice.UserServiceImpl;
+import java.io.IOException;
 
 /**
  * Servlet implementation class Login
@@ -43,7 +42,7 @@ public class LoginServlet extends HttpServlet {
 
         String username = loginForm.getUsername();
         UserService userService = new UserServiceImpl();
-        UserVO user = null;
+        UserDTO user = null;
         try {
             user = userService.findUserByName(username);
         } catch (UserNotFoundException e) {
