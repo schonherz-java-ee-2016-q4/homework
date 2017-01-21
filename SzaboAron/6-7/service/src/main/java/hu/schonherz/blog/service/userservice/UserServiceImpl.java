@@ -38,6 +38,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public boolean switchUserStatus(String username) {
+        UserDTO dto = dao.findUserByUsername(username);
+        dao.switchStatus(dto.getUsername(), !dto.isActive());
+        return !dto.isActive();
+    }
+
+    @Override
     public UserVO findUserById(int id) {
         return UserVO.toVO(dao.findById(id));
     }

@@ -19,7 +19,7 @@ function displayPostList(list) {
     $('#posts').html('');
     $.each(list, function (index, value) {
         console.log(value);
-        $.get('/resources/content/blogpost.html',
+        $.get('/resources/content/blog_head.html',
             function (template) {
                 var t = template.replace('spec_date', value.postPublishTime);
                 t = t.replace('spec_title', value.postTitle);

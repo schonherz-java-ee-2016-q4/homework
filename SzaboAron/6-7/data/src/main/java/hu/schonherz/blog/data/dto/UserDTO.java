@@ -22,20 +22,19 @@ public class UserDTO {
     private String mediumPic;
     private String thumbnailPic;
     private String role;
-    private Boolean enabled;
+    private Boolean active;
 
     public UserDTO() {
 
     }
 
-    public Boolean isEnabled() {
-        return enabled;
+    public Boolean isActive() {
+        return active;
     }
 
-    public void setEnabled(Boolean enabled) {
-        this.enabled = enabled;
+    public void setActive(Boolean active) {
+        this.active = active;
     }
-
 
     public int getId() {
         return id;
@@ -211,7 +210,7 @@ public class UserDTO {
                 ", mediumPic='" + mediumPic + '\'' +
                 ", thumbnailPic='" + thumbnailPic + '\'' +
                 ", role='" + role + '\'' +
-                ", enabled=" + enabled +
+                ", active=" + active +
                 '}';
     }
 }

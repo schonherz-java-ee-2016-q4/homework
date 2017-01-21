@@ -24,7 +24,7 @@ public class UserVO {
     private String mediumPic;
     private String thumbnailPic;
     private String role;
-    private Boolean enabled;
+    private Boolean active;
 
     public static UserVO toVO(UserDTO userDTO) {
         UserVO user = new UserVO();
@@ -46,7 +46,7 @@ public class UserVO {
         user.setStreet(userDTO.getStreet());
         user.setThumbnailPic(userDTO.getThumbnailPic());
         user.setUsername(userDTO.getUsername());
-        user.setEnabled(userDTO.isEnabled());
+        user.setActive(userDTO.isActive());
         user.setRole(userDTO.getRole());
         return user;
     }
@@ -71,7 +71,7 @@ public class UserVO {
         user.setStreet(userVO.getStreet());
         user.setThumbnailPic(userVO.getThumbnailPic());
         user.setUsername(userVO.getUsername());
-        user.setEnabled(userVO.isEnabled());
+        user.setActive(userVO.isActive());
         user.setRole(userVO.getRole());
         return user;
     }
@@ -232,12 +232,12 @@ public class UserVO {
         this.role = role;
     }
 
-    public Boolean isEnabled() {
-        return enabled;
+    public Boolean isActive() {
+        return active;
     }
 
-    public void setEnabled(Boolean enabled) {
-        this.enabled = enabled;
+    public void setActive(Boolean active) {
+        this.active = active;
     }
 
     @Override
@@ -262,7 +262,7 @@ public class UserVO {
                 ", mediumPic='" + mediumPic + '\'' +
                 ", thumbnailPic='" + thumbnailPic + '\'' +
                 ", role='" + role + '\'' +
-                ", enabled=" + enabled +
+                ", active=" + active +
                 '}';
     }
 }

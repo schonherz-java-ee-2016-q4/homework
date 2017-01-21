@@ -31,7 +31,7 @@ public class UserMapper implements RowMapper<UserDTO> {
         dto.setMediumPic(rs.getString("medium_pic"));
         dto.setThumbnailPic(rs.getString("thumbnail_pic"));
         dto.setRole(rs.getString("user_role"));
-        dto.setEnabled(rs.getBoolean("enabled"));
+        dto.setActive(rs.getBoolean("enabled"));
         return dto;
     }
 

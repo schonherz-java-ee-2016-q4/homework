@@ -48,8 +48,8 @@ public class PostCreatorForm {
 
     public BlogPostVO toVO() {
         BlogPostVO vo = new BlogPostVO();
-        vo.setPostBody(title);
-        vo.setPostTitle(body);
+        vo.setPostTitle(title);
+        vo.setPostBody(body);
         vo.setPostPublishTime(Date.valueOf(LocalDate.now()));
         vo.setOwner(owner);
         return vo;

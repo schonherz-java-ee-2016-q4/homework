@@ -1,4 +1,4 @@
-<%@tag description="" pageEncoding="utf-8" %>
+<%@tag description="blog master" pageEncoding="utf-8" %>
 <%@ attribute name="customTitle" fragment="true" %>
 <%@ attribute name="customHeader" fragment="true" %>
 <%@ attribute name="customBody" fragment="true" %>
@@ -7,9 +7,11 @@
 
 <!DOCTYPE html>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <html lang="en">
 <head>
+    <meta charset="UTF-8"/>
     <title>
         <jsp:invoke fragment="customTitle"/>
     </title>
@@ -19,6 +21,7 @@
     <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/register.css"/>">
     <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/signin.css"/>">
     <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/bootstrap-theme.css"/>">
+    <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
 </head>
 
 <body>
@@ -35,6 +38,9 @@
                 <a class="blog-nav-item" href="<c:url value="/logout"/>">Logout</a>
             </c:if>
             <a class="blog-nav-item" href="<c:url value="/secured/secured.jsp"/>">Users</a>
+            <sec:authorize access="hasRole('ADMIN')">
+                <a class="blog-nav-item" href="<c:url value="/admin/admin.jsp"/>">Admin</a>
+            </sec:authorize>
             <c:if test="${pageContext.request.userPrincipal !=null}">
                 <div class=" dropdown pull-right">
                     <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
@@ -76,6 +82,7 @@
         .write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')
 </script>
 <script src="<c:url value="/resources/js/bootstrap.min.js"/>"></script>
+<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
 <jsp:invoke fragment="customScripts"/>
 </body>
 </html>

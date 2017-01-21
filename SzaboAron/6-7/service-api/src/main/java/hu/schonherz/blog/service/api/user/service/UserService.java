@@ -13,4 +13,6 @@ public interface UserService {
     UserVO findUserById(int id);
 
     void saveUser(UserVO user);
+
+    boolean switchUserStatus(String username);
 }

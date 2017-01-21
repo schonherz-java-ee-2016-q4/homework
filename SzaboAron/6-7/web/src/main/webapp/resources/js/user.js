@@ -10,7 +10,6 @@ $(document).ready(function () {
         event.preventDefault();
         var str = $(this).serialize();
         get_filtered_user_list(str);
-        console.log(str);
     });
 
 });
@@ -25,7 +24,6 @@ function get_user_list() {
     var size = new Number($('#number').val());
     $.get("/listusers", function (res) {
         results = res;
-        console.log(results);
         display_user_list(res);
         $(".loader").hide();
         $('#result').show();
@@ -69,6 +67,7 @@ function on_header_clocked() {
     }
 }
 
+
 function handleClick(id) {
     // alert(id);
     $('#myModal').html('');
@@ -88,7 +87,7 @@ function handleClick(id) {
                 t = t.replace('location', value.postcode + ' '
                     + value.city + ', ' + value.street);
                 t = t.replace('img_url', value.largePic);
-
+                t = t.replace('active', value.active ? 'Enabled' : 'Disabled');
                 $('#myModal').append(t);
                 return;
             }

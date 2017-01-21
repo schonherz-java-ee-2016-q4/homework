@@ -13,6 +13,7 @@ import java.util.List;
 @Repository
 public class UserDAOImpl implements UserDAO {
 
+
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
@@ -35,10 +36,15 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
+    public void switchStatus(String username, boolean active) {
+        jdbcTemplate.update(UserQuerys.QUERY_CHANGE_STATUS, active, username);
+    }
+
+    @Override
     public int save(UserDTO dto) {
         return jdbcTemplate.update(UserQuerys.QUERY_INSERT, dto.getEmail(), dto.getDateOfBirth(), dto.getRegistered(),
                 dto.getPhone(), dto.getStreet(), dto.getCity(), dto.getState(), dto.getPostcode(), dto.getNameTitle(),
                 dto.getFirstName(), dto.getLastName(), dto.getGender(), dto.getUsername(), dto.getPassword(),
-                dto.getLargePic(), dto.getMediumPic(), dto.getThumbnailPic(), dto.getRole(), dto.isEnabled());
+                dto.getLargePic(), dto.getMediumPic(), dto.getThumbnailPic(), dto.getRole(), dto.isActive());
     }
 }

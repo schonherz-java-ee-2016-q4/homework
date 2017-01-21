@@ -21,11 +21,7 @@ public class BlogPostDAOImpl implements GenericDAO<BlogPostDTO> {
 
     @Override
     public Collection<BlogPostDTO> findAll() {
-
-        LOGGER.debug("finding posts" + jdbcTemplate);
-
         List<BlogPostDTO> posts = jdbcTemplate.query(BlogPostQuerys.QUERY_FIND_ALL, new BlogPostMapper());
-        LOGGER.debug(posts.get(0).toString());
         return posts;
     }
 

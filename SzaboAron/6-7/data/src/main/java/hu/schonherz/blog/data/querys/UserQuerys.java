@@ -12,4 +12,5 @@ public final class UserQuerys {
             + "VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
     public static final String QUERY_FIND_BY_ID = "SELECT * FROM blog.users where id=(?);";
     public static final String QUERY_FIND_BY_USERNAME = "SELECT * FROM blog.users where username=?;";
+    public static final String QUERY_CHANGE_STATUS = "UPDATE blog.users SET enabled=? WHERE username=?";
 }
